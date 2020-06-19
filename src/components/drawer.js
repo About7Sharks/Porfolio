@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
@@ -49,7 +48,6 @@ export default function TemporaryDrawer() {
         {['Home', 'Projects', 'About', 'Tech Used'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:text==='Tech Used'?<DevicesIcon/>:<AccountTreeIcon/> }</ListItemIcon>
-            {/* <ListItemText primary={text} /> */}
             <Link to={'/'+text.toLowerCase().replace(/\s/g, '')}>{text}</Link>            
           </ListItem>
         ))}
