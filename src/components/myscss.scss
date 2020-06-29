@@ -1,0 +1,55 @@
+#root {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  //   sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.MuiFormControl-root {
+  border: 1px solid #ffffff36 !important;
+
+}
+
+#searchBar-label {
+  color: white !important;
+}
+
+.article{
+  max-width: 600px;
+  margin: 0 auto;
+  h1{
+    color: black;
+  }
+}
+.projects{
+  min-height: 100vh;
+}
+.floating{
+  animation: floatingAnimation 3s infinite linear forwards alternate-reverse;
+  position: absolute;
+  bottom: 15px;
+  width:40px !important;
+  height:40px !important;
+  cursor: pointer;
+
+}
+@keyframes floatingAnimation{
+  from{
+    transform: translateY(-5px)
+  }
+  to{
+    transform: translateY(5px)
+  }
+}

@@ -1,65 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Projects from "./components/projects.js";
 import Drawer from "./components/drawer.js"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import Home from './components/Home.js'
+import TechUsed from './components/TechUsed.js'
+import BlogPosts from './components/blogPosts'
+// import Blog from './components/TechUsed.js'
+import BlogPost from './components/blogPostViewer'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
    return (
-     <Router>
-      <Drawer/>
+    <Router>
+     <Drawer/>
+     <div>
+     <Switch>
+          
+          <Route exact path="/blog">
+           <BlogPosts/>
+          </Route>
+          <Route path='/blog/:id' component={BlogPost}/>
 
-  <div>
-    <Switch>
-      {/* If the current URL is /about, this route is rendered
-          while the rest are ignored */}
-      <Route path="/about">
-        <div>About</div>
-      </Route>
+          <Route path="/about">
+            <div>About</div>
+          </Route>
 
-      {/* Note how these two routes are ordered. The more specific
-          path="/contact/:id" comes before path="/contact" so that
-          route will render when viewing an individual contact */}
-      <Route path="/projects">
-          <Projects/>
-      </Route>
-      <Route path="/contact">
-      <div>Contact</div>
-      </Route>
-      <Route path="/techused">
-      <div>Tech Used</div>
-      </Route>
+          <Route path="/projects" component={Projects}/>
 
-      <Route path={"/home"| "/"}>
-     
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-     
+          <Route path="/contact">
+          <div>Contact</div>
+          </Route>
 
-          Learn React
-        </a>
-      </header>
-      <Projects/>
-    </div>
-
-      </Route>
-    </Switch>
-  </div>
-  </Router>
+          <Route path="/techused" component={TechUsed}/>
+          <Route path={"/"| "/home"}>
+            <Home/>
+            <Projects/>
+          </Route>
+        </Switch>
+        </div>
+      </Router>
 );
 }
   

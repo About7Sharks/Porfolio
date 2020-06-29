@@ -52,22 +52,17 @@ class Projects extends Component {
   }
   render() {
     return (
-      <div className='projects'>
+      <div id='projects' className='projects'>
           <h1>Projects</h1><br/>
 
-          <div>
       <Autocomplete
         id="searchBar"
-        freeSolo
         options={['AI','Javascript','Vue','IOT','HTML','React',]}
         multiple={false}
         onChange={this.filterByTag}
-        renderInput={(params) => (
-          <TextField 
-          {...params} label="Filter by project tag" margin="normal" variant="outlined" />
-        )}
+        renderInput={(params) => ( <TextField  {...params} label="Filter by project tag" margin="normal" variant="outlined"/>)}
       />
-    </div>
+
 
 
           <div className='cardContainer'>
