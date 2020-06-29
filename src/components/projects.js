@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import sites from './sites.js' //my sites data
 import { Button } from '@material-ui/core';
-import './styles.css';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 

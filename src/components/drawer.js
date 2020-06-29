@@ -10,7 +10,6 @@ import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
 import BookIcon from '@material-ui/icons/Book';
-import DevicesIcon from '@material-ui/icons/Devices';
 import MenuIcon from '@material-ui/icons/Menu';
 import {  Link } from "react-router-dom";
 import './myscss.scss';

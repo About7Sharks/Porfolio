@@ -8,10 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import { useHistory } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
+    minWidth:300,
   },
   media: {
-    height: 140,
+    height: 200,
   },
 });
 

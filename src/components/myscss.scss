@@ -26,30 +26,123 @@ code {
   color: white !important;
 }
 
-.article{
+.article {
   max-width: 600px;
   margin: 0 auto;
-  h1{
+
+  h1 {
     color: black;
   }
 }
+
 .projects{
+  border-top: 1px solid grey;
+  background: #282c34;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
   min-height: 100vh;
 }
-.floating{
+
+//blog page css
+.blog {
+  h1 {
+    color: black;
+  }
+
+  .content {
+    padding: 10px;
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px 20px;
+    justify-items: center;
+  }
+}
+
+
+
+
+
+
+//home page svg icon css
+.floating {
   animation: floatingAnimation 3s infinite linear forwards alternate-reverse;
   position: absolute;
   bottom: 15px;
-  width:40px !important;
-  height:40px !important;
+  width: 40px !important;
+  height: 40px !important;
   cursor: pointer;
 
 }
-@keyframes floatingAnimation{
-  from{
+
+@keyframes floatingAnimation {
+  from {
     transform: translateY(-5px)
   }
-  to{
+
+  to {
     transform: translateY(5px)
   }
 }
+
+
+
+
+
+.MuiFormControl-fullWidth{
+  width:  80% !important;
+}
+#searchBar{
+  min-width: 320px;
+}
+h1{
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+.cardContainer{
+  display:inline-flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  max-width: 1000px;
+}
+
+.card{
+  background: rgba(51, 51, 51, 0.356);
+  width: 320px;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 10px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  p{
+    text-align: left;
+  }
+  h3{
+    margin: 8px;
+    text-shadow: 2px 2px #252525b0;
+    text-align: left;
+  }
+  img{
+    height:200px;
+    width:300px;
+  }
+
+  .actions{
+    align-self: flex-start;
+    text-align: left;
+    margin: 5px;
+    button{
+      color: #61dafb;;
+      border: 1px solid #61dafb;
+      margin: 1px;
+    }
+  }
+}
+
+
+

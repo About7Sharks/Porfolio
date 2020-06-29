@@ -9,7 +9,7 @@ class Blog extends Component {
     this.state = { articles:[] }
   }
   componentDidMount() {
-      Promise.allSettled([fetch('../content/improvingPersonalSecurity.md'),fetch('../content/techUses.md')])
+      Promise.allSettled([fetch('../content/improvingPersonalSecurity.md'),fetch('../content/techUses.md'),fetch('../content/improvingPersonalSecurity.md'),fetch('../content/improvingPersonalSecurity.md'),fetch('../content/improvingPersonalSecurity.md'),])
         .then(responses=>{
           for (let response in responses){
             if(responses[response].status==="fulfilled"){
@@ -27,9 +27,12 @@ class Blog extends Component {
       return  <MediaCard key={article.data.title} variant="outlined" title={article.data.title} image={article.data.image} summary={article.data.summary} date={article.data.date} />
     })
     return (
-      <div className="content">
+      <div className='blog'>
         <h1>Blog </h1>
-        {articlePreview}
+      <div className="content">
+      {articlePreview}
+
+      </div>
       </div>
     )
   }
