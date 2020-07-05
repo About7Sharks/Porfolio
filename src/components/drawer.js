@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,12 +16,25 @@ import './myscss.scss';
 const useStyles = makeStyles({
   list: {
     width: 250,
-    color: 'white'
+    backgroundColor: 'black'
   },
   fullList: {
     width: 'auto',
-    
+    backgroundColor: 'black',
+    height: '100vh'
   },
+  drawer:{
+    backgroundColor:'black',
+    minHeight:'100vh',
+  },
+  menuStyles:{
+    zIndex:'100',
+    border:'1px solid black',
+    position: 'fixed',
+    top: '10px',
+    right:'10px',
+    filter:'invert(1)'
+  }
 });
 
 export default function TemporaryDrawer() {
@@ -37,13 +50,13 @@ export default function TemporaryDrawer() {
   };
 
   const list = (anchor) => (
-    <div className={clsx(classes.list, { [classes.fullList]: anchor === 'top' || anchor === 'bottom' })}
+  <div className={clsx(classes.list,classes.drawer, { [classes.fullList]: anchor === 'top' || anchor === 'bottom' })}
       role="presentation" onClick={toggleDrawer(anchor, false)}  onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {['Home', 'Blog', 'Projects', 'About'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Blog'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
-            <Link to={'/'+text.toLowerCase().replace(/\s/g, '')}>{text}</Link>            
+            <ListItemIcon >{ text==='Home'?<HomeIcon style={{fill:'white'}}/>:text==='Blog'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
+            <Link style={{width:'100%',height:'40px',color:'white'}} to={'/'+text.toLowerCase().replace(/\s/g, '')}>{text}</Link>            
           </ListItem>
         ))}
       </List>
@@ -54,10 +67,16 @@ export default function TemporaryDrawer() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button style={{zIndex:'100', border:'1px solid black', position: 'fixed', top: '10px',right:'10px',filter:'invert(1)'}} onClick={toggleDrawer(anchor, true)}><MenuIcon/> Menu</Button>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+          <Button className={classes.menuStyles} onClick={toggleDrawer(anchor, true)}><MenuIcon/> Menu</Button>  
+          <SwipeableDrawer
+      anchor={anchor}
+      open={state[anchor]}
+      onClose={toggleDrawer(anchor, false)}
+      onOpen={toggleDrawer(anchor, true)}
+    >
+        
             {list(anchor)}
-          </Drawer>
+          </SwipeableDrawer>
         </React.Fragment>
       ))}
     </div>

@@ -9,7 +9,10 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: 400,
-    minWidth:300,
+    minWidth:280,
+    height:400,
+    background:'#262626',
+    color:'white'
   },
   media: {
     height: 200,
@@ -20,20 +23,17 @@ export default function MediaCard(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  function handleClick(e) {
-    history.push("/blog/"+props.title.replace(/ /g,''));
-  }
+
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={() => handleClick(props.title)}>
-        <CardMedia className={classes.media}
-          image={props.image}
-          title={props.title}/>
+    <CardActionArea onClick={() => history.push("/blog/"+props.title.replace(/ /g,''))}>
+      <Card raised={true} className={classes.root}>
+      <CardMedia className={classes.media} image={props.image}  title={props.title}/>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">{props.title}</Typography>
-          <Typography variant="body2" color="textSecondary" component="p">{props.summary}</Typography>
+          <Typography component="h2">{props.title}</Typography>
+          <Typography component="p">{props.summary}</Typography>
         </CardContent>
-      </CardActionArea>
-    </Card>
+      </Card>
+    </CardActionArea>
+
   );
 }

@@ -53,6 +53,7 @@ class Projects extends Component {
     return (
       <div id='projects' className='projects'>
           <h1>Projects</h1><br/>
+          <p>Here you can find some sites that i'm currently hosting on the interwebs 🕸️</p>
 
       <Autocomplete
         id="searchBar"

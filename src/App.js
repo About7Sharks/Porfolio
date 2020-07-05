@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import './components/myscss.scss';
 import Projects from "./components/projects.js";
 import Drawer from "./components/drawer.js"
 import Home from './components/Home.js'
-import BlogPosts from './components/blogPosts'
-import BlogPost from './components/blogPostViewer'
+import BlogPosts from './components/blog/blogPosts'
+import BlogPost from './components/blog/blogPostViewer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
    return (
@@ -27,11 +27,10 @@ function App() {
           <Route path="/contact">
           <div>Contact</div>
           </Route>
-
           <Route path={"/"| "/home"}>
             <Home/>
-            <Projects/>
-            <BlogPosts/>
+            {/* <Projects/>
+            <BlogPosts/> */}
           </Route>
         </Switch>
         </div>
