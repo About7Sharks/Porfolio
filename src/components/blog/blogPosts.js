@@ -24,7 +24,7 @@ class Blog extends Component {
 
   render() {
     let articlePreview = this.state.articles.map(article=>{ 
-      return  <MediaCard  key={article.data.title}  title={article.data.title} image={article.data.image} summary={article.data.summary} date={article.data.date} />
+      return  <MediaCard key={article.data.title} title={article.data.title} image={article.data.image} summary={article.data.summary} date={article.data.date}/>
     })
     return (
       <div className='blog'>

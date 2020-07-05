@@ -7,12 +7,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 }
+.blog{
+  .MuiSvgIcon-root{
+    filter: invert(1);
+  }
+}
+.projects{
+  .MuiSvgIcon-root{
+    fill: black;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}
+
 #root {
   overflow-x: hidden;
 
   //home page
   .App {
-    background: url('../assets/headerBackground.jpeg') no-repeat center center fixed;
+    background:#121212 url('../assets/headerBackground.jpeg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

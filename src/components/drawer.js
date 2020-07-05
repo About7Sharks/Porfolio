@@ -27,13 +27,17 @@ const useStyles = makeStyles({
     backgroundColor:'black',
     minHeight:'100vh',
   },
+  drawers:{
+    display:'inline-flex',
+    flexDirection: 'column'
+  },
   menuStyles:{
     zIndex:'100',
-    border:'1px solid black',
+    border:'1px solid white',
     position: 'fixed',
     top: '10px',
     right:'10px',
-    filter:'invert(1)'
+    color:'white',
   }
 });
 
@@ -52,10 +56,10 @@ export default function TemporaryDrawer() {
   const list = (anchor) => (
   <div className={clsx(classes.list,classes.drawer, { [classes.fullList]: anchor === 'top' || anchor === 'bottom' })}
       role="presentation" onClick={toggleDrawer(anchor, false)}  onKeyDown={toggleDrawer(anchor, false)}>
-      <List>
+      <List className={classes.drawers}>
         {['Home', 'Blog', 'Projects', 'About'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon >{ text==='Home'?<HomeIcon style={{fill:'white'}}/>:text==='Blog'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
+            <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Blog'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
             <Link style={{width:'100%',height:'40px',color:'white'}} to={'/'+text.toLowerCase().replace(/\s/g, '')}>{text}</Link>            
           </ListItem>
         ))}
@@ -67,14 +71,10 @@ export default function TemporaryDrawer() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className={classes.menuStyles} onClick={toggleDrawer(anchor, true)}><MenuIcon/> Menu</Button>  
-          <SwipeableDrawer
-      anchor={anchor}
-      open={state[anchor]}
-      onClose={toggleDrawer(anchor, false)}
-      onOpen={toggleDrawer(anchor, true)}
-    >
-        
+          <Button className={classes.menuStyles} onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon/> Menu</Button>  
+          <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}
+          onOpen={toggleDrawer(anchor, true)}>
             {list(anchor)}
           </SwipeableDrawer>
         </React.Fragment>

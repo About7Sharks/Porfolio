@@ -12,11 +12,15 @@ const useStyles = makeStyles({
     minWidth:280,
     height:400,
     background:'#262626',
-    color:'white'
+    color:'white',
+    borderRadius:'25px'
   },
   media: {
     height: 200,
   },
+  cardExtras:{
+    textShadow: '2px 2px #444'
+  }
 });
 
 export default function MediaCard(props) {
@@ -29,7 +33,7 @@ export default function MediaCard(props) {
       <Card raised={true} className={classes.root}>
       <CardMedia className={classes.media} image={props.image}  title={props.title}/>
         <CardContent>
-          <Typography component="h2">{props.title}</Typography>
+          <Typography className={classes.cardExtras} variant="h5" component="h2">{props.title}</Typography>
           <Typography component="p">{props.summary}</Typography>
         </CardContent>
       </Card>
