@@ -7,9 +7,10 @@ class Home extends Component {
   }
    render(){
     return  <div className="App">
-            <p>Hi 👋, I'm Zach a fun loving software engineer 🧙‍♂</p>
+            {/* <div className='gradient'></div> */}
+            <p>Hi 👋, I'm Zach a fun loving <h1 style={{display:'inline-flex',minWidth:'100%'}}>software engineer <span className='showHide'>_</span></h1> </p>
             <span>
-            <Link to={'/blog'}>Blog 🗒️</Link>   |   
+            <Link to={'/journal'}>Journal 🗒️</Link>   |   
             <Link to={'/projects'}>Projects 🚧</Link> |
             <Link to={'/about'}>About 🤷</Link>      
             </span>
@@ -17,3 +18,4 @@ class Home extends Component {
     }
 }
 export default Home
+// 🧙‍♂

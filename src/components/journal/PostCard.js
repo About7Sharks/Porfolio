@@ -29,15 +29,15 @@ export default function MediaCard(props) {
 
 
   return (
-    <CardActionArea onClick={() => history.push("/blog/"+props.title.replace(/ /g,''))}>
+    <CardActionArea style={{width:'auto',maxHeight:400}} onClick={() => history.push("/journal/"+props.title.replace(/ /g,''))}>
       <Card raised={true} className={classes.root}>
       <CardMedia className={classes.media} image={props.image}  title={props.title}/>
-        <CardContent>
-          <Typography className={classes.cardExtras} variant="h5" component="h2">{props.title}</Typography>
+        <CardContent className={classes.cardExtras}>
+          <Typography variant="h5" component="h2">{props.title}</Typography>
           <Typography component="p">{props.summary}</Typography>
         </CardContent>
       </Card>
-    </CardActionArea>
+      </CardActionArea>
 
   );
 }

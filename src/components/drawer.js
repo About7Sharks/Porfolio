@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     height: '100vh'
   },
   drawer:{
-    backgroundColor:'black',
     minHeight:'100vh',
   },
   drawers:{
@@ -56,10 +55,10 @@ export default function TemporaryDrawer() {
   const list = (anchor) => (
   <div className={clsx(classes.list,classes.drawer, { [classes.fullList]: anchor === 'top' || anchor === 'bottom' })}
       role="presentation" onClick={toggleDrawer(anchor, false)}  onKeyDown={toggleDrawer(anchor, false)}>
-      <List className={classes.drawers}>
-        {['Home', 'Blog', 'Projects', 'About'].map((text, index) => (
+      <List className={classes.drawers,'zacOverwrite'}>
+        {['Home', 'Journal', 'Projects', 'About'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Blog'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
+            <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Journal'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
             <Link style={{width:'100%',height:'40px',color:'white'}} to={'/'+text.toLowerCase().replace(/\s/g, '')}>{text}</Link>            
           </ListItem>
         ))}

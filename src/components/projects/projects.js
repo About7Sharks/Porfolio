@@ -3,7 +3,6 @@ import sites from './sites.js' //my sites data
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import BackBTN from './navigation/backbutton'
 
 
 
@@ -11,13 +10,15 @@ let projects = sites.map((site) => {
   let tagButtons=site.tags.map(tag=><Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
 
     return <div className='card' key={site.url}>
-         <h3>{site.title}</h3> 
-         <img alt={site.url} src={site.img} title=""/>
+         <img style={{height:'290px'}} alt={site.url} src={site.img} title=""/>
+         <div onClick={ () => window.open(site.url)} className='info'>
+         <h3>{site.title}</h3>  
          <p>{site.text}</p> 
          <div className='actions'>
            Tags: &nbsp; {tagButtons}
          </div>
-         <Button target='_blank'  variant="contained" size="small" color="primary" href={site.url}>Visit</Button> 
+         </div>
+        
          </div>});
 
 
@@ -33,18 +34,20 @@ class Projects extends Component {
     //if input null set back to all
     if(value==null){return this.setState({projects: projects})}
 
-    //create new site list if value isnt null
+    //create new site list if value isn't null
     let newSiteList=sites.map((site)=>{
       let tagButtons=site.tags.map(tag=><Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
-      if(site.tags.includes(value)){//if site incluedes tag create element 
-        return<div className='card' key={site.url}>
-        <h3>{site.title}</h3> 
+      if(site.tags.includes(value)){//if site includes tag create element 
+     return <div className='card' key={site.url}>
         <img alt={site.url} src={site.img} title=""/>
+        <div onClick={ () => window.open(site.url)} className='info'>
+        <h3>{site.title}</h3>  
         <p>{site.text}</p> 
         <div className='actions'>
           Tags: &nbsp; {tagButtons}
         </div>
-        <Button target='_blank'  variant="contained" size="small" color="primary" href={site.url}>Visit</Button> 
+        </div>
+       
         </div>}else{return ''}
     })
     this.setState({projects:newSiteList}) //update state with new list
@@ -52,8 +55,7 @@ class Projects extends Component {
   render() {
     return (
       <div id='projects' className='projects'>
-        <BackBTN/>
-          <h1>Projects</h1><br/>
+          <h1>Projects</h1>
           <p>Here you can find some sites that i'm currently hosting on the interwebs 🕸️</p>
 
       <Autocomplete

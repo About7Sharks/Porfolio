@@ -9,7 +9,10 @@ const useStyles = makeStyles({
         border: '1px solid black',
         borderRadius: '25px',
         padding: '3px',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        position:'absolute',
+        top:'25px',
+        left:'25px'
     }
   });
 export default function BackButton({ children }) {

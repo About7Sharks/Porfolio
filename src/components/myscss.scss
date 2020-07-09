@@ -1,18 +1,82 @@
+@font-face {
+  font-family: 'Summer Hearts';
+  src: local('Summer Hearts'), url('../assets/SummerHearts-Regular.otf') format('truetype');
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #121212 url('../assets/topography.svg');
+  h1{
+    font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size:  4rem;
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    &::after, &::before {
+      border-left-width: 10px;
+      border-right-width: 10px;
+      border-bottom-width: 10px;
+      display: block;
+      position: absolute;
+      left: -1rem;
+      transform: rotate(60deg);
+      bottom: 0;
+      content: "";
+      border-left-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      transform-origin: center;
+      border-bottom-color: #eef46e;
 
+  }
+  &::after{
+    left:  0px;
+    bottom: -1px;
+    transform: rotate(10deg);
+    border-bottom-color: #8bd76b;
+
+  }
+  }
 }
-.blog{
-  .MuiSvgIcon-root{
+
+
+.zacOverwrite{
+  .MuiListItem-button{
+    display: inline-flex;
+    align-items: unset;
+  }
+  svg{
     filter: invert(1);
   }
 }
+
 .projects{
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+  
+  h1{
+    margin:50px 0px 0px 0px;
+    color: #f54768;
+    &::after{
+      border-bottom-color: #8bd76b;
+    }
+    &::before{
+      border-bottom-color: #eef46e;
+    }
+  }
+  #searchBar{
+    min-width: 320px;
+    display: flex;
+  }
   .MuiSvgIcon-root{
     fill: black;
     position: absolute;
@@ -39,22 +103,45 @@ body {
     font-size: calc(15px + 2vmin);
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.077);
+    h1{span{
+      font-family: initial;
+      animation: hideToShow 1s infinite;
+    }}
     p{
-      margin:120px 30px 0px 30px;
+      margin:50px 30px -20px 30px;
       text-align:'left';
       animation: slideRight 1.8s cubic-bezier(0.0,0.1,0.25,1);
+      z-index: 10;
     }
     span{
-      padding-top: 15px;
+      z-index: 10;
     }
     a{
       color:white;
       text-decoration: none;
-      transition: .4s;
+      transition: 1s;
+      padding: 0px 4px;
+      display: inline-grid;
     }
-    a:hover{
-      color: rgb(199, 198, 198);
+    a:nth-child(1):hover{
+      border-bottom:1px solid #8bd76b;
+      
     }
+    a:nth-child(2):hover{
+      border-bottom:1px solid #f54768;
+    }
+    a:nth-child(3):hover{
+      border-bottom:1px solid #eef46e;
+    }
+    // a::after{
+    //   background: linear-gradient(90deg,#60a4f73e,#6df8fa35);
+    //   content: '';
+    //   width: auto;
+    //   height: 5px;
+    // }
+    // a:hover{
+    //   color: rgb(199, 198, 198);
+    // }
     @for $i from 1 through 3 {
       a:nth-child(#{$i}) {
         animation: hideToShow ($i)* .8s linear forwards;
@@ -85,9 +172,7 @@ body {
 
 
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',monospace;
-}
+
 
 .MuiFormControl-root {
   border: 1px solid #ffffff36 !important;
@@ -107,27 +192,25 @@ code {
   }
 }
 
-.projects{
-  border-top: 1px solid grey;
-  background: #121212;
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  min-height: 100vh;
-  color: white;
-}
 
 //blog page css
 .blog {
-  background: #121212;
   padding-top:10px;
   min-height: 100vh;
   padding: 10px;
-  h1 {
-    color: white;
+  .MuiSvgIcon-root{
+    filter: invert(1);
   }
-
+  h1{
+    margin-top: 55px;
+    color: #8bd76b;
+    &::after{
+      border-bottom-color:#f54768;
+    }
+    &::before{
+      border-bottom-color:#eef46e;
+    }
+  }
   .content {
     padding: 25px;
     max-width: 1040px;
@@ -139,12 +222,11 @@ code {
   }
 }
 .content{
-  padding: 10px;
-
-  background: #121212;
+  padding: 20px;
   min-height: 100vh;
   a,h1{
     color: white;
+    margin-top: 50px;
   }
   .article{
     color: white;
@@ -159,12 +241,8 @@ code {
 
 
 
-.MuiFormControl-fullWidth{
-  width:  80% !important;
-}
-#searchBar{
-  min-width: 320px;
-}
+
+
 h1{
   margin-top: 10px;
   color: white;
@@ -178,14 +256,39 @@ h1{
 }
 
 .card{
-  background: rgba(51, 51, 51, 0.356);
-  width: 320px;
-  margin: 5px 5px 10px 5px;
+  background: rgb(51, 51, 51);
+  max-width: 440px;
+  width:80%;
+  min-width: 280px;
+  margin: 10px;
   color: white;
   border-radius: 10px;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  img{
+    border-radius: 10px;
+    width: 100%;
+  }
+  .info{
+    position: absolute;
+    left: 0;
+    display:none;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: 10s;
+    overflow:auto;
+  }
+  &:hover{
+    .info{
+      background:rgba(29, 29, 29, 0.726);
+      opacity: 1;
+      display: inline-flex;
+    }
+  }
   p{
     text-align: left;
   }
@@ -196,7 +299,6 @@ h1{
   }
   img{
     height:200px;
-    width:300px;
   }
 
   .actions{
@@ -213,3 +315,66 @@ h1{
 
 
 
+
+
+//about page
+.about{
+  padding: 20px 20px 2px 20px;
+  h1{
+    margin: 0 auto;
+    margin-top:50px;
+    margin-bottom: 25px;
+    color:#eef46e;
+    &::after{
+      border-bottom-color: #8bd76b;
+    }
+    &::before{
+      border-bottom-color:#f54768;
+    }
+  }
+  span{
+    display: inline-flex;
+    align-items: baseline;
+    svg{
+      margin-right: 3px;
+    }
+  }
+ 
+  strong{
+    font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1.35rem;
+    margin-top: -10px;
+    color: #8bd76b;
+    transform: rotate(20deg);
+    line-height: 0px;
+    }
+}
+
+p{
+  margin: 0px auto;
+  padding: 10px;
+  font-size: 1.25rem;
+}
+
+@media only screen and (max-width: 570px) {
+  .App {
+    p{
+      margin-top: 70px !important;
+    }
+  h1{
+    font-size: 2.4rem !important;
+  }
+}
+}
+
+@media only screen and (max-width: 405px) {
+  .App {
+  h1{
+    font-size: 2rem !important;
+  }
+  span{
+    font-size:1.2rem;
+    margin-top: 15px;
+  }
+}
+}
