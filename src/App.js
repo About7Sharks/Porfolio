@@ -33,8 +33,6 @@ function App() {
           </Route>
           <Route path={"/"| "/home"}>
             <Home/>
-            {/* <Projects/>
-            <BlogPosts/> */}
           </Route>
         </Switch>
       </Router>

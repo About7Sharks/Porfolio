@@ -3,6 +3,7 @@ import sites from './sites.js' //my sites data
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Emoji from '../util/emoji'
 
 
 
@@ -56,7 +57,7 @@ class Projects extends Component {
     return (
       <div id='projects' className='projects'>
           <h1>Projects</h1>
-          <p>Here you can find some sites that i'm currently hosting on the interwebs 🕸️</p>
+          <p>Here you can find some sites that i'm currently hosting on the interwebs <Emoji symbol='🕸️'/></p>
 
       <Autocomplete
         id="searchBar"

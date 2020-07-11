@@ -55,7 +55,7 @@ export default function TemporaryDrawer() {
   const list = (anchor) => (
   <div className={clsx(classes.list,classes.drawer, { [classes.fullList]: anchor === 'top' || anchor === 'bottom' })}
       role="presentation" onClick={toggleDrawer(anchor, false)}  onKeyDown={toggleDrawer(anchor, false)}>
-      <List className={classes.drawers,'zacOverwrite'}>
+      <List className={classes.drawers + ' zacOverwrite'}>
         {['Home', 'Journal', 'Projects', 'About'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{ text==='Home'?<HomeIcon/>:text==='Journal'?<BookIcon/>:text==='Projects'?<AccountTreeIcon/>:text==='About'?<InfoIcon/>:<AccountTreeIcon/> }</ListItemIcon>
