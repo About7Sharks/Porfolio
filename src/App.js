@@ -15,7 +15,6 @@ function App() {
      <Drawer/>
      <BackBTN id="backBTN"/>
 
-     <div>
      <Switch>
           
           <Route exact path="/journal">
@@ -38,7 +37,6 @@ function App() {
             <BlogPosts/> */}
           </Route>
         </Switch>
-        </div>
       </Router>
 );
 }

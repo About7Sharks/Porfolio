@@ -2,20 +2,24 @@
   font-family: 'Summer Hearts';
   src: local('Summer Hearts'), url('../assets/SummerHearts-Regular.otf') format('truetype');
 }
+
 body {
   margin: 0;
-  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #121212 url('../assets/topography.svg');
-  h1{
+
+  h1 {
     font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size:  4rem;
+    font-size: 4rem;
     position: relative;
     max-width: 300px;
     margin: 0 auto;
     margin-bottom: 30px;
-    &::after, &::before {
+
+    &::after,
+    &::before {
       border-left-width: 10px;
       border-right-width: 10px;
       border-bottom-width: 10px;
@@ -33,51 +37,57 @@ body {
       transform-origin: center;
       border-bottom-color: #eef46e;
 
-  }
-  &::after{
-    left:  0px;
-    bottom: -1px;
-    transform: rotate(10deg);
-    border-bottom-color: #8bd76b;
+    }
 
-  }
+    &::after {
+      left: 0px;
+      bottom: -1px;
+      transform: rotate(10deg);
+      border-bottom-color: #8bd76b;
+
+    }
   }
 }
 
 
-.zacOverwrite{
-  .MuiListItem-button{
+.zacOverwrite {
+  .MuiListItem-button {
     display: inline-flex;
     align-items: unset;
   }
-  svg{
+
+  svg {
     filter: invert(1);
   }
 }
 
-.projects{
-    display: inline-flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    min-height: 100vh;
-    color: white;
-  
-  h1{
-    margin:50px 0px 0px 0px;
+.projects {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+
+  h1 {
+    margin: 50px 0px 0px 0px;
     color: #f54768;
-    &::after{
+
+    &::after {
       border-bottom-color: #8bd76b;
     }
-    &::before{
+
+    &::before {
       border-bottom-color: #eef46e;
     }
   }
-  #searchBar{
+
+  #searchBar {
     min-width: 320px;
     display: flex;
   }
-  .MuiSvgIcon-root{
+
+  .MuiSvgIcon-root {
     fill: black;
     position: absolute;
     top: 10px;
@@ -90,7 +100,7 @@ body {
 
   //home page
   .App {
-    background:#121212 url('../assets/headerBackground.jpeg') no-repeat center center fixed;
+    background: #121212 url('../assets/headerBackground.jpeg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -103,45 +113,46 @@ body {
     font-size: calc(15px + 2vmin);
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.077);
-    h1{span{
-      font-family: initial;
-      animation: hideToShow 1s infinite;
-    }}
-    p{
-      margin:50px 30px -20px 30px;
-      text-align:'left';
-      animation: slideRight 1.8s cubic-bezier(0.0,0.1,0.25,1);
+
+    h1 {
+      span {
+        font-family: initial;
+        animation: hideToShow 1s infinite;
+      }
+    }
+
+    p {
+      margin: 50px 30px -20px 30px;
+      text-align: 'left';
+      animation: slideRight 1.8s cubic-bezier(0.0, 0.1, 0.25, 1);
       z-index: 10;
     }
-    span{
+
+    span {
       z-index: 10;
     }
-    a{
-      color:white;
+
+    a {
+      color: white;
       text-decoration: none;
       transition: 1s;
       padding: 0px 4px;
       display: inline-grid;
     }
-    a:nth-child(1):hover{
-      border-bottom:1px solid #8bd76b;
-      
+
+    a:nth-child(1):hover {
+      border-bottom: 1px solid #8bd76b;
+
     }
-    a:nth-child(2):hover{
-      border-bottom:1px solid #f54768;
+
+    a:nth-child(2):hover {
+      border-bottom: 1px solid #f54768;
     }
-    a:nth-child(3):hover{
-      border-bottom:1px solid #eef46e;
+
+    a:nth-child(3):hover {
+      border-bottom: 1px solid #eef46e;
     }
-    // a::after{
-    //   background: linear-gradient(90deg,#60a4f73e,#6df8fa35);
-    //   content: '';
-    //   width: auto;
-    //   height: 5px;
-    // }
-    // a:hover{
-    //   color: rgb(199, 198, 198);
-    // }
+
     @for $i from 1 through 3 {
       a:nth-child(#{$i}) {
         animation: hideToShow ($i)* .8s linear forwards;
@@ -149,23 +160,27 @@ body {
     }
 
   }
-  
+
 }
-@keyframes hideToShow{
-  from{
+
+@keyframes hideToShow {
+  from {
     opacity: 0;
   }
-  to{
+
+  to {
     opacity: 1;
   }
 }
-@keyframes slideRight{
-  from{
-    transform: translate3d(50vw,0px,0px);
+
+@keyframes slideRight {
+  from {
+    transform: translate3d(50vw, 0px, 0px);
     opacity: 0;
   }
-  to{
-    transform: translate3d(0,0,0);
+
+  to {
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
@@ -195,22 +210,27 @@ body {
 
 //blog page css
 .blog {
-  padding-top:10px;
+  padding-top: 10px;
   min-height: 100vh;
   padding: 10px;
-  .MuiSvgIcon-root{
+
+  .MuiSvgIcon-root {
     filter: invert(1);
   }
-  h1{
+
+  h1 {
     margin-top: 55px;
     color: #8bd76b;
-    &::after{
-      border-bottom-color:#f54768;
+
+    &::after {
+      border-bottom-color: #f54768;
     }
-    &::before{
-      border-bottom-color:#eef46e;
+
+    &::before {
+      border-bottom-color: #eef46e;
     }
   }
+
   .content {
     padding: 25px;
     max-width: 1040px;
@@ -221,14 +241,18 @@ body {
     justify-items: center;
   }
 }
-.content{
+
+.content {
   padding: 20px;
   min-height: 100vh;
-  a,h1{
+
+  a,
+  h1 {
     color: white;
     margin-top: 50px;
   }
-  .article{
+
+  .article {
     color: white;
   }
 }
@@ -243,35 +267,38 @@ body {
 
 
 
-h1{
+h1 {
   margin-top: 10px;
   color: white;
   text-align: center;
 }
-.cardContainer{
-  display:inline-flex;
-  flex-wrap:wrap;
+
+.cardContainer {
+  display: inline-flex;
+  flex-wrap: wrap;
   justify-content: center;
   max-width: 1000px;
 }
 
-.card{
+.card {
   background: rgb(51, 51, 51);
   max-width: 440px;
-  width:80%;
+  width: 80%;
   min-width: 280px;
   margin: 10px;
   color: white;
   border-radius: 10px;
   position: relative;
-  img{
+
+  img {
     border-radius: 10px;
     width: 100%;
   }
-  .info{
+
+  .info {
     position: absolute;
     left: 0;
-    display:none;
+    display: none;
     justify-content: space-between;
     flex-direction: column;
     height: 100%;
@@ -280,33 +307,39 @@ h1{
     z-index: 10;
     opacity: 0;
     transition: 10s;
-    overflow:auto;
+    overflow: auto;
   }
-  &:hover{
-    .info{
-      background:rgba(29, 29, 29, 0.726);
+
+  &:hover {
+    .info {
+      background: rgba(29, 29, 29, 0.726);
       opacity: 1;
       display: inline-flex;
     }
   }
-  p{
+
+  p {
     text-align: left;
   }
-  h3{
+
+  h3 {
     margin: 8px;
     text-shadow: 2px 2px #252525b0;
     text-align: left;
   }
-  img{
-    height:200px;
+
+  img {
+    height: 200px;
   }
 
-  .actions{
+  .actions {
     align-self: flex-start;
     text-align: left;
     margin: 5px;
-    button{
-      color: #61dafb;;
+
+    button {
+      color: #61dafb;
+      ;
       border: 1px solid #61dafb;
       margin: 1px;
     }
@@ -314,43 +347,51 @@ h1{
 }
 
 
-
+.about, .blog{
+  display: inline-flex;
+  flex-direction: column;
+}
 
 
 //about page
-.about{
+.about {
   padding: 20px 20px 2px 20px;
-  h1{
+
+  h1 {
     margin: 0 auto;
-    margin-top:50px;
+    margin-top: 50px;
     margin-bottom: 25px;
-    color:#eef46e;
-    &::after{
+    color: #eef46e;
+
+    &::after {
       border-bottom-color: #8bd76b;
     }
-    &::before{
-      border-bottom-color:#f54768;
+
+    &::before {
+      border-bottom-color: #f54768;
     }
   }
-  span{
+
+  span {
     display: inline-flex;
     align-items: baseline;
-    svg{
+
+    svg {
       margin-right: 3px;
     }
   }
- 
-  strong{
+
+  strong {
     font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 1.35rem;
     margin-top: -10px;
     color: #8bd76b;
     transform: rotate(20deg);
     line-height: 0px;
-    }
+  }
 }
 
-p{
+p {
   margin: 0px auto;
   padding: 10px;
   font-size: 1.25rem;
@@ -358,23 +399,25 @@ p{
 
 @media only screen and (max-width: 570px) {
   .App {
-    p{
+    p {
       margin-top: 70px !important;
     }
-  h1{
-    font-size: 2.4rem !important;
+
+    h1 {
+      font-size: 2.4rem !important;
+    }
   }
-}
 }
 
 @media only screen and (max-width: 405px) {
   .App {
-  h1{
-    font-size: 2rem !important;
+    h1 {
+      font-size: 1.8rem !important;
+    }
+
+    span {
+      font-size: 1.2rem;
+      margin-top: 15px;
+    }
   }
-  span{
-    font-size:1.2rem;
-    margin-top: 15px;
-  }
-}
 }

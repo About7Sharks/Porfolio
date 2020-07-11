@@ -10,7 +10,8 @@ const aboutStyles = {
         minHeight:'100vh',
         color:'white',
         maxWidth: '620px',
-        margin: '0 auto'
+        margin: '0 auto',
+        display:'inline-flex'
     },
     links:{
         color:'white'
@@ -19,8 +20,7 @@ const aboutStyles = {
 
 
 export default function About(){
-
-    return ( <div className='about' style={aboutStyles.about}>
+    return <div className='about' style={aboutStyles.about}>
         <h1>About</h1>
         <h2>Work</h2>
         <p> Currently working as a Software Engineer at <a style={aboutStyles.links} href='http://gulfphotonics.com/' target='_blank'>Gulf Photonics</a>💡 on <a style={aboutStyles.links} href='https://accubrew.io' target='_blank'>Accubrew</a> 🍻 based in Tampa, FL. </p>
@@ -33,14 +33,14 @@ export default function About(){
   <li><p>Going to Florida beaches 🏖</p></li> 
   <li><p>Traveling 🏞</p></li> 
   <li><p>Learning Blockchain Technology 🏗️</p></li> 
-  <li><p>Listening to Podcasts and <a target='_blank' style={aboutStyles.links} href='https://open.spotify.com/playlist/37i9dQZF1EphhdCcTha7XI?si=cur9rcxGThiBeHUOPbFRhA'>music</a> 🎧</p></li>  
+  <li><p>Listening to Podcasts and <a target='_blank' rel="noopener noreferrer" style={aboutStyles.links} href='https://open.spotify.com/playlist/37i9dQZF1EphhdCcTha7XI?si=cur9rcxGThiBeHUOPbFRhA'>music</a> 🎧</p></li>  
   <li><p>Reading 📚</p></li>  
   <li><p>Penetration Testing 🧨</p></li> 
   <li><p>GF 👩🏻‍⚕️</p></li> 
 </ul>
  
 
-<span><h2>Resume</h2>&nbsp;-&nbsp;<p><a target='_blank' style={aboutStyles.links} href='https://pdrive.co/sharedfiles?u=sockrates.id.blockstack&i=d3005c20-bbbe-432c-8085-21313767e864'>Download</a></p></span>
+<span><h2>Resume</h2>&nbsp;-&nbsp;<p><a target='_blank' rel="noopener noreferrer" style={aboutStyles.links} href='https://pdrive.co/sharedfiles?u=sockrates.id.blockstack&i=d3005c20-bbbe-432c-8085-21313767e864'>Download</a></p></span>
 
 <h2>This site</h2>
 
@@ -57,6 +57,6 @@ export default function About(){
 <LinkedInIcon onClick={ () => window.open('https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123')}/>
 <InstagramIcon onClick={ () => window.open('https://Instagram.com/zachary_carlin')}/>
 </span>
-    </div> )
+    </div> 
 
 }

@@ -15,7 +15,7 @@ export class BlogPostViewer extends Component {
         }
 
         fetchServices() {
-            fetch('../content/'+this.state.id+'.md').then(res=>{
+            fetch('https://raw.githubusercontent.com/About7Sharks/Markdown/master/'+this.state.id+'.md').then(res=>{
                 res.text().then(data=>{
                     this.setState({
                         fetchingServices: false,
