@@ -8,13 +8,10 @@ export default function BlogPostViewer(props){
     console.log(responseData.content)
     useEffect(() => { 
         if(responseData.content===undefined){
-
         fetch('https://raw.githubusercontent.com/About7Sharks/Markdown/master/'+state.id+'.md')
         .then(res=>{ res.text().then(data=>{ setResponseData(matter(data)) })})
         }
     })
-
-
      return(
         <div className="content">
             <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content || 'Nothing'}/>
