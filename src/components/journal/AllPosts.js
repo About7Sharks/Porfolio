@@ -11,7 +11,6 @@ class Blog extends Component {
   componentDidMount() {
     let fetches=[]
     fetch('https://api.github.com/repos/About7Sharks/Markdown/git/trees/master?recursive=1').then(res=>{
-      console.log(res)
       res.json().then(data=>{
         for(let article in data.tree){
           fetches.push(fetch(`https://raw.githubusercontent.com/About7Sharks/Markdown/master/${data.tree[article].path}`))
@@ -20,7 +19,6 @@ class Blog extends Component {
         .then(responses=>{
         for (let response in responses){
           if(responses[response].status==="fulfilled"){
-            // console.log(responses[response].value.text())
               responses[response].value.text().then(articleData=>{
                 console.log(articleData)
                 if (articleData.length<50) return //if short just skip for now

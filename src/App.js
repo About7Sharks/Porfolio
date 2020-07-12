@@ -15,27 +15,14 @@ function App() {
      <Drawer/>
      <BackBTN id="backBTN"/>
 
-     <Switch>
-          
-          <Route exact path="/journal">
-           <BlogPosts/>
-          </Route>
-          <Route path='/journal/:id' component={BlogPost}/>
-
-          <Route path="/about">
-            <About/>
-          </Route>
-
-          <Route path="/projects" component={Projects}/>
-
-          <Route path="/contact">
-          <div>Contact</div>
-          </Route>
-          <Route path={"/"| "/home"}>
-            <Home/>
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+          <Route exact path={["/","/home"]} component={Home}/>
+          <Route exact path="/journal" component={BlogPosts}/>
+          <Route exact path='/journal/:id' component={BlogPost}/>
+          <Route exact path="/about" component={About}/>
+          <Route exact path="/projects" component={Projects}/>
+      </Switch>
+    </Router>
 );
 }
   

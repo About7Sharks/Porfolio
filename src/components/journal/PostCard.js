@@ -7,7 +7,7 @@ export default function MediaCard(props) {
 
   return (
     <div className='journalCard' onClick={() => history.push("/journal/"+props.title.replace(/ /g,''))}>
-      <img className='media' src={props.image}></img>
+      <img className='media' src={props.image} alt={props.title}></img>
       <div className='coverEffect'></div>
       <div className='meta'>
         <h3>{props.title}</h3>

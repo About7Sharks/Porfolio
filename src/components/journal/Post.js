@@ -1,44 +1,30 @@
-import React, { Component} from 'react'
+import React, { useState, useEffect } from 'react';
+
 import ReactMarkdown from 'react-markdown'
 import matter from 'gray-matter'
-import BackBTN from '../navigation/backbutton'
-export class BlogPostViewer extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                id: props.match.params.id,
-                fetchingServices: true,
-                addingService: false,
-                article:{}
-            }
-            this.fetchServices = this.fetchServices.bind(this);
-        }
 
-        fetchServices() {
-            fetch('https://raw.githubusercontent.com/About7Sharks/Markdown/master/'+this.state.id+'.md').then(res=>{
-                res.text().then(data=>{
-                    this.setState({
-                        fetchingServices: false,
-                        article:matter(data)
-                      });                    
-                })
+export default function BlogPostViewer(props){
+    let [responseData, setResponseData] =useState('');
+    console.log(props.match.params.id)
+    const fetchArticle= React.useCallback(()=>{
+        fetch('https://raw.githubusercontent.com/About7Sharks/Markdown/master/'+props.match.params.id+'.md')
+          .then(res=>{ 
+            res.text().then(data=>{
+            setResponseData(matter(data))
+            console.log(data)
             })
-        }
-       
-    componentWillMount(){
-       this.fetchServices();
-    }
+            })
+    },[])
+    useEffect(() => {
+        fetchArticle()
+      },[fetchArticle]);
 
-      
-     render(){
-        return (
+     return(
+    
             <div className="content">
-             <BackBTN/>
-             <ReactMarkdown className="article" linkTarget='_blank' source={this.state.article.content}/>
+                {/* <p>ufoidaufdauf</p> */}
+             <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content}/>
             </div>
-          )
-     }
+          
+     )
   }
-  
-  export default BlogPostViewer
-
