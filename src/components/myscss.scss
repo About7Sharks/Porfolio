@@ -204,6 +204,18 @@ body {
   max-width: 600px;
   margin: 0 auto;
   color: white;
+  blockquote{
+    background: #2121218f;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 5px;
+    p{
+      padding: 5px;
+    }
+  }
+  a{
+    color:white;
+  }
 }
 
 
