@@ -17,7 +17,8 @@ export default function BlogPostViewer(props){
 
      return(
         <div className="content">
-            <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content || 'Nothing'}/>
+            {/* <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content || 'Nothing'}/> */}
+            <p>{props.match.params.id}</p>
         </div>
           
      )
