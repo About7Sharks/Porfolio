@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import ReactMarkdown from 'react-markdown'
 import matter from 'gray-matter'
 
@@ -11,20 +10,15 @@ export default function BlogPostViewer(props){
           .then(res=>{ 
             res.text().then(data=>{
             setResponseData(matter(data))
-            console.log(data)
             })
             })
     },[])
-    useEffect(() => {
-        fetchArticle()
-      },[fetchArticle]);
+    useEffect(() => {fetchArticle()},[fetchArticle]);
 
      return(
-    
-            <div className="content">
-                {/* <p>ufoidaufdauf</p> */}
-             <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content}/>
-            </div>
+        <div className="content">
+            <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content}/>
+        </div>
           
      )
   }

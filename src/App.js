@@ -1,12 +1,12 @@
 import React from 'react';
 import './components/myscss.scss';
 import Projects from "./components/projects/projects.js";
-import Drawer from "./components/drawer.js"
+import Drawer from "./components/navigation/drawer.js"
 import Home from './components/Home.js'
 import About from './components/about/about'
 import BlogPosts from './components/journal/AllPosts'
 import BlogPost from './components/journal/Post'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BackBTN from './components/navigation/backbutton'
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route exact path='/journal/:id' component={BlogPost}/>
           <Route exact path="/about" component={About}/>
           <Route exact path="/projects" component={Projects}/>
+          <Route path='*' render ={()=> <Redirect to='/'/>}/>
       </Switch>
     </Router>
 );
