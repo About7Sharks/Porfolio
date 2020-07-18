@@ -3,9 +3,6 @@ import {  Link } from "react-router-dom";
 import './myscss.scss'
 import Emoji from './util/emoji'
 class Home extends Component {
-  clickedArrow = (e,value) => {
-      document.getElementById('projects').scrollIntoView()
-  }
    render(){
     return  <div className="App">
             <span><p>Hi <Emoji symbol='👋'/>, I'm Zach a fun loving</p> <h1 >software engineer <span className='showHide'>_</span></h1> </span>
