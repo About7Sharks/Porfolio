@@ -115,7 +115,9 @@ export default function App() {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
 
   return (
-    <div className="slides">
+    <div id='projects' className='projects'>
+       <h1>Projects</h1>
+       <div className="slides">
       <button onClick={() => dispatch({ type: "PREV" })}>‹</button>
 
       {[...slides, ...slides, ...slides].map((slide, i) => {
@@ -124,5 +126,7 @@ export default function App() {
       })}
       <button onClick={() => dispatch({ type: "NEXT" })}>›</button>
     </div>
+    </div>
+  
   );
 }
