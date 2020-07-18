@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import ReactMarkdown from 'react-markdown'
 import matter from 'gray-matter'
-
+import './posts.scss'
 export default function BlogPostViewer(props){
     let [responseData, setResponseData] =useState('');
     const [state] = useState({ id: props.match.params.id});

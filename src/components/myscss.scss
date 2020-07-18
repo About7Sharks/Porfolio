@@ -98,6 +98,8 @@ body {
   display: inline-flex;
   justify-content: center;
   width: 100%;
+  height: 100vh;
+  place-items: center;
   //home page
   .App {
     background: #121212 url('../assets/compressedHeaderBackground.jpg') no-repeat center center fixed;
@@ -251,14 +253,6 @@ body {
     gap: 25px 20px;
     justify-items: center;
     min-height: 100vh;
-    a,
-    h1 {
-      color: white;
-      margin-top: 50px;
-    }
-    .article {
-      color: white;
-    }
   }
 }
 

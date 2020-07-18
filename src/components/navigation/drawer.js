@@ -45,6 +45,8 @@ export default function TemporaryDrawer() {
   const [state, setState] = React.useState({ left: false});
 
   const toggleDrawer = (anchor, open) => (event) => {
+    console.log(event)
+    if(event===undefined) return
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }

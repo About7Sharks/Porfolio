@@ -14,7 +14,8 @@
         border-top-right-radius: 25px;
     }
     h3{
-        border-bottom: 1px solid white;
+        text-decoration: underline;
+
     }
     .meta{
         padding: 10px;
@@ -37,4 +38,14 @@
             z-index: 2;
         }
     }
+}
+
+.content{
+    .article {
+        color: white;
+        h2{
+          text-decoration: underline;
+        }
+      }
+    
 }

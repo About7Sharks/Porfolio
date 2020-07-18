@@ -1,6 +1,7 @@
 import React from 'react';
 import './components/myscss.scss';
-import Projects from "./components/projects/projects.js";
+// import Projects from "./components/projects/projects.js";
+import SliderProjects from "./components/projects/sliderProjects.js";
 import Drawer from "./components/navigation/drawer.js"
 import Home from './components/Home.js'
 import About from './components/about/about'
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/journal" component={BlogPosts}/>
           <Route exact path='/journal/:id' component={BlogPost}/>
           <Route exact path="/about" component={About}/>
-          <Route exact path="/projects" component={Projects}/>
+          <Route exact path="/projects" component={SliderProjects}/>
           <Route path='*' render ={()=> <Redirect to='/'/>}/>
       </Switch>
     </Router>

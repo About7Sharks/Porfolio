@@ -12,7 +12,8 @@ const useStyles = makeStyles({
         cursor: 'pointer',
         position:'absolute',
         top:'25px',
-        left:'25px'
+        left:'25px',
+        zIndex:'100'
     }
   });
 export default function BackButton({ children }) {
