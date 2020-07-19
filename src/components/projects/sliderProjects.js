@@ -57,6 +57,7 @@ const initialState = {
   slideIndex: 0
 };
 
+
 const slidesReducer = (state, event) => {
   if (event.type === "NEXT") {
     return {
@@ -73,7 +74,7 @@ const slidesReducer = (state, event) => {
   }
 };
 
-function Slide({ slide, offset }) {
+function Slide({ slide, offset,state,i}) {
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
 
@@ -93,7 +94,7 @@ function Slide({ slide, offset }) {
           backgroundImage: `url('${slide.image}')`
         }}
       />
-      <div
+      <div onClick={() => {ref.current.scrollIntoView()}}
         className="slideContent"
         style={{
           backgroundImage: `url('${slide.image}')`
@@ -110,9 +111,10 @@ function Slide({ slide, offset }) {
   );
 }
 
+
 export default function App() {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
-
+  
   return (
     <div id='projects' className='projects'>
        <h1>Projects</h1>

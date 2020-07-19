@@ -52,8 +52,10 @@
 
 
 .slideContent {
-  width: 30vw;
-  height: 40vw;
+  max-width: 30vw;
+  min-width: 300px;
+  max-height: 40vw;
+  min-height: 300px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

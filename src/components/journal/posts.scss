@@ -43,6 +43,9 @@
 .content{
     .article {
         color: white;
+        img{
+            max-width: 100%;
+        }
         h2{
           text-decoration: underline;
         }

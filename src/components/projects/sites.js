@@ -22,7 +22,7 @@ let sites = [{
     {
         url: `https://metadatascrub.netlify.app/`,
         img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5eea3a9c53d17023b94b6d6d/screenshot.png`,
-        title: `Metadata Reader/Scrubber`,
+        title: `Metadata scrubber`,
         text: `This project was inspired after seeing a BLM post that showed a siri shortcut for removing picture data. Although siri is cool, anyone without an iphone is unable to use it.`,
         tags: [`Vue`]
     },
