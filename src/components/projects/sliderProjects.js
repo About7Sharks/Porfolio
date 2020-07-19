@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './projects.scss'
 import sites from './sites.js' //my sites data
 import Button from '@material-ui/core/Button';

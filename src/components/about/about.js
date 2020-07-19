@@ -8,7 +8,6 @@ import Emoji from '../util/emoji'
 const aboutStyles = {
     about:{
         paddingTop:'10px',
-        minHeight:'100vh',
         color:'white',
         maxWidth: '620px',
         margin: '0 auto',
@@ -46,7 +45,7 @@ export default function About(){
 <span><h2>Resume</h2>&nbsp;-&nbsp;<p><a target='_blank' rel="noopener noreferrer" style={aboutStyles.links} href='https://pdrive.co/sharedfiles?u=sockrates.id.blockstack&i=d3005c20-bbbe-432c-8085-21313767e864'>Download</a></p></span>
 
 
-<span style={{marginTop:'25px',cursor:'pointer'}}>
+<span style={{cursor:'pointer'}}>
 <EmailIcon onClick={ ()=>window.open('mailto:zacarlin@gmail.com')}/>
 <GitHubIcon onClick={ () => window.open('https://github.com/about7sharks')}/>
 <TwitterIcon onClick={ () => window.open('https://twitter.com/ZacharyCarlin')}/>
