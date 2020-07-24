@@ -67,7 +67,6 @@ body {
   align-items: center;
   min-height: 100vh;
   color: white;
-
   h1 {
     margin: 50px 0px 0px 0px;
     color: #f54768;
@@ -84,6 +83,7 @@ body {
   #searchBar {
     min-width: 320px;
     display: flex;
+    color: white;
   }
 
   .MuiSvgIcon-root {
@@ -193,6 +193,7 @@ body {
 
 .MuiFormControl-root {
   border: 1px solid #ffffff36 !important;
+  max-width: 320px;
 
 }
 
@@ -304,8 +305,9 @@ h1 {
     cursor: pointer;
     z-index: 10;
     opacity: 0;
-    transition: 10s;
     overflow: auto;
+    transition: opacity 2s;
+
   }
 
   &:hover {
