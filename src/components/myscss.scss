@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  display: flex;
   font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -47,6 +48,11 @@ body {
   }
 }
 
+#footer{
+  color: white;
+  text-align: right;
+  margin: 5px 10px 0px 0px;
+}
 
 .zacOverwrite {
   .MuiListItem-button {
@@ -96,6 +102,7 @@ body {
 
 #root {
   display: inline-flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100vh;

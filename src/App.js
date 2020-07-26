@@ -3,6 +3,7 @@ import './components/myscss.scss';
 import Projects from "./components/projects/projects.js";
 import SliderProjects from "./components/projects/sliderProjects.js";
 import Drawer from "./components/navigation/drawer.js"
+import Footer from './components/navigation/footer'
 import Home from './components/Home.js'
 import About from './components/about/about'
 import BlogPosts from './components/journal/AllPosts'
@@ -15,7 +16,6 @@ function App() {
     <Router>
      <Drawer/>
      <BackBTN id="backBTN"/>
-
       <Switch>
           <Route exact path={["/","/home"]} component={Home}/>
           <Route exact path="/journal" component={BlogPosts}/>
@@ -25,6 +25,8 @@ function App() {
           <Route exact path="/projects2" component={Projects}/>
           <Route path='*' render ={()=> <Redirect to='/'/>}/>
       </Switch>
+      <Footer/>
+
     </Router>
 );
 }
