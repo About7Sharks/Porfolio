@@ -105,6 +105,7 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  overflow-x: hidden;
   min-height: 100vh;
   //home page
   .App {
@@ -217,9 +218,12 @@ body {
     background: #2121218f;
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 5px;
+    margin: 0 auto;
+    width: 95%;
+    word-wrap: a;
     p{
       padding: 5px;
+      word-wrap: anywhere;
     }
   }
   a{
@@ -260,6 +264,7 @@ body {
     gap: 25px 20px;
     justify-items: center;
     min-height: 100vh;
+    margin: 25px;
   }
 }
 
