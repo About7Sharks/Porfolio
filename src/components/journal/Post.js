@@ -13,8 +13,6 @@ export default function BlogPostViewer(props){
         }
     })
      return(
-        <div className="content">
             <ReactMarkdown className="article" linkTarget='_blank' source={responseData.content || 'Nothing'}/>
-        </div>
      )
   }

@@ -41,8 +41,7 @@ class Blog extends Component {
       <div className='blog'>
         <h1>Journal</h1>
       <div className="content">
-      {articlePreview}
-
+        {articlePreview}
       </div>
       </div>
     )
