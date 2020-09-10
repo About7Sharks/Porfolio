@@ -26,11 +26,7 @@ function App() {
           <Route path='*' render ={()=> <Redirect to='/'/>}/>
       </Switch>
       <Footer/>
-
     </Router>
-);
-}
+)}
   
-
-
 export default App;

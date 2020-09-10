@@ -3,19 +3,12 @@
   padding-top: 10px;
   min-height: 100vh;
   padding: 10px;
-
-  .MuiSvgIcon-root {
-    filter: invert(1);
-  }
-
   h1 {
     margin-top: 55px;
     color: #8bd76b;
-
     &::after {
       border-bottom-color: #f54768;
     }
-
     &::before {
       border-bottom-color: #eef46e;
     }
@@ -75,12 +68,54 @@
     min-height: 100vh;
     margin: 0 auto;
 }
+
    .article {
+        padding: 50px 25px 25px 25px;
+        max-width: 600px;
+        margin: 0 auto;
+        color: white;
         justify-self:center;
         color: white;
         width:100%;
         margin: 0 auto;
-        padding: 25px;
+        table {
+          border: 1px solid #1C6EA4;
+          width: 100%;
+          text-align: left;
+          border-collapse: collapse;
+        }
+        table td, table th {
+          border: 1px solid #AAAAAA;
+          padding: 5px 2px;
+        }
+        table tbody td {
+          font-size: 13px;
+        }
+        table tr:nth-child(even) {
+          background: #d0e4f523;
+        }
+        table thead {
+          background: #08192411;
+          border-bottom: 2px solid #444444;
+        }
+
+
+
+        blockquote{
+          background: #2121218f;
+          border-radius: 25px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          margin: 0 auto;
+          width: 95%;
+          word-wrap: a;
+        p{
+            padding: 5px;
+            word-wrap: anywhere;
+          }
+        }
+        a{
+          color:white;
+        }
         img{
             max-width: 100%;
         }
@@ -88,3 +123,15 @@
           text-decoration: underline;
         }
       }
+
+//custom style for indivdual posts
+.AccuCrewAI{
+  img{//crops screenshot of accuCrew
+      object-fit: cover;
+      object-position: 0% 25%;
+      width: 300px;
+      height: 380px;
+      display: flex;
+      margin: 0 auto; 
+  }
+}

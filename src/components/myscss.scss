@@ -1,5 +1,6 @@
 @font-face {
   font-family: 'Summer Hearts';
+  font-display: swap;
   src: local('Summer Hearts'), url('../assets/SummerHearts-Regular.otf') format('truetype');
 }
 
@@ -209,27 +210,7 @@ body {
   color: white !important;
 }
 
-.article {
-  padding-top: 50px;
-  max-width: 600px;
-  margin: 0 auto;
-  color: white;
-  blockquote{
-    background: #2121218f;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 0 auto;
-    width: 95%;
-    word-wrap: a;
-    p{
-      padding: 5px;
-      word-wrap: anywhere;
-    }
-  }
-  a{
-    color:white;
-  }
-}
+
 
 
 
