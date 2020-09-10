@@ -108,9 +108,8 @@ body {
   width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
-  //home page
   .App {
-    background: #121212 url('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg') no-repeat center center fixed;
+    background: #121212 url('../assets/compressUnder1MB.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

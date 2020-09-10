@@ -92,9 +92,6 @@ function Slide({ slide, offset}) {
 }
 
 
-
-
-
 export default function App() {
   let history =useHistory()
   const [state, updateState] = React.useState({'projects': slides,slideIndex: 0});
@@ -122,7 +119,6 @@ export default function App() {
       <button onClick={() =>slidesReducer("PREV")}>‹</button>
       {[...state.projects, ...state.projects, ...state.projects].map((slide, i) => {
       let offset = state.projects.length + (state.slideIndex - i);
-      console.log(offset)
       return <Slide slide={slide} offset={offset} key={i} />;
     })}
       <button onClick={() => slidesReducer("NEXT")}>›</button>
