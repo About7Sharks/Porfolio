@@ -1,0 +1,33 @@
+{
+  "name": "Zac's App",
+  "short_name": "A fun little app made by mwah :)",
+  "theme_color": "#23b852",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "start_url": ".",
+  "lang": "en",
+  "orientation": "any",
+  "prefer_related_applications": "false",
+  "icons": [
+    {
+        "src": "appIcons/icon-192x192.png",
+        "sizes": "192x",
+        "type": "image/png"
+    },
+    {
+        "src": "appIcons/icon-256x256.png",
+        "sizes": "256x",
+        "type": "image/png"
+    },
+    {
+        "src": "appIcons/icon-384x384.png",
+        "sizes": "384x",
+        "type": "image/png"
+    },
+    {
+        "src": "appIcons/icon-512x512.png",
+        "sizes": "512x",
+        "type": "image/png"
+    }
+]
+}
