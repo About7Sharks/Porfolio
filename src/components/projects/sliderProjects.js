@@ -101,8 +101,8 @@ export default function App() {
 
 
   const slidesReducer = (event) => {
-    if (event=== "NEXT") { updateState({...state,slideIndex:(state.slideIndex + 1) % slides.length}) }
-    if (event=== "PREV") { updateState({...state, slideIndex:state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1}) }
+    if (event=== "NEXT") { updateState({...state,slideIndex:(state.slideIndex - 1) % slides.length}) }
+    if (event=== "PREV") { updateState({...state, slideIndex:state.slideIndex === 0 ? slides.length + 1 : state.slideIndex + 1}) }
   };
   const filterByTag = (e,value) => {
     let newList=slides.filter(site=>site.tags.includes(value))
