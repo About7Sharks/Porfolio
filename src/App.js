@@ -1,18 +1,18 @@
 import React, { lazy, Suspense } from 'react';
-import './components/myscss.scss';
-import Projects from "./components/projects/projects.js";
-import SliderProjects from "./components/projects/sliderProjects.js";
-import Drawer from "./components/navigation/drawer.js"
-import Footer from './components/navigation/footer'
-import Home from './components/Home.js'
-import About from './components/about/about'
-import BlogPosts from './components/journal/AllPosts'
-import BlogPost from './components/journal/Post'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import BackBTN from './components/navigation/backbutton'
+import './components/myscss.scss';
 
+const Projects =lazy(()=>import("./components/projects/projects.js"))
+const SliderProjects =lazy(()=>import("./components/projects/sliderProjects.js"))
+const Drawer =lazy(()=>import("./components/navigation/drawer.js"))
+const Footer =lazy(()=>import('./components/navigation/footer'))
+const Home =lazy(()=>import('./components/Home.js'))
+const About =lazy(()=>import('./components/about/about'))
+const BlogPosts =lazy(()=>import('./components/journal/AllPosts'))
+const BlogPost =lazy(()=>import('./components/journal/Post'))
+const BackBTN = lazy(() => import('./components/navigation/backbutton'))
 
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <p>Loading ...</p>;
 
 
 function App() {
