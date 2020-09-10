@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import './components/myscss.scss';
 import Projects from "./components/projects/projects.js";
 import SliderProjects from "./components/projects/sliderProjects.js";
@@ -11,8 +11,13 @@ import BlogPost from './components/journal/Post'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BackBTN from './components/navigation/backbutton'
 
+
+const renderLoader = () => <p>Loading</p>;
+
+
 function App() {
    return (
+    <Suspense fallback={renderLoader()}>
     <Router>
      <Drawer/>
      <BackBTN id="backBTN"/>
@@ -27,6 +32,7 @@ function App() {
       </Switch>
       <Footer/>
     </Router>
+</Suspense>
 )}
   
 export default App;
