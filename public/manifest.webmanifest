@@ -11,22 +11,24 @@
   "icons": [
     {
         "src": "appIcons/icon-192x192.png",
-        "sizes": "192x",
-        "type": "image/png"
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+
     },
     {
         "src": "appIcons/icon-256x256.png",
-        "sizes": "256x",
+        "sizes": "256x256",
         "type": "image/png"
     },
     {
         "src": "appIcons/icon-384x384.png",
-        "sizes": "384x",
+        "sizes": "384x384",
         "type": "image/png"
     },
     {
         "src": "appIcons/icon-512x512.png",
-        "sizes": "512x",
+        "sizes": "512x512",
         "type": "image/png"
     }
 ]
