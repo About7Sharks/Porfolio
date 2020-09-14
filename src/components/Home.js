@@ -14,8 +14,9 @@ function Home (){
     //   console.log(cat)
     // })
     // console.log(document.getElementsByClassName('App')[0])
-    document.getElementsByClassName('App')[0].style.backgroundImage = "url('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg')";
-
+    setTimeout(()=>{
+      document.getElementsByClassName('App')[0].style.backgroundImage = "url('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg')";
+    },1)
   })
 
   return(
