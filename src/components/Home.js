@@ -1,24 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {  Link } from "react-router-dom";
 import './myscss.scss'
 import Emoji from './util/emoji'
 
 function Home (){
-
-
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   // document.title = `You clicked 1 times`;
-  //   // fetch('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg').then(body=>{
-  //   //   let cat=body.body.getReader()
-  //   //   console.log(cat)
-  //   // })
-  //   // console.log(document.getElementsByClassName('App')[0])
-  //   setTimeout(()=>{
-  //     document.getElementsByClassName('App')[0].style.backgroundImage = "url('https://res.cloudinary.com/sockrates/image/upload/c_scale,h_1378,q_73/v1599758087/compressUnder1MB_jkmyys.webp')";
-  //   },1)
-  // })
-
   return(
       <div className="App">
       {/* <img className='BackgroundIMG' src='https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg'/> */}
