@@ -15,7 +15,7 @@ function Home (){
     // })
     // console.log(document.getElementsByClassName('App')[0])
     setTimeout(()=>{
-      document.getElementsByClassName('App')[0].style.backgroundImage = "url('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.jpg')";
+      document.getElementsByClassName('App')[0].style.backgroundImage = "url('https://res.cloudinary.com/sockrates/image/upload/v1599758087/compressUnder1MB_jkmyys.webp')";
     },1)
   })
 
