@@ -1,15 +1,14 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import './components/myscss.scss';
-
+import BlogPosts from './components/journal/AllPosts'
+import BlogPost from './components/journal/Post'
 const Projects =lazy(()=>import("./components/projects/projects.js"))
 const SliderProjects =lazy(()=>import("./components/projects/sliderProjects.js"))
 const Drawer =lazy(()=>import("./components/navigation/drawer.js"))
 const Footer =lazy(()=>import('./components/navigation/footer'))
 const Home =lazy(()=>import('./components/Home.js'))
 const About =lazy(()=>import('./components/about/about'))
-const BlogPosts =lazy(()=>import('./components/journal/AllPosts'))
-const BlogPost =lazy(()=>import('./components/journal/Post'))
 const BackBTN = lazy(() => import('./components/navigation/backbutton'))
 
 const renderLoader = () => <p>Loading ...</p>;
