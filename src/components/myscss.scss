@@ -52,7 +52,7 @@ body {
 #footer{
   color: white;
   text-align: right;
-  margin: 5px 10px 0px 0px;
+  margin: 3px 10px 5px 0px;
 }
 
 .zacOverwrite {
@@ -106,7 +106,6 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin: 10px;
   overflow-x: hidden;
   min-height: 100vh;
   .App {
@@ -173,7 +172,7 @@ body {
   }
 
 }
-
+// animations for home page title
 @keyframes hideToShow {
   from {
     opacity: 0;
