@@ -72,12 +72,12 @@
    .article {
         padding-top: 50px;
         max-width: 600px;
-        margin: 0 auto;
         color: white;
-        justify-self:center;
-        color: white;
-        width:100%;
-        margin: 0 auto;
+        width:96.168%;
+        display: inline-flex;
+        flex-direction: column;
+        place-self: center;
+
         table {
           border: 1px solid #1C6EA4;
           width: 100%;

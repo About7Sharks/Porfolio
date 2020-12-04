@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import matter from 'gray-matter'
 import '../myscss.scss'
-import MediaCard from './PostCard.js'
+import JournalCard from './JournalCard.js'
 
 
-export default function Blog(props) {
+export default function Blog() {
   const [articles, setArticles] = useState({ articles: [{}] })
   async function getArticles() {
     let data = await (await fetch('https://api.github.com/repos/About7Sharks/Markdown/git/trees/master?recursive=1')).json()
@@ -14,7 +14,6 @@ export default function Blog(props) {
         return matter(art)
       })
     )
-    console.log(articlesContent)
     return setArticles(articlesContent)
   }
   useEffect(() => {
@@ -26,7 +25,10 @@ export default function Blog(props) {
       <h1>Journal</h1>
       <div className="content">
         {articles.length > 1 ? articles?.map(article => {
-          return <MediaCard key={article.data.title} title={article.data.title} image={article.data.image} summary={article.data.summary} date={article.data.date} />
+          return <JournalCard key={article.data.title}
+            title={article.data.title} image={article.data.image}
+            summary={article.data.summary} date={article.data.date}
+            content={article.content} />
         }) : ""}</div>
     </div>
   </div>)
