@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Emoji from '../util/emoji'
 import { useHistory } from "react-router-dom";
 import SliderProjects from "./sliderProjects.js"
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -55,10 +56,16 @@ export default function Projects() {
     updateProjects({ projects: newSiteList }) //update state with new list
   }
 
+  async function randomSite() {
+
+
+
+  }
+
   return (
     <div id='projects' className='projects'>
       <h1>Projects</h1>
-      <p>Here you can find some sites that i'm currently hosting on the interwebs <Emoji symbol='🕸️' /></p>
+      <p>Here you can find sites that i'm currently hosting on the interwebs<Emoji symbol='🕸️' /></p>
       {/* <Button variant="contained" color="secondary" onClick={() => setAlternate(!alternate)}>Alternative View</Button> */}
 
       <Autocomplete
@@ -68,6 +75,11 @@ export default function Projects() {
         onChange={filterByTag}
         renderInput={(params) => (<TextField  {...params} label="Filter by project tag" margin="normal" variant="outlined" />)}
       />
+      <br />
+      <Tooltip title="Takes you to a random site in the list!">
+        <Button onClick={() => { window.open(sites[Math.floor(Math.random() * sites.length + 1)].url) }} variant='contained'>Random Site</Button>
+      </Tooltip>
+
       {alternate ? <SliderProjects /> : <div className='cardContainer'>
         {projects.projects}
       </div>}

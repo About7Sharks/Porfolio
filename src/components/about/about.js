@@ -42,7 +42,7 @@ export default function About() {
         </ul>
 
 
-        <span><h2>Resume</h2>&nbsp;-&nbsp;<p><a target='_blank' rel="noopener noreferrer" style={aboutStyles.links} href='https://xordrive.io/?p=sockrates.id.blockstack_bb3677d1-8f10-4be7-a29c-02b80b60d6c0'>View / Download</a></p></span>
+        <span><h2>Resume</h2>&nbsp;-&nbsp;<p><a target='_blank' rel="noopener noreferrer" style={aboutStyles.links} href='./resume.html'>View</a></p></span>
 
 
         <span style={{ cursor: 'pointer' }}>
