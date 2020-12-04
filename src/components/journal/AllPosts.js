@@ -14,10 +14,18 @@ export default function Blog() {
         return matter(art)
       })
     )
+    localStorage.setItem('data', JSON.stringify(articlesContent))
     return setArticles(articlesContent)
   }
+  let cache = JSON.parse(localStorage.getItem('data'))
   useEffect(() => {
-    getArticles()
+    if (cache === null) {
+      console.log('fetching posts')
+      getArticles()
+    } else {
+      console.log('cache')
+      setArticles(JSON.parse(localStorage.getItem('data')))
+    }
   }, []);
 
   return (<div>

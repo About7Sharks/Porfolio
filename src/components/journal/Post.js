@@ -4,15 +4,16 @@ import matter from 'gray-matter'
 import './posts.scss'
 import { useLocation } from "react-router-dom"
 export default function BlogPostViewer(props) {
-    const { state } = useLocation();
-
+    const { state } = useLocation(); // if defined is, contains post data
     const [postData, setPost] = useState('');
     const [Id] = useState(props.match.params.id);
+    //fetches post from git
     const getPost = async () => {
         let post = await (await fetch('https://raw.githubusercontent.com/About7Sharks/Markdown/master/' + Id + '.md')).text()
         setPost(matter(post))
     }
     useEffect(() => {
+        //if direct link to post fetch data
         if (state == undefined && postData.content === undefined) {
             getPost()
             console.log('state undefined and no previous data')
