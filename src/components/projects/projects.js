@@ -4,61 +4,42 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Emoji from '../util/emoji'
-import { useHistory } from "react-router-dom";
 import SliderProjects from "./sliderProjects.js"
 import Tooltip from '@material-ui/core/Tooltip';
 
 
 
-let projectsList = sites.map((site) => {
-  let tagButtons = site.tags.map(tag => <Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
-
-  return <div className='card' key={site.url}>
-    <img style={{ height: '290px' }} alt={site.url} src={site.img} title="" />
-    <div onClick={() => window.open(site.url)} className='info'>
-      <h3>{site.title}</h3>
-      <p>{site.text}</p>
-      <div className='actions'>
-        Tags: &nbsp; {tagButtons}
+const projectsList = (e, filter) => {
+  let dog = sites
+  if (filter !== undefined && filter !== 'All') {
+    dog = sites.filter(site => {
+      return site.tags.includes(filter)
+    })
+  }
+  return dog.map((site) => {
+    let tagButtons = site.tags.map(tag => <Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
+    return <div className='card' key={site.url}>
+      <img style={{ height: '290px' }} alt={site.url} src={site.img} title="" />
+      <div onClick={() => window.open(site.url)} className='info'>
+        <h3>{site.title}</h3>
+        <p>{site.text}</p>
+        <div className='actions'>
+          Tags: &nbsp; {tagButtons}
+        </div>
       </div>
     </div>
-  </div>
-});
-
+  })
+}
 
 
 
 export default function Projects() {
-  let history = useHistory()
-  const [projects, updateProjects] = React.useState({ 'projects': projectsList });
+  const [projects, updateProjects] = React.useState({ 'projects': projectsList() });
   const [alternate, setAlternate] = React.useState(false);
 
-  const filterByTag = (e, value) => {//tag input filter function
-    //if input null set back to all
-    if (value == null) { return this.updateProjects({ projects: projectsList }) }
-
-    //create new site list if value isn't null
-    let newSiteList = sites.map((site) => {
-      let tagButtons = site.tags.map(tag => <Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
-      if (site.tags.includes(value)) {//if site includes tag create element 
-        return <div className='card' key={site.url}>
-          <img style={{ height: '290px' }} alt={site.url} src={site.img} title="" />
-          <div onClick={() => window.open(site.url)} className='info'>
-            <h3>{site.title}</h3>
-            <p>{site.text}</p>
-            <div className='actions'>
-              Tags: &nbsp; {tagButtons}
-            </div>
-          </div>
-        </div>
-      }
-    })
-    updateProjects({ projects: newSiteList }) //update state with new list
-  }
 
   //return the unique tags in sites.js files
-  const siteTags = [...new Set(sites.reduce((tags, site) => tags.concat(site.tags), []))]
-
+  const siteTags = ['All', ...new Set(sites.reduce((tags, site) => tags.concat(site.tags), []))]
 
   return (
     <div id='projects' className='projects'>
@@ -70,20 +51,17 @@ export default function Projects() {
         id="searchBar"
         options={siteTags}
         multiple={false}
-        onChange={filterByTag}
+        onChange={((e, d) => { updateProjects({ projects: projectsList(e, d) }) })}
         renderInput={(params) => (<TextField  {...params} label="Filter by project tag" margin="normal" variant="outlined" />)}
       />
       <br />
       <Tooltip title="Takes you to a random site in the list!">
         <Button onClick={() => { window.open(sites[Math.floor(Math.random() * sites.length + 1)].url) }} variant='contained'>Random Site</Button>
       </Tooltip>
-
       {alternate ? <SliderProjects /> : <div className='cardContainer'>
         {projects.projects}
       </div>}
-
     </div>
-
   );
 }
 
