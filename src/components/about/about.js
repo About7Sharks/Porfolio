@@ -25,9 +25,6 @@ export default function About() {
         <h2>This site</h2>
         <p>I made this as a way to improve my React.js skills, and mess around with some new decentralized services. If you're viewing this from https://zacarlin.eth.link or https://zacarlin.crypto you are seeing this via the IPFS and utilizing the Ethereum Name Services or Unstoppable domains; making this site <strong>Uncensorable.</strong>
         </p>
-        {/* <h2>My Work</h2>
-        <p> Currently working as a Software Engineer at <a style={aboutStyles.links} href='http://gulfphotonics.com/' target='_blank' rel="noopener noreferrer">Gulf Photonics</a><Emoji symbol='💡'/> on <a style={aboutStyles.links} href='https://accubrew.io' target='_blank' rel="noopener noreferrer">Accubrew</a><Emoji symbol='🍻'/>  based in Tampa, FL. </p> */}
-
         <h2>Hobbies</h2>
         <ul>
             <li><p>Bodybuilding <Emoji symbol='🏋️‍♂️' /></p></li>

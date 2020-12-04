@@ -56,11 +56,9 @@ export default function Projects() {
     updateProjects({ projects: newSiteList }) //update state with new list
   }
 
-  async function randomSite() {
+  //return the unique tags in sites.js files
+  const siteTags = [...new Set(sites.reduce((tags, site) => tags.concat(site.tags), []))]
 
-
-
-  }
 
   return (
     <div id='projects' className='projects'>
@@ -70,7 +68,7 @@ export default function Projects() {
 
       <Autocomplete
         id="searchBar"
-        options={['AI', 'Javascript', 'Vue', 'IOT', 'HTML', 'React',]}
+        options={siteTags}
         multiple={false}
         onChange={filterByTag}
         renderInput={(params) => (<TextField  {...params} label="Filter by project tag" margin="normal" variant="outlined" />)}

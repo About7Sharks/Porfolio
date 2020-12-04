@@ -20,6 +20,13 @@ let sites = [{
     tags: [`Nuxt`, `Vue`]
 },
 {
+    url: `https://meerkat.netlify.app`,
+    img: `https://raw.githubusercontent.com/About7Sharks/meerkat/Main/src/logo.svg`,
+    title: `Meerkat`,
+    text: `A network sniffer and analyser written in react and electron`,
+    tags: [`Electron`, `React`, 'Node']
+},
+{
     url: `https://metadatascrub.netlify.app/`,
     img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5eea3a9c53d17023b94b6d6d/screenshot.png`,
     title: `Metadata scrubber`,
