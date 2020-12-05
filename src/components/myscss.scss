@@ -1,7 +1,8 @@
 @font-face {
-  font-family: 'Summer Hearts';
+  font-family: "Summer Hearts";
   font-display: swap;
-  src: local('Summer Hearts'), url('../assets/SummerHearts-Regular.otf') format('truetype');
+  src: local("Summer Hearts"),
+    url("../assets/SummerHearts-Regular.otf") format("truetype");
 }
 
 body {
@@ -10,7 +11,7 @@ body {
   font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #121212 url('../assets/topography.svg');
+  background: #121212 url("../assets/topography.svg");
 
   h1 {
     font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -36,7 +37,6 @@ body {
       border-right-color: transparent;
       transform-origin: center;
       border-bottom-color: #eef46e;
-
     }
 
     &::after {
@@ -44,12 +44,11 @@ body {
       bottom: -1px;
       transform: rotate(10deg);
       border-bottom-color: #8bd76b;
-
     }
   }
 }
 
-#footer{
+#footer {
   color: white;
   text-align: right;
   margin: 3px 10px 5px 0px;
@@ -66,41 +65,6 @@ body {
   }
 }
 
-.projects {
-  overflow: hidden;
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  min-height: 100vh;
-  color: white;
-  h1 {
-    margin: 50px 0px 0px 0px;
-    color: #f54768;
-
-    &::after {
-      border-bottom-color: #8bd76b;
-    }
-
-    &::before {
-      border-bottom-color: #eef46e;
-    }
-  }
-
-  #searchBar {
-    min-width: 320px;
-    display: flex;
-    color: white;
-  }
-
-  .MuiSvgIcon-root {
-    fill: black;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-}
-
 #root {
   display: inline-flex;
   flex-direction: column;
@@ -109,7 +73,8 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   .App {
-    background: #121212 url('../assets/compressUnder1MB.webp') no-repeat center center fixed;
+    background: #121212 url("../assets/compressUnder1MB.webp") no-repeat center
+      center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -132,11 +97,11 @@ body {
 
     p {
       margin: 50px 30px 0px 30px;
-      text-align: 'left';
-      animation: slideRight 1.8s cubic-bezier(0.0, 0.1, 0.25, 1);
+      text-align: "left";
+      animation: slideRight 1.8s cubic-bezier(0, 0.1, 0.25, 1);
       z-index: 10;
     }
-  
+
     span {
       z-index: 10;
     }
@@ -147,12 +112,10 @@ body {
       transition: 1s;
       padding: 0px 4px;
       display: inline-flex;
-
     }
 
     a:nth-child(1):hover {
       border-bottom: 1px solid #8bd76b;
-
     }
 
     a:nth-child(2):hover {
@@ -165,12 +128,10 @@ body {
 
     @for $i from 1 through 3 {
       a:nth-child(#{$i}) {
-        animation: hideToShow ($i)* .8s linear forwards;
+        animation: hideToShow ($i) * 0.8s linear forwards;
       }
     }
-
   }
-
 }
 // animations for home page title
 @keyframes hideToShow {
@@ -195,34 +156,14 @@ body {
   }
 }
 
-
-
-
-
 .MuiFormControl-root {
   border: 1px solid #ffffff36 !important;
   max-width: 320px;
-
 }
 
 #searchBar-label {
   color: white !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 h1 {
   margin-top: 10px;
@@ -236,7 +177,6 @@ h1 {
   justify-content: center;
   max-width: 100vw;
   margin: 15px;
-
 }
 
 .card {
@@ -267,7 +207,6 @@ h1 {
     opacity: 0;
     overflow: auto;
     transition: opacity 2s;
-
   }
 
   &:hover {
@@ -300,21 +239,19 @@ h1 {
 
     button {
       color: #61dafb;
-      ;
       border: 1px solid #61dafb;
       margin: 1px;
     }
   }
 }
 
-
-.about, .blog{
+.about,
+.blog {
   display: inline-flex;
   flex-direction: column;
   padding: 0px;
   width: 100%;
 }
-
 
 //about page
 .about {

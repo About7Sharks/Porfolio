@@ -4,7 +4,42 @@
   box-sizing: border-box;
   position: relative;
 }
+.projects {
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  h1 {
+    margin: 50px 0px 0px 0px;
+    color: #f54768;
 
+    &::after {
+      border-bottom-color: #8bd76b;
+    }
+
+    &::before {
+      border-bottom-color: #eef46e;
+    }
+  }
+  .MuiAutocomplete-root {
+    margin-bottom: 15px !important;
+  }
+  #searchBar {
+    min-width: 320px;
+    display: flex;
+    color: white;
+  }
+
+  .MuiSvgIcon-root {
+    fill: black;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}
 .slides {
   width: 100vw;
   min-height: 300px;
@@ -34,7 +69,6 @@
     &:hover {
       opacity: 1;
       cursor: pointer;
-
     }
 
     &:focus {
@@ -49,7 +83,6 @@
     }
   }
 }
-
 
 .slideContent {
   max-width: 30vw;

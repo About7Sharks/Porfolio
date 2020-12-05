@@ -1,15 +1,15 @@
 import React from 'react';
 import sites from './sites.js' //my sites data
 import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import Emoji from '../util/emoji'
-import SliderProjects from "./sliderProjects.js"
+// import './projects.scss'
 import Tooltip from '@material-ui/core/Tooltip';
-
+import Picker from '../util/Picker'
+import './projects.scss'
 
 
 const projectsList = (e, filter) => {
+  console.log(filter)
   let dog = sites
   if (filter !== undefined && filter !== 'All') {
     dog = sites.filter(site => {
@@ -17,6 +17,7 @@ const projectsList = (e, filter) => {
     })
   }
   return dog.map((site) => {
+    console.log(site)
     let tagButtons = site.tags.map(tag => <Button color="default" variant="outlined" key={tag} size="small">{tag}</Button>)
     return <div className='card' key={site.url}>
       <img style={{ height: '290px' }} alt={site.url} src={site.img} title="" />
@@ -35,32 +36,24 @@ const projectsList = (e, filter) => {
 
 export default function Projects() {
   const [projects, updateProjects] = React.useState({ 'projects': projectsList() });
-  const [alternate, setAlternate] = React.useState(false);
 
-
-  //return the unique tags in sites.js files
-  const siteTags = ['All', ...new Set(sites.reduce((tags, site) => tags.concat(site.tags), []))]
-
+  // updates site list from picker comp
+  const handleChange = (e,i)=>{
+    updateProjects({projects:projectsList(e,i)})
+  }
   return (
     <div id='projects' className='projects'>
       <h1>Projects</h1>
       <p>Here you can find sites that i'm currently hosting on the interwebs<Emoji symbol='🕸️' /></p>
-      {/* <Button variant="contained" color="secondary" onClick={() => setAlternate(!alternate)}>Alternative View</Button> */}
+      <Picker handleChange={handleChange} data={sites}/>
 
-      <Autocomplete
-        id="searchBar"
-        options={siteTags}
-        multiple={false}
-        onChange={((e, d) => { updateProjects({ projects: projectsList(e, d) }) })}
-        renderInput={(params) => (<TextField  {...params} label="Filter by project tag" margin="normal" variant="outlined" />)}
-      />
-      <br />
       <Tooltip title="Takes you to a random site in the list!">
         <Button onClick={() => { window.open(sites[Math.floor(Math.random() * sites.length + 1)].url) }} variant='contained'>Random Site</Button>
       </Tooltip>
-      {alternate ? <SliderProjects /> : <div className='cardContainer'>
+
+      <div className='cardContainer'>
         {projects.projects}
-      </div>}
+      </div>
     </div>
   );
 }
