@@ -84,6 +84,10 @@ body {
     filter: invert(1);
   }
 }
+h1,
+h2 {
+  margin: 0px;
+}
 
 #root {
   display: inline-flex;
