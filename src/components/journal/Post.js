@@ -27,6 +27,8 @@ export default function BlogPostViewer(props) {
       console.log("state defined, skipping fetch since data already loaded");
       setPost({ content: state.content });
     }
+    //scroll to top of page
+    window.scrollTo(0, 0);
   }, []);
   return (
     <ReactMarkdown
