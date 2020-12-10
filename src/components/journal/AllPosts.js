@@ -28,14 +28,14 @@ export default function Blog() {
       })
     );
     localStorage.setItem("data", JSON.stringify(articlesContent));
+    setArticles(articlesContent);
     return articlesContent;
   }
   const handleChange = (e, filter) => {
     setFilter(filter);
   };
-  let cache = JSON.parse(localStorage.getItem("data"));
   useEffect(() => {
-    if (cache === null) {
+    if (JSON.parse(localStorage.getItem("data")) === null) {
       console.log("fetching posts");
       getArticles();
     } else {
@@ -53,7 +53,6 @@ export default function Blog() {
           {articles
             .filter((article) => {
               if (filter === "All") return article;
-              if (article.tags === undefined) return;
               return article.tags.includes(filter);
             })
             .map((article) => {
