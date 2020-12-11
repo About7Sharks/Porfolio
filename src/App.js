@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
