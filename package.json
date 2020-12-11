@@ -1,19 +1,19 @@
 {
   "name": "reactportfolio",
   "version": "0.2.0",
-  "homepage": "./",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "gray-matter": "^4.0.2",
+    "node-sass": "4.12",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
-    "sass": "^1.29.0"
+    "react-scripts": "4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
