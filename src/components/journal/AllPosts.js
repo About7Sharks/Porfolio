@@ -53,7 +53,7 @@ export default function Blog() {
           {articles
             .filter((article) => {
               if (filter === "All") return article;
-              return article.tags.includes(filter);
+              return article.tags?.includes(filter);
             })
             .map((article) => {
               return (
