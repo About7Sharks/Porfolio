@@ -56,7 +56,7 @@ export function register(config) {
 
 function registerValidSW(swUrl, config) {
   console.log(swUrl,config)
-  console.log(service.serviceWorkerContainer)
+  console.log(navigator.serviceWorkerContainer)
   console.log(navigator.serviceWorker)
   navigator.serviceWorkerContainer
     .register(swUrl)
