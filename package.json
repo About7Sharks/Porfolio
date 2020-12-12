@@ -1,7 +1,7 @@
 {
   "name": "reactportfolio",
   "version": "0.2.0",
-  "homepage": "./",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
