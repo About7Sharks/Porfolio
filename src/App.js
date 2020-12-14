@@ -11,13 +11,13 @@ import BlogPost from "./components/journal/Post";
 const Projects = lazy(() => import("./components/projects/projects.js"));
 const Drawer = lazy(() => import("./components/navigation/drawer.js"));
 const Footer = lazy(() => import("./components/navigation/footer"));
-const Home = lazy(() => import("./components/Home.js"));
+const Home = lazy(() => import("./components/home/Home.js"));
 const About = lazy(() => import("./components/about/about"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 
 const renderLoader = () => <p>Loading ...</p>;
 
-function App() {
+export default function App() {
   return (
     <Suspense fallback={renderLoader()}>
       <Router>
@@ -36,5 +36,3 @@ function App() {
     </Suspense>
   );
 }
-
-export default App;

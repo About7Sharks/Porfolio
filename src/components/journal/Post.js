@@ -29,7 +29,7 @@ export default function BlogPostViewer(props) {
     }
     //scroll to top of page
     window.scrollTo(0, 0);
-  }, []);
+  }, [state, postData]);
   return (
     <ReactMarkdown
       className={`${props.match.params.id} article`}

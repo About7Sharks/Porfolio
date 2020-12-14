@@ -20,7 +20,7 @@ let sites = [{
     tags: [`Nuxt`, `Vue`]
 },
 {
-    url: `https://meerkat.netlify.app`,
+    url: `https://meerkatapp.netlify.app`,
     img: `https://raw.githubusercontent.com/About7Sharks/meerkat/Main/src/logo.svg`,
     title: `Meerkat`,
     text: `A network sniffer and analyser written in react and electron`,
