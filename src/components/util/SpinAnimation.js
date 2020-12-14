@@ -4,6 +4,12 @@ const spinAnimation = (e) => {
   anime({
     targets: e.target,
     rotateY: 360,
+    keyframes: [
+      { scale: 1 },
+      { scale: 1.3, opacity: Math.random(0, 1) },
+      { scale: 1, opacity: 1 },
+    ],
+
     //loop: true,
     duration: 1000,
     easing: "linear",

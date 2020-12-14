@@ -11,7 +11,7 @@ export default function Home() {
           Hi <Emoji symbol="👋" />, I'm Zach a fun loving
         </p>
         <h1>
-          {[..."software engineer"].map((letter, i) => {
+          {[..."Software Engineer"].map((letter, i) => {
             return (
               <span
                 key={i}
