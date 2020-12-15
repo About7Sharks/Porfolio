@@ -18,6 +18,7 @@ const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 const renderLoader = () => <p>Loading ...</p>;
 
 export default function App() {
+  console.log(navigator);
   return (
     <Suspense fallback={renderLoader()}>
       <Router>

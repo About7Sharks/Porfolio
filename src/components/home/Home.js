@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import "../myscss.scss";
 import Emoji from "../util/emoji";
 import { spinAnimation } from "../util/SpinAnimation";
+import AdaptiveDesign from "../util/AdaptiveDesign";
 export default function Home() {
   return (
     <div className="Home">
+      <AdaptiveDesign />
       <span>
         <p>
           Hi <Emoji symbol="👋" />, I'm Zach a fun loving
