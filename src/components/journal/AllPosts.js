@@ -1,43 +1,20 @@
 import React, { useState, useEffect } from "react";
-import matter from "gray-matter";
 import "../myscss.scss";
 import JournalCard from "./JournalCard.js";
 import Picker from "../util/Picker";
-
+import { getArticles } from "../util/getArticles.js";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
-  async function getArticles() {
-    let data = await (
-      await fetch(
-        "https://api.github.com/repos/About7Sharks/Markdown/git/trees/master?recursive=1"
-      )
-    ).json();
-    let articlesContent = await Promise.all(
-      data.tree.map(async (article) => {
-        let art = matter(
-          await (
-            await fetch(
-              `https://raw.githubusercontent.com/About7Sharks/Markdown/master/${article.path}`
-            )
-          ).text()
-        );
-        art = { ...art, ...art.data };
-        delete art.data;
-        return art;
-      })
-    );
-    localStorage.setItem("data", JSON.stringify(articlesContent));
-    setArticles(articlesContent);
-    return articlesContent;
-  }
   const handleChange = (e, filter) => {
     setFilter(filter);
   };
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("data")) === null) {
       console.log("fetching posts");
-      getArticles();
+      getArticles().then((data) => {
+        setArticles(data);
+      });
     } else {
       console.log("cache");
       setArticles(JSON.parse(localStorage.getItem("data")));

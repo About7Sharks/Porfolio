@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import sites from "./sites.js"; //my sites data
 import { Button } from "@material-ui/core";
 import Emoji from "../util/emoji";
 // import './projects.scss'
 import Tooltip from "@material-ui/core/Tooltip";
+import ProjectSlider from "./sliderProjects";
 import Picker from "../util/Picker";
 import "./projects.scss";
 
@@ -39,13 +40,17 @@ const projectsList = (e, filter) => {
 };
 
 export default function Projects() {
-  const [projects, updateProjects] = React.useState({
+  const [projects, updateProjects] = useState({
     projects: projectsList(),
   });
+  const [view, setView] = useState(true);
 
   // updates site list from picker comp
   const handleChange = (e, i) => {
     updateProjects({ projects: projectsList(e, i) });
+  };
+  const changeView = () => {
+    setView(!view);
   };
   return (
     <div id="projects" className="projects">
@@ -68,8 +73,19 @@ export default function Projects() {
           Random Site
         </Button>
       </Tooltip>
-
-      <div className="cardContainer">{projects.projects}</div>
+      <Button
+        onClick={() => {
+          changeView();
+        }}
+        variant="contained"
+      >
+        Alternative View
+      </Button>
+      {view ? (
+        <div className="cardContainer">{projects.projects}</div>
+      ) : (
+        <ProjectSlider />
+      )}
     </div>
   );
 }
