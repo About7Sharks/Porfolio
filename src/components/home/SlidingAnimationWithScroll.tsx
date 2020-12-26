@@ -1,7 +1,8 @@
 import React from "react";
-//
-const SlidingAnimationWithScroll = (props) => {
-  const { text } = props;
+type slideProps = {
+  text: string[];
+};
+const SlidingAnimationWithScroll = ({ text }: slideProps) => {
   console.log(text);
   return <div>{text}</div>;
 };
