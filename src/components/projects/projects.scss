@@ -12,6 +12,9 @@
   align-items: center;
   min-height: 100vh;
   color: white;
+  span {
+    display: inline-flex;
+  }
   h1 {
     margin: 50px 0px 0px 0px;
     color: #f54768;
@@ -25,6 +28,8 @@
     }
   }
   .MuiAutocomplete-root {
+    width: 320px;
+    margin: 0 auto;
     margin-bottom: 15px !important;
   }
 

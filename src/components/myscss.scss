@@ -5,6 +5,20 @@
     url("../assets/SummerHearts-Regular.otf") format("truetype");
 }
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+
+$green: #8bd76b;
+$yellow: #eef46e;
+$red: #f54768;
+$degreeShift: -15deg;
+
+@mixin perspectiveShift {
+  -ms-transform: rotateY($degreeShift);
+  -moz-transform: rotateY($degreeShift);
+  -o-transform: rotateY($degreeShift);
+  -webkit-transform: rotateY($degreeShift);
+  transform: rotateY($degreeShift);
+}
+
 body {
   margin: 0;
   display: flex;
@@ -36,14 +50,14 @@ body {
       border-left-color: transparent;
       border-right-color: transparent;
       transform-origin: center;
-      border-bottom-color: #eef46e;
+      border-bottom-color: $yellow;
     }
 
     &::after {
       left: 0px;
       bottom: -1px;
       transform: rotate(10deg);
-      border-bottom-color: #8bd76b;
+      border-bottom-color: $green;
     }
   }
 }
@@ -126,22 +140,40 @@ h2 {
     .div1 {
       grid-area: 1 / 1 / 2 / 2;
       margin-left: 25px;
+
       h1 {
         text-align: left;
+        animation: fadeIn 2s;
       }
     }
     .div2 {
       grid-area: 1 / 2 / 2 / 3;
       place-self: center;
+      margin-left: 2vw;
+    }
+    .div2,
+    .div4 {
+      transform: perspective(1000px);
     }
     img {
-      width: 120%;
+      width: 100%;
       position: relative;
       border-radius: 10px;
+      animation: fadeIn 2s;
+      mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
+      mask-size: 800% 110%;
+      mask-position: 90% 50%;
+      @include perspectiveShift;
+
+      background-repeat: no-repeat;
+      transition: 0.3s;
     }
     .div3 {
       grid-area: 2 / 1 / 3 / 2;
       font-size: 1rem;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 3s;
       #scroll {
         position: relative;
         left: -60px;
@@ -168,26 +200,17 @@ h2 {
       position: relative;
       top: 5px;
       right: -20%;
+      @include perspectiveShift;
       a {
         height: 50px;
       }
     }
 
-    .abovePic {
-      display: inline-flex;
-      flex-direction: column;
-      top: 125px;
-      left: 120px;
-      text-align: left;
-      h1 {
-        text-align: left;
-        width: 100%;
-      }
-    }
-
     p {
       text-align: "left";
-      animation: slideRight 1.8s cubic-bezier(0, 0.1, 0.25, 1);
+      animation: slideDown 2s forwards;
+      animation-delay: 1.5s;
+      opacity: 0;
       z-index: 10;
       width: 400px;
     }
@@ -207,15 +230,15 @@ h2 {
     }
 
     a:nth-child(1):hover {
-      border-bottom: 1px solid #8bd76b;
+      border-bottom: 1px solid $green;
     }
 
     a:nth-child(2):hover {
-      border-bottom: 1px solid #f54768;
+      border-bottom: 1px solid $red;
     }
 
     a:nth-child(3):hover {
-      border-bottom: 1px solid #eef46e;
+      border-bottom: 1px solid $yellow;
     }
 
     @for $i from 1 through 3 {
@@ -235,15 +258,22 @@ h2 {
     opacity: 1;
   }
 }
-
-@keyframes slideRight {
+@keyframes slideDown {
   from {
-    transform: translate3d(50vw, 0px, 0px);
+    transform: translateY(-150px);
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
 
   to {
-    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
@@ -349,14 +379,14 @@ h1 {
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 25px;
-    color: #eef46e;
+    color: $yellow;
 
     &::after {
-      border-bottom-color: #8bd76b;
+      border-bottom-color: $green;
     }
 
     &::before {
-      border-bottom-color: #f54768;
+      border-bottom-color: $red;
     }
   }
 
@@ -373,7 +403,7 @@ h1 {
     font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 1.35rem;
     margin-top: -10px;
-    color: #8bd76b;
+    color: $green;
     transform: rotate(20deg);
     line-height: 0px;
   }

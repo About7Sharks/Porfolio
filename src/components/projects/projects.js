@@ -43,7 +43,7 @@ export default function Projects() {
   const [projects, updateProjects] = useState({
     projects: projectsList(),
   });
-  const [view, setView] = useState(true);
+  const [view, setView] = useState(false);
 
   // updates site list from picker comp
   const handleChange = (e, i) => {
@@ -59,30 +59,35 @@ export default function Projects() {
         Here you can find sites that i'm currently hosting on the interwebs
         <Emoji symbol="🕸️" />
       </p>
-      <Picker handleChange={handleChange} data={sites} />
 
-      <Tooltip title="Takes you to a random site in the list!">
+      <span>
+        <Tooltip title="Takes you to a random site in the list!">
+          <Button
+            onClick={() => {
+              window.open(
+                sites[Math.floor(Math.random() * sites.length + 1)].url
+              );
+            }}
+            variant="contained"
+          >
+            Random Site
+          </Button>
+        </Tooltip>
+        &nbsp;&nbsp;&nbsp;
         <Button
           onClick={() => {
-            window.open(
-              sites[Math.floor(Math.random() * sites.length + 1)].url
-            );
+            changeView();
           }}
           variant="contained"
         >
-          Random Site
+          Alternative View
         </Button>
-      </Tooltip>
-      <Button
-        onClick={() => {
-          changeView();
-        }}
-        variant="contained"
-      >
-        Alternative View
-      </Button>
+      </span>
       {view ? (
-        <div className="cardContainer">{projects.projects}</div>
+        <div>
+          <Picker handleChange={handleChange} data={sites} />
+          <div className="cardContainer">{projects.projects}</div>
+        </div>
       ) : (
         <ProjectSlider />
       )}

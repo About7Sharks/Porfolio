@@ -5,6 +5,7 @@ import Emoji from "../util/emoji";
 import { spinAnimation } from "../util/SpinAnimation";
 import SliderProject from "../projects/sliderProjects";
 import FeaturedPosts from "../journal/FeaturedPosts";
+import SlidingAnimationWithScroll from "./SlidingAnimationWithScroll";
 // import AdaptiveDesign from "../util/AdaptiveDesign";
 
 // const typingEffect = () => {
@@ -28,10 +29,23 @@ import FeaturedPosts from "../journal/FeaturedPosts";
 //   }, 500);
 //   console.log(loop);
 // };
+const scrollAnimation = () => {
+  let offset = 100 - window.scrollY / 3;
+  offset < 0 ? (offset = 0) : console.log("");
+  document
+    .getElementById("homePageMainImg")
+    .setAttribute(
+      "style",
+      `mask-position: ${offset}%  100%; -webkit-mask-position: ${offset}% 100%`
+    );
+};
 export default function Home() {
   useEffect(() => {
-    // typingEffect();
-  });
+    document.addEventListener("scroll", scrollAnimation);
+    return () => {
+      document.removeEventListener("scroll", scrollAnimation);
+    };
+  }, []);
   return (
     <div>
       <div className="Home">
@@ -62,7 +76,11 @@ export default function Home() {
           <div className="showHide">_</div>
         </h1> */}
         <div className="div2">
-          <img alt="sexypants" src={"/assets/photo2.jpeg"}></img>
+          <img
+            id="homePageMainImg"
+            alt="sexypants"
+            src={"/assets/photo2.jpeg"}
+          ></img>
         </div>
         <span className="div4">
           <Link to={"/journal"}>
@@ -84,6 +102,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <SlidingAnimationWithScroll text={["Software Engineer"]} />
       <div className="homeProjects">
         <h1>Projects</h1>
         <SliderProject />
