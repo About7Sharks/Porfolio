@@ -6,7 +6,7 @@ const FeaturedPosts = () => {
   useEffect(() => {
     getArticles().then((data) => {
       let dog = data.filter((article) => {
-        console.log(article);
+        // console.log(article);
         return article.tags?.includes("Featured");
       });
       setPosts(dog);

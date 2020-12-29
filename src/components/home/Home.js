@@ -2,33 +2,14 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../myscss.scss";
 import Emoji from "../util/emoji";
+import BookIcon from "@material-ui/icons/Book";
 import { spinAnimation } from "../util/SpinAnimation";
 import SliderProject from "../projects/sliderProjects";
 import FeaturedPosts from "../journal/FeaturedPosts";
 import SlidingAnimationWithScroll from "./SlidingAnimationWithScroll";
-// import AdaptiveDesign from "../util/AdaptiveDesign";
-
-// const typingEffect = () => {
-//   let i = 0;
-//   let loop = 0;
-//   let text = ["com", "dev", "eth", "snazy"];
-//   setInterval(() => {
-//     if (text[loop].length <= i) {
-//       document.getElementById("typeEffect").innerHTML = document
-//         .getElementById("typeEffect")
-//         .innerHTML.slice(
-//           0,
-//           document.getElementById("typeEffect").innerHTML.indexOf(".") + 1
-//         );
-//       i = 0;
-//       loop === text.length - 1 ? (loop = 0) : loop++;
-//     } else {
-//       document.getElementById("typeEffect").innerHTML += text[loop].charAt(i);
-//       i++;
-//     }
-//   }, 500);
-//   console.log(loop);
-// };
+import { useTrail, useSprings, animated } from "react-spring";
+import { duration } from "@material-ui/core";
+import DragSlider from "../projects/DragSlider";
 const scrollAnimation = () => {
   let offset = 100 - window.scrollY / 3;
   offset < 0 ? (offset = 0) : console.log("");
@@ -50,31 +31,19 @@ export default function Home() {
     <div>
       <div className="Home">
         {/* <AdaptiveDesign /> */}
+
         <div className="div1">
-          <h1>
+          <h1 className="">
             Hello,<br></br> I'm Zach
           </h1>
+
           <br></br>
           <p>
             A full stack software engineer based in Tampa, Fl with a passion for
             javascript and improving others lives
           </p>
         </div>
-        {/* <h1>
-          {[..."Software Engineer"].map((letter, i) => {
-            return (
-              <span
-                key={i}
-                onMouseOver={(e) => {
-                  spinAnimation(e);
-                }}
-              >
-                {letter}
-              </span>
-            );
-          })}
-          <div className="showHide">_</div>
-        </h1> */}
+
         <div className="div2">
           <img
             id="homePageMainImg"
@@ -102,13 +71,41 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SlidingAnimationWithScroll text={["Software Engineer"]} />
+      {/* <DragSlider /> */}
+      {/* <SlidingAnimationWithScroll
+        text={[
+          "Software Engineer",
+          "Javascript",
+          "Vue",
+          "Node",
+          "Typescript",
+          "Linux",
+        ]}
+      /> */}
       <div className="homeProjects">
         <h1>Projects</h1>
-        <SliderProject />
-        <div>
-          <h1>Featured Posts</h1>
-          <FeaturedPosts />
+        <div className="div2">
+          <img src="https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5edd8a5f4d7c220008625fff/screenshot.png"></img>
+          <p>Real-time fermenation monitor made with vue</p>
+          <Link>Visit &#8594;</Link>
+        </div>
+        <div className="div3">
+          <div>
+            <img src={"http://192.168.0.43:3000" + "/assets/situp.png"}></img>
+            <p>AI Based running un browser for counting situps</p>
+            <Link>Visit &#8594;</Link>
+          </div>
+        </div>
+      </div>
+      <div className="homePosts">
+        <h1>Journal Posts</h1>
+        <div className="div2">
+          <img src={"http://192.168.0.43:3000" + "/assets/situp.png"}></img>
+          <Link>Read &#8594;</Link>
+        </div>
+        <div className="div3">
+          <img src={"http://192.168.0.43:3000" + "/assets/situp.png"}></img>
+          <Link>Read &#8594;</Link>
         </div>
       </div>
     </div>

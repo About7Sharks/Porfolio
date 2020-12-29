@@ -4,13 +4,19 @@
   src: local("Summer Hearts"),
     url("../assets/SummerHearts-Regular.otf") format("truetype");
 }
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
 $green: #8bd76b;
 $yellow: #eef46e;
 $red: #f54768;
 $degreeShift: -15deg;
 
+@mixin glassmorphism {
+  background: rgba(203, 203, 203, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.096);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+}
 @mixin perspectiveShift {
   -ms-transform: rotateY($degreeShift);
   -moz-transform: rotateY($degreeShift);
@@ -19,6 +25,20 @@ $degreeShift: -15deg;
   transform: rotateY($degreeShift);
 }
 
+.slideList {
+  height: 600px;
+  min-width: 100%;
+
+  li {
+    height: 100px;
+    top: random(100);
+    max-width: 180px;
+    @include glassmorphism;
+  }
+}
+.fadeIn {
+  animation: fadeIn 2s infinite;
+}
 body {
   margin: 0;
   display: flex;
@@ -27,6 +47,42 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #121212 url("../assets/topography.svg");
   background-size: cover;
+
+  .container {
+    margin-top: 100px;
+    margin-left: 100px;
+    // border: 7px solid darkslategray;
+    overflow-x: hidden;
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active,
+    &:focus {
+      cursor: grabbing;
+    }
+  }
+
+  .images {
+    display: flex;
+    will-change: transform;
+
+    & > *:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    img {
+      display: block;
+      height: 600px;
+      min-width: 370px;
+      object-fit: cover;
+      object-position: center;
+      // border: 10px solid maroon;
+      pointer-events: none;
+      user-select: none;
+    }
+  }
 
   h1 {
     // font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -102,7 +158,9 @@ h1,
 h2 {
   margin: 0px;
 }
-
+span {
+  display: inline-flex;
+}
 #root {
   display: inline-flex;
   flex-direction: column;
@@ -110,12 +168,66 @@ h2 {
   width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
+  .homePosts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto repeat(auto, 1fr);
+    h1 {
+      grid-area: 1 / 1 / 2 / 3;
+      margin-bottom: 20px;
+    }
+    .div2 {
+      grid-area: 2 / 1 / 3 / 2;
+      margin: 40px;
+      margin-top: 8rem;
+    }
+    .div3 {
+      grid-area: 2 / 2 / 3 / 3;
+      margin: 20px;
+    }
+    img {
+      width: 100%;
+      max-width: 800px;
+      min-width: 300px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+  }
   .homeProjects {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto repeat(auto, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    text-align: center;
+    h1 {
+      grid-area: 1 / 1 / 2 / 3;
+      margin-bottom: 20px;
+    }
+    .div2 {
+      grid-area: 2 / 1 / 3 / 2;
+      margin: 20px;
+    }
+    .div3 {
+      grid-area: 2 / 2 / 3 / 3;
+      margin: 40px;
+      margin-top: 8rem;
+    }
     margin: 0 auto;
-    grid-template-rows: auto auto;
+
     max-width: 1200px;
     overflow-x: visible !important;
+    p,
+    a {
+      color: white;
+    }
+    img {
+      width: 100%;
+      max-width: 800px;
+      min-width: 300px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
     h1 {
       margin-left: 50px;
       justify-self: start;
@@ -150,24 +262,25 @@ h2 {
       grid-area: 1 / 2 / 2 / 3;
       place-self: center;
       margin-left: 2vw;
+      img {
+        width: 100%;
+        position: relative;
+        border-radius: 10px;
+        opacity: 0;
+        animation: fadeIn 1s ease-in 1.4s forwards;
+        mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
+        mask-size: 800% 110%;
+        mask-position: 90% 50%;
+        @include perspectiveShift;
+        background-repeat: no-repeat;
+        transition: 0.3s;
+      }
     }
     .div2,
     .div4 {
       transform: perspective(1000px);
     }
-    img {
-      width: 100%;
-      position: relative;
-      border-radius: 10px;
-      animation: fadeIn 2s;
-      mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
-      mask-size: 800% 110%;
-      mask-position: 90% 50%;
-      @include perspectiveShift;
 
-      background-repeat: no-repeat;
-      transition: 0.3s;
-    }
     .div3 {
       grid-area: 2 / 1 / 3 / 2;
       font-size: 1rem;
@@ -177,9 +290,9 @@ h2 {
       #scroll {
         position: relative;
         left: -60px;
+        top: 100px;
         transform: rotate(90deg);
         width: 200px;
-        animation: floating 2s infinite alternate-reverse ease-in-out;
       }
       svg {
         stroke: rgba(255, 255, 255, 0.5);
@@ -200,6 +313,8 @@ h2 {
       position: relative;
       top: 5px;
       right: -20%;
+      opacity: 0;
+      animation: slideDown 2s 3s forwards;
       @include perspectiveShift;
       a {
         height: 50px;
@@ -209,7 +324,7 @@ h2 {
     p {
       text-align: "left";
       animation: slideDown 2s forwards;
-      animation-delay: 1.5s;
+      animation-delay: 0.68s;
       opacity: 0;
       z-index: 10;
       width: 400px;
@@ -250,30 +365,33 @@ h2 {
 }
 // animations for home page title
 @keyframes hideToShow {
-  from {
+  0% {
     opacity: 0;
   }
 
-  to {
+  100% {
     opacity: 1;
   }
 }
 @keyframes slideDown {
-  from {
+  0% {
     transform: translateY(-150px);
   }
-  to {
+  90% {
+    transform: translateY(1px);
+  }
+  100% {
     transform: translateY(0px);
     opacity: 1;
   }
 }
 
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
 
-  to {
+  100% {
     opacity: 1;
   }
 }
@@ -287,80 +405,6 @@ h1 {
   margin-top: 10px;
   color: white;
   text-align: center;
-}
-
-.cardContainer {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100vw;
-  margin: 15px;
-}
-
-.card {
-  background: rgb(51, 51, 51);
-  max-width: 440px;
-  width: 80%;
-  min-width: 280px;
-  margin: 15px;
-  color: white;
-  border-radius: 10px;
-  position: relative;
-
-  img {
-    border-radius: 10px;
-    width: 100%;
-  }
-
-  .info {
-    position: absolute;
-    left: 0;
-    display: none;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-    z-index: 10;
-    opacity: 0;
-    overflow: auto;
-    transition: opacity 2s;
-  }
-
-  &:hover {
-    .info {
-      background: rgba(29, 29, 29, 0.726);
-      opacity: 1;
-      display: inline-flex;
-    }
-  }
-
-  p {
-    text-align: left;
-    padding: 10px;
-  }
-
-  h3 {
-    margin: 8px;
-    text-shadow: 2px 2px #252525b0;
-    text-align: left;
-  }
-
-  img {
-    height: 200px;
-  }
-
-  .actions {
-    align-self: flex-start;
-    text-align: left;
-    margin: 5px;
-
-    button {
-      color: #61dafb;
-      border: 1px solid #61dafb;
-      margin: 1px;
-    }
-  }
 }
 
 .about,

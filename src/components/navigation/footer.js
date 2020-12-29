@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
 
-export default function Footer(){
-    return (
-        <div id="footer">
-            {/* Like this site donate to zacarlin.eth */}
-            Built with <span style={{color:'red'}}>❤</span> by Zach
-           
-        </div>
-    )
+export default function Footer() {
+  return (
+    <div id="footer">
+      <h3>
+        Want to talk? <br></br> lets connect!
+      </h3>
+      <form>
+        <input type="text" placeholder="elon@x.com" />
+        <text-area></text-area>
+        <button>Send</button>
+      </form>
+      <p>
+        Built with <span style={{ color: "red" }}>❤</span> by Zach
+      </p>
+    </div>
+  );
 }

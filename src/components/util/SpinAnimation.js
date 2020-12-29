@@ -18,4 +18,7 @@ const spinAnimation = (e) => {
     },
   });
 };
-export { spinAnimation };
+const slideAnimation = (e) => {
+  console.log(e);
+};
+export { spinAnimation, slideAnimation };
