@@ -8,19 +8,17 @@ import {
 import "./components/myscss.scss";
 import BlogPosts from "./components/journal/AllPosts";
 import BlogPost from "./components/journal/Post";
-const Projects = lazy(() => import("./components/projects/projects.js"));
-const Drawer = lazy(() => import("./components/navigation/drawer.js"));
+import { BeforeLoad } from "./components/util/BeforeLoad";
+const Projects = lazy(() => import("./components/projects/projects"));
+const Drawer = lazy(() => import("./components/navigation/drawer"));
 const Footer = lazy(() => import("./components/navigation/footer"));
-const Home = lazy(() => import("./components/home/Home.js"));
+const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 
-const renderLoader = () => <p>Loading ...</p>;
-
 export default function App() {
-  console.log(navigator);
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<BeforeLoad />}>
       <Router>
         <Drawer />
         <BackBTN id="backBTN" />
