@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./projects.scss";
-import sites from "./sites.js"; //my sites data
 import Button from "@material-ui/core/Button";
-import Emoji from "../util/emoji";
-import { useHistory } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Picker from "../util/Picker";
+
 function useTilt(active) {
   const ref = useRef(null);
 
@@ -66,12 +61,12 @@ function Slide({ slide, offset }) {
       <div className="slideBackground" />
       <div
         className="slideContent"
-        style={{ backgroundImage: `url('${slide.image}')` }}
+        style={{ backgroundImage: `url('${slide.img}')` }}
       >
         <div className="slideContentInner">
           <h2 className="slideTitle">{slide.title}</h2>
           <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
+          <p className="slideDescription">{slide.text}</p>
           <Button
             variant="contained"
             color="primary"
@@ -88,7 +83,8 @@ function Slide({ slide, offset }) {
 
 export default function App(params) {
   console.log(params);
-  let slides = sites.map((site) => {
+  let { sites } = params;
+  let slides = params.sites.map((site) => {
     return {
       title: site.title,
       image: site.img,
@@ -98,10 +94,12 @@ export default function App(params) {
     };
   });
   const [state, updateState] = React.useState({
-    projects: slides,
+    projects: params.sites,
     slideIndex: 0,
   });
-
+  useEffect(() => {
+    updateState({ slideIndex: 0, projects: params.sites });
+  }, [params]);
   const slidesReducer = (event) => {
     console.log(event);
     if (event === "NEXT") {
@@ -140,25 +138,6 @@ export default function App(params) {
 
   return (
     <div id="projects" className="projects">
-      {/* <h1>Projects</h1>
-       <p style={{textAlign:'center'}}>Here you can find some sites that i'm currently hosting on the interwebs <Emoji symbol='🕸️'/></p>
-      <Button variant="contained" color="secondary" onClick={() => history.push('/projects2')}>Alternative View</Button> */}
-
-      {/* <Autocomplete
-        id="searchBar"
-        options={["AI", "Javascript", "Vue", "IOT", "HTML", "React"]}
-        multiple={false}
-        onChange={filterByTag}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Filter by project tag"
-            margin="normal"
-            variant="outlined"
-          />
-        )}
-      /> */}
-      <Picker data={sites} handleChange={filterByTag} />
       <div className="slides">
         <button onClick={() => slidesReducer("PREV")}>‹</button>
         {[...state.projects, ...state.projects, ...state.projects].map(

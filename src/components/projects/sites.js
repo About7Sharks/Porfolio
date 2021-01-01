@@ -89,7 +89,7 @@ let sites = [
     url: `https://weliveinasim.netlify.app/`,
     img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5e0a51668d0c8a374c71465a/screenshot.png`,
     title: `Conways Game of Life using WebAssembly and Javascript`,
-    text: `Game of Life is an infinite two-dimensional orthogonal grid of square cells. Based on some basic rules to create living and intricate systems, that mimic life. This project utilizes WASM a portable binary-code format for executable programs, which gives C like performance in the browser.`,
+    text: `Based on some basic rules to create living and intricate systems, that mimic life. This project utilizes WASM a portable binary-code format for executable programs, which gives C like performance in the browser.`,
     tags: [`Rust`, `WASM`, `WebAssembly`],
   },
   {
@@ -163,18 +163,18 @@ let sites = [
     tags: [`HTML`, `Game`, `Javascript`],
   },
   {
-    url: "https://www.zacarlin.com/#/",
-    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5c5f96bda306c00008028590/screenshot.png`,
-    title: `Zacarlin`,
-    text: `Bought the Domain a while back and figured I should put it to use.`,
-    tags: [`Vue`],
-  },
-  {
     url: "https://zaframe.netlify.app/",
     img: `/assets/zaframe.png`,
     title: `Zaframe`,
     text: `Virtual Reality site in the browser`,
     tags: [`VR`],
+  },
+  {
+    url: "https://www.zacarlin.com/#/",
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5c5f96bda306c00008028590/screenshot.png`,
+    title: `Zacarlin`,
+    text: `Bought the Domain a while back and figured I should put it to use.`,
+    tags: [`Vue`],
   },
 ];
 

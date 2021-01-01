@@ -1,84 +1,77 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
+import {
+  motion,
+  useMotionValue,
+  transform,
+  useViewportScroll,
+} from "framer-motion";
 
 //this component expects an array of string which it will render in vertical columns
 // these columns transform along the x axis when the user scrolls
 type slideProps = {
   text: string[];
 };
-const SlidingAnimationWithScroll = ({ text }: slideProps) => {
-  let listStyle = {
-    padding: 100,
-  };
-
-  //when visible run this function
-  const onChange = (e: boolean) => {
-    if (e == false) return;
-    console.log(e);
-    console.log("visibile bitch");
-    // document.getElementById("list")?.classList.add("fadeIn");
-  };
-  let items = text.map((item, i) => {
-    return (
-      <li
-        style={{
-          ...listStyle,
-          color: "red",
-          margin: `${Math.random() * 10}px`,
-        }}
-        key={i}
-      >
-        {item}
-      </li>
-    );
-  });
+export const SlidingAnimationWithScroll = ({ text }: slideProps) => {
   const listRef = useRef(null);
+  const { scrollYProgress } = useViewportScroll();
+  let [scrollY, setScrollY] = useState(0);
+  // console.log(scrollYProgress);
+  // console.log(scrollYProgress.get());
 
-  let listRenderLocation =
-    document.getElementById("list")?.getClientRects() || 550;
-  const scrollAnimation = () => {
-    console.log(listRenderLocation, window.scrollY);
-    console.log(window.scrollY - (listRenderLocation as number));
-    if (window.scrollY > (listRenderLocation as number)) {
-      console.log("coool");
-    }
-
-    // let offset = 100 - window.scrollY - 600 / 3;
-    // offset < 0 ? (offset = 0) : console.log("");
-    // console.log(
-    //   Array.prototype.slice.call(
-    //     document.getElementsByClassName("slideList")[0].children
-    //   )
-    // );
-    Array.prototype.slice
-      .call(document.getElementsByClassName("slideList")[0].children)
-      .map((item) => {
-        item.setAttribute(
-          "style",
-          `transform: translateX(${window.scrollY}px)`
-          // ...listStyle
-        );
-      });
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 1.3,
+        staggerChildren: 0.5,
+      },
+    },
   };
-  useEffect(() => {
-    console.log(document.getElementById("list")?.getClientRects());
-    document.addEventListener("scroll", scrollAnimation);
-    return () => {
-      document.removeEventListener("scroll", scrollAnimation);
-    };
-  }, []);
 
+  const itemAnimation = {
+    hidden: { y: 20, opacity: 0, scale: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1.2,
+    },
+  };
+
+  useEffect(
+    () =>
+      scrollYProgress.onChange((latest) => {
+        // console.log(latest * 100);
+        setScrollY(latest);
+      }),
+    []
+  );
   return (
-    <VisibilitySensor
-      onChange={(e) => {
-        onChange(e);
-      }}
+    <motion.ul
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      id="list"
+      ref={listRef}
+      className="slideList"
     >
-      <ul id="list" ref={listRef} className="slideList">
-        {items}
-      </ul>
-    </VisibilitySensor>
+      {text.map((item, i) => {
+        return (
+          <motion.li
+            variants={itemAnimation}
+            animate={{
+              x: (i % 2 ? -1 : 1) * scrollY * 20 + "%",
+              //   opacity: scrollY * 3,
+            }}
+            style={{ color: "white" }}
+            key={i}
+          >
+            <h4>{item}</h4>
+          </motion.li>
+        );
+      })}
+    </motion.ul>
   );
 };
-
-export default SlidingAnimationWithScroll;

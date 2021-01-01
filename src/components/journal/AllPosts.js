@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "../myscss.scss";
-import JournalCard from "./JournalCard.js";
 import Picker from "../util/Picker";
+import { ProjectCards } from "../projects/ProjectCards.tsx";
 import { getArticles } from "../util/getArticles.js";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
+
+  //changes filter from picker
   const handleChange = (e, filter) => {
     setFilter(filter);
   };
+
+  //handles fetching data from github or cache
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("data")) === null) {
       console.log("fetching posts");
@@ -26,25 +30,23 @@ export default function Blog() {
       <div className="blog">
         <h1>Journal</h1>
         <Picker data={articles} handleChange={handleChange} />
-        <div className="content">
-          {articles
+        <ProjectCards
+          //filter the articles and tweak some property names before passing to component
+          data={articles
             .filter((article) => {
               if (filter === "All") return article;
               return article.tags?.includes(filter);
             })
-            .map((article) => {
-              return (
-                <JournalCard
-                  key={article.title}
-                  title={article.title}
-                  image={article.image}
-                  summary={article.summary}
-                  date={article.date}
-                  content={article.content}
-                />
-              );
+            .map((site) => {
+              return {
+                url: site.url,
+                img: site.image,
+                title: site.title,
+                text: site.summary,
+                tags: site.tags,
+              };
             })}
-        </div>
+        />
       </div>
     </div>
   );
