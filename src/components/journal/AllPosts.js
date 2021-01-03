@@ -25,29 +25,29 @@ export default function Blog() {
     }
   }, []);
 
+  //filter the articles and tweak some property names before passing to component
+  const cleanData = (data) => {
+    return data
+      .filter((article) => {
+        if (filter === "All") return article;
+        return article.tags?.includes(filter);
+      })
+      .map((site) => {
+        return {
+          url: site.url,
+          img: site.image,
+          title: site.title,
+          text: site.summary,
+          tags: site.tags,
+        };
+      });
+  };
+
   return (
-    <div>
-      <div className="blog">
-        <h1>Journal</h1>
-        <Picker data={articles} handleChange={handleChange} />
-        <ProjectCards
-          //filter the articles and tweak some property names before passing to component
-          data={articles
-            .filter((article) => {
-              if (filter === "All") return article;
-              return article.tags?.includes(filter);
-            })
-            .map((site) => {
-              return {
-                url: site.url,
-                img: site.image,
-                title: site.title,
-                text: site.summary,
-                tags: site.tags,
-              };
-            })}
-        />
-      </div>
+    <div className="journal">
+      <h1>Journal</h1>
+      <Picker data={articles} handleChange={handleChange} />
+      <ProjectCards data={cleanData(articles)} />
     </div>
   );
 }

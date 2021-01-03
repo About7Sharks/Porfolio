@@ -1,7 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 600 600">
-    <style type="text/css">
+    <style type="text/css"> 
+        svg{
+          background: linear-gradient(-45deg, black, rgb(20, 20, 21),rgb(13, 12, 14));
+          animation: gradient 10s ease infinite;
+          background-size: 400% 400%;
+        }
         #a { animation: x 60s linear alternate infinite; }
 
+        @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+        }
         @keyframes x {
            from { 
                fill:#ffffff14;

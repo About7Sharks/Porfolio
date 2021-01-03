@@ -4,12 +4,34 @@
   src: local("Summer Hearts"),
     url("../assets/SummerHearts-Regular.otf") format("truetype");
 }
+@font-face {
+  font-family: "Shrikhand";
+  font-display: swap;
+  src: local("Shirkhand"),
+    url("../assets//Shrikhand-Regular.otf") format("truetype");
+}
 
 $green: #8bd76b;
 $yellow: #eef46e;
 $red: #f54768;
 $degreeShift: -15deg;
 
+@mixin textGradient {
+  background-image: linear-gradient(90deg, $green, $yellow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: transparent;
+}
+//removes triangles and gradient from H1 tags
+.noFancy {
+  background-image: none;
+  background-color: white;
+  &::after,
+  &::before {
+    display: none;
+  }
+}
 @mixin glassmorphism {
   background: rgba(203, 203, 203, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.096);
@@ -27,6 +49,7 @@ $degreeShift: -15deg;
 p {
   letter-spacing: -0.05rem;
   font-size: 1.3rem;
+  font-family: "Roboto Mono", sans-serif;
 }
 .slideList {
   margin: 10px;
@@ -50,7 +73,6 @@ p {
       letter-spacing: -0.1rem;
       // @include glassmorphism;
       padding: 0.5rem;
-      //      background-color: rgb(212, 212, 212);
       color: rgb(255, 255, 255);
       text-align: center;
       text-shadow: 2px 2px 2px black;
@@ -64,15 +86,20 @@ p {
 .fadeIn {
   animation: fadeIn 2s infinite;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
+  scroll-behavior: smooth;
+
   margin: 0;
   display: flex;
-  font-family: Waka Sans, Helvetica, Arial, sans-serif;
+  // font-family: Waka Sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #121212 url("../assets/topography.svg");
+  background: url("../assets/topography.svg");
   background-size: cover;
-
+  color: rgb(13, 12, 14);
   .container {
     margin-top: 100px;
     margin-left: 100px;
@@ -110,10 +137,16 @@ body {
   }
 
   h1 {
-    // font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: Shrikhand, sans-serif;
     font-size: 4rem;
+    display: inline;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
     position: relative;
     letter-spacing: 0.1rem;
+    // @include textGradient;
+
     // animation: glow 2s ease-in-out infinite alternate;
     &::after,
     &::before {
@@ -122,7 +155,7 @@ body {
       border-bottom-width: 10px;
       display: block;
       position: absolute;
-      left: -1rem;
+      right: -1rem;
       transform: rotate(60deg);
       bottom: 0;
       content: "";
@@ -137,9 +170,9 @@ body {
     }
 
     &::after {
-      left: 0px;
+      right: 0px;
       bottom: -1px;
-      transform: rotate(10deg);
+      transform: rotate(-10deg);
       border-bottom-color: $green;
       animation-delay: 1s;
     }
@@ -148,7 +181,7 @@ body {
 
 @keyframes floating {
   0% {
-    transform: rotate(10deg) translate3d(0, 0, 0);
+    transform: rotate(-10deg) translate3d(0, 0, 0);
   }
   100% {
     transform: translate3d(2px, -3px, 0);
@@ -169,7 +202,8 @@ body {
   color: white;
 }
 
-.zacOverwrite {
+// drawer ui
+.customDrawerStyleTweaks {
   width: 100%;
   .MuiListItem-button {
     display: inline-flex;
@@ -178,18 +212,25 @@ body {
       background-color: rgba(230, 230, 230, 0.5);
     }
   }
-
   svg {
     filter: invert(1);
   }
 }
-h1,
-h2 {
-  margin: 0px;
-}
+
 span {
   display: inline-flex;
 }
+
+//journal and projects pages layout
+.journal,
+.projects {
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
 #root {
   display: inline-flex;
   flex-direction: column;
@@ -197,55 +238,25 @@ span {
   width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
-  .homePosts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto repeat(auto, 1fr);
-    h1 {
-      grid-area: 1 / 1 / 2 / 3;
-      margin-bottom: 20px;
-    }
-    .div2 {
-      grid-area: 2 / 1 / 3 / 2;
-      margin: 40px;
-      margin-top: 8rem;
-    }
-    .div3 {
-      grid-area: 2 / 2 / 3 / 3;
-      margin: 20px;
-    }
-    img {
-      width: 100%;
-      max-width: 800px;
-      min-width: 300px;
-      margin: 0 auto;
-      border-radius: 10px;
-    }
-  }
+
+  .homePosts,
   .homeProjects {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto repeat(auto, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: visible !important;
     h1 {
       grid-area: 1 / 1 / 2 / 3;
       margin-bottom: 20px;
     }
     .div2 {
       grid-area: 2 / 1 / 3 / 2;
-      margin: 20px;
     }
     .div3 {
       grid-area: 2 / 2 / 3 / 3;
-      margin: 40px;
-      margin-top: 8rem;
     }
-    margin: 0 auto;
-
-    max-width: 1200px;
-    overflow-x: visible !important;
     p,
     a {
       color: white;
@@ -262,58 +273,59 @@ span {
       justify-self: start;
     }
   }
+
   .Home {
     margin: 0 auto;
     margin-top: 15vh;
     min-height: 90vh;
-    // height: auto;
     width: 100%;
-    max-width: 1200px;
+    // max-width: 1200px;
     font-size: calc(15px + 2vmin);
     color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.077);
     display: grid;
-    grid-template-columns: repeat(2, minmax(320px, auto));
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-
     .div1 {
       grid-area: 1 / 1 / 2 / 2;
-      margin-left: 25px;
-
+      position: relative;
+      right: -20vw;
       h1 {
         text-align: left;
         animation: fadeIn 2s;
       }
     }
     .div2 {
-      grid-area: 1 / 2 / 2 / 3;
-      place-self: center;
-      margin-left: 2vw;
+      grid-area: 1 / 2 / 3 / 3;
+      place-self: flex-end;
+      position: relative;
+    }
+    .div2,
+    .div3 {
       img {
         width: 100%;
+        max-width: 500px;
         position: relative;
-        left: 2vw;
+        background-size: cover;
+        transform: scale(1); //scaleX(-1);
+        // left: 2vw;
         border-radius: 10px;
         opacity: 0;
         animation: fadeIn 1s ease-in 1.4s forwards;
-        mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
-        mask-size: 800% 110%;
-        mask-position: 90% 50%;
-        @include perspectiveShift;
+        // mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
+        // mask-size: 800% 110%;
+        // mask-position: 90% 50%;
+        // @include perspectiveShift;
         background-repeat: no-repeat;
         transition: 0.3s;
       }
     }
-    .div2,
-    .div4 {
-      transform: perspective(1000px);
-    }
 
     .div3 {
-      grid-area: 2 / 1 / 3 / 2;
-      font-size: 1rem;
+      position: absolute;
+      bottom: 10px;
+      right: 52%;
       opacity: 0;
       animation: fadeIn 2s forwards 3s;
       #scroll {
@@ -360,7 +372,7 @@ span {
 
     span {
       z-index: 10;
-      text-shadow: 1px 1px 2.5px rgba(0, 0, 0, 0.63);
+      // text-shadow: 1px 1px 2.5px rgba(0, 0, 0, 0.63);
     }
 
     a {
@@ -429,20 +441,50 @@ span {
   max-width: 320px;
 }
 
-h1 {
-  margin-top: 10px;
-  color: white;
-  text-align: center;
-}
-
-.about,
-.blog {
+.about {
   display: inline-flex;
   flex-direction: column;
   padding: 0px;
   width: 100%;
 }
 
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  // column-gap: 15px;
+  // row-gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100vw;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 20px;
+  // :nth-child(2n) {
+  //   border: 1px solid green;
+  //   right: 33%;
+  //   top: 33%;
+  // }
+  .card {
+    //initial state should be hidden
+    opacity: 0;
+    animation: fadeIn 0.5s linear forwards;
+    .actions {
+      position: absolute;
+      bottom: 0px;
+      button {
+        color: white;
+      }
+    }
+    a,
+    img {
+      border-radius: 25px;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 //about page
 .about {
   padding: 20px 20px 2px 20px;
