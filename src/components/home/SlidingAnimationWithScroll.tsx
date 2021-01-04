@@ -22,6 +22,7 @@ export const SlidingAnimationWithScroll = ({ text }: slideProps) => {
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
+      background: "rgba(203, 203, 203)",
       opacity: 1,
       scale: 1,
       transition: {

@@ -9,7 +9,7 @@ import "direction-reveal/src/styles/direction-reveal.scss";
 
 interface Props {
   data: Site[];
-  AnimationType: string;
+  gridLayout: string;
 }
 interface Site {
   url: string;
@@ -21,7 +21,8 @@ interface Site {
 
 export const ProjectCards = (props: Props) => {
   console.log(props);
-  let { data } = props;
+  let { data, gridLayout } = props;
+  console.log(gridLayout);
   const history = useHistory();
   useEffect(() => {
     const directionRevealDemo = DirectionReveal();
@@ -39,9 +40,9 @@ export const ProjectCards = (props: Props) => {
         <div
           onClick={() =>
             //if on journal page use router to link post
-            history.location.pathname.includes("journal")
-              ? history.push("/journal/" + site.title.replace(/ /g, ""), site)
-              : ""
+            history.location.pathname.includes("ojects")
+              ? ""
+              : history.push("/journal/" + site.title.replace(/ /g, ""), site)
           }
           key={site.url}
           style={{ animationDelay: `${i / 4}s` }}
@@ -68,7 +69,7 @@ export const ProjectCards = (props: Props) => {
         </div>
       );
     });
-    return <div className="cardContainer">{list}</div>;
+    return <div className={gridLayout}> {list}</div>;
   };
 
   return <Cards />;

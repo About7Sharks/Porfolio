@@ -1,54 +1,76 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Emoji from "../util/emoji";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import Button from "@material-ui/core/Button";
+import { motion, useAnimation } from "framer-motion";
+import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props {}
 
 export const HomeLanding = (props: Props) => {
+  const controls = useAnimation();
+  controls.start({
+    opacity: 1,
+    scale: 1,
+  });
   return (
     <div className="Home">
-      {/* <AdaptiveDesign /> */}
-
       <div className="div1">
-        <h1>Zachary Carlin</h1>
+        <h1 className="noFancy"> {spinAnimationV2("Zachary Carlin")}</h1>
+        <h1>{spinAnimationV2("Software Engineer")}</h1>
         <p>
-          A software engineer based in Tampa, FL with a passion for Javascrpit
-          and improving the life's of others
+          A software engineer based in Tampa, FL with passions in{" "}
+          <strong>web development</strong>, bodybuilding, and simply improving
+          the life's of others <br />
+          <br />
+          <Button
+            variant="contained"
+            onClick={() => {
+              document.getElementById("projectsHome")?.scrollIntoView();
+            }}
+          >
+            View Projects
+          </Button>
+          &nbsp; &nbsp;
+          <Button
+            variant="contained"
+            onClick={() => {
+              document.getElementById("journalHome")?.scrollIntoView();
+            }}
+          >
+            Read Journal
+          </Button>
         </p>
-        {/* <span>
-          <Link to={"/journal"}>
-            Journal <Emoji symbol="🗒️" />
-          </Link>
-          <Link to={"/projects"}>
-            Projects <Emoji symbol="🚧" />
-          </Link>
-          <Link to={"/about"}>
-            About <Emoji symbol="🤷" />
-          </Link>
-        </span> */}
-      </div>
-
-      <div className="div2">
-        <img
-          id="homePageMainImg"
-          alt="sexypants"
-          src={"/assets/photo5.png"}
-        ></img>
-      </div>
-      <span className="div4"></span>
-      <div className="div3">
-        <KeyboardArrowDownIcon />
-        {/* <div id="scroll">
+        <div id="scroll">
           Scroll &nbsp;
-          <svg height="7.5" width="115">
-            <line x1="0" y1="0" x2="50" y2="0" />
+          <svg height="6" width="50">
+            <line stroke="white" x1="0" y1="" x2="50" y2="0" />
           </svg>
-        </div> */}
-        {/* <img
-          id="homePageMainImg"
-          alt="sexypants"
-          src={"/assets/photo2.jpeg"}
-        ></img> */}
+        </div>
+      </div>
+      {/* background Image div */}
+      <div className="div2"></div>
+      <div className="div2Overlay">
+        <svg width="400" height="110">
+          <rect
+            width="300"
+            height="100"
+            style={{
+              fill: "none",
+              strokeWidth: 10,
+              stroke: "#f54768",
+            }}
+          />
+        </svg>
+        <svg width="400" height="110">
+          <rect
+            width="300"
+            height="100"
+            style={{
+              fill: "none",
+              strokeWidth: 7,
+              stroke: "#8bd76b",
+            }}
+          />
+        </svg>
       </div>
     </div>
   );

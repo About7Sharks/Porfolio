@@ -25,8 +25,11 @@ $degreeShift: -15deg;
 }
 //removes triangles and gradient from H1 tags
 .noFancy {
-  background-image: none;
-  background-color: white;
+  // background-image: none;
+  // background-color: white;
+
+  margin-bottom: -15px;
+
   &::after,
   &::before {
     display: none;
@@ -94,15 +97,22 @@ body {
 
   margin: 0;
   display: flex;
-  // font-family: Waka Sans, Helvetica, Arial, sans-serif;
+  font-family: Waka Sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("../assets/topography.svg");
+  //background: url("../assets/topography.svg");
+  // background: linear-gradient(
+  //   -45deg,
+  //   #110f15,
+  //   rgb(20, 20, 21),
+  //   rgb(13, 12, 14)
+  // );
+  background: #110f15;
   background-size: cover;
   color: rgb(13, 12, 14);
   .container {
-    margin-top: 100px;
-    margin-left: 100px;
+    // margin-top: 100px;
+    // margin-left: 100px;
     // border: 7px solid darkslategray;
     overflow-x: hidden;
 
@@ -137,11 +147,14 @@ body {
   }
 
   h1 {
+    span {
+      min-width: 20px;
+    }
     font-family: Shrikhand, sans-serif;
     font-size: 4rem;
     display: inline;
     margin-top: 10px;
-    color: white;
+    color: #ffffff;
     text-align: center;
     position: relative;
     letter-spacing: 0.1rem;
@@ -165,7 +178,7 @@ body {
       border-left-color: transparent;
       border-right-color: transparent;
       transform-origin: center;
-      border-bottom-color: $yellow;
+      border-bottom-color: $red;
       animation: floating 5s ease alternate-reverse infinite;
     }
 
@@ -241,32 +254,37 @@ span {
 
   .homePosts,
   .homeProjects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto repeat(auto, 1fr);
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow-x: visible !important;
+    display: inline-flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
     h1 {
-      grid-area: 1 / 1 / 2 / 3;
-      margin-bottom: 20px;
+      margin: 50px;
     }
-    .div2 {
-      grid-area: 2 / 1 / 3 / 2;
+    .twoBytwo {
+      margin: 0 auto;
+      max-width: 1000px;
+      display: grid;
+      grid-template-rows: 50% 50%;
+      grid-template-columns: 1fr 1fr;
     }
-    .div3 {
-      grid-area: 2 / 2 / 3 / 3;
+    .containerContent {
+      display: inline-flex;
+      flex-direction: column;
+      @include glassmorphism;
     }
+    img {
+      max-height: 300px;
+    }
+
     p,
     a {
       color: white;
     }
     img {
       width: 100%;
-      max-width: 800px;
-      min-width: 300px;
+
       margin: 0 auto;
-      border-radius: 10px;
     }
     h1 {
       margin-left: 50px;
@@ -277,142 +295,91 @@ span {
   .Home {
     margin: 0 auto;
     margin-top: 15vh;
-    min-height: 90vh;
+    height: 85vh;
     width: 100%;
-    // max-width: 1200px;
+    max-width: 1200px;
     font-size: calc(15px + 2vmin);
-    color: white;
+    color: #ffffff;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+
     .div1 {
       grid-area: 1 / 1 / 2 / 2;
       position: relative;
-      right: -20vw;
+      top: 5vh;
       h1 {
         text-align: left;
-        animation: fadeIn 2s;
+        display: inline-flex;
+        animation: fadeIn 1.5s;
+        margin-bottom: 0px;
+      }
+      p {
+        color: rgb(199, 195, 195);
+      }
+      p,
+      button {
+        opacity: 0;
+        animation: fadeIn 2s 2s forwards;
+      }
+      #scroll {
+        opacity: 0;
+        animation: fadeIn 2s 4s forwards;
+        position: absolute;
+        left: -125px;
+        bottom: 90px;
+        transform: rotate(90deg);
+        width: 300px;
+        font-size: 1rem;
+        svg {
+          stroke: rgba(255, 255, 255, 0.5);
+          stroke-dasharray: 50;
+          stroke-dashoffset: 49;
+          stroke-width: 3;
+          animation: dash 4s ease alternate-reverse infinite;
+        }
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+      }
+    }
+    .div2Overlay {
+      opacity: 0;
+      animation: fadeIn 1s ease-in 2.4s forwards;
+      grid-area: 1 / 2 / 3 / 3;
+      position: relative;
+      z-index: -5;
+
+      svg {
+        position: absolute;
+        top: -15px;
+        right: -20px;
+        z-index: 3;
+        &:nth-child(2n) {
+          right: 310px;
+          top: 50%;
+          transform: rotate(100deg);
+        }
       }
     }
     .div2 {
       grid-area: 1 / 2 / 3 / 3;
-      place-self: flex-end;
-      position: relative;
-    }
-    .div2,
-    .div3 {
-      img {
-        width: 100%;
-        max-width: 500px;
-        position: relative;
-        background-size: cover;
-        transform: scale(1); //scaleX(-1);
-        // left: 2vw;
-        border-radius: 10px;
-        opacity: 0;
-        animation: fadeIn 1s ease-in 1.4s forwards;
-        // mask: url("https://raw.githubusercontent.com/supahfunk/supah-codepen/master/video-clip-mask.png");
-        // mask-size: 800% 110%;
-        // mask-position: 90% 50%;
-        // @include perspectiveShift;
-        background-repeat: no-repeat;
-        transition: 0.3s;
-      }
-    }
-
-    .div3 {
-      position: absolute;
-      bottom: 10px;
-      right: 52%;
-      opacity: 0;
-      animation: fadeIn 2s forwards 3s;
-      #scroll {
-        position: relative;
-        left: -60px;
-        top: 100px;
-        transform: rotate(90deg);
-        width: 200px;
-      }
-      svg {
-        stroke: rgba(255, 255, 255, 0.5);
-        stroke-dasharray: 115;
-        stroke-dashoffset: 115;
-        stroke-width: 3;
-        animation: dash 4s ease-in-out alternate-reverse infinite;
-      }
-      @keyframes dash {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
-    }
-    .div4 {
-      grid-area: 2 / 2 / 3 / 3;
-      display: inline-flex;
-      position: relative;
-      top: 5px;
-      right: -20%;
-      opacity: 0;
+      z-index: -2;
       animation: fadeIn 1s ease-in 1.4s forwards;
-      @include perspectiveShift;
-      a {
-        height: 50px;
-      }
-    }
-
-    p {
-      animation: slideDown 2s forwards;
-      animation-delay: 0.68s;
       opacity: 0;
-      z-index: 10;
-      width: 400px;
-    }
-
-    span {
-      z-index: 10;
-      // text-shadow: 1px 1px 2.5px rgba(0, 0, 0, 0.63);
-    }
-
-    a {
-      color: white;
-      text-decoration: none;
-      transition: 1s;
-      margin: 0px 15px;
-      display: inline-flex;
-      border-bottom: 1px solid;
-    }
-
-    a:nth-child(1):hover {
-      border-bottom: 1px solid $green;
-    }
-
-    a:nth-child(2):hover {
-      border-bottom: 1px solid $red;
-    }
-
-    a:nth-child(3):hover {
-      border-bottom: 1px solid $yellow;
-    }
-
-    @for $i from 1 through 3 {
-      a:nth-child(#{$i}) {
-        animation: hideToShow ($i) * 0.8s linear forwards;
-      }
+      position: relative;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      background-image: url("../assets/photo2.jpeg");
+      clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
     }
   }
 }
-// animations for home page title
-@keyframes hideToShow {
-  0% {
-    opacity: 0;
-  }
 
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes slideDown {
   0% {
     transform: translateY(-150px);
@@ -451,8 +418,8 @@ span {
 .cardContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  // column-gap: 15px;
-  // row-gap: 15px;
+  column-gap: 15px;
+  row-gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100vw;
@@ -477,8 +444,8 @@ span {
     }
     a,
     img {
-      border-radius: 25px;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      border-radius: 5px;
+      // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
       cursor: pointer;
       width: 100%;
       height: 100%;
@@ -545,4 +512,9 @@ span {
       font-size: 1.2rem;
     }
   }
+}
+
+.direction-reveal__card {
+  height: 100%;
+  width: 100%;
 }

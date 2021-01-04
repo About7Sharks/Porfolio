@@ -22,7 +22,7 @@ let sites = [
   },
   {
     url: `https://meerkatapp.netlify.app`,
-    img: `https://raw.githubusercontent.com/About7Sharks/meerkat/Main/src/logo.svg`,
+    img: `https://d33wubrfki0l68.cloudfront.net/5fc12498f63c2e06d99e61f8/screenshot.png`,
     title: `Meerkat`,
     text: `A network sniffer and analyser written in react and electron`,
     tags: [`Electron`, `React`, "Node"],

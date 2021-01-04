@@ -8,9 +8,11 @@ import {
 import "./components/myscss.scss";
 import BlogPosts from "./components/journal/AllPosts";
 import BlogPost from "./components/journal/Post";
+import { Navbar } from "./components/navigation/Navbar.tsx";
 import { BeforeLoad } from "./components/util/BeforeLoad";
 const Projects = lazy(() => import("./components/projects/projects"));
 const Drawer = lazy(() => import("./components/navigation/drawer"));
+
 const Footer = lazy(() => import("./components/navigation/footer"));
 const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
@@ -20,7 +22,7 @@ export default function App() {
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>
-        <Drawer />
+        {window.innerWidth < 800 ? <Drawer /> : <Navbar />}
         <BackBTN id="backBTN" />
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />

@@ -1,13 +1,14 @@
 import anime from "animejs/lib/anime.es.js";
+import { motion } from "framer-motion";
 // receives event emmited from element and spins the el 360 degrees before removing the animation
 const spinAnimation = (e) => {
   anime({
     targets: e.target,
     rotateY: 360,
     keyframes: [
-      { scale: 1 },
-      { scale: 1.3, opacity: Math.random(0, 1) },
-      { scale: 1, opacity: 1 },
+      { scale: 1, color: "#" + (((1 << 24) * Math.random()) | 0).toString(16) },
+      { scale: 1 }, // },
+      { scale: 1 }, // opacity: 1 },
     ],
 
     //loop: true,
@@ -21,4 +22,21 @@ const spinAnimation = (e) => {
 const slideAnimation = (e) => {
   console.log(e);
 };
-export { spinAnimation, slideAnimation };
+const spinAnimationV2 = (words) => {
+  console.log([...words]);
+  return [...words].map((letter, i) => {
+    if (letter === " ") return <span> </span>;
+    return (
+      <motion.span
+        key={i}
+        onHoverStart={(e) => {
+          spinAnimation(e);
+        }}
+        // whileHover={{ scale: 1.1 }}
+      >
+        {letter}
+      </motion.span>
+    );
+  });
+};
+export { spinAnimation, spinAnimationV2, slideAnimation };

@@ -47,7 +47,7 @@ export default function Blog() {
     <div className="journal">
       <h1>Journal</h1>
       <Picker data={articles} handleChange={handleChange} />
-      <ProjectCards data={cleanData(articles)} />
+      <ProjectCards gridLayout="cardContainer" data={cleanData(articles)} />
     </div>
   );
 }

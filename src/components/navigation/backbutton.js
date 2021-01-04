@@ -19,8 +19,9 @@ const useStyles = makeStyles({
 export default function BackButton({ children }) {
   const classes = useStyles();
   let history = useHistory();
-  console.log(history);
-  if (history.location.pathname.includes("home")) return <div></div>;
+  let { pathname } = history.location;
+  console.log(pathname);
+  if (pathname.includes("ome") || pathname === "/") return <div></div>;
   return (
     <ArrowBackIcon className={classes.list} onClick={() => history.goBack()} />
   );

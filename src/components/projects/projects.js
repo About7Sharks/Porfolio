@@ -55,7 +55,7 @@ export default function Projects() {
       <div>
         <Picker handleChange={handleChange} data={sites} />
         {view ? (
-          <ProjectCards data={projects} />
+          <ProjectCards gridLayout="cardContainer" data={projects} />
         ) : (
           <ProjectSlider sites={projects} />
         )}

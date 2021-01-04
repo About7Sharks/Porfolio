@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <HomeLanding />
-      <SlidingAnimationWithScroll
+      {/* <SlidingAnimationWithScroll
         text={[
           "Enjoy the little things in life for one day you'll look back and realize they were the big things",
           "For every thousand hacking at the leaves of evil, there is one striking at the root.",
@@ -16,7 +16,7 @@ export default function Home() {
           "The meaning of life is to find your gift, the purpose of life is to give it away -Pablo Picasso",
           "A foul ball can still be a catch",
         ]}
-      />
+      /> */}
       <ProjectHome />
       <JournalHome />
     </div>

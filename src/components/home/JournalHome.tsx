@@ -3,12 +3,52 @@ import { useOnScreen } from "../util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useHistory } from "react-router-dom";
+import { ProjectCards } from "../projects/ProjectCards";
+import { spinAnimationV2 } from "../util/SpinAnimation";
+
+let curatedArticles = [
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
+];
 
 export const JournalHome = () => {
   const controls = useAnimation();
   const journalRef = useRef(null);
   const onScreen = useOnScreen(journalRef, "-100px");
-  const history = useHistory();
 
   useEffect(() => {
     if (onScreen) {
@@ -25,25 +65,11 @@ export const JournalHome = () => {
       animate={controls}
       ref={journalRef}
       className="homePosts"
+      id="journalHome"
     >
-      <h1>
-        Journal Posts
-        {/* {onScreen ? "dafdfadf" : "zzzzzzzzzzz"} */}
-      </h1>
-      <div
-        onClick={() => {
-          //   history.push("/journal/" + site.title.replace(/ /g, ""), site);
-        }}
-        className="div2"
-      >
-        <img src={"/assets/situp.png"}></img>
-        <p></p>
-        <Link to={"fda"}>Read &#8594;</Link>
-      </div>
-      <div className="div3">
-        <img src={"/assets/situp.png"}></img>
-        <Link to={"fad"}>Read &#8594;</Link>
-      </div>
+      <h1>{spinAnimationV2("Journal Posts")}</h1>
+      <ProjectCards data={curatedArticles} gridLayout="twoBytwo" />
+      <Link to="/journal">View All</Link>
     </motion.div>
   );
 };
