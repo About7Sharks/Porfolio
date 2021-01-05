@@ -12,7 +12,7 @@ const cleanSites = sites.filter((site) => good.includes(site.title));
 export const ProjectHome = (props: Props) => {
   const controls = useAnimation();
   const projectRef = useRef(null);
-  const onScreen = useOnScreen(projectRef, "0px");
+  const onScreen = useOnScreen(projectRef, "350px");
 
   useEffect(() => {
     if (onScreen) {
@@ -33,7 +33,7 @@ export const ProjectHome = (props: Props) => {
     >
       <h1>{spinAnimationV2("Projects")}</h1>
       <ProjectCards gridLayout="twoBytwo" data={cleanSites} />
-      <Link to="/projects">View More</Link>
+      {/* <Link to="/projects">View More</Link> */}
     </motion.div>
   );
 };

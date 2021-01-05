@@ -13,7 +13,7 @@ import { BeforeLoad } from "./components/util/BeforeLoad";
 const Projects = lazy(() => import("./components/projects/projects"));
 const Drawer = lazy(() => import("./components/navigation/drawer"));
 
-const Footer = lazy(() => import("./components/navigation/footer"));
+const Footer = lazy(() => import("./components/navigation/Footer"));
 const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));

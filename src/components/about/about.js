@@ -1,9 +1,4 @@
 import React from "react";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import EmailIcon from "@material-ui/icons/Email";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import Emoji from "../util/emoji";
 const aboutStyles = {
   about: {
@@ -101,26 +96,6 @@ export default function About() {
             View
           </a>
         </p>
-      </span>
-
-      <span style={{ cursor: "pointer" }}>
-        <EmailIcon onClick={() => window.open("mailto:zacarlin@gmail.com")} />
-        <GitHubIcon
-          onClick={() => window.open("https://github.com/about7sharks")}
-        />
-        <TwitterIcon
-          onClick={() => window.open("https://twitter.com/ZacharyCarlin")}
-        />
-        <LinkedInIcon
-          onClick={() =>
-            window.open(
-              "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123"
-            )
-          }
-        />
-        <InstagramIcon
-          onClick={() => window.open("https://Instagram.com/zachary_carlin")}
-        />
       </span>
     </div>
   );

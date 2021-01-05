@@ -48,7 +48,7 @@ let curatedArticles = [
 export const JournalHome = () => {
   const controls = useAnimation();
   const journalRef = useRef(null);
-  const onScreen = useOnScreen(journalRef, "-100px");
+  const onScreen = useOnScreen(journalRef, "350px");
 
   useEffect(() => {
     if (onScreen) {
@@ -67,9 +67,9 @@ export const JournalHome = () => {
       className="homePosts"
       id="journalHome"
     >
-      <h1>{spinAnimationV2("Journal Posts")}</h1>
       <ProjectCards data={curatedArticles} gridLayout="twoBytwo" />
-      <Link to="/journal">View All</Link>
+      <h1>{spinAnimationV2("Journal Posts")}</h1>
+      {/* <Link to="/journal">View All</Link> */}
     </motion.div>
   );
 };

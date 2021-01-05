@@ -107,7 +107,7 @@ body {
   //   rgb(20, 20, 21),
   //   rgb(13, 12, 14)
   // );
-  background: #110f15;
+  background: linear-gradient(120deg, rgb(12, 12, 12), rgb(20, 21, 43));
   background-size: cover;
   color: rgb(13, 12, 14);
   .container {
@@ -202,8 +202,53 @@ body {
 }
 #footer {
   color: white;
-  text-align: right;
-  margin: 3px 10px 5px 0px;
+  background: black;
+  margin: 3px 10px 0px 0px;
+  padding-bottom: 10px;
+  display: inline-flex;
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  h3 {
+    color: #60d9fe;
+    font-size: 2rem;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    margin: 0px;
+  }
+  p {
+    margin: 25px 5px 0px 0px;
+  }
+
+  .socialLinks {
+    margin-top: 25px;
+    width: 100%;
+    max-width: 800px;
+
+    a {
+      color: white;
+      overflow: hidden;
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-content: center;
+      width: 100px;
+    }
+    svg {
+      position: relative;
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+    }
+    .backg {
+      height: 42px;
+      width: 42px;
+      // left: -33%;
+      position: absolute;
+      transition: 0.3s;
+    }
+  }
 }
 
 #searchBar-label {
@@ -254,19 +299,31 @@ span {
 
   .homePosts,
   .homeProjects {
-    display: inline-flex;
+    display: grid;
+    padding: 100px 3% 100px 10px;
+    margin-top: 100px;
+    // display: inline-flex;
     width: 100%;
-    flex-direction: column;
-    align-items: center;
+    // flex-direction: row;
+    // align-items: center;
+    grid-template-columns: minmax(10px, 25%) 1fr;
+    display: grid;
+    position: relative;
+
     h1 {
-      margin: 50px;
+      grid-area: 1/1/1/1;
+      transform: rotate(-90deg) scale(1);
+      display: inline-flex;
+      width: fit-content;
+      display: inline-flex;
+      align-self: center;
     }
     .twoBytwo {
       margin: 0 auto;
       max-width: 1000px;
       display: grid;
       grid-template-rows: 50% 50%;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(320px, 50%));
     }
     .containerContent {
       display: inline-flex;
@@ -286,12 +343,16 @@ span {
 
       margin: 0 auto;
     }
+  }
+  .homeProjects {
+    background: black;
+    grid-template-columns: auto auto;
+
     h1 {
-      margin-left: 50px;
-      justify-self: start;
+      transform: rotate(90deg);
+      grid-area: 1/2/1/2;
     }
   }
-
   .Home {
     margin: 0 auto;
     margin-top: 15vh;
@@ -305,19 +366,29 @@ span {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-
+    border-radius: 50px;
+    // background: rgb(19, 17, 17);
     .div1 {
       grid-area: 1 / 1 / 2 / 2;
       position: relative;
+      z-index: 10;
       top: 5vh;
+      margin: 15px;
       h1 {
         text-align: left;
         display: inline-flex;
         animation: fadeIn 1.5s;
         margin-bottom: 0px;
+        &:nth-child(2) {
+          opacity: 0;
+          animation: slideDown 2s 1s forwards;
+        }
       }
       p {
         color: rgb(199, 195, 195);
+      }
+      button {
+        margin-left: 10px;
       }
       p,
       button {
@@ -352,15 +423,15 @@ span {
       animation: fadeIn 1s ease-in 2.4s forwards;
       grid-area: 1 / 2 / 3 / 3;
       position: relative;
-      z-index: -5;
+      z-index: 4;
 
       svg {
-        position: absolute;
+        position: relative;
         top: -15px;
-        right: -20px;
-        z-index: 3;
+        right: -200px;
+        z-index: 1;
         &:nth-child(2n) {
-          right: 310px;
+          right: 130px;
           top: 50%;
           transform: rotate(100deg);
         }
@@ -368,14 +439,18 @@ span {
     }
     .div2 {
       grid-area: 1 / 2 / 3 / 3;
-      z-index: -2;
+      z-index: 5;
       animation: fadeIn 1s ease-in 1.4s forwards;
       opacity: 0;
       position: relative;
       overflow: hidden;
       background-repeat: no-repeat;
+      background-size: cover;
       background-image: url("../assets/photo2.jpeg");
-      clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+      clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+      border-radius: 50px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
   }
 }
@@ -404,15 +479,8 @@ span {
 }
 
 .MuiFormControl-root {
-  border: 1px solid #ffffff36 !important;
+  border: 1px solid rgba(255, 255, 255, 0.212) !important;
   max-width: 320px;
-}
-
-.about {
-  display: inline-flex;
-  flex-direction: column;
-  padding: 0px;
-  width: 100%;
 }
 
 .cardContainer {
@@ -420,32 +488,21 @@ span {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   column-gap: 15px;
   row-gap: 15px;
-  flex-wrap: wrap;
   justify-content: center;
-  max-width: 100vw;
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 20px;
-  // :nth-child(2n) {
-  //   border: 1px solid green;
-  //   right: 33%;
-  //   top: 33%;
-  // }
+
   .card {
     //initial state should be hidden
+    width: 100%;
+    height: 100%;
     opacity: 0;
     animation: fadeIn 0.5s linear forwards;
-    .actions {
-      position: absolute;
-      bottom: 0px;
-      button {
-        color: white;
-      }
-    }
+
     a,
     img {
       border-radius: 5px;
-      // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
       cursor: pointer;
       width: 100%;
       height: 100%;
@@ -455,7 +512,9 @@ span {
 //about page
 .about {
   padding: 20px 20px 2px 20px;
-
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
   h1 {
     margin: 0 auto;
     margin-top: 50px;
@@ -517,4 +576,7 @@ span {
 .direction-reveal__card {
   height: 100%;
   width: 100%;
+}
+.direction-reveal__overlay {
+  width: 80%;
 }

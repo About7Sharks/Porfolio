@@ -18,18 +18,19 @@ export const HomeLanding = (props: Props) => {
         <h1>{spinAnimationV2("Software Engineer")}</h1>
         <p>
           A software engineer based in Tampa, FL with passions in{" "}
-          <strong>web development</strong>, bodybuilding, and simply improving
-          the life's of others <br />
+          <strong>web development</strong>, bodybuilding, and traveling.
+          <br />
           <br />
           <Button
+            color="primary"
             variant="contained"
             onClick={() => {
               document.getElementById("projectsHome")?.scrollIntoView();
             }}
           >
-            View Projects
+            Lets Connect
           </Button>
-          &nbsp; &nbsp;
+          {/* &nbsp;
           <Button
             variant="contained"
             onClick={() => {
@@ -37,7 +38,7 @@ export const HomeLanding = (props: Props) => {
             }}
           >
             Read Journal
-          </Button>
+          </Button> */}
         </p>
         <div id="scroll">
           Scroll &nbsp;

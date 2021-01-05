@@ -32,7 +32,12 @@ export const ProjectCards = (props: Props) => {
   let Cards = () => {
     let list = data.map((site, i) => {
       let tagButtons = site.tags.map((tag) => (
-        <Button color="default" variant="outlined" key={tag} size="small">
+        <Button
+          style={{ border: "1px solid white", color: "white" }}
+          variant="outlined"
+          key={tag}
+          size="small"
+        >
           {tag}
         </Button>
       ));
@@ -62,7 +67,12 @@ export const ProjectCards = (props: Props) => {
 
             <div className="direction-reveal__overlay direction-reveal__anim--enter">
               <h3 className="direction-reveal__title">{site.title}</h3>
-              <p className="direction-reveal__text">{site.text}</p>
+              <p
+                style={{ padding: "5px 25px 40px 0px" }}
+                className="direction-reveal__text"
+              >
+                {site.text}
+              </p>
               <div className="actions">Tags: &nbsp; {tagButtons}</div>
             </div>
           </a>

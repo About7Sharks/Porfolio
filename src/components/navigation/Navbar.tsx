@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useViewportScroll } from "framer-motion";
 
 interface Props {}
 
@@ -11,9 +11,10 @@ const useStyles = makeStyles({
     listStyle: "none",
     color: "white",
     display: "flex",
-    justifyContent: "center",
-    right: "10px",
-    top: "5px",
+    justifyContent: "flex-end",
+    right: "0px",
+    top: "0px",
+    width: "100vw",
     position: "fixed",
   },
   navItem: {
@@ -31,6 +32,19 @@ const useStyles = makeStyles({
 export const Navbar = (props: Props) => {
   const classes = useStyles();
   const controls = useAnimation();
+  let nav = document.querySelector("nav");
+  let [scrollY, setScrollY] = useState(0);
+
+  const { scrollYProgress } = useViewportScroll();
+
+  useEffect(
+    () =>
+      scrollYProgress.onChange((latest) => {
+        setScrollY(latest);
+      }),
+    []
+  );
+
   controls.start({
     opacity: 1,
     scale: 1,
@@ -45,16 +59,17 @@ export const Navbar = (props: Props) => {
     }
   );
   return (
-    <motion.ul
+    <motion.nav
       initial={{
         scale: 0,
         opacity: 0,
       }}
+      style={{ backgroundColor: `rgba(0,0,0,${scrollY * 10})` }}
       transition={{ duration: 1, delay: 2 }}
       animate={controls}
       className={classes.navbar}
     >
       {navItems}
-    </motion.ul>
+    </motion.nav>
   );
 };
