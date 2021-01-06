@@ -1,5 +1,6 @@
 import React from "react";
 import Emoji from "../util/emoji";
+import { spinAnimationV2 } from "../util/SpinAnimation";
 const aboutStyles = {
   about: {
     paddingTop: "10px",
@@ -16,7 +17,7 @@ const aboutStyles = {
 export default function About() {
   return (
     <div className="about" style={aboutStyles.about}>
-      <h1>About</h1>
+      <h1>{spinAnimationV2("About")}</h1>
       <h2>This site</h2>
       <p>
         I made this as a way to improve my React.js skills, and mess around with

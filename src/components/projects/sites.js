@@ -110,7 +110,7 @@ let sites = [
     url: `https://tensorposebot.netlify.app/`,
     img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d863c1312febf000832790d/screenshot.png`,
     title: `Pose Bot`,
-    text: `Pose bot built with tensorflow.js to identify body symetry while posing.`,
+    text: `Pose bot built with tensorflow.js to identify body symmetry while posing.`,
     tags: [`Vue`, `AI`],
   },
   {

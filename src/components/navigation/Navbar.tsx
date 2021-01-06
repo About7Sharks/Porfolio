@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     color: "white",
     "&:hover": {
       color: "grey",
+      background: "#" + (((1 << 24) * Math.random()) | 0).toString(16),
       transition: ".3s",
       borderBottom: "1px solid white",
     },
@@ -51,6 +52,19 @@ export const Navbar = (props: Props) => {
   });
   const navItems = ["Home", "Journal", "Projects", "About", "Contact"].map(
     (item) => {
+      if (item === "Contact") {
+        return (
+          <Link
+            to="#"
+            onClick={() => {
+              window.scrollTo(0, document.body.scrollHeight);
+            }}
+            className={classes.navItem}
+          >
+            {item}
+          </Link>
+        );
+      }
       return (
         <Link to={"/" + item} className={classes.navItem}>
           {item}

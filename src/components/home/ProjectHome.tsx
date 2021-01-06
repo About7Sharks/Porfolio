@@ -3,10 +3,19 @@ import { useOnScreen } from "../util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import sites from "../projects/sites";
+import Button from "@material-ui/core/Button";
+
 import { ProjectCards } from "../projects/ProjectCards";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props {}
-let good = ["Accubrew", "Meerkat", "Sit Up Coach", "Carlin Fitness"];
+let good = [
+  "Accubrew",
+  "Meerkat",
+  "Sit Up Coach",
+  "Carlin Fitness",
+  "Conways Game of Life using WebAssembly and Javascript",
+  "Pose Bot",
+];
 const cleanSites = sites.filter((site) => good.includes(site.title));
 
 export const ProjectHome = (props: Props) => {
@@ -32,8 +41,16 @@ export const ProjectHome = (props: Props) => {
       className="homeProjects"
     >
       <h1>{spinAnimationV2("Projects")}</h1>
-      <ProjectCards gridLayout="twoBytwo" data={cleanSites} />
-      {/* <Link to="/projects">View More</Link> */}
+      <ProjectCards
+        routeExternal={true}
+        gridLayout="twoBytwo"
+        data={cleanSites}
+      />
+      <div className="linkButton">
+        <Button variant="outlined" component={Link} to="/Projects">
+          View All
+        </Button>
+      </div>
     </motion.div>
   );
 };

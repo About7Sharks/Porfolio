@@ -108,6 +108,7 @@ body {
   //   rgb(13, 12, 14)
   // );
   background: linear-gradient(120deg, rgb(12, 12, 12), rgb(20, 21, 43));
+  // background: linear-gradient(to top, white, rgba(255, 255, 255, 0.2) 48%, transparent 100%), linear-gradient(to left, #514A9D, #24C6DC);
   background-size: cover;
   color: rgb(13, 12, 14);
   .container {
@@ -203,7 +204,7 @@ body {
 #footer {
   color: white;
   background: black;
-  margin: 3px 10px 0px 0px;
+  margin: 100px 10px 0px 0px;
   padding-bottom: 10px;
   display: inline-flex;
   position: relative;
@@ -303,9 +304,10 @@ span {
     padding: 100px 3% 100px 10px;
     margin-top: 100px;
     // display: inline-flex;
-    width: 100%;
+    width: 100vw;
     // flex-direction: row;
     // align-items: center;
+    grid-template-rows: auto auto;
     grid-template-columns: minmax(10px, 25%) 1fr;
     display: grid;
     position: relative;
@@ -322,7 +324,7 @@ span {
       margin: 0 auto;
       max-width: 1000px;
       display: grid;
-      grid-template-rows: 50% 50%;
+      grid-template-rows: repeat(3, 1fr);
       grid-template-columns: repeat(2, minmax(320px, 50%));
     }
     .containerContent {
@@ -338,6 +340,27 @@ span {
     a {
       color: white;
     }
+    .linkButton {
+      grid-area: 2/2/2/2;
+      display: grid;
+      // place-items: center;
+      // justify-self: flex-end;
+      margin-right: 15vw;
+      position: relative;
+      width: 100%;
+      a {
+        border: 1px solid rgb(141, 141, 141);
+        color: rgb(141, 141, 141);
+        transition: 0.3s;
+        margin-top: 25px;
+        max-width: 200px !important;
+        place-self: center;
+        &:hover {
+          border: 1px solid white;
+          color: white;
+        }
+      }
+    }
     img {
       width: 100%;
 
@@ -351,6 +374,11 @@ span {
     h1 {
       transform: rotate(90deg);
       grid-area: 1/2/1/2;
+    }
+    .linkButton {
+      // margin-left: 5rem;
+      // justify-self: flex-start;
+      grid-area: 2/1/2/2;
     }
   }
   .Home {
@@ -576,7 +604,14 @@ span {
 .direction-reveal__card {
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 .direction-reveal__overlay {
   width: 80%;
+}
+
+#luxy {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -10,6 +10,7 @@ import "direction-reveal/src/styles/direction-reveal.scss";
 interface Props {
   data: Site[];
   gridLayout: string;
+  routeExternal: boolean;
 }
 interface Site {
   url: string;
@@ -21,14 +22,21 @@ interface Site {
 
 export const ProjectCards = (props: Props) => {
   console.log(props);
-  let { data, gridLayout } = props;
+  let { data, gridLayout, routeExternal } = props;
   console.log(gridLayout);
   const history = useHistory();
   useEffect(() => {
     const directionRevealDemo = DirectionReveal();
   });
   console.log(data.length);
-
+  const handleRouting = (site: Site) => {
+    //
+    if (routeExternal) {
+      window.open(site.url);
+    } else {
+      history.push("/journal/" + site.title.replace(/ /g, ""), site);
+    }
+  };
   let Cards = () => {
     let list = data.map((site, i) => {
       let tagButtons = site.tags.map((tag) => (
@@ -43,22 +51,12 @@ export const ProjectCards = (props: Props) => {
       ));
       return (
         <div
-          onClick={() =>
-            //if on journal page use router to link post
-            history.location.pathname.includes("ojects")
-              ? ""
-              : history.push("/journal/" + site.title.replace(/ /g, ""), site)
-          }
+          onClick={() => handleRouting(site)}
           key={site.url}
           style={{ animationDelay: `${i / 4}s` }}
           className="direction-reveal card"
         >
-          <a
-            href={site.url}
-            className="direction-reveal__card"
-            rel="noreferrer"
-            target="_blank"
-          >
+          <div className="direction-reveal__card">
             <img
               src={site.img}
               alt={site.url}
@@ -75,7 +73,7 @@ export const ProjectCards = (props: Props) => {
               </p>
               <div className="actions">Tags: &nbsp; {tagButtons}</div>
             </div>
-          </a>
+          </div>
         </div>
       );
     });

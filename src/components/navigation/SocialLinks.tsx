@@ -23,6 +23,7 @@ const Thing = (item: [string, JSX.Element], i: number) => {
   return (
     <motion.a
       href={item[0] as string}
+      target="_blank"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

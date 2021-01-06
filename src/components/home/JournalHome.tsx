@@ -5,8 +5,26 @@ import { motion, useAnimation } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import { ProjectCards } from "../projects/ProjectCards";
 import { spinAnimationV2 } from "../util/SpinAnimation";
-
+import Button from "@material-ui/core/Button";
 let curatedArticles = [
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
+  {
+    title: "Ethereum Name Service",
+    url: "local",
+    img:
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbitexpert.io%2Fwp-content%2Fuploads%2F2019%2F10%2F1Ethereum-Name-Service.jpg",
+    text:
+      "Making Ethereum easier to use is the main key for mass adoption of cryptocurrencies and blockchain technology.",
+    tags: ["Blockchain"],
+  },
   {
     title: "Ethereum Name Service",
     url: "local",
@@ -67,9 +85,18 @@ export const JournalHome = () => {
       className="homePosts"
       id="journalHome"
     >
-      <ProjectCards data={curatedArticles} gridLayout="twoBytwo" />
+      <ProjectCards
+        routeExternal={false}
+        data={curatedArticles}
+        gridLayout="twoBytwo"
+      />
       <h1>{spinAnimationV2("Journal Posts")}</h1>
-      {/* <Link to="/journal">View All</Link> */}
+
+      <div className="linkButton">
+        <Button component={Link} to="/Journal">
+          View All
+        </Button>
+      </div>
     </motion.div>
   );
 };

@@ -79,8 +79,10 @@
   width: 96.168%;
   display: inline-flex;
   flex-direction: column;
-  place-self: center;
 
+  h1 {
+    align-self: center;
+  }
   table {
     border: 1px solid #1c6ea4;
     width: 100%;

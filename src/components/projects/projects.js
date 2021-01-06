@@ -16,8 +16,9 @@ export default function Projects() {
 
   // handles updates from picker component
   const handleChange = (e, filter) => {
+    console.log(filter);
     let newList =
-      filter === "All"
+      filter === "All" || filter === null
         ? sites
         : sites.filter((site) => {
             return site.tags.includes(filter);
@@ -55,7 +56,11 @@ export default function Projects() {
       <div>
         <Picker handleChange={handleChange} data={sites} />
         {view ? (
-          <ProjectCards gridLayout="cardContainer" data={projects} />
+          <ProjectCards
+            routeExternal={true}
+            gridLayout="cardContainer"
+            data={projects}
+          />
         ) : (
           <ProjectSlider sites={projects} />
         )}
