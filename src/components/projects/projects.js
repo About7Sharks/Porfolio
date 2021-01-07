@@ -53,18 +53,16 @@ export default function Projects() {
           Alternative View
         </Button>
       </span>
-      <div>
-        <Picker handleChange={handleChange} data={sites} />
-        {view ? (
-          <ProjectCards
-            routeExternal={true}
-            gridLayout="cardContainer"
-            data={projects}
-          />
-        ) : (
-          <ProjectSlider sites={projects} />
-        )}
-      </div>
+      <Picker handleChange={handleChange} data={sites} />
+      {view ? (
+        <ProjectCards
+          routeExternal={true}
+          gridLayout="cardContainer"
+          data={projects}
+        />
+      ) : (
+        <ProjectSlider sites={projects} />
+      )}
     </div>
   );
 }

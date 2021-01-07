@@ -513,11 +513,13 @@ span {
 
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   column-gap: 15px;
   row-gap: 15px;
   justify-content: center;
   max-width: 1200px;
+  min-width: 320px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 20px;
 
@@ -535,8 +537,12 @@ span {
       width: 100%;
       height: 100%;
     }
+    p {
+      padding: 0px;
+    }
   }
 }
+
 //about page
 .about {
   padding: 20px 20px 2px 20px;
@@ -608,6 +614,7 @@ span {
 }
 .direction-reveal__overlay {
   width: 80%;
+  overflow-y: auto !important;
 }
 
 #luxy {

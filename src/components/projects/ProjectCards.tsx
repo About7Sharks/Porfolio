@@ -30,7 +30,6 @@ export const ProjectCards = (props: Props) => {
   });
   console.log(data.length);
   const handleRouting = (site: Site) => {
-    //
     if (routeExternal) {
       window.open(site.url);
     } else {
@@ -66,7 +65,7 @@ export const ProjectCards = (props: Props) => {
             <div className="direction-reveal__overlay direction-reveal__anim--enter">
               <h3 className="direction-reveal__title">{site.title}</h3>
               <p
-                style={{ padding: "5px 25px 40px 0px" }}
+                // style={{ padding: "5px 25px 40px 0px" }}
                 className="direction-reveal__text"
               >
                 {site.text}
