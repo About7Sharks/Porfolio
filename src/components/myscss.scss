@@ -23,6 +23,10 @@ $degreeShift: -15deg;
   -webkit-text-fill-color: transparent;
   background-color: transparent;
 }
+@mixin basicFlex {
+  display: inline-flex;
+  flex-direction: column;
+}
 //removes triangles and gradient from H1 tags
 .noFancy {
   // background-image: none;
@@ -57,8 +61,7 @@ p {
 .slideList {
   margin: 10px;
   ul {
-    display: inline-flex;
-    flex-direction: column;
+    @include basicFlex;
   }
   li {
     width: 100%;
@@ -205,9 +208,9 @@ body {
   color: white;
   background: black;
   margin: 100px 10px 0px 0px;
-  padding-bottom: 10px;
-  display: inline-flex;
+  padding: 10px 0px 30px 0px;
   position: relative;
+  display: inline-flex;
   justify-content: space-between;
   width: 100%;
   h3 {
@@ -226,6 +229,7 @@ body {
     margin-top: 25px;
     width: 100%;
     max-width: 800px;
+    justify-content: space-evenly;
 
     a {
       color: white;
@@ -284,15 +288,13 @@ span {
 .journal,
 .projects {
   overflow: hidden;
-  display: inline-flex;
-  flex-direction: column;
+  @include basicFlex;
   width: 100%;
   align-items: center;
 }
 
 #root {
-  display: inline-flex;
-  flex-direction: column;
+  @include basicFlex;
   justify-content: center;
   width: 100%;
   overflow-x: hidden;
@@ -303,22 +305,17 @@ span {
     display: grid;
     padding: 100px 3% 100px 10px;
     margin-top: 100px;
-    // display: inline-flex;
     width: 100vw;
-    // flex-direction: row;
-    // align-items: center;
     grid-template-rows: auto auto;
     grid-template-columns: minmax(10px, 25%) 1fr;
-    display: grid;
     position: relative;
 
     h1 {
       grid-area: 1/1/1/1;
-      transform: rotate(-90deg) scale(1);
+      transform: rotate(-90deg) scale(1) translatey(-3rem);
       display: inline-flex;
       width: fit-content;
-      display: inline-flex;
-      align-self: center;
+      place-self: center;
     }
     .twoBytwo {
       margin: 0 auto;
@@ -328,8 +325,7 @@ span {
       grid-template-columns: repeat(2, minmax(320px, 50%));
     }
     .containerContent {
-      display: inline-flex;
-      flex-direction: column;
+      @include basicFlex;
       @include glassmorphism;
     }
     img {
@@ -372,7 +368,7 @@ span {
     grid-template-columns: auto auto;
 
     h1 {
-      transform: rotate(90deg);
+      transform: rotate(90deg) translatey(-1rem);
       grid-area: 1/2/1/2;
     }
     .linkButton {
@@ -381,7 +377,7 @@ span {
       grid-area: 2/1/2/2;
     }
   }
-  .Home {
+  .homeLanding {
     margin: 0 auto;
     margin-top: 15vh;
     height: 85vh;
@@ -475,6 +471,7 @@ span {
       background-repeat: no-repeat;
       background-size: cover;
       background-image: url("../assets/photo2.jpeg");
+      background-position-x: (-75px);
       clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
       border-radius: 50px;
       border-bottom-left-radius: 0px;
@@ -546,8 +543,7 @@ span {
 //about page
 .about {
   padding: 20px 20px 2px 20px;
-  display: inline-flex;
-  flex-direction: column;
+  @include basicFlex;
   width: 100%;
   h1 {
     margin: 0 auto;
@@ -583,8 +579,53 @@ span {
   }
 }
 
+@media only screen and (max-width: 1200px) {
+  .homeLanding {
+    @include basicFlex;
+    place-items: center;
+    display: inline-flex !important;
+    margin-top: 0px !important;
+    .div2 {
+      clip-path: none !important;
+      min-height: 400px;
+      width: 300px;
+      border-radius: 25px !important;
+      //background-size: contain !important;
+    }
+    .div1 {
+      @include basicFlex;
+      padding: 25px;
+    }
+    .div2Overlay {
+      position: relative;
+      top: -300px;
+    }
+    #scroll {
+      visibility: hidden !important;
+    }
+  }
+}
+@media only screen and (max-width: 920px) {
+  .homeProjects,
+  .homePosts {
+    @include basicFlex;
+    display: inline-flex !important;
+    z-index: 20;
+    h1 {
+      transform: none !important;
+      position: absolute;
+      top: 0px;
+    }
+  }
+}
+@media only screen and (max-width: 740px) {
+  .twoBytwo {
+    display: inline-flex !important;
+    @include basicFlex;
+  }
+}
 @media only screen and (max-width: 570px) {
-  .Home {
+  .homeLanding {
     p {
       margin-top: 70px !important;
     }
@@ -594,9 +635,18 @@ span {
     }
   }
 }
+@media only screen and (max-width: 615px) {
+  #footer {
+    flex-direction: column;
+    p {
+      margin-right: 15px;
+      text-align: right;
+    }
+  }
+}
 
 @media only screen and (max-width: 405px) {
-  .Home {
+  .homeLanding {
     h1 {
       font-size: 1.8rem !important;
     }
@@ -618,7 +668,6 @@ span {
 }
 
 #luxy {
-  display: inline-flex;
-  flex-direction: column;
+  @include basicFlex;
   align-items: center;
 }

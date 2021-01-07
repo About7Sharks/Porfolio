@@ -12,7 +12,7 @@ export const HomeLanding = (props: Props) => {
     scale: 1,
   });
   return (
-    <div className="Home">
+    <div className="homeLanding">
       <div className="div1">
         <h1 className="noFancy"> {spinAnimationV2("Zachary Carlin")}</h1>
         <h1>{spinAnimationV2("Software Engineer")}</h1>

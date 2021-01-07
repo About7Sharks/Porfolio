@@ -11,6 +11,7 @@ import BlogPost from "./components/journal/Post";
 import { Navbar } from "./components/navigation/Navbar.tsx";
 import { BeforeLoad } from "./components/util/BeforeLoad";
 import luxy from "luxy.js";
+import { ViewportProgress } from "./components/util/ViewportProgress";
 const Projects = lazy(() => import("./components/projects/projects"));
 const Drawer = lazy(() => import("./components/navigation/drawer"));
 
@@ -23,11 +24,12 @@ export default function App() {
     luxy.init({ wrapperSpeed: 0.15 });
   }, []);
   return (
-    <div id="luxy">
-      <Suspense fallback={<BeforeLoad />}>
-        <Router>
-          {window.innerWidth < 800 ? <Drawer /> : <Navbar />}
-          <BackBTN id="backBTN" />
+    <Suspense fallback={<BeforeLoad />}>
+      <Router>
+        {window.innerWidth < 800 ? <Drawer /> : <Navbar />}
+        <BackBTN id="backBTN" />
+        <ViewportProgress />
+        <div id="luxy">
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/journal" component={BlogPosts} />
@@ -37,8 +39,8 @@ export default function App() {
             <Route path="*" render={() => <Redirect to="/" />} />
           </Switch>
           <Footer />
-        </Router>
-      </Suspense>
-    </div>
+        </div>
+      </Router>
+    </Suspense>
   );
 }

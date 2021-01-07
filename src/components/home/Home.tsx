@@ -6,7 +6,7 @@ import { ProjectHome } from "./ProjectHome";
 import { JournalHome } from "./JournalHome";
 export default function Home() {
   return (
-    <div>
+    <div className="Home">
       <HomeLanding />
       {/* <SlidingAnimationWithScroll
         text={[
