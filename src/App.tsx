@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import {
   HashRouter as Router,
   Switch,
@@ -8,8 +8,9 @@ import {
 import "./components/myscss.scss";
 import BlogPosts from "./components/journal/AllPosts";
 import BlogPost from "./components/journal/Post";
-import { Navbar } from "./components/navigation/Navbar.tsx";
+import { Navbar } from "./components/navigation/Navbar";
 import { BeforeLoad } from "./components/util/BeforeLoad";
+// @ts-ignore
 import luxy from "luxy.js";
 import { ViewportProgress } from "./components/util/ViewportProgress";
 const Projects = lazy(() => import("./components/projects/projects"));
@@ -23,11 +24,23 @@ export default function App() {
   useEffect(() => {
     luxy.init({ wrapperSpeed: 0.15 });
   }, []);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  let isMobile: boolean = width <= 768;
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>
-        {window.innerWidth < 800 ? <Drawer /> : <Navbar />}
-        <BackBTN id="backBTN" />
+        {isMobile ? <Drawer /> : <Navbar />}
+        <BackBTN />
         <ViewportProgress />
         <div id="luxy">
           <Switch>

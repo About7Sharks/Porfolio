@@ -16,13 +16,17 @@ const useStyles = makeStyles({
     zIndex: "100",
   },
 });
-export default function BackButton({ children }) {
+export default function BackButton() {
   const classes = useStyles();
   let history = useHistory();
   let { pathname } = history.location;
   console.log(pathname);
   if (pathname.includes("ome") || pathname === "/") return <div></div>;
   return (
-    <ArrowBackIcon className={classes.list} onClick={() => history.goBack()} />
+    <ArrowBackIcon
+      id="backBTN"
+      className={classes.list}
+      onClick={() => history.goBack()}
+    />
   );
 }
