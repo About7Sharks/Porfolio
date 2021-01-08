@@ -20,7 +20,7 @@ interface Site {
   tags: Array<string>;
 }
 
-export const ProjectCards = (props: Props) => {
+export const Cards = (props: Props) => {
   console.log(props);
   let { data, gridLayout, routeExternal } = props;
   console.log(gridLayout);

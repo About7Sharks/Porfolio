@@ -1,5 +1,5 @@
 import React from "react";
-import Emoji from "../util/emoji";
+import { Emoji } from "../util/Emoji";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 const aboutStyles = {
   about: {
@@ -20,11 +20,11 @@ export default function About() {
       <h1>{spinAnimationV2("About")}</h1>
       <h2>This site</h2>
       <p>
-        I made this as a way to improve my React.js skills, and mess around with
-        some new decentralized services. If you're viewing this from
-        https://zacarlin.eth.link or https://zacarlin.crypto you are seeing this
-        via the IPFS (InterPlanetary File System) and utilizing the Ethereum
-        Name Services or Unstoppable domains; making this site{" "}
+        I made this as a way to improve my React and Typescript skills, also to
+        mess around with some new decentralized services. If you're viewing this
+        from https://zacarlin.eth.link or https://zacarlin.crypto you are seeing
+        this via the IPFS (InterPlanetary File System) and utilizing the
+        Ethereum Name Services or Unstoppable domains; making this site{" "}
         <strong>Uncensorable.</strong>
       </p>
       <h2>Hobbies</h2>

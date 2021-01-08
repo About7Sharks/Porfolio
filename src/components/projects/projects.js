@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import sites from "./sites.js"; //my sites data
 import { Button } from "@material-ui/core";
-import Emoji from "../util/emoji";
+import { Emoji } from "../util/Emoji";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
 import Picker from "../util/Picker";
-import { ProjectCards } from "./ProjectCards.tsx";
+import { Cards } from "../util/Cards";
 // import "./projects.scss";
 import { WarningMessage } from "../util/WarningMessage.tsx";
 export default function Projects() {
@@ -55,7 +55,7 @@ export default function Projects() {
       </span>
       <Picker handleChange={handleChange} data={sites} />
       {view ? (
-        <ProjectCards
+        <Cards
           routeExternal={true}
           gridLayout="cardContainer"
           data={projects}

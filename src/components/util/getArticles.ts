@@ -7,7 +7,7 @@ async function getArticles() {
     )
   ).json();
   let articlesContent = await Promise.all(
-    data.tree.map(async (article) => {
+    data.tree.map(async (article: any) => {
       let art = matter(
         await (
           await fetch(
@@ -16,7 +16,7 @@ async function getArticles() {
         ).text()
       );
       art = { ...art, ...art.data };
-      delete art.data;
+
       return art;
     })
   );

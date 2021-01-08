@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../myscss.scss";
 import Picker from "../util/Picker";
-import { ProjectCards } from "../projects/ProjectCards.tsx";
-import { getArticles } from "../util/getArticles.js";
+import { Cards } from "../util/Cards";
+import { getArticles } from "../util/getArticles";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
@@ -48,7 +48,7 @@ export default function Blog() {
     <div className="journal">
       <h1>{spinAnimationV2("Journal")}</h1>
       <Picker data={articles} handleChange={handleChange} />
-      <ProjectCards gridLayout="cardContainer" data={cleanData(articles)} />
+      <Cards gridLayout="cardContainer" data={cleanData(articles)} />
     </div>
   );
 }

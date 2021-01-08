@@ -22,10 +22,9 @@ const useStyles = makeStyles({
     transition: ".3s",
     color: "white",
     "&:hover": {
-      color: "grey",
-      background: "#" + (((1 << 24) * Math.random()) | 0).toString(16),
+      color: "#eef46e",
+      // background: "#" + (((1 << 24) * Math.random()) | 0).toString(16),
       transition: ".3s",
-      borderBottom: "1px solid white",
     },
   },
 });
@@ -61,13 +60,13 @@ export const Navbar = (props: Props) => {
             }}
             className={classes.navItem}
           >
-            {item}
+            <span> {item}</span>
           </Link>
         );
       }
       return (
         <Link to={"/" + item} className={classes.navItem}>
-          {item}
+          <span> {item}</span>
         </Link>
       );
     }

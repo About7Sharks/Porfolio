@@ -5,7 +5,7 @@ import { motion, useAnimation } from "framer-motion";
 import sites from "../projects/sites";
 import Button from "@material-ui/core/Button";
 
-import { ProjectCards } from "../projects/ProjectCards";
+import { Cards } from "../util/Cards";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props {}
 let good = [
@@ -41,11 +41,7 @@ export const ProjectHome = (props: Props) => {
       className="homeProjects"
     >
       <h1>{spinAnimationV2("Projects")}</h1>
-      <ProjectCards
-        routeExternal={true}
-        gridLayout="twoBytwo"
-        data={cleanSites}
-      />
+      <Cards routeExternal={true} gridLayout="twoBytwo" data={cleanSites} />
       <div className="linkButton">
         <Button variant="outlined" component={Link} to="/Projects">
           View All

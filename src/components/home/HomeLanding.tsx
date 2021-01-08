@@ -25,7 +25,7 @@ export const HomeLanding = (props: Props) => {
             color="primary"
             variant="contained"
             onClick={() => {
-              document.getElementById("projectsHome")?.scrollIntoView();
+              window.scrollTo(0, document.body.scrollHeight);
             }}
           >
             Lets Connect

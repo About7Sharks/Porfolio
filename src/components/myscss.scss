@@ -1,10 +1,4 @@
 @font-face {
-  font-family: "Summer Hearts";
-  font-display: swap;
-  src: local("Summer Hearts"),
-    url("../assets/SummerHearts-Regular.otf") format("truetype");
-}
-@font-face {
   font-family: "Shrikhand";
   font-display: swap;
   src: local("Shirkhand"),
@@ -58,6 +52,8 @@ p {
   font-size: 1.3rem;
   font-family: "Roboto Mono", sans-serif;
 }
+
+//slidingAnimation
 .slideList {
   margin: 10px;
   ul {
@@ -83,73 +79,23 @@ p {
       text-align: center;
       text-shadow: 2px 2px 2px black;
     }
-    // //alternate ever child element
-    // &:nth-child(2n) {
-    //   text-align: right;
-    // }
   }
 }
-.fadeIn {
-  animation: fadeIn 2s infinite;
-}
+
 html {
   scroll-behavior: smooth;
 }
 body {
   scroll-behavior: smooth;
-
   margin: 0;
   display: flex;
   font-family: Waka Sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //background: url("../assets/topography.svg");
-  // background: linear-gradient(
-  //   -45deg,
-  //   #110f15,
-  //   rgb(20, 20, 21),
-  //   rgb(13, 12, 14)
-  // );
-  background: linear-gradient(120deg, rgb(12, 12, 12), rgb(20, 21, 43));
-  // background: linear-gradient(to top, white, rgba(255, 255, 255, 0.2) 48%, transparent 100%), linear-gradient(to left, #514A9D, #24C6DC);
+  background: linear-gradient(120deg, rgb(23, 32, 32), rgb(25, 26, 49));
+
   background-size: cover;
   color: rgb(13, 12, 14);
-  .container {
-    // margin-top: 100px;
-    // margin-left: 100px;
-    // border: 7px solid darkslategray;
-    overflow-x: hidden;
-
-    &:hover {
-      cursor: grab;
-    }
-
-    &:active,
-    &:focus {
-      cursor: grabbing;
-    }
-  }
-
-  .images {
-    display: flex;
-    will-change: transform;
-
-    & > *:not(:last-child) {
-      margin-right: 20px;
-    }
-
-    img {
-      display: block;
-      height: 600px;
-      min-width: 370px;
-      object-fit: cover;
-      object-position: center;
-      // border: 10px solid maroon;
-      pointer-events: none;
-      user-select: none;
-    }
-  }
-
   h1 {
     span {
       min-width: 20px;
@@ -162,9 +108,6 @@ body {
     text-align: center;
     position: relative;
     letter-spacing: 0.1rem;
-    // @include textGradient;
-
-    // animation: glow 2s ease-in-out infinite alternate;
     &::after,
     &::before {
       border-left-width: 10px;
@@ -196,23 +139,21 @@ body {
   }
 }
 
-@keyframes floating {
-  0% {
-    transform: rotate(-10deg) translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(2px, -3px, 0);
-  }
-}
+//footer component
 #footer {
   color: white;
   background: black;
-  margin: 100px 10px 0px 0px;
+  margin: 100px 0px 0px 0px;
   padding: 10px 0px 30px 0px;
   position: relative;
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
+  #upIcon {
+    position: absolute !important;
+    right: 10px;
+    top: 10px;
+  }
   h3 {
     color: #60d9fe;
     font-size: 2rem;
@@ -222,7 +163,7 @@ body {
     margin: 0px;
   }
   p {
-    margin: 25px 5px 0px 0px;
+    margin: 25px 20px 0px 0px;
   }
 
   .socialLinks {
@@ -299,7 +240,9 @@ span {
   width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
-
+  .Home {
+    width: 100%;
+  }
   .homePosts,
   .homeProjects {
     display: grid;
@@ -323,6 +266,12 @@ span {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       grid-template-columns: repeat(2, minmax(320px, 50%));
+      grid-column-gap: 10px;
+      grid-row-gap: 4px;
+      col .card {
+        opacity: 0;
+        animation: fadeIn 0.5s 2s linear forwards;
+      }
     }
     .containerContent {
       @include basicFlex;
@@ -357,11 +306,6 @@ span {
         }
       }
     }
-    img {
-      width: 100%;
-
-      margin: 0 auto;
-    }
   }
   .homeProjects {
     background: black;
@@ -383,7 +327,7 @@ span {
     height: 85vh;
     width: 100%;
     max-width: 1200px;
-    font-size: calc(15px + 2vmin);
+    font-size: calc(10px + 1.5vmin);
     color: #ffffff;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -391,7 +335,6 @@ span {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     border-radius: 50px;
-    // background: rgb(19, 17, 17);
     .div1 {
       grid-area: 1 / 1 / 2 / 2;
       position: relative;
@@ -435,11 +378,6 @@ span {
           stroke-width: 3;
           animation: dash 4s ease alternate-reverse infinite;
         }
-        @keyframes dash {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
       }
     }
     .div2Overlay {
@@ -470,36 +408,15 @@ span {
       overflow: hidden;
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: url("../assets/photo2.jpeg");
-      background-position-x: (-75px);
+      background-image: url("../assets/compressUnder1MB.webp");
+      background-position-x: (-400px);
+      background-position-y: -350px;
+      background-size: 300%;
       clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
       border-radius: 50px;
       border-bottom-left-radius: 0px;
       border-bottom-right-radius: 0px;
     }
-  }
-}
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-150px);
-  }
-  90% {
-    transform: translateY(1px);
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
 
@@ -559,6 +476,9 @@ span {
       border-bottom-color: $red;
     }
   }
+  p {
+    margin: 0px;
+  }
 
   span {
     display: inline-flex;
@@ -579,6 +499,44 @@ span {
   }
 }
 
+//animations
+@keyframes slideDown {
+  0% {
+    transform: translateY(-150px);
+  }
+  90% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes floating {
+  0% {
+    transform: rotate(-10deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(2px, -3px, 0);
+  }
+}
+
+// media quires
 @media only screen and (max-width: 1200px) {
   .homeLanding {
     @include basicFlex;
@@ -590,15 +548,16 @@ span {
       min-height: 400px;
       width: 300px;
       border-radius: 25px !important;
-      //background-size: contain !important;
+      background-position-x: -250px !important;
+      background-position-y: -150px !important;
+      // background-size: contain !important;
     }
     .div1 {
       @include basicFlex;
       padding: 25px;
     }
     .div2Overlay {
-      position: relative;
-      top: -300px;
+      display: none;
     }
     #scroll {
       visibility: hidden !important;
@@ -626,8 +585,14 @@ span {
 }
 @media only screen and (max-width: 570px) {
   .homeLanding {
+    .div1 {
+      width: 100%;
+    }
     p {
-      margin-top: 70px !important;
+      margin: 40px 5px !important;
+    }
+    span {
+      min-width: 10px;
     }
 
     h1 {
@@ -644,27 +609,29 @@ span {
     }
   }
 }
-
-@media only screen and (max-width: 405px) {
-  .homeLanding {
-    h1 {
-      font-size: 1.8rem !important;
-    }
-
-    span {
-      font-size: 1.2rem;
-    }
+@media only screen and (max-width: 415px) {
+  h1 {
+    font-size: 30px !important;
   }
 }
 
+.direction-reveal__img {
+  height: 100% !important;
+  width: 100%;
+}
 .direction-reveal__card {
   height: 100%;
   width: 100%;
   cursor: pointer;
 }
 .direction-reveal__overlay {
-  width: 80%;
+  // width: 95% !important;
   overflow-y: auto !important;
+  .actions,
+  h3,
+  p {
+    margin: 10px 5px 3px 5px;
+  }
 }
 
 #luxy {
