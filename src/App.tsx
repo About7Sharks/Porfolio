@@ -21,9 +21,6 @@ const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 export default function App() {
-  useEffect(() => {
-    luxy.init({ wrapperSpeed: 0.15 });
-  }, []);
   const [width, setWidth] = useState<number>(window.innerWidth);
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -36,6 +33,14 @@ export default function App() {
   }, []);
 
   let isMobile: boolean = width <= 768;
+
+  useEffect(() => {
+    if (!isMobile) {
+      luxy.init({ wrapperSpeed: 0.15 });
+    } else {
+      console.log("dflahdlfkjasdl;kfjsdlkajfldkasjflkdasjflkasdjflkj");
+    }
+  }, []);
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>

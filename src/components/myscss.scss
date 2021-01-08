@@ -324,7 +324,7 @@ span {
   .homeLanding {
     margin: 0 auto;
     margin-top: 15vh;
-    height: 85vh;
+    min-height: 85vh;
     width: 100%;
     max-width: 1200px;
     font-size: calc(10px + 1.5vmin);
@@ -578,26 +578,29 @@ span {
   }
 }
 @media only screen and (max-width: 740px) {
+  .homeLanding {
+    .div1 {
+      display: inline;
+    }
+  }
   .twoBytwo {
     display: inline-flex !important;
     @include basicFlex;
   }
 }
 @media only screen and (max-width: 570px) {
-  .homeLanding {
-    .div1 {
-      width: 100%;
-    }
-    p {
-      margin: 40px 5px !important;
-    }
-    span {
-      min-width: 10px;
-    }
+  .div1 {
+    width: 100%;
+  }
+  span {
+    min-width: 10px !important;
+  }
+  p {
+    margin: 40px 5px !important;
+  }
 
-    h1 {
-      font-size: 2.4rem !important;
-    }
+  h1 {
+    font-size: 2rem !important;
   }
 }
 @media only screen and (max-width: 615px) {
@@ -626,6 +629,7 @@ span {
 }
 .direction-reveal__overlay {
   // width: 95% !important;
+  padding: 0px !important;
   overflow-y: auto !important;
   .actions,
   h3,
