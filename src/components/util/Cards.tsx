@@ -20,10 +20,7 @@ interface Site {
   tags: Array<string>;
 }
 
-export const Cards = (props: Props) => {
-  console.log(props);
-  let { data, gridLayout, routeExternal } = props;
-  console.log(gridLayout);
+export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
   const history = useHistory();
   useEffect(() => {
     const directionRevealDemo = DirectionReveal();
@@ -38,6 +35,7 @@ export const Cards = (props: Props) => {
   };
   let Cards = () => {
     let list = data.map((site, i) => {
+      console.log(site);
       let tagButtons = site.tags.map((tag) => (
         <Button
           style={{ border: "1px solid white", color: "white" }}
