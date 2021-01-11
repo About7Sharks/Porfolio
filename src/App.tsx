@@ -38,7 +38,7 @@ export default function App() {
     if (!isMobile) {
       luxy.init({ wrapperSpeed: 0.15 });
     } else {
-      console.log("dflahdlfkjasdl;kfjsdlkajfldkasjflkdasjflkasdjflkj");
+      console.log("Using mobile default scroll");
     }
   }, []);
   return (
