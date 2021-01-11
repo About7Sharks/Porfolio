@@ -48,7 +48,11 @@ export default function Blog() {
     <div className="journal">
       <h1>{spinAnimationV2("Journal")}</h1>
       <Picker data={articles} handleChange={handleChange} />
-      <Cards gridLayout="cardContainer" data={cleanData(articles)} />
+      <Cards
+        routeExternal={false}
+        gridLayout="cardContainer"
+        data={cleanData(articles)}
+      />
     </div>
   );
 }
