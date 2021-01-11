@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 
 import { Cards } from "../util/Cards";
 import { spinAnimationV2 } from "../util/SpinAnimation";
-interface Props {}
+interface Props { }
 let good = [
   "Accubrew",
   "Meerkat",
@@ -30,7 +30,7 @@ export const ProjectHome = (props: Props) => {
         scale: 1,
       });
     }
-  }, [onScreen]);
+  }, [onScreen, controls]);
   return (
     <motion.div
       ref={projectRef}

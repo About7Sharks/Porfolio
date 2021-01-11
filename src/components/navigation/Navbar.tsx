@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 
-interface Props {}
+interface Props { }
 
 const useStyles = makeStyles({
   navbar: {
@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 export const Navbar = (props: Props) => {
   const classes = useStyles();
   const controls = useAnimation();
-  let nav = document.querySelector("nav");
   let [scrollY, setScrollY] = useState(0);
 
   const { scrollYProgress } = useViewportScroll();
@@ -42,7 +41,7 @@ export const Navbar = (props: Props) => {
       scrollYProgress.onChange((latest) => {
         setScrollY(latest);
       }),
-    []
+    [scrollYProgress]
   );
 
   controls.start({

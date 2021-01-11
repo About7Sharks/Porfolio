@@ -19,11 +19,8 @@ const spinAnimation = (e) => {
     },
   });
 };
-const slideAnimation = (e) => {
-  console.log(e);
-};
+
 const spinAnimationV2 = (words) => {
-  console.log([...words]);
   return [...words].map((letter, i) => {
     if (letter === " ") return <span> </span>;
     return (
@@ -32,11 +29,11 @@ const spinAnimationV2 = (words) => {
         onHoverStart={(e) => {
           spinAnimation(e);
         }}
-        // whileHover={{ scale: 1.1 }}
+      // whileHover={{ scale: 1.1 }}
       >
         {letter}
       </motion.span>
     );
   });
 };
-export { spinAnimation, spinAnimationV2, slideAnimation };
+export { spinAnimation, spinAnimationV2 };

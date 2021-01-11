@@ -82,9 +82,9 @@ function Slide({ slide, offset }) {
 }
 
 export default function App(params) {
-  console.log(params);
+
   let { sites } = params;
-  let slides = params.sites.map((site) => {
+  let slides = sites.map((site) => {
     return {
       title: site.title,
       image: site.img,
@@ -117,23 +117,6 @@ export default function App(params) {
           state.slideIndex === 0 ? slides.length + 1 : state.slideIndex + 1,
       });
     }
-  };
-  const filterByTag = (e, value) => {
-    let newList = sites
-      .map((site) => {
-        return {
-          title: site.title,
-          image: site.img,
-          description: site.text,
-          url: site.url,
-          tags: site.tags,
-        };
-      })
-      .filter((site) => site.tags.includes(value));
-    updateState({
-      slideIndex: 0,
-      projects: newList,
-    });
   };
 
   return (

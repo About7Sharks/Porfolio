@@ -8,20 +8,21 @@ export default function BlogPostViewer(props) {
   const [postData, setPost] = useState("");
   const [Id] = useState(props.match.params.id);
   //fetches post from git
-  const getPost = async () => {
-    let post = await (
-      await fetch(
-        "https://raw.githubusercontent.com/About7Sharks/Markdown/master/" +
-          Id +
-          ".md"
-      )
-    ).text();
-    setPost(matter(post));
-  };
+
   useEffect(() => {
     //if direct link to post; fetch data
     if (state === undefined && postData === "") {
-      getPost();
+      const getPost = async () => {
+        let post = await (
+          await fetch(
+            "https://raw.githubusercontent.com/About7Sharks/Markdown/master/" +
+            Id +
+            ".md"
+          )
+        ).text();
+        setPost(matter(post));
+      }
+      getPost()
       console.log("state undefined and no previous data");
     } else if (state !== undefined) {
       console.log("state defined, skipping fetch since data already loaded");
@@ -29,7 +30,7 @@ export default function BlogPostViewer(props) {
     }
     //scroll to top of page
     window.scrollTo(0, 0);
-  }, [state, postData]);
+  }, [state, postData, Id]);
   return (
     <ReactMarkdown
       className={`${props.match.params.id} article`}

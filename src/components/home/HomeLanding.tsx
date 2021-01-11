@@ -1,9 +1,8 @@
 import React from "react";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import Button from "@material-ui/core/Button";
-import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
 import { spinAnimationV2 } from "../util/SpinAnimation";
-interface Props {}
+interface Props { }
 
 export const HomeLanding = (props: Props) => {
   const controls = useAnimation();
@@ -30,15 +29,6 @@ export const HomeLanding = (props: Props) => {
           >
             Lets Connect
           </Button>
-          {/* &nbsp;
-          <Button
-            variant="contained"
-            onClick={() => {
-              document.getElementById("journalHome")?.scrollIntoView();
-            }}
-          >
-            Read Journal
-          </Button> */}
         </p>
         <div id="scroll">
           Scroll &nbsp;

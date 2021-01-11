@@ -17,6 +17,6 @@ export const useOnScreen = (ref: any, offset: string) => {
     if (ref.current) {
       observer.observe(ref.current);
     }
-  }, []);
+  }, [ref, rootMargin]);
   return isIntersecting;
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useViewportScroll } from "framer-motion";
-interface Props {}
+interface Props { }
 
 export const ViewportProgress = (props: Props) => {
   const { scrollYProgress } = useViewportScroll();
@@ -10,7 +10,7 @@ export const ViewportProgress = (props: Props) => {
       scrollYProgress.onChange((latest) => {
         setScrollY(latest * 100);
       }),
-    []
+    [scrollYProgress]
   );
   return (
     <svg

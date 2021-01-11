@@ -21,9 +21,9 @@ const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 export default function App() {
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [isMobile, setDeviceType] = useState<boolean>(false);
   function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
+    setDeviceType(window.innerWidth <= 768);
   }
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
@@ -32,15 +32,15 @@ export default function App() {
     };
   }, []);
 
-  let isMobile: boolean = width <= 768;
-
   useEffect(() => {
     if (!isMobile) {
       luxy.init({ wrapperSpeed: 0.15 });
+      console.log('Using custom scroller')
     } else {
       console.log("Using mobile default scroll");
     }
-  }, []);
+  }, [isMobile]);
+
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>

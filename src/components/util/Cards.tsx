@@ -23,9 +23,8 @@ interface Site {
 export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
   const history = useHistory();
   useEffect(() => {
-    const directionRevealDemo = DirectionReveal();
+    DirectionReveal();
   });
-  console.log(data.length);
   const handleRouting = (site: Site) => {
     if (routeExternal) {
       window.open(site.url);
@@ -34,13 +33,14 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
     }
   };
   let Cards = () => {
+    if (data.length < 1) return <div></div>
     let list = data.map((site, i) => {
-      console.log(site);
-      let tagButtons = site.tags.map((tag) => (
+      if (site.title === undefined) return <div></div>
+      let tagButtons = site.tags.map((tag, i) => (
         <Button
           style={{ border: "1px solid white", color: "white" }}
           variant="outlined"
-          key={tag}
+          key={tag + i}
           size="small"
         >
           {tag}
@@ -49,7 +49,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
       return (
         <div
           onClick={() => handleRouting(site)}
-          key={site.url}
+          key={site.url + i}
           style={{ animationDelay: `${i / 4}s` }}
           className="direction-reveal card"
         >

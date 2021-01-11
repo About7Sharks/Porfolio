@@ -5,7 +5,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { motion } from "framer-motion";
-interface Props {}
+interface Props { }
 
 let LinksArray = [
   ["mailto:zacarlin@gmail.com", <EmailIcon />],
@@ -22,6 +22,7 @@ const Thing = (item: [string, JSX.Element], i: number) => {
   const [isHovered, setHovered] = useState(false);
   return (
     <motion.a
+      key={i}
       href={item[0] as string}
       target="_blank"
       onMouseEnter={() => setHovered(true)}
