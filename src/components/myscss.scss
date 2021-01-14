@@ -52,7 +52,7 @@ $degreeShift: -15deg;
   width: 100%;
   z-index: -2;
   top: 10%;
-  animation: floating 60s ease-in alternate-reverse infinite;
+  animation: floating 40s ease-in alternate-reverse infinite;
   filter: blur(50px);
 }
 .floatingBackground2{
@@ -63,7 +63,7 @@ $degreeShift: -15deg;
     transform: translate3d(0px,2px,10px);
   }
   100%{
-    transform: translate3d(10px,5px,2px);
+    transform: translate3d(30px,25px,2px);
   }
 }
 p {
