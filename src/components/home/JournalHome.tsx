@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useOnScreen } from "../util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
@@ -64,7 +64,7 @@ let curatedArticles = [
 export const JournalHome = () => {
   const controls = useAnimation();
   const journalRef = useRef(null);
-  const onScreen = useOnScreen(journalRef, "350px");
+  const onScreen = useOnScreen(journalRef, "0px");
 
   useEffect(() => {
     if (onScreen) {

@@ -47,6 +47,25 @@ $degreeShift: -15deg;
   -webkit-transform: rotateY($degreeShift);
   transform: rotateY($degreeShift);
 }
+.floatingBackground,.floatingBackground2{
+  position: fixed;
+  width: 100%;
+  z-index: -2;
+  top: 10%;
+  animation: floating 60s ease-in alternate-reverse infinite;
+ 
+}
+.floatingBackground2{
+  top: 40%;
+}
+@keyframes floating {
+  0%{
+    transform: translate3d(0px,2px,10px);
+  }
+  100%{
+    transform: translate3d(10px,5px,2px);
+  }
+}
 p {
   letter-spacing: -0.05rem;
   font-size: 1.3rem;
@@ -308,7 +327,7 @@ span {
     }
   }
   .homeProjects {
-    background: black;
+    background: rgba(0, 0, 0, 0.411);
     grid-template-columns: auto auto;
 
     h1 {
