@@ -3,198 +3,218 @@
 <head>
   <title>Resume</title>
   <style type="text/css">
+    * {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
     .resume {
-      max-width: 800px;
-      margin: 0px auto;
-      text-shadow: 1px 1.2px #00000038;
-      font-family: Arial, Helvetica, sans-serif;
+      display: grid;
+      grid-template-columns: 30% 1fr;
+      grid-template-rows: 1fr;
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
     }
 
-    h2 {
-      border-bottom: 1px solid green;
-      text-shadow: 1px 2px #00000038;
-      margin: 10px 32% 0px 0px;
+    .div1 {
+      grid-area: 1 / 1 / 2 / 2;
+      background-color: rgb(36, 37, 37);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
     }
 
-    h3,
-    p {
-      margin: 10px 5px 0px 0px;
-    }
-
-    p {
-      font-size: 0.96rem;
-    }
-
-    span {
+    .div1>span {
       display: inline-flex;
-      align-items: baseline;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      margin-bottom: 35px;
     }
 
     a {
-      color: black;
+      color: white;
+      /* text-decoration: none; */
     }
 
-    .site ul {
-      margin: -10px 0px 0px 0px;
-      padding: 20px 20px 5px 20px;
+    .div1>ul {
+      list-style-type: none;
+    }
+
+    ul {
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin: 2px 0px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .div2 {
+      grid-area: 1 / 2 / 2 / 3;
+      padding: 50px;
+    }
+
+    .div2>ul>li {
+      margin-left: 20px;
+    }
+
+    .div2>ul>span {
+      color: rgba(0, 0, 0, 0.75);
+      font-style: italic;
+    }
+
+    .div2>ul {
+      padding: 5px 0px 0px 0px;
+    }
+
+    ul>h4 {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .ref {
+      margin: 0px;
+      list-style: none;
     }
   </style>
 </head>
 
 <body>
   <div class="resume">
-    <div class="info">
-      <h2>Zachary Carlin</h2>
+    <div class="div1">
       <span>
-        <p>
-          Software Engineer based in Tampa, FL.
-        </p>
-        <div>
-          <a target="_blank" href="https://zacarlin.com">Personal Site</a>
-          |
-          <a target="_blank" href="https://www.linkedin.com/in/zachary-carlin-85402a123/">Linkedin</a>
-          |
-          <a target="_blank" href="https://github.com/about7sharks">Github</a>
+        <img src="./assets/navajoBridge.JPG" alt="">
+        <h1>Zachary Carlin</h1>
+        <h4>Software Engineer</h4>
+      </span>
+      <ul>
+        <h3>Details</h3>
+        <li>Tampa, FL</li>
+        <li>(727) 505-9511</li>
+      </ul>
 
-          <a target="_blank" href="https://Instagram.com/zachary_carlin">Instagram</a>
-          |
-          <a target="_blank" href="https://twitter.com/ZacharyCarlin">Twitter</a>
-          <br />
-          <a target="_blank" href="tel:+1727-505-9511">Phone:</a> 727-505-9511
-          <br />
-          <a target="_blank" href="mailto:zacarlin@gmail.com">Email:</a>
-          zacarlin@gmail.com
-        </div>
-      </span>
-    </div>
-    <h2>Technical Skills</h2>
-    <div class="skills">
       <ul>
-        <li><strong>Operating Systems:</strong> Linux (Kali, Ubuntu, Mint), MacOS, Windows</li>
-        <li><strong>Languages:</strong> JavaScript/Node, Deno, Python, HTML, CSS/SASS</li>
-        <li><strong>JavaScript Libraries:</strong> Chart.js, Vue.js, React.js, Electron.js, Express.js, Nuxt.js, AR.js,
-          Aframe.js, Chartkick.js, Particle.js, </li>
-        <li><strong>Databases:</strong> Firebase, MongoDB</li>
-        <li><strong>Misc:</strong> Git, Photoshop, Illustrator, Web Scrapping, Testing</li>
+        <h3> Skills</h3>
+        <li>HTML/CSS/JavaScript</li>
+        <li>React.js/Vue.js/Svelte.js</li>
+        <li> SCSS/LESS (CSS-Preprocessors)</li>
+        <li>Node.js & Deno</li>
+        <li> Typescript</li>
+        <li>Docker</li>
+        <li> NoSQL</li>
+        <li>Git</li>
+        <li> Python</li>
+        <li>Performance Optimization</li>
+        <li> Troubleshooting and Solutions Deployment</li>
+        <li>Software Design and Development</li>
+        <li> Coding and Scripting</li>
+        <li>VPS (AWS, Google Cloud, Digital Ocean)</li>
+      </ul>
+      <ul>
+        <h3>Hobbies</h3>
+        <li>Bodybuilding
+        </li>
+        <li>Traveling
+        </li>
+        <li>Coding</li>
+      </ul>
+      <ul>
+        <h3> Links
+        </h3>
+        <li> <a href="https://www.linkedin.com/in/zachary-carlin-85402a123/">Linkedin</a>
+        </li>
+        <li> <a href="https://github.com/about7sharks">Github</a>
+        </li>
+        <li> <a href="https://instagram.com/zachary_carlin">Instagram</a>
+        </li>
+        <li><a href="https://twitter.com/ZacharyCarlin">Twitter</a></li>
+        <li> <a href="https://zacarlin.com">Personal Site</a>
+        </li>
       </ul>
     </div>
+    <div class="div2">
+      <h2>Profile</h2><br>
+      <p> Innovative Programmer and Internet Entrepreneur striving to make the world a more unified and connected place.
+        A
+        creative thinker, adept in software development, working complex data structures and API's.
+      </p>
+      <br>
+      <h2>Employment History</h2><br>
+      <ul>
+        <h4>Software Engineer at Gulf Photonics, Tampa FL</h4>
+        <span> July 2018 – August 2020 </span>
+        <li> Lead software developer of an IOT embedded sensor and user dashboard.</li>
+        <li> Developed and enhances programs to increase accuracy and lower costs. 
+        </li>
+        <li>
+          Handled debugging and troubleshooting with a high success rate. 
+        </li>
+        <li> Managed NoSQL Databases (Mongo and Firebase) </li>
+        <li> Ensured accessibility of programs across all platform (Mobile/Desktop and Unix/Windows).
+        </li>
+        <li> Created user interface and API for interacting with sensor.
+        </li>
+        <li> Ensured compliance with all regulations, policies, and laws.
+        </li>
+      </ul>
+      <ul>
+        <h4>Web Developer at Bridge, Clearwater FL</h4>
+        <span>April 2018 – June 2018</span>
+        <li> Functioned collaboratively with various partners on the development of 5G routers.
+        </li>
+        <li> Developed a Vue.js application for the companies marketing campaign "Connected Revolution".
+        </li>
+        <li> Worked to support the company mission and adhered to company protocol at all times.
+        </li>
+      </ul>
 
-    <h2>Experience</h2>
-    <div class="job">
-      <span>
-        <h3>Gulf Photonics</h3>
-        <i>Software Engineer</i>, Jul 2018 - Aug 2020
-      </span>
-      <p>
-        Lead developer on Accubrew; an embedded IOT sensor, and user control panel. First running on a <strong>Raspberry
-          Pi</strong> using <strong>Linux OS</strong> and
-        a <strong>Python</strong> script, and eventually becoming a full
-        blown <strong>SAAS based system</strong> for displaying analytics on a custom designed <strong>Vue.js</strong>
-        dashboard. The Backend was written in <strong>Node.js</strong> running on <strong>Digital Ocean</strong> for the
-        VPS. That server also hosted a <strong>MongoDB</strong> database, which stored and backed up the data to offline
-        storage sites.
-      </p>
-    </div>
-    <div class="job">
-      <span>
-        <h3>Bridge</h3>
-        <i>Web Developer</i>, Apr 2018 – Jun 2018
-      </span>
-      <p>
-        Worked under Chris Anderson a former NASA engineer
-        on the development of a <strong>5G router</strong>. Responsibilities also included writing a frontend in
-        <strong>Vue.js</strong> for the
-        companies marketing campaign “Connected Revolution”.
-      </p>
-    </div>
-    <div class="job">
-      <span>
-        <h3>LA Fitness</h3>
-        <i>Operations Department</i> Jan 2017 - Apr 2018
-      </span>
-      <p>
-        Responsibilities included
-        <strong>managing credit card information</strong> and
-        <strong>database entries</strong> as well as
-        <strong>selling new memberships</strong> for the club.
-      </p>
-    </div>
-    <h2>Education</h2>
-    <h3>St. Petersburg College</h3>
-    <i>Associate of Arts Degree</i> GPA: 3.7
-    <h2>Projects</h2>
-    <p>
-      The majority of my public project source code can be found on my
-      <a target="_blank" href="https://github.com/About7Sharks?tab=repositories">github profile</a>
-    </p>
-    <div class="site">
-      <h3>
-        <a target="_blank" href="https://zacarlin.eth.link">Personal Site</a>
-      </h3>
-      <p>Every technologist needs there own little space on the web</p>
       <ul>
-        <li>
-          Near perfect lighthouse scores (would be perfect but i'd rather use
-          a higher quality background photo).
+        <h4> Operations Department at LA Fitness, Clearwater, FL
+        </h4>
+        <span> January 2017 – April 2018
+        </span>
+        <li> Consistency exceeded sales and revenue targets set by company management.
         </li>
-        <li>
-          Built with <strong>React.js</strong> (utilizing hooks), and
-          <strong>SASS</strong>
+        <li> Managed failed credit card payments.
         </li>
-        <li>
-          Hosted on the <strong>IPFS</strong> (interplanetary file system) and
-          the <strong>Ethereum Blockchain</strong>. This makes it
-          decentralized and uncensorable.
+        <li> Served as a friendly, hardworking, and punctual employee.
         </li>
-        <li>
-          Reads journal post written in markdown from a git repo for dynamic
-          updating of content (Custom <strong>CMS</strong>). This allows for writing post that are platform agnostic,
-          updatable, and high performing.
+        <li> Consistently communicated in a lucid and effective manner.
+        </li>
+        <li> Consistently worked with client satisfaction in mind.
+        </li>
+        <li> Promoted a positive public image for the company and worked to control the dissemination of information.
+        </li>
+        <li> Ensured the availability of adequate resources to achieve goals.
         </li>
       </ul>
-    </div>
-    <div class="site">
-      <h3><a target="_blank" href="https://accubrew.io">Accubrew</a></h3>
-      <p>This was the result of working with Gulf Photonics</p>
+
+      <h2>Education</h2>
       <ul>
-        <li>The frontend was built with <strong>Vue.js</strong></li>
-        <li>The backend used <strong>Node.js</strong></li>
-        <li>
-          Databases include <strong>Firebase</strong>, and
-          <strong>MongoDB</strong>
-        </li>
-        <li>
-          <strong>IOT sensor</strong> was built with a
-          <a target="_blank" href="https://www.particle.io/">Particle Photon</a>
-        </li>
-        <li>
-          Utilizing <strong>PWA</strong> (Progressive Web App) technology to
-          give any user access to an app like experience without having to go
-          through an app store. Users could download it on Linux, Windows, and
-          any mobile devices of their choosing.
-        </li>
-        <li>
-          Implemented a SMS based <strong>AI</strong> assistant giving the end
-          user the ability to control the account and devices with voice or
-          text.
-        </li>
+        <h4>St. Petersburg College, Clearwater Associates of Arts</h4>
+        <span>January 2017 – December 2018</span>
       </ul>
-    </div>
-    <div class="site">
-      <h3>
-        <a target="_blank" href="https://situpcoach.netlify.app">Sit Up Coach</a>
-      </h3>
-      <p>
-        I really enjoy mixing fitness and technology. When the gyms closed
-        down during quarantine I found myself unable to keep track of my
-        situps; resulting in an <strong>AI</strong> to count them for me.
-      </p>
-      <ul>
-        <li>Frontend was built with <strong>Vue.js</strong></li>
-        <li>
-          Neural net trained off of a dataset I created in my room and googles
-          teachable machine platform.
-        </li>
+      <h2>References</h2>
+      <ul class="ref">
+        <h4>Paul Thomas from Concept 11</h4>
+        <li>paul@concept11.com | (727) 543-8208</li>
+      </ul>
+
+      <ul class="ref">
+        <h4>Cayman Jeffskers from Concept 11</h4>
+        <li>jeffskers@concept11.com | (727) 510-5152</li>
+      </ul>
+      <ul class="ref">
+        <h4>Craig Vogley from Gulf Photonics</h4>
+        <li>cvogeley@gulffiberoptics.com | (727) 421-9726</li>
       </ul>
     </div>
   </div>
