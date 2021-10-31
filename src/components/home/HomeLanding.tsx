@@ -21,6 +21,7 @@ export const HomeLanding = (props: Props) => {
           <br />
           <br />
           <Button
+            key='ContactBTN'
             color="primary"
             variant="contained"
             onClick={() => {
@@ -33,7 +34,7 @@ export const HomeLanding = (props: Props) => {
         <div id="scroll">
           Scroll &nbsp;
           <svg height="6" width="50">
-            <line stroke="white" x1="0" y1="" x2="50" y2="0" />
+            <line stroke="white" x1="0" y1="0" x2="50" y2="0" />
           </svg>
         </div>
       </div>

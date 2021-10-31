@@ -35,12 +35,12 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
   let Cards = () => {
     if (data.length < 1) return <div></div>
     let list = data.map((site, i) => {
-      if (site.title === undefined) return <div></div>
+      if (site.title === undefined) return <div key='undefined'></div>
       let tagButtons = site.tags.map((tag, i) => (
         <Button
           style={{ border: "1px solid white", color: "white" }}
           variant="outlined"
-          key={tag + i}
+          key={i+'btn'}
           size="small"
         >
           {tag}
@@ -49,7 +49,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
       return (
         <div
           onClick={() => handleRouting(site)}
-          key={site.url + i}
+          key={i}
           style={{ animationDelay: `${i / 4}s` }}
           className="direction-reveal card"
         >
@@ -74,7 +74,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
         </div>
       );
     });
-    return <div  className={gridLayout}> {list}</div>;
+    return <div key={'f'} className={gridLayout}> {list}</div>;
   };
 
   return <Cards />;

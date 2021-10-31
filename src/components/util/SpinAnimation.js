@@ -22,10 +22,10 @@ const spinAnimation = (e) => {
 
 const spinAnimationV2 = (words) => {
   return [...words].map((letter, i) => {
-    if (letter === " ") return <span> </span>;
+    if (letter === " ") return <span  key={i+'space'}> </span>;
     return (
       <motion.span
-        key={i}
+        key={`${i}+${letter}`}
         onHoverStart={(e) => {
           spinAnimation(e);
         }}
