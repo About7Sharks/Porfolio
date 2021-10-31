@@ -15,7 +15,7 @@ export default function BlogPostViewer(props) {
       const getPost = async () => {
         let post = await (
           await fetch(
-            "https://raw.githubusercontent.com/About7Sharks/Markdown/master/" +
+            "https://raw.githubusercontent.com/About7Sharks/Markdown/main/" +
             Id +
             ".md"
           )

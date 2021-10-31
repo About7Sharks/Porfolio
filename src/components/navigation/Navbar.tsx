@@ -53,6 +53,7 @@ export const Navbar = (props: Props) => {
       if (item === "Contact") {
         return (
           <Link
+            key='contact'
             to="#"
             onClick={() => {
               window.scrollTo(0, document.body.scrollHeight);
@@ -64,7 +65,9 @@ export const Navbar = (props: Props) => {
         );
       }
       return (
-        <Link to={"/" + item} className={classes.navItem}>
+        <Link             
+        key={item}
+        to={"/" + item} className={classes.navItem}>
           <span> {item}</span>
         </Link>
       );

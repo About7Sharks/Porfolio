@@ -74,7 +74,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
         </div>
       );
     });
-    return <div className={gridLayout}> {list}</div>;
+    return <div  className={gridLayout}> {list}</div>;
   };
 
   return <Cards />;
