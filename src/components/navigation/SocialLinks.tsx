@@ -11,10 +11,7 @@ let LinksArray = [
   ["mailto:zacarlin@gmail.com", <EmailIcon />],
   ["https://github.com/about7sharks", <GitHubIcon />],
   ["https://twitter.com/ZacharyCarlin", <TwitterIcon />],
-  [
-    "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123",
-    <LinkedInIcon />,
-  ],
+  [ "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123", <LinkedInIcon />],
   ["https://Instagram.com/zachary_carlin", <InstagramIcon />],
 ];
 let colors = ["#00ab6c", "purple", "#60d9fe", "#0077b5", "#c13584"];

@@ -6,6 +6,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
 import Picker from "../util/Picker";
 import { Cards } from "../util/Cards";
+import { spinAnimationV2 } from "../util/SpinAnimation";
 // import "./projects.scss";
 import { WarningMessage } from "../util/WarningMessage.tsx";
 export default function Projects() {
@@ -34,7 +35,7 @@ export default function Projects() {
   };
   return (
     <div id="projects" className="projects">
-      <h1>Projects</h1>
+      <h1>{spinAnimationV2("Projects")}</h1>
       <p>
         Here you can find sites that i'm currently hosting on the interwebs
         <Emoji symbol="🕸️" />.

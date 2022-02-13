@@ -34,9 +34,7 @@ export const Navbar = (props: Props) => {
   let [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useViewportScroll();
 
-  useEffect(
-    () =>
-      scrollYProgress.onChange((latest) => {
+  useEffect(() => scrollYProgress.onChange((latest) => {
         setScrollY(latest);
       }),
     [scrollYProgress]
