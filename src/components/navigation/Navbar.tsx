@@ -23,7 +23,6 @@ const useStyles = makeStyles({
     color: "white",
     "&:hover": {
       color: "#eef46e",
-      // background: "#" + (((1 << 24) * Math.random()) | 0).toString(16),
       transition: ".3s",
     },
   },
@@ -33,7 +32,6 @@ export const Navbar = (props: Props) => {
   const classes = useStyles();
   const controls = useAnimation();
   let [scrollY, setScrollY] = useState(0);
-
   const { scrollYProgress } = useViewportScroll();
 
   useEffect(
@@ -75,10 +73,7 @@ export const Navbar = (props: Props) => {
   );
   return (
     <motion.nav
-      initial={{
-        scale: 0,
-        opacity: 0,
-      }}
+      initial={{ scale: 0, opacity: 0}}
       style={{ backgroundColor: `rgba(0,0,0,${scrollY * 10})` }}
       transition={{ duration: 1, delay: 2 }}
       animate={controls}

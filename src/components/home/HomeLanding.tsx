@@ -1,15 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { useAnimation } from "framer-motion";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props { }
 
 export const HomeLanding = (props: Props) => {
-  const controls = useAnimation();
-  controls.start({
-    opacity: 1,
-    scale: 1,
-  });
+
   return (
     <div className="homeLanding">
       <div className="div1">
