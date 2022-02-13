@@ -483,6 +483,7 @@ span {
 
 //about page
 .about {
+  min-height: 95vh;
   padding: 20px 20px 2px 20px;
   @include basicFlex;
   width: 100%;
