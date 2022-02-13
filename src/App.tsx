@@ -15,7 +15,6 @@ import luxy from "luxy.js";
 import { ViewportProgress } from "./components/util/ViewportProgress";
 const Projects = lazy(() => import("./components/projects/projects"));
 const Drawer = lazy(() => import("./components/navigation/drawer"));
-
 const Footer = lazy(() => import("./components/navigation/Footer"));
 const Home = lazy(() => import("./components/home/Home"));
 const About = lazy(() => import("./components/about/about"));
@@ -34,7 +33,7 @@ export default function App() {
 
   useEffect(() => {
     if (!isMobile) {
-      luxy.init({ wrapperSpeed: 0.15 });
+      luxy.init({ wrapperSpeed: 0.9 });
       console.log("Using custom scroller");
     } else {
       console.log("Using mobile default scroll");

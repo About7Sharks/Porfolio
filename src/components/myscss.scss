@@ -47,7 +47,8 @@ $degreeShift: -15deg;
   -webkit-transform: rotateY($degreeShift);
   transform: rotateY($degreeShift);
 }
-.floatingBackground,.floatingBackground2{
+.floatingBackground,
+.floatingBackground2 {
   position: fixed;
   width: 100%;
   z-index: -2;
@@ -55,16 +56,16 @@ $degreeShift: -15deg;
   animation: floating 40s ease-in alternate-reverse infinite;
   filter: blur(50px);
 }
-.floatingBackground2{
+.floatingBackground2 {
   top: 40%;
-  right:50%
+  right: 50%;
 }
 @keyframes floating {
-  0%{
-    transform: translate3d(0px,2px,10px);
+  0% {
+    transform: translate3d(0px, 2px, 10px);
   }
-  100%{
-    transform: translate3d(30px,25px,2px);
+  100% {
+    transform: translate3d(30px, 25px, 2px);
   }
 }
 p {
@@ -226,6 +227,9 @@ body {
   color: white;
 }
 
+.default-img {
+  background-image: url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+}
 // drawer ui
 .customDrawerStyleTweaks {
   width: 100%;

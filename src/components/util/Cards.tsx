@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-
 // this is a quick fix referenced [here](https://stackoverflow.com/questions/41292559/could-not-find-a-declaration-file-for-module-module-name-path-to-module-nam)
 // @ts-ignore
 import DirectionReveal from "direction-reveal";
@@ -56,8 +55,8 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
           <div className="direction-reveal__card">
             <img
               src={site.img}
-              alt={site.url}
-              className="direction-reveal__img"
+              alt='Cat for dis'
+              className="direction-reveal__img default-img"
             />
 
             <div className="direction-reveal__overlay direction-reveal__anim--enter">

@@ -28,18 +28,13 @@ export default function Blog() {
 
   //filter the articles and tweak some property names before passing to component
   const cleanData = (data) => {
-    return data
-      .filter((article) => {
+    return data.filter((article) => {
         if (filter === "All") return article;
         return article.tags?.includes(filter);
-      })
-      .map((site) => {
+      }).map((site) => {
         return {
-          url: site.url,
+          ...site,
           img: site.image,
-          title: site.title,
-          text: site.summary,
-          tags: site.tags,
         };
       });
   };

@@ -20,13 +20,13 @@ export default function BlogPostViewer(props) {
             ".md"
           )
         ).text();
-        setPost(matter(post));
+      return setPost(matter(post));
       }
       getPost()
       console.log("state undefined and no previous data");
     } else if (state !== undefined) {
       console.log("state defined, skipping fetch since data already loaded");
-      setPost({ content: state.content });
+      return setPost({ content: state.content });
     }
     //scroll to top of page
     window.scrollTo(0, 0);
@@ -35,7 +35,7 @@ export default function BlogPostViewer(props) {
     <ReactMarkdown
       className={`${props.match.params.id} article`}
       linkTarget="_blank"
-      source={postData.content || "Nothing"}
+      children={postData.content || "Nothing"}
     />
   );
 }

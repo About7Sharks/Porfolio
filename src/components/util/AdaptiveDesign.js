@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNetworkStatus } from "react-adaptive-hooks/network";
 import { useSaveData } from "react-adaptive-hooks/save-data";
 

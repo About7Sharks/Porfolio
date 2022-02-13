@@ -10,10 +10,10 @@ const useStyles = makeStyles({
     borderRadius: "25px",
     padding: "3px",
     cursor: "pointer",
-    position: "absolute",
+    position: "fixed",
     top: "25px",
     left: "25px",
-    zIndex: "100",
+    zIndex: "1000",  
   },
 });
 export default function BackButton() {
