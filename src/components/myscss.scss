@@ -227,9 +227,6 @@ body {
   color: white;
 }
 
-.default-img {
-  background-image: url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
-}
 // drawer ui
 .customDrawerStyleTweaks {
   width: 100%;
@@ -465,9 +462,12 @@ span {
     //initial state should be hidden
     width: 100%;
     height: 100%;
+    min-height: 300px;
+    min-width: 300px;
     opacity: 0;
     animation: fadeIn 0.5s linear forwards;
-
+    background-image: url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+    content: "";
     a,
     img {
       border-radius: 5px;

@@ -10,7 +10,7 @@ async function getArticles() {
       return path.path.includes('md')
    })
    console.log(data.tree)
-  let articlesContent = await Promise.all(
+  let articlesContent =( await Promise.all(
     data.tree.map(async (article: any) => {
       let art = matter(
         await (
@@ -19,11 +19,15 @@ async function getArticles() {
           )
         ).text()
       );
-      art = { ...art, ...art.data };
-
+      if (Object.keys(art.data).length === 0)return
+      art = { 
+        ...art,
+        ...art.data
+      };
       return art;
     })
-  );
+    )).filter(Boolean);
+    console.log(articlesContent)
   localStorage.setItem("data", JSON.stringify(articlesContent));
 
   return articlesContent;
