@@ -4,18 +4,11 @@ import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import sites from "../projects/sites";
 import Button from "@material-ui/core/Button";
-
+import {good} from './data'
 import { Cards } from "../util/Cards";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props { }
-let good = [
-  "Accubrew",
-  "Meerkat",
-  "Sit Up Coach",
-  "Carlin Fitness",
-  "Conways Game of Life using WebAssembly and Javascript",
-  "Pose Bot",
-];
+
 const cleanSites = sites.filter((site) => good.includes(site.title));
 
 export const ProjectHome = (props: Props) => {
