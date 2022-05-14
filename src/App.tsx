@@ -35,8 +35,6 @@ export default function App() {
       <Router>
         {isMobile ? <Drawer /> : <Navbar />}
         <BackBTN />
-        {isMobile ?  <p>Is</p> : <p>Not</p>}
-
         <ViewportProgress />
         <img
           className="floatingBackground"
