@@ -11,6 +11,7 @@ import BlogPost from "components/journal/Post";
 import { Navbar } from "components/navigation/Navbar";
 import { BeforeLoad } from "util/BeforeLoad";
 import { ViewportProgress } from "util/ViewportProgress";
+import {checkForDevice} from "util/deviceDetect";
 const Projects = lazy(() => import("components/projects/projects"));
 const Drawer = lazy(() => import("components/navigation/drawer"));
 const Footer = lazy(() => import("components/navigation/Footer"));
@@ -18,7 +19,7 @@ const Home = lazy(() => import("components/home/Home"));
 const About = lazy(() => import("components/about/about"));
 const BackBTN = lazy(() => import("components/navigation/backbutton"));
 export default function App() {
-  const [isMobile, setDeviceType] = useState<boolean>(false);
+  const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());
   function handleWindowSizeChange() {
     setDeviceType(window.innerWidth <= 768);
   }
@@ -29,13 +30,13 @@ export default function App() {
     };
   }, []);
 
- 
-
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>
         {isMobile ? <Drawer /> : <Navbar />}
         <BackBTN />
+        {isMobile ?  <p>Is</p> : <p>Not</p>}
+
         <ViewportProgress />
         <img
           className="floatingBackground"
