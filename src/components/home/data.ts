@@ -47,7 +47,7 @@ export const curatedArticles = [
     title: "Why Use Crypto",
     url: "local",
     img:
-      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.manhattandigest.com%2Fwp-content%2Fuploads%2F2017%2F09%2Fbitcoin-perfecthue.jpg&f=1&nofb=1",
+      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.reviewsxp.com%2Fblog%2Fwp-content%2Fuploads%2F2021%2F06%2Fcrypto-2048x1365.jpg&f=1&nofb=1",
     text:
       "You've probably heard of bitcoin and cryptocurrencies by now. You may still be asking yourself why care?",
     tags: ["Bitcoin", "Crypto", "Tech", "Featured"],
