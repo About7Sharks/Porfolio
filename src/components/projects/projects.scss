@@ -1,9 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  position: relative;
-}
 .projects {
   overflow: hidden;
   display: inline-flex;
@@ -15,10 +9,12 @@
 
   span {
     display: inline-flex;
+
     button {
       margin: 5px;
     }
   }
+
   h1 {
     margin: 50px 0px 0px 0px;
     color: #f54768;
@@ -31,12 +27,14 @@
       border-bottom-color: #eef46e;
     }
   }
+
   .MuiAutocomplete-root {
     width: 320px;
     margin: 0 auto;
     margin-bottom: 15px !important;
   }
 }
+
 .slides {
   margin-top: 20px;
   width: 100vw;
@@ -45,11 +43,11 @@
   place-items: center;
   color: white;
 
-  > .slide {
+  >.slide {
     grid-area: 1 / -1;
   }
 
-  > button {
+  >button {
     appearance: none;
     background: transparent;
     border: none;
@@ -75,6 +73,7 @@
     &:first-child {
       right: 55%;
     }
+
     &:last-child {
       left: 55%;
     }
@@ -97,8 +96,7 @@
   align-content: center;
 
   transform-style: preserve-3d;
-  transform: perspective(1000px) translateX(calc(100% * var(--offset)))
-    rotateY(calc(-45deg * var(--dir)));
+  transform: perspective(1000px) translateX(calc(100% * var(--offset))) rotateY(calc(-45deg * var(--dir)));
 }
 
 .slideContentInner {
@@ -111,6 +109,7 @@
   border-radius: 25px;
   margin: 10px;
   padding: 10px;
+
   .slideSubtitle,
   .slideTitle {
     font-size: 2rem;
@@ -170,8 +169,7 @@
 
     &:hover {
       transition: none;
-      transform: perspective(1000px) rotateY(calc(var(--x) * 45deg))
-        rotateX(calc(var(--y) * -45deg));
+      transform: perspective(1000px) rotateY(calc(var(--x) * 45deg)) rotateX(calc(var(--y) * -45deg));
     }
   }
 }

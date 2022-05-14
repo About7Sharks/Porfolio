@@ -1,6 +1,6 @@
 import React from "react";
-import { Emoji } from "../util/Emoji";
-import { spinAnimationV2 } from "../util/SpinAnimation";
+import { Emoji } from "util/Emoji";
+import { spinAnimationV2 } from "util/SpinAnimation";
 const aboutStyles = {
   about: {
     paddingTop: "10px",

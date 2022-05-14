@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../myscss.scss";
-import Picker from "../util/Picker";
-import { Cards } from "../util/Cards";
-import { getArticles } from "../util/getArticles";
-import { spinAnimationV2 } from "../util/SpinAnimation";
+import Picker from "util/Picker";
+import { Cards } from "util/Cards";
+import { getArticles } from "util/getArticles";
+import { spinAnimationV2 } from "util/SpinAnimation";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");

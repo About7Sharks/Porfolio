@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import sites from "./sites.js"; //my sites data
 import { Button } from "@material-ui/core";
-import { Emoji } from "../util/Emoji";
+import { Emoji } from "util/Emoji";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
-import Picker from "../util/Picker";
-import { Cards } from "../util/Cards";
-import { spinAnimationV2 } from "../util/SpinAnimation";
+import Picker from "util/Picker";
+import { Cards } from "util/Cards";
+import { spinAnimationV2 } from "util/SpinAnimation";
 // import "./projects.scss";
-import { WarningMessage } from "../util/WarningMessage.tsx";
+import { WarningMessage } from "util/WarningMessage.tsx";
 export default function Projects() {
   //set the initial state = to sites.js file
   const [projects, updateProjects] = useState(sites);

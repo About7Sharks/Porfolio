@@ -6,17 +6,17 @@ import {
   Switch,
 } from "react-router-dom";
 import "./components/myscss.scss";
-import BlogPosts from "./components/journal/AllPosts";
-import BlogPost from "./components/journal/Post";
-import { Navbar } from "./components/navigation/Navbar";
-import { BeforeLoad } from "./components/util/BeforeLoad";
-import { ViewportProgress } from "./components/util/ViewportProgress";
-const Projects = lazy(() => import("./components/projects/projects"));
-const Drawer = lazy(() => import("./components/navigation/drawer"));
-const Footer = lazy(() => import("./components/navigation/Footer"));
-const Home = lazy(() => import("./components/home/Home"));
-const About = lazy(() => import("./components/about/about"));
-const BackBTN = lazy(() => import("./components/navigation/backbutton"));
+import BlogPosts from "components/journal/AllPosts";
+import BlogPost from "components/journal/Post";
+import { Navbar } from "components/navigation/Navbar";
+import { BeforeLoad } from "util/BeforeLoad";
+import { ViewportProgress } from "util/ViewportProgress";
+const Projects = lazy(() => import("components/projects/projects"));
+const Drawer = lazy(() => import("components/navigation/drawer"));
+const Footer = lazy(() => import("components/navigation/Footer"));
+const Home = lazy(() => import("components/home/Home"));
+const About = lazy(() => import("components/about/about"));
+const BackBTN = lazy(() => import("components/navigation/backbutton"));
 export default function App() {
   const [isMobile, setDeviceType] = useState<boolean>(false);
   function handleWindowSizeChange() {

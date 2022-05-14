@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JournalCard from "./JournalCard";
-import { getArticles } from "../util/getArticles";
+import { getArticles } from "util/getArticles";
 const FeaturedPosts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {

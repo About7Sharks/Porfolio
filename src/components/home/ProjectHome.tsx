@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from "react";
-import { useOnScreen } from "../util/useOnScreen";
+import { useOnScreen } from "util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import sites from "../projects/sites";
 import Button from "@material-ui/core/Button";
 import {good} from './data'
-import { Cards } from "../util/Cards";
-import { spinAnimationV2 } from "../util/SpinAnimation";
+import { Cards } from "util/Cards";
+import { spinAnimationV2 } from "util/SpinAnimation";
 interface Props { }
 
 const cleanSites = sites.filter((site) => good.includes(site.title));
