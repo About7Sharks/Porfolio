@@ -10,13 +10,7 @@ $yellow: #eef46e;
 $red: #f54768;
 $degreeShift: -15deg;
 
-@mixin textGradient {
-  background-image: linear-gradient(90deg, $green, $yellow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-color: transparent;
-}
+
 
 @mixin basicFlex {
   display: inline-flex;
@@ -41,14 +35,6 @@ $degreeShift: -15deg;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
-}
-
-@mixin perspectiveShift {
-  -ms-transform: rotateY($degreeShift);
-  -moz-transform: rotateY($degreeShift);
-  -o-transform: rotateY($degreeShift);
-  -webkit-transform: rotateY($degreeShift);
-  transform: rotateY($degreeShift);
 }
 
 .floatingBackground,
@@ -105,7 +91,6 @@ p {
       font-weight: 800;
       font-size: 2rem;
       letter-spacing: -0.1rem;
-      // @include glassmorphism;
       padding: 0.5rem;
       color: rgb(255, 255, 255);
       text-align: center;
@@ -446,6 +431,8 @@ span {
       }
     }
 
+
+
     .div2Overlay {
       opacity: 0;
       animation: fadeIn 1s ease-in 2.4s forwards;
@@ -474,12 +461,12 @@ span {
       opacity: 0;
       position: relative;
       overflow: hidden;
+      object-fit: cover;
+      max-width: 100%;
       background-repeat: no-repeat;
-      background-size: cover;
-      background-image: url("../assets/compressUnder1MB.webp");
+      background-size: contain;
       background-position-x: (-400px);
       background-position-y: -350px;
-      background-size: 300%;
       clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
       border-radius: 50px;
       border-bottom-left-radius: 0px;
@@ -621,23 +608,38 @@ span {
 @media only screen and (max-width: 1200px) {
   .homeLanding {
     @include basicFlex;
-    place-items: center;
-    display: inline-flex !important;
+    // place-items: center;
+    // display: inline-flex !important;
     margin-top: 0px !important;
+    min-height: 100vh;
 
     .div2 {
       clip-path: none !important;
-      min-height: 400px;
-      width: 300px;
-      border-radius: 25px !important;
-      background-position-x: -250px !important;
-      background-position-y: -150px !important;
-      // background-size: contain !important;
+      width: 100vw;
+      position: absolute !important;
+      top: 0px;
+      border-radius: 0px !important;
+      filter: opacity(0.5);
+    }
+
+    video {
+      height: 90vh;
+      aspect-ratio: 1/1;
     }
 
     .div1 {
       @include basicFlex;
       padding: 25px;
+
+      span {
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        display: inline-table;
+      }
+
+      p {
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+      }
     }
 
     .div2Overlay {
@@ -667,19 +669,6 @@ span {
 }
 
 @media only screen and (max-width: 740px) {
-  .homeLanding {
-    .div1 {
-      display: inline;
-    }
-  }
-
-  .twoBytwo {
-    display: inline-flex !important;
-    @include basicFlex;
-  }
-}
-
-@media only screen and (max-width: 570px) {
   .div1 {
     width: 100%;
   }
@@ -695,7 +684,14 @@ span {
   h1 {
     font-size: 2rem !important;
   }
+
+  .twoBytwo {
+    display: inline-flex !important;
+    @include basicFlex;
+  }
 }
+
+
 
 @media only screen and (max-width: 615px) {
   #footer {

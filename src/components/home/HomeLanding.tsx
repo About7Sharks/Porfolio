@@ -1,4 +1,6 @@
 import React from "react";
+import clip from '../../assets/clip.mp4'; 
+import Poster from '../../assets/compressUnder1MB.webp';  
 import Button from "@material-ui/core/Button";
 import { spinAnimationV2 } from "../util/SpinAnimation";
 interface Props { }
@@ -33,8 +35,11 @@ export const HomeLanding = (props: Props) => {
           </svg>
         </div>
       </div>
-      {/* background Image div */}
-      <div className="div2"></div>
+      {/* background div */}
+    <video className="div2" autoPlay loop muted poster={Poster}>
+            <source src={clip} type='video/mp4' />
+            <source src={clip} type="video/ogg" /> 
+    </video>
       <div className="div2Overlay">
         <svg width="400" height="110">
           <rect
