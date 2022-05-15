@@ -29,7 +29,6 @@ export default function App() {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
-
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>

@@ -10,11 +10,11 @@ export const HomeLanding = (props: Props) => {
   return (
     <div className="homeLanding">
       <div className="div1">
-        <h1 className="noFancy"> {spinAnimationV2("Zachary Carlin")}</h1>
-        <h1>{spinAnimationV2("Software Engineer")}</h1>
+        <h1 className="noFancy"> {spinAnimationV2(process.env.REACT_APP_NAME)}</h1>
+        <h1>{spinAnimationV2(process.env.REACT_APP_JOB_TITLE)}</h1>
         <p>
-          A software engineer based in Tampa, FL with passions in{" "}
-          <strong>web development</strong>, bodybuilding, and traveling.
+          A {`${process.env.REACT_APP_JOB_TITLE}`.toLowerCase()} based in {process.env.REACT_APP_lOCATION} with passions in{" "}
+          <strong>{process.env.REACT_APP_PASSION1}</strong>, {process.env.REACT_APP_PASSION2}, and {process.env.REACT_APP_PASSION3}.
           <br />
           <br />
           <Button

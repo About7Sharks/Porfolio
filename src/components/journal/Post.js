@@ -13,14 +13,8 @@ export default function BlogPostViewer(props) {
     //if direct link to post; fetch data
     if (state === undefined && postData === "") {
       const getPost = async () => {
-        let post = await (
-          await fetch(
-            "https://raw.githubusercontent.com/About7Sharks/Markdown/main/" +
-            Id +
-            ".md"
-          )
-        ).text();
-      return setPost(matter(post));
+        let post = await (await fetch(`${process.env.REACT_APP_MD_REPO+Id}.md`)).text();
+        return setPost(matter(post));
       }
       getPost()
       console.log("state undefined and no previous data");
