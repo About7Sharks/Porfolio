@@ -13,7 +13,7 @@ export const HomeLanding = (props: Props) => {
         <h1 className="noFancy"> {spinAnimationV2(process.env.REACT_APP_NAME)}</h1>
         <h1>{spinAnimationV2(process.env.REACT_APP_JOB_TITLE)}</h1>
         <p>
-          A {`${process.env.REACT_APP_JOB_TITLE}`.toLowerCase()} based in {process.env.REACT_APP_lOCATION} with passions in{" "}
+          A {`${process.env.REACT_APP_JOB_TITLE}`.toLowerCase()} based in {process.env.REACT_APP_LOCATION} with passions in{" "}
           <strong>{process.env.REACT_APP_PASSION1}</strong>, {process.env.REACT_APP_PASSION2}, and {process.env.REACT_APP_PASSION3}.
           <br />
           <br />
