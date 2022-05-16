@@ -4,4 +4,3 @@ declare module '*.mp4' {
   const src: string;
   export default src;
 }
-REACT_APP_NOT_SECRET_CODE=abcdef

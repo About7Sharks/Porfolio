@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import JournalCard from "./JournalCard";
+import JournalCard from "./Card";
 import { getArticles } from "util/getArticles";
 const FeaturedPosts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getArticles().then((data) => {
-      let dog = data.filter((article) => {
-        // console.log(article);
-        return article.tags?.includes("Featured");
-      });
-      setPosts(dog);
+      let _posts = data.filter((article) =>  article.tags?.includes("Featured"));
+      setPosts(_posts);
     });
     return () => {};
   }, []);

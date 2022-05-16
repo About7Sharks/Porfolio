@@ -1,4 +1,5 @@
 import React from "react";
+import {config} from 'Config'
 import clip from 'assets/clip.mp4'; 
 import Poster from 'assets/compressUnder1MB.webp';  
 import Button from "@material-ui/core/Button";
@@ -10,10 +11,10 @@ export const HomeLanding = (props: Props) => {
   return (
     <div className="homeLanding">
       <div className="div1">
-        <h1 className="noFancy"> {spinAnimationV2(process.env.REACT_APP_NAME)}</h1>
-        <h1>{spinAnimationV2(process.env.REACT_APP_JOB_TITLE)}</h1>
+        <h1 className="noFancy"> {spinAnimationV2(config.name)}</h1>
+        <h1>{spinAnimationV2(config.JobTitle)}</h1>
         <p>
-          A {`${process.env.REACT_APP_JOB_TITLE}`.toLowerCase()} based in {process.env.REACT_APP_LOCATION} with passions in{" "}
+          A {`${config.JobTitle}`.toLowerCase()} based in {process.env.REACT_APP_LOCATION} with passions in{" "}
           <strong>{process.env.REACT_APP_PASSION1}</strong>, {process.env.REACT_APP_PASSION2}, and {process.env.REACT_APP_PASSION3}.
           <br />
           <br />

@@ -54,7 +54,7 @@ export const curatedArticles = [
   },
 ];
 
-export const good = [
+export const featuredProjects = [
   "Accubrew",
   "Meerkat",
   "Sit Up Coach",
