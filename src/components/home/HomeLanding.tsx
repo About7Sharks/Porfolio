@@ -3,6 +3,7 @@ import clip from 'assets/clip.mp4';
 import Poster from 'assets/compressUnder1MB.webp';  
 import Button from "@material-ui/core/Button";
 import { spinAnimationV2 } from "util/SpinAnimation";
+import {DivOverlay} from './Overlay'
 interface Props { }
 
 export const HomeLanding = (props: Props) => {
@@ -40,30 +41,7 @@ export const HomeLanding = (props: Props) => {
             <source src={clip} type='video/mp4' />
             <source src={clip} type="video/ogg" /> 
     </video>
-      <div className="div2Overlay">
-        <svg width="400" height="110">
-          <rect
-            width="300"
-            height="100"
-            style={{
-              fill: "none",
-              strokeWidth: 10,
-              stroke: "#f54768",
-            }}
-          />
-        </svg>
-        <svg width="400" height="110">
-          <rect
-            width="300"
-            height="100"
-            style={{
-              fill: "none",
-              strokeWidth: 7,
-              stroke: "#8bd76b",
-            }}
-          />
-        </svg>
-      </div>
+    <DivOverlay />
     </div>
   );
 };
