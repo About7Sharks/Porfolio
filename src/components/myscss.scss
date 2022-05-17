@@ -10,8 +10,6 @@ $yellow: #eef46e;
 $red: #f54768;
 $degreeShift: -15deg;
 
-
-
 @mixin basicFlex {
   display: inline-flex;
   flex-direction: column;
@@ -119,8 +117,7 @@ body {
       min-width: 20px;
     }
 
-    font-family: Shrikhand,
-    sans-serif;
+    font-family: Shrikhand, sans-serif;
     font-size: 4rem;
     display: inline;
     margin-top: 10px;
@@ -431,8 +428,6 @@ span {
       }
     }
 
-
-
     .div2Overlay {
       opacity: 0;
       animation: fadeIn 1s ease-in 2.4s forwards;
@@ -463,10 +458,9 @@ span {
       overflow: hidden;
       object-fit: cover;
       max-width: 100%;
+      min-height: 650px;
       background-repeat: no-repeat;
       background-size: contain;
-      background-position-x: (-400px);
-      background-position-y: -350px;
       clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
       border-radius: 50px;
       border-bottom-left-radius: 0px;
@@ -638,7 +632,6 @@ span {
 
       p {
         text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-
       }
     }
 
@@ -653,7 +646,6 @@ span {
 }
 
 @media only screen and (max-width: 920px) {
-
   .homeProjects,
   .homePosts {
     @include basicFlex;
@@ -690,8 +682,6 @@ span {
     @include basicFlex;
   }
 }
-
-
 
 @media only screen and (max-width: 615px) {
   #footer {
