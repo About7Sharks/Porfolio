@@ -1,5 +1,7 @@
-import React from "react";
-import { Emoji } from "util/Emoji";
+import React, { useEffect,useState } from "react";
+import matter from "gray-matter";
+import {config} from 'Config'
+import ReactMarkdown from "react-markdown";
 import { spinAnimationV2 } from "util/SpinAnimation";
 const aboutStyles = {
   about: {
@@ -15,76 +17,23 @@ const aboutStyles = {
 };
 
 export default function About() {
+  const [about, setAbout] = useState("");
+  useEffect(() => {
+   const getAbout = async () => {
+    let data = await fetch(config.url()+'About.md')
+    let text = await data.text() 
+    let result = matter(text)
+    setAbout(result.content)
+  }
+  getAbout()
+  },[])
   return (
     <div className="about" style={aboutStyles.about}>
       <h1>{spinAnimationV2("About")}</h1>
-      <h2>This site</h2>
-      <p>
-        I made this as a way to improve my React and Typescript skills, also to
-        mess around with some new decentralized services. If you're viewing this
-        from https://zacarlin.eth.link or https://zacarlin.crypto you are seeing
-        this via the IPFS (InterPlanetary File System) and utilizing the
-        Ethereum Name Services or Unstoppable domains; making this site{" "}
-        <strong>Uncensorable.</strong>
-      </p>
-      <h2>Hobbies</h2>
-      <ul>
-        <li>
-          <p>
-            Bodybuilding <Emoji symbol="🏋️‍♂️" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Coding <Emoji symbol="💻" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Going to Florida beaches <Emoji symbol="🌊" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Traveling <Emoji symbol="🏞" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Learning Blockchain Technology <Emoji symbol="🏗️" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Listening to Podcasts and{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              style={aboutStyles.links}
-              href="https://open.spotify.com/playlist/37i9dQZF1EphhdCcTha7XI?si=cur9rcxGThiBeHUOPbFRhA"
-            >
-              music
-            </a>
-            <Emoji symbol="🎧" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Reading <Emoji symbol="📚" />
-          </p>
-        </li>
-        <li>
-          <p>
-            Penetration Testing <Emoji symbol="🧨" />
-          </p>
-        </li>
-        <li>
-          <p>
-            GF <Emoji symbol="👩🏻‍⚕️" />
-          </p>
-        </li>
-      </ul>
-
+      <ReactMarkdown
+        linkTarget="_blank"
+        children={about || "Nothing"}
+      />
       <span>
         <h2>Resume</h2>&nbsp;-&nbsp;
         <p>

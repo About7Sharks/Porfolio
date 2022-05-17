@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from "react";
-// import {config} from 'Config'
+import { useRef, useEffect } from "react";
 import { useOnScreen } from "util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation,LazyMotion, domAnimation } from "framer-motion";
 import sites from "../projects/sites";
 import Button from "@material-ui/core/Button";
-import {featuredProjects} from './data'
+import {featuredProjects} from 'Config'
 import { Cards } from "util/Cards";
 import { spinAnimationV2 } from "util/SpinAnimation";
 interface Props { }

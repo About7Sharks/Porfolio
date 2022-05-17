@@ -1,5 +1,4 @@
-import React from "react";
-import {config} from 'Config'
+import {config,hobbies} from 'Config'
 import clip from 'assets/clip.mp4'; 
 import Poster from 'assets/compressUnder1MB.webp';  
 import Button from "@material-ui/core/Button";
@@ -15,7 +14,7 @@ export const HomeLanding = (props: Props) => {
         <h1>{spinAnimationV2(config.JobTitle)}</h1>
         <p>
           A {`${config.JobTitle}`.toLowerCase()} based in {process.env.REACT_APP_LOCATION} with passions in{" "}
-          <strong>{process.env.REACT_APP_PASSION1}</strong>, {process.env.REACT_APP_PASSION2}, and {process.env.REACT_APP_PASSION3}.
+          <strong>{hobbies[0]}</strong>, {hobbies[1]}, and {hobbies[2]}.
           <br />
           <br />
           <Button
