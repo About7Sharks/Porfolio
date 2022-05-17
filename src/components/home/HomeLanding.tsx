@@ -13,7 +13,7 @@ export const HomeLanding = (props: Props) => {
         <h1 className="noFancy"> {spinAnimationV2(config.name)}</h1>
         <h1>{spinAnimationV2(config.JobTitle)}</h1>
         <p>
-          A {`${config.JobTitle}`.toLowerCase()} based in {process.env.REACT_APP_LOCATION} with passions in{" "}
+          A {`${config.JobTitle}`.toLowerCase()} based in {config.location} with passions in{" "}
           <strong>{hobbies[0]}</strong>, {hobbies[1]}, and {hobbies[2]}.
           <br />
           <br />
