@@ -15,18 +15,5 @@ npm run build # for production
 
 > 🏗️ Under development
 
-You can change the website for your own personal use by tweaking the `.env`
-file.
+You can change the website for your own personal use by tweaking the `Config.ts` file.
 
-### Journal
-
-This site is designed to fetch post from a github repo named `Markdown`
-containing markdown files.
-
-Replace `{githubUsername}` with your github username.
-
-````
-REACT_APP_MD_REPO="https://raw.githubusercontent.com/{githubusername}/Markdown/main/"
-
-REACT_APP_REPO="https://api.github.com/repos/{githubusername}/Markdown/git/trees/main?recursive=1"```
-````
