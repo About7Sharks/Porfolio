@@ -1,5 +1,3 @@
-import React from "react";
-import "../myscss.scss";
 import { HomeLanding } from "./HomeLanding";
 import { ProjectHome } from "./ProjectHome";
 import { JournalHome } from "./JournalHome";

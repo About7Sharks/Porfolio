@@ -1,0 +1,103 @@
+// media quires
+@media only screen and (max-width: 1200px) {
+  .homeLanding {
+    @include basicFlex;
+    margin-top: 0px !important;
+    min-height: 100vh;
+
+    .div2 {
+      clip-path: none !important;
+      width: 100vw !important;
+      position: absolute !important;
+      top: 0px;
+      border-radius: 0px !important;
+      filter: opacity(0.5);
+    }
+
+    video {
+      height: 90vh;
+      aspect-ratio: 1/1;
+    }
+
+    .div1 {
+      @include basicFlex;
+      padding: 25px;
+
+      span {
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        display: inline-table;
+      }
+
+      p {
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+      }
+    }
+
+    .div2Overlay {
+      display: none;
+    }
+
+    #scroll {
+      visibility: hidden !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 920px) {
+
+  .homeProjects,
+  .homePosts {
+    @include basicFlex;
+    display: inline-flex !important;
+    z-index: 20;
+
+    h1 {
+      transform: none !important;
+      position: absolute;
+      top: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .div1 {
+    width: 100%;
+  }
+
+  span {
+    min-width: 10px !important;
+  }
+
+  p {
+    margin: 40px 5px !important;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .twoBytwo {
+    display: inline-flex !important;
+    @include basicFlex;
+  }
+}
+
+
+
+@media only screen and (max-width: 615px) {
+  #footer {
+    flex-direction: column;
+
+    p {
+      margin-right: 15px;
+      text-align: right;
+    }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  h1 {
+    font-size: 30px !important;
+  }
+}

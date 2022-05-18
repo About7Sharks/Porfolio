@@ -12,7 +12,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import BookIcon from "@material-ui/icons/Book";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import "../myscss.scss";
+import "styles/index.scss";
 const useStyles = makeStyles({
   list: {
     width: 250,

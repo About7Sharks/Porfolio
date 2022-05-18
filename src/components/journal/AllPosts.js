@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../myscss.scss";
+import "styles/index.scss";
 import Picker from "util/Picker";
 import { Cards } from "util/Cards";
 import { getArticles } from "util/getArticles";

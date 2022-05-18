@@ -3,19 +3,7 @@ import matter from "gray-matter";
 import {config} from 'Config'
 import ReactMarkdown from "react-markdown";
 import { spinAnimationV2 } from "util/SpinAnimation";
-const aboutStyles = {
-  about: {
-    paddingTop: "10px",
-    color: "white",
-    maxWidth: "620px",
-    margin: "0 auto",
-    display: "inline-flex",
-  },
-  links: {
-    color: "white",
-  },
-};
-
+import "styles/about.scss";
 export default function About() {
   const [about, setAbout] = useState("");
   useEffect(() => {
@@ -28,7 +16,7 @@ export default function About() {
   getAbout()
   },[])
   return (
-    <div className="about" style={aboutStyles.about}>
+    <div className="about">
       <h1>{spinAnimationV2("About")}</h1>
       <ReactMarkdown
         linkTarget="_blank"
@@ -40,7 +28,6 @@ export default function About() {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            style={aboutStyles.links}
             href="./resume.html"
           >
             View

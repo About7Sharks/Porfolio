@@ -4,9 +4,8 @@ import Poster from 'assets/compressUnder1MB.webp';
 import Button from "@material-ui/core/Button";
 import { spinAnimationV2 } from "util/SpinAnimation";
 import {DivOverlay} from './Overlay'
-interface Props { }
 
-export const HomeLanding = (props: Props) => {
+export const HomeLanding = () => {
 
   return (
     <div className="homeLanding">

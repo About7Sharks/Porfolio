@@ -1,0 +1,56 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+//about page
+.about {
+  min-height: 95vh;
+  padding: 20px 20px 2px 20px;
+  @include basicFlex;
+  width: 100%;
+  padding-top: 10px;
+  color: white;
+  max-width: 620px;
+  margin: 0 auto;
+  display: inline-flex;
+
+  h1 {
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    color: $yellow;
+
+    &::after {
+      border-bottom-color: $green;
+    }
+
+    &::before {
+      border-bottom-color: $red;
+    }
+  }
+
+  p {
+    margin: 0px;
+  }
+
+  a {
+    color: white;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: baseline;
+
+    svg {
+      margin-right: 3px;
+    }
+  }
+
+  strong {
+    font-family: Summer Hearts, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1.35rem;
+    margin-top: -10px;
+    color: $green;
+    transform: rotate(20deg);
+    line-height: 0px;
+  }
+}
