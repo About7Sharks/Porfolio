@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
-import "styles/posts.scss";
-import {config} from 'Config'
+import {getArticle} from 'Config'
 import { useLocation } from "react-router-dom";
+import "styles/posts.scss";
 
 export default function BlogPostViewer(props) {
   const { state } = useLocation(); // if defined is, contains post data
@@ -15,7 +15,8 @@ export default function BlogPostViewer(props) {
     //if direct link to post; fetch data
     if (state === undefined && postData === "") {
       const getPost = async () => {
-        let post = await (await fetch(`${config.url()+Id}.md`)).text();
+        let post = await (await getArticle({article:Id})).text();
+        console.log(post)
         return setPost(matter(post));
       }
       getPost()

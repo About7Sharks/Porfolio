@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import matter from "gray-matter";
-import {config} from 'Config'
+import {getArticle} from 'Config'
 import ReactMarkdown from "react-markdown";
 import { spinAnimationV2 } from "util/SpinAnimation";
 import "styles/about.scss";
@@ -8,7 +8,7 @@ export default function About() {
   const [about, setAbout] = useState("");
   useEffect(() => {
    const getAbout = async () => {
-    let data = await fetch(config.url()+'About.md')
+    let data = await getArticle({article:'About'})
     let text = await data.text() 
     let result = matter(text)
     setAbout(result.content)

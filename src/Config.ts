@@ -3,17 +3,28 @@ export const config = {
   name: "Zachary Carlin",
   JobTitle: "Software Engineer",
   location: "Tampa, FL",
-  mdRepoName: "Markdown",
+  repo: "Markdown",
   branch: "main",
-  // CMS functions
-  url: () => {
-    let { user, branch, mdRepoName } = config;
-    return `https://raw.githubusercontent.com/${user}/${mdRepoName}/${branch}/`;
-  },
-  _url: () => {
-    let { user, branch, mdRepoName } = config;
-    return `https://api.github.com/repos/${user}/${mdRepoName}/git/trees/${branch}?recursive=1`;
-  },
+};
+// helper function to get the repo url
+export const repoUrl = (
+  user: string = config.user,
+  repo: string = config.repo,
+  branch: string = config.branch
+): string => {
+  return `https://api.github.com/repos/${user}/${repo}/git/trees/${branch}?recursive=1`;
+};
+// helper function to get an article url
+export const getArticle = async ({
+  user = config.user,
+  repo = config.repo,
+  branch = config.branch,
+  article = "README",
+}) => {
+  // if includes .md, remove it
+  if (article.includes(".md")) article = article.replace(".md", "");
+  let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/${branch}/${article}.md`);
+  return data
 };
 export const featuredProjects = [
   "Accubrew",
@@ -68,9 +79,8 @@ export const curatedArticles = [
     text: "You've probably heard of bitcoin and cryptocurrencies by now. You may still be asking yourself why care?",
     tags: ["Bitcoin", "Crypto", "Tech", "Featured"],
   },
-];// an array of title articles to skip
-export const skip= ["README","About"];
-
+]; // an array of title articles to skip
+export const skip = ["README", "About"];
 
 export const linksArray = [
   "mailto:zacarlin@gmail.com",
