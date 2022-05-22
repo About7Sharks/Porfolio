@@ -1,9 +1,6 @@
 import ReactDOM from "react-dom";
 import App from "./App";
-import ReactGa from 'react-ga'
 import * as serviceWorker from "./serviceWorkerRegisterer";
-ReactGa.initialize('UA-122885689-1')
-ReactGa.pageview(window.location.pathname);
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
