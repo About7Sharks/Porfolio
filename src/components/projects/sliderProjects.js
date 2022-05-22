@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import "./projects.scss";
 import Button from "@material-ui/core/Button";
+import "styles/projects.scss";
 
 function useTilt(active) {
   const ref = useRef(null);

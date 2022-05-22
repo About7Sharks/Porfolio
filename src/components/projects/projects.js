@@ -7,7 +7,6 @@ import ProjectSlider from "./sliderProjects";
 import Picker from "util/Picker";
 import { Cards } from "util/Cards";
 import { spinAnimationV2 } from "util/SpinAnimation";
-// import "./projects.scss";
 import { WarningMessage } from "util/WarningMessage.tsx";
 export default function Projects() {
   //set the initial state = to sites.js file
