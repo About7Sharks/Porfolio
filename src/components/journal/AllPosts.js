@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { getArticles, spinAnimationV2, Picker, Cards } from "util/index";
 import "styles/index.scss";
-import Picker from "util/Picker";
-import { Cards } from "util/Cards";
-import { getArticles } from "util/getArticles";
-import { spinAnimationV2 } from "util/SpinAnimation";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
@@ -28,10 +25,12 @@ export default function Blog() {
 
   //filter the articles and tweak some property names before passing to component
   const cleanData = (data) => {
-    return data.filter((article) => {
+    return data
+      .filter((article) => {
         if (filter === "All") return article;
         return article.tags?.includes(filter);
-      }).map((site) => {
+      })
+      .map((site) => {
         return {
           ...site,
           img: site.image,

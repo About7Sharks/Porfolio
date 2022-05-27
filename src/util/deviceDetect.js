@@ -1,6 +1,6 @@
 
 export const checkForDevice = () => {
-    let windowWidth = window.innerWidth;
+    const windowWidth = window.innerWidth;
     if (windowWidth < 767.98) {
       return true;
     } else {

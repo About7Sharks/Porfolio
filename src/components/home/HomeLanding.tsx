@@ -2,7 +2,7 @@ import {config,hobbies} from 'Config'
 import clip from 'assets/clip.mp4'; 
 import Poster from 'assets/compressUnder1MB.webp';  
 import Button from "@material-ui/core/Button";
-import { spinAnimationV2 } from "util/SpinAnimation";
+import { spinAnimationV2 } from "util/index";
 import {DivOverlay} from './Overlay'
 
 export const HomeLanding = () => {

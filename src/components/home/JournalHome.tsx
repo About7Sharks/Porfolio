@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
-import { useOnScreen } from "util/useOnScreen";
 import { Link } from "react-router-dom";
 import { motion, useAnimation, LazyMotion, domAnimation } from "framer-motion";
-import { Cards } from "util/Cards";
-import { spinAnimationV2 } from "util/SpinAnimation";
+import { spinAnimationV2, Cards, useOnScreen } from "util/index";
 import Button from "@material-ui/core/Button";
 import {curatedArticles} from "Config"
 

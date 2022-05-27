@@ -1,7 +1,7 @@
 import matter from "gray-matter";
 import { skip, repoUrl, getArticle } from "Config";
 
-const getArticles = async () => {
+export const getArticles = async () => {
   let articlesContent = [];
   try {
     // get all the files from the repo
@@ -35,4 +35,3 @@ const getArticles = async () => {
 const setStorage = (data: any) => {
   localStorage.setItem("data", JSON.stringify(data));
 };
-export { getArticles };

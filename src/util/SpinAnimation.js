@@ -1,7 +1,7 @@
 import anime from "animejs/lib/anime.es.js";
 import { motion } from "framer-motion";
 // receives event emmited from element and spins the el 360 degrees before removing the animation
-const spinAnimation = (e) => {
+export const spinAnimation = (e) => {
   anime({
     targets: e.target,
     rotateY: 360,
@@ -20,7 +20,7 @@ const spinAnimation = (e) => {
   });
 };
 
-const spinAnimationV2 = (words) => {
+export const spinAnimationV2 = (words) => {
   return [...words].map((letter, i) => {
     if (letter === " ") return <span  key={i+'space'}> </span>;
     return (
@@ -36,4 +36,3 @@ const spinAnimationV2 = (words) => {
     );
   });
 };
-export { spinAnimation, spinAnimationV2 };
