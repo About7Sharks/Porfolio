@@ -1,44 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import InfoIcon from "@material-ui/icons/Info";
-import HomeIcon from "@material-ui/icons/Home";
-import BookIcon from "@material-ui/icons/Book";
-import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import { useStyles,
+         InfoIcon, HomeIcon, BookIcon, MenuIcon,ListItemIcon, AccountTreeIcon,
+         SwipeableDrawer, Button, List, ListItem, 
+       } from "./drawerHelpers";
 import "styles/index.scss";
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-    backgroundColor: "black",
-  },
-  fullList: {
-    width: "auto",
-    backgroundColor: "black",
-    height: "100vh",
-  },
-  drawer: {
-    minHeight: "100vh",
-  },
-  drawers: {
-    display: "inline-flex",
-    flexDirection: "column",
-  },
-  menuStyles: {
-    zIndex: "100",
-    // border: "1px solid white",
-    position: "fixed",
-    top: "10px",
-    right: "10px",
-    color: "white",
-  },
-});
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
@@ -53,7 +20,6 @@ export default function TemporaryDrawer() {
     ) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
@@ -97,6 +63,7 @@ export default function TemporaryDrawer() {
   return (
     <div>
       {["left"].map((anchor) => (
+        // Fragments let you group a list of children without adding extra nodes to the DOM.
         <React.Fragment key={anchor}>
           <Button
             className={classes.menuStyles}
