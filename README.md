@@ -6,14 +6,18 @@ This project was bootstrapped with
 In the project directory, you can run:
 
 ```
-npm i # install deps
-npm run start # for dev
-npm run build # for production
+pnpm i # install deps
+pnpm run start # for dev
+pnpm run build # for production (locally)
+
+## Cloud base build
+## Some providers don't utilize pnpm so install packaged then run build
+pnpm build || ( npm install pnpm && pnpm build )
 ```
 
 ## Customize
 
 > 🏗️ Under development
 
-You can change the website for your own personal use by tweaking the `Config.ts` file.
-
+You can change the website for your own personal use by tweaking the `Config.ts`
+file.
