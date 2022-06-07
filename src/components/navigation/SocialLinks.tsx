@@ -5,10 +5,10 @@ import EmailIcon from "@material-ui/icons/Email";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { motion } from "framer-motion";
-import {linksArray as _l} from "Config"
+import {config} from "Config"
 
 let l =[<EmailIcon />,<GitHubIcon />,<TwitterIcon />,<LinkedInIcon />,<InstagramIcon />]
-let LinksArray = _l.map((link:any,i:number)=>{
+let LinksArray = config.linksArray.map((link:any,i:number)=>{
   return[
     link,
     l[i]

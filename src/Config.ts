@@ -4,6 +4,14 @@ export const config = {
   JobTitle: "Software Engineer",
   location: "Tampa, FL",
   repo: "Markdown",
+  linksArray : [
+    "mailto:zacarlin@gmail.com",
+    "https://github.com/about7sharks",
+    "https://twitter.com/ZacharyCarlin",
+    "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123",
+    "https://Instagram.com/zachary_carlin",
+  ];
+  
 };
 
 
@@ -62,11 +70,3 @@ export const curatedArticles = [
   },
 ]; // an array of title articles to skip
 export const skip = ["README", "About"];
-
-export const linksArray = [
-  "mailto:zacarlin@gmail.com",
-  "https://github.com/about7sharks",
-  "https://twitter.com/ZacharyCarlin",
-  "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123",
-  "https://Instagram.com/zachary_carlin",
-];
