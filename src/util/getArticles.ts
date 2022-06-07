@@ -1,6 +1,27 @@
 import matter from "gray-matter";
-import { skip, repoUrl, getArticle } from "Config";
+import { skip,  config } from "Config";
 
+
+// helper function to get the repo url
+export const repoUrl = (
+  user: string = config.user,
+  repo: string = config.repo,
+): string => {
+  return `https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`;
+};
+
+// helper function to get an article
+export const getArticle = async ({
+  user = config.user,
+  repo = config.repo,
+  article = "README",
+}) => {
+  // if includes .md, remove it
+  if (article.includes(".md")) article = article.replace(".md", "");
+  let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
+  return data
+};
+// function to get all articles
 export const getArticles = async () => {
   let articlesContent = [];
   try {
