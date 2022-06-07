@@ -10,8 +10,7 @@ export const config = {
     "https://twitter.com/ZacharyCarlin",
     "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123",
     "https://Instagram.com/zachary_carlin",
-  ];
-  
+  ]
 };
 
 
