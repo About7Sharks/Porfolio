@@ -4,7 +4,7 @@ import { skip,  config } from "Config";
 export type Info = { user: string, repo: string, article?: string }
 
 // helper function to get the repo url
-export const repoData = async({
+export const _repoData = async({
   user,
   repo,
 }: Info) => {
@@ -24,7 +24,7 @@ export const getArticle = async ({
   let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
   return data
 };
-export const cleanRepoData =async(data: any) => {
+export const _cleanRepoData =async(data: any) => {
   let articlesContent = [];
   let files = data.tree;
   let articles = files.filter((file: any) => file.path.includes(".md"));
@@ -47,8 +47,8 @@ export const cleanRepoData =async(data: any) => {
 export const getArticles = async ({user=config.user,repo=config.repo}) => {
   try {
     // get all the files from the repo
-    let data:any = await repoData({user, repo});
-    let cleanData= await cleanRepoData(data);
+    let data:any = await _repoData({user, repo});
+    let cleanData= await _cleanRepoData(data);
     // store in local storage
     setStorage(cleanData);
     return cleanData;
