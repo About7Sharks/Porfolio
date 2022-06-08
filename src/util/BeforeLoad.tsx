@@ -1,8 +1,7 @@
 import React from "react";
 import "./beforeLoad.scss";
-interface Props {}
 
-export const BeforeLoad = (props: Props) => {
+export const BeforeLoad = () => {
   return (
     <div id="load">
       <div>G</div>

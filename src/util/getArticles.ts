@@ -1,13 +1,16 @@
 import matter from "gray-matter";
 import { skip,  config } from "Config";
 
+export type Info = { user: string, repo: string, article?: string }
 
 // helper function to get the repo url
-export const repoUrl = (
-  user: string = config.user,
-  repo: string = config.repo,
-): string => {
-  return `https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`;
+export const repoData = async({
+  user,
+  repo,
+}: Info) => {
+  let data =await fetch(`https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`)
+  data = await data.json();
+  return data;
 };
 
 // helper function to get an article
@@ -21,31 +24,34 @@ export const getArticle = async ({
   let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
   return data
 };
-// function to get all articles
-export const getArticles = async () => {
+export const cleanRepoData =async(data: any) => {
   let articlesContent = [];
+  let files = data.tree;
+  let articles = files.filter((file: any) => file.path.includes(".md"));
+  let articlePromises = articles.map(async (article: any) => {
+    // get the content of the markdown file in text
+    let d = await (await getArticle({article:article.path})).text();
+    // parse the content of the markdown file
+    let _article = matter(d);
+    // if the is blank skip
+    if (Object.keys(_article.data).length === 0) return;
+    // If in the skip array, skip it
+    if (skip.includes(_article.data.title)) return;
+    return { ..._article, ..._article.data };
+  })
+  articlesContent = (await Promise.all( articlePromises)).filter(Boolean);
+  return articlesContent;
+};
+
+// function to get all articles
+export const getArticles = async ({user=config.user,repo=config.repo}) => {
   try {
     // get all the files from the repo
-    let data = await (await fetch(repoUrl())).json();
-    // filter out the files that arent markdown
-    data.tree = data.tree.filter((path: any) => path.path.includes("md"));
-    articlesContent = (
-      await Promise.all(
-        data.tree.map(async (article: any) => {
-          // get the content of the markdown file in text
-          let d = await (await getArticle({article:article.path})).text();
-          // parse the content of the markdown file
-          let _article = matter(d);
-          // if the is blank skip
-          if (Object.keys(_article.data).length === 0) return;
-          // If in the skip array, skip it
-          if (skip.includes(_article.data.title)) return;
-          return { ..._article, ..._article.data };
-        })
-      )
-    ).filter(Boolean);
-    setStorage(articlesContent);
-    return articlesContent;
+    let data:any = await repoData({user, repo});
+    let cleanData= await cleanRepoData(data);
+    // store in local storage
+    setStorage(cleanData);
+    return cleanData;
   } catch (e) {
     console.log(e, "Error in getArticles");
   }

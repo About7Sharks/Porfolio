@@ -20,7 +20,6 @@ export default function BackButton() {
   const classes = useStyles();
   let history = useHistory();
   let { pathname } = history.location;
-  console.log(pathname);
   if (pathname.includes("ome") || pathname === "/") return <div></div>;
   return (
     <ArrowBackIcon
