@@ -2,17 +2,21 @@
   padding-top: 10px;
   min-height: 100vh;
   padding: 10px;
+
   h1 {
     margin: 0 auto;
     margin-top: 55px;
     color: #8bd76b;
+
     &::after {
       border-bottom-color: #f54768;
     }
+
     &::before {
       border-bottom-color: #eef46e;
     }
   }
+
   .MuiAutocomplete-root {
     text-align: center;
   }
@@ -28,15 +32,18 @@
   text-shadow: 2px 2px #444;
   cursor: pointer;
   transition: 0.3s;
+
   .media {
     height: 200px;
     width: 100%;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
   }
+
   h3 {
     text-decoration: underline;
   }
+
   .meta {
     padding: 10px;
   }
@@ -51,8 +58,10 @@
     border-radius: 25px;
     z-index: -1;
   }
+
   &:hover {
     transform: scale(1.03);
+
     .coverEffect {
       display: inline;
       z-index: 2;
@@ -72,6 +81,16 @@
   margin: 0 auto;
 }
 
+.postContent {
+  margin-top: 55px;
+  display: 'inline-flex';
+  flex-direction: 'column';
+  color: white;
+  h4{
+    margin: 2px;
+  }
+}
+
 .article {
   padding-top: 50px;
   max-width: 600px;
@@ -84,23 +103,28 @@
   h1 {
     align-self: center;
   }
+
   table {
     border: 1px solid #1c6ea4;
     width: 100%;
     text-align: left;
     border-collapse: collapse;
   }
+
   table td,
   table th {
     border: 1px solid #aaaaaa;
     padding: 5px 2px;
   }
+
   table tbody td {
     font-size: 13px;
   }
+
   table tr:nth-child(even) {
     background: #d0e4f523;
   }
+
   table thead {
     background: #08192411;
     border-bottom: 2px solid #444444;
@@ -113,17 +137,21 @@
     margin: 0 auto;
     width: 95%;
     word-wrap: a;
+
     p {
       padding: 5px;
       word-wrap: anywhere;
     }
   }
+
   a {
     color: white;
   }
+
   img {
     max-width: 100%;
   }
+
   h2 {
     text-decoration: underline;
   }

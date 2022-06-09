@@ -20,7 +20,8 @@ export default function Blog() {
       });
     } else {
       console.log("cache");
-      setArticles(JSON.parse(localStorage.getItem("data")));
+      let data = JSON.parse(localStorage.getItem("data"));
+      setArticles(data);
     }
   }, []);
 
