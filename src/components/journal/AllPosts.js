@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getArticles, spinAnimationV2, Picker, Cards } from "util/index";
 import "styles/index.scss";
+import {config} from '../../Config'
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
@@ -14,7 +15,7 @@ export default function Blog() {
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("data")) === null) {
       console.log("fetching posts");
-      getArticles().then((data) => {
+      getArticles({user:config.user,repo:config.repo}).then((data) => {
         setArticles(data);
       });
     } else {
