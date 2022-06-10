@@ -8,9 +8,9 @@ import { motion } from "framer-motion";
 import {config} from "Config"
 
 let l =[<EmailIcon />,<GitHubIcon />,<TwitterIcon />,<LinkedInIcon />,<InstagramIcon />]
-let LinksArray = config.linksArray.map((link:any,i:number)=>{
+let LinksArray = config.links.map((link:any,i:number)=>{
   return[
-    link,
+    link.url,
     l[i]
   ]
 })

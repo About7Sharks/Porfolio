@@ -4,13 +4,13 @@ export const config = {
   JobTitle: "Software Engineer",
   location: "Tampa, FL",
   repo: "Markdown",
-  linksArray : [
-    "mailto:zacarlin@gmail.com",
-    "https://github.com/about7sharks",
-    "https://twitter.com/ZacharyCarlin",
-    "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123",
-    "https://Instagram.com/zachary_carlin",
-  ]
+  links: [
+    { title: "Email", url: "mailto:zacarlin@gmail.com", },
+    { title: "GitHub", url: "https://github.com/about7sharks" },
+    { title: "Twitter", url: "https://twitter.com/ZacharyCarlin", },
+    { title: "LinkedIn", url: "https://www.linkedin.com/mwlite/in/zachary-carlin-85402a123", },
+    { title: 'Instagram', url: "https://Instagram.com/zachary_carlin" }
+  ],
 };
 
 

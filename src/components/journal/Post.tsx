@@ -27,7 +27,7 @@ export default function BlogPostViewer(props: any) {
     //if direct link to post; fetch data
     if (state === undefined && postData.content === "") {
       const getPost = async () => {
-        let post = await (await getArticle({article:Id})).text();
+        let post = await getArticle({article:Id});
         return setPost(matter(post) as any);
       }
       getPost()
@@ -40,11 +40,11 @@ export default function BlogPostViewer(props: any) {
     window.scrollTo(0, 0);
   }, [state, postData, Id]);
   return (
-   <div className="postContent"> 
+   <div className="postContent article"> 
     <h4>Author: {postData.data.author}</h4>
     <h4>Date: {postData.data.date}</h4>
    <ReactMarkdown
-     className={`${props.match.params.id} article`}
+     className={`${props.match.params.id}`}
      linkTarget="_blank"
      children={postData.content || "Nothing"}
    /></div>

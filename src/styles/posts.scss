@@ -92,14 +92,17 @@
 }
 
 .article {
-  padding-top: 50px;
+  padding: 50px 5px 0px 5px;
   max-width: 600px;
   color: white;
-  width: 96.168%;
+  width: 95vw;
   min-height: 100vh;
   display: inline-flex;
   flex-direction: column;
-
+  // allow code snippets to scroll
+  pre{
+    overflow: scroll;
+  }
   h1 {
     align-self: center;
   }

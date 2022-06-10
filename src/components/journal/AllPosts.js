@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getArticles, spinAnimationV2, Picker, Cards } from "util/index";
 import "styles/index.scss";
-import {config} from '../../Config'
+import { config } from '../../Config'
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
@@ -13,16 +13,11 @@ export default function Blog() {
 
   //handles fetching data from github or cache
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("data")) === null) {
-      console.log("fetching posts");
-      getArticles({user:config.user,repo:config.repo}).then((data) => {
-        setArticles(data);
-      });
-    } else {
-      console.log("cache");
-      let data = JSON.parse(localStorage.getItem("data"));
+    let data = JSON.parse(localStorage.getItem("data"));
+    getArticles({ user: config.user, repo: config.repo }).then((_data) => {
+      data.length >= _data.length ? setArticles(data) : setArticles(_data);
       setArticles(data);
-    }
+    });
   }, []);
 
   //filter the articles and tweak some property names before passing to component

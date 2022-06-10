@@ -22,7 +22,10 @@ export const getArticle = async ({
   // if includes .md, remove it
   if (article.includes(".md")) article = article.replace(".md", "");
   let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
-  return data
+  return {
+    content:await data.text(),
+    data
+  }
 };
 export const _cleanRepoData =async(data: any) => {
   let articlesContent = [];
@@ -30,9 +33,9 @@ export const _cleanRepoData =async(data: any) => {
   let articles = files.filter((file: any) => file.path.includes(".md"));
   let articlePromises = articles.map(async (article: any) => {
     // get the content of the markdown file in text
-    let d = await (await getArticle({article:article.path})).text();
+    let {content} = await getArticle({article:article.path});
     // parse the content of the markdown file
-    let _article = matter(d);
+    let _article = matter(content);
     // if the is blank skip
     if (Object.keys(_article.data).length === 0) return;
     // If in the skip array, skip it
@@ -56,6 +59,9 @@ export const getArticles = async ({user=config.user,repo=config.repo}) => {
     console.log(e, "Error in getArticles");
   }
 };
+
+
+
 // stores in local storage
 // this is a nice way to store data in local storage
 // reducing the amount of calls to the server
