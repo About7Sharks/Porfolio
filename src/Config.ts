@@ -13,7 +13,6 @@ export const config = {
   ],
 };
 
-
 export const featuredProjects = [
   "Accubrew",
   "Meerkat",
@@ -67,5 +66,7 @@ export const curatedArticles = [
     text: "You've probably heard of bitcoin and cryptocurrencies by now. You may still be asking yourself why care?",
     tags: ["Bitcoin", "Crypto", "Tech", "Featured"],
   },
-]; // an array of title articles to skip
+]; 
+
+// an array of title articles to skip
 export const skip = ["README", "About"];

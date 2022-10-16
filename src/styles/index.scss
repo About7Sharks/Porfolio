@@ -15,7 +15,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(120deg, rgb(23, 32, 32), rgb(25, 26, 49));
-
   background-size: cover;
   color: rgb(13, 12, 14);
 }
@@ -84,10 +83,7 @@ h1 {
 
 //removes triangles and gradient from H1 tags
 .noFancy {
-  // background-image: none;
-  // background-color: white;
   margin-bottom: -15px;
-
   &::after,
   &::before {
     display: none;
@@ -98,6 +94,7 @@ p {
   letter-spacing: -0.05rem;
   font-size: 1.3rem;
   font-family: "Roboto Mono", sans-serif;
+  line-height: 125%;
 }
 
 
@@ -314,10 +311,6 @@ span {
         color: rgb(199, 195, 195);
       }
 
-      button {
-        margin-left: 10px;
-      }
-
       p,
       button {
         opacity: 0;
@@ -419,7 +412,6 @@ span {
 
     a,
     img {
-      border-radius: 5px;
       cursor: pointer;
       width: 100%;
       height: 100%;
