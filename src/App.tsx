@@ -6,45 +6,13 @@ import {
   Switch,
 } from "react-router-dom";
 import "styles/index.scss";
+import {paths} from './Config'
 import { Navbar } from "components/navigation/Navbar";
 import { BeforeLoad, ViewportProgress, checkForDevice } from "util/index";
 const Drawer = lazy(() => import("components/navigation/drawer"));
 const Footer = lazy(() => import("components/navigation/Footer"));
 const BackBTN = lazy(() => import("components/navigation/backbutton"));
 const Background = lazy(() => import("components/ui/background"));
-
-let paths = [
-  {
-    path:["/","/home"],
-    component: lazy(() => import("components/home/Home")), 
-    exact: true,
-  },
-  {
-    path:"/journal",
-    component:lazy(() => import("components/journal/AllPosts")),
-    exact: true,
-  },
-  {
-    path:"/journal/:id",
-    component:lazy(() => import("components/journal/Post")),
-    exact: false,
-  },
-  {
-    path: '/about',
-    component: lazy(() => import("components/about")),
-    exact: true,
-  },
-  {
-    path: '/projects',
-    component: lazy(() => import("components/projects/projects")),
-    exact: true,
-  },
-  // {
-  //   path: "*",
-  //   render: ()=> <Redirect to="/"/>,
-  //   exact: false
-  // }
-]
 
 export default function App() {
   const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());

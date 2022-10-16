@@ -166,6 +166,10 @@ span {
 }
 
 //journal and projects pages layout
+.journal{
+  padding-top: 50px;
+  min-height: 100vh;
+}
 .journal,
 .projects {
   overflow: hidden;
@@ -422,11 +426,6 @@ span {
     }
   }
 }
-
-
-
-
-
 
 .direction-reveal__img {
   height: 100% !important;
