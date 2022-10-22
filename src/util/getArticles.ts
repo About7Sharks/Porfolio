@@ -1,4 +1,4 @@
-import matter, { GrayMatterFile } from "gray-matter";
+import matter from "gray-matter";
 import { skip, config } from "Config";
 
 export type Info = { user: string; repo: string; article?: string };
