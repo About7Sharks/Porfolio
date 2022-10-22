@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import matter, { GrayMatterFile } from "gray-matter";
 import { skip, config } from "Config";
 
 export type Info = { user: string; repo: string; article?: string };
@@ -14,6 +14,7 @@ export const _repoData = async ({ user, repo }: Info) => {
 
 // helper function to get an article
 export const getArticle = async ({
+  format = false,
   user = config.user,
   repo = config.repo,
   article = "README",
@@ -23,8 +24,13 @@ export const getArticle = async ({
   let data = await fetch(
     `https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`
   );
+  // union type for string and GrayMatterFile<string>
+  let content: any = await data.text();
+  if (format){
+   ({content} = matter(content))
+  }
   return {
-    content: await data.text(),
+    content,
     data,
   };
 };

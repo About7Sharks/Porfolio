@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import { spinAnimationV2, getArticle } from "util/index";
 import "styles/about.scss";
@@ -7,7 +6,7 @@ export default function About() {
   const [about, setAbout] = useState("");
   useEffect(() => {
     const getAbout = async () => {
-      let { content } = matter(await getArticle({ article: "About" }));
+      let { content } = await getArticle({ article: "About", format: true });
       setAbout(content);
     };
     getAbout();
