@@ -28,17 +28,12 @@ export const getArticle = async ({
 }) => {
   // if includes .md, remove it
   if (article.includes(".md")) article = article.replace(".md", "");
-  let data = await fetch(
-    `https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`
-  );
-  // union type for string and GrayMatterFile<string>
+  let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
   let content: any = await data.text();
-  if (format) {
-    ({ content } = matter(content));
-  }
+  if (format) ({ content } = matter(content));
   return {
     content,
-    data,
+    data
   };
 };
 
