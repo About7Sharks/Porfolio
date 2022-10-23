@@ -1,18 +1,25 @@
 import matter from "gray-matter";
 import { skip, config } from "Config";
 
-export type Info = { user: string; repo: string; article?: string };
-
-// helper function to get the repo url
-export const _repoData = async ({ user, repo }: Info) => {
-  let data = await fetch(
-    `https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`
-  );
-  data = await data.json();
-  return data;
+export type Info = {
+  user: string;
+  repo: string;
+  article?: string;
 };
 
+// helper function to get the repo url
+export const _repoData = async ({ user, repo }: Info) =>
+  (
+    await fetch(
+      `https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`
+    )
+  ).json();
+
 // helper function to get an article
+// format:boolean - will return the article in markdown format if true
+// article:string - the name of the file/article to fetch
+// repo:string - the repo to fetch from
+// user:string - the user's repo you're fetching
 export const getArticle = async ({
   format = false,
   user = config.user,
@@ -26,31 +33,32 @@ export const getArticle = async ({
   );
   // union type for string and GrayMatterFile<string>
   let content: any = await data.text();
-  if (format){
-   ({content} = matter(content))
+  if (format) {
+    ({ content } = matter(content));
   }
   return {
     content,
     data,
   };
 };
+
+// Get the content of the markdown file in text
+// Parse the content of the markdown file
+// If blank skip; if in the skip array, skip it
 export const _cleanRepoData = async (data: any) => {
-  let articlesContent = [];
   let files = data.tree;
   let articles = files.filter((file: any) => file.path.includes(".md"));
-  let articlePromises = articles.map(async (article: any) => {
-    // get the content of the markdown file in text
-    let { content } = await getArticle({ article: article.path });
-    // parse the content of the markdown file
-    let _article = matter(content);
-    // if the is blank skip
-    if (Object.keys(_article.data).length === 0) return;
-    // If in the skip array, skip it
-    if (skip.includes(_article.data.title)) return;
-    return { ..._article, ..._article.data };
-  });
-  articlesContent = (await Promise.all(articlePromises)).filter(Boolean);
-  return articlesContent;
+  return (
+    await Promise.all(
+      articles.map(async (article: any) => {
+        let { content } = await getArticle({ article: article.path });
+        let _article = matter(content);
+        if (Object.keys(_article.data).length === 0) return;
+        if (skip.includes(_article.data.title)) return;
+        return { ..._article, ..._article.data };
+      })
+    )
+  ).filter(Boolean);
 };
 
 // function to get all articles
@@ -60,8 +68,7 @@ export const getArticles = async ({
 }) => {
   try {
     // get all the files from the repo
-    let data: any = await _repoData({ user, repo });
-    let cleanData = await _cleanRepoData(data);
+    let cleanData = await _cleanRepoData(await _repoData({ user, repo }));
     // store in local storage
     setStorage(cleanData);
     return cleanData;
@@ -73,6 +80,5 @@ export const getArticles = async ({
 // stores in local storage
 // this is a nice way to store data in local storage
 // reducing the amount of calls to the server
-const setStorage = (data: any) => {
+const setStorage = (data: any) =>
   localStorage.setItem("data", JSON.stringify(data));
-};
