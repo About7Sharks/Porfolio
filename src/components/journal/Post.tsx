@@ -5,7 +5,6 @@ import {getArticle} from 'util/index'
 import { useLocation } from "react-router-dom";
 import "styles/posts.scss";
 
-
 type LocationState = {
   state:any
 }
@@ -43,10 +42,11 @@ export default function BlogPostViewer(props: any) {
    <div className="postContent article"> 
     <h4>Author: {postData.data.author}</h4>
     <h4>Date: {postData.data.date}</h4>
-   <ReactMarkdown
+    <ReactMarkdown
      className={`${props.match.params.id}`}
      linkTarget="_blank"
      children={postData.content || "Nothing"}
-   /></div>
+    />
+   </div>
   );
 }
