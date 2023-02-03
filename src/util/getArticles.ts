@@ -64,6 +64,7 @@ export const getArticles = async ({
   try {
     // get all the files from the repo
     let cleanData = await _cleanRepoData(await _repoData({ user, repo }));
+    console.log(cleanData, "cleanData");
     // store in local storage
     setStorage(cleanData);
     return cleanData;
