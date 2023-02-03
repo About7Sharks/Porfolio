@@ -42,6 +42,7 @@ export default function BlogPostViewer(props: any) {
    <div className="postContent article"> 
     <h4>Author: {postData.data.author}</h4>
     <h4>Date: {postData.data.date}</h4>
+    <h1>{postData.data.title}</h1>
     <ReactMarkdown
      className={`${props.match.params.id}`}
      linkTarget="_blank"
