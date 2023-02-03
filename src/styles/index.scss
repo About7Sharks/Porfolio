@@ -284,7 +284,8 @@ span {
     font-size: calc(10px + 1.5vmin);
     color: #ffffff;
     display: grid;
-    grid-template-columns: 50% 50%;
+    place-content: center;
+    grid-template-columns: 40% 40%;
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -351,7 +352,7 @@ span {
       svg {
         position: relative;
         top: -15px;
-        right: -200px;
+        right: -150px;
         z-index: 1;
 
         &:nth-child(2n) {
@@ -371,7 +372,7 @@ span {
       overflow: hidden;
       object-fit: cover;
       max-width: 100%;
-      min-height: 700px;
+      min-height: 680px;
       background-repeat: no-repeat;
       background-size: contain;
       background-position-x: (-400px);
