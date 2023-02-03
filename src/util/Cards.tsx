@@ -14,9 +14,11 @@ interface Props {
 interface Site {
   url: string;
   img: string;
+  image?: string;
   title: string;
   text: string;
   tags: Array<string>;
+  summary?: string;
 }
 
 export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
@@ -45,6 +47,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
           {tag}
         </Button>
       ));
+      console.log({site})
       return (
         <div
           onClick={() => handleRouting(site)}
@@ -54,7 +57,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
         >
           <div className="direction-reveal__card">
             <img
-              src={site.img}
+              src={site.img || site.image}
               alt='Cat for dis'
               className="direction-reveal__img default-img"
             />
@@ -65,7 +68,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
                 // style={{ padding: "5px 25px 40px 0px" }}
                 className="direction-reveal__text"
               >
-                {site.text}
+                {site.summary}
               </p>
               <div className="actions">Tags: &nbsp; {tagButtons}</div>
             </div>

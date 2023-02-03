@@ -40,7 +40,7 @@ export default function App() {
         <Background/>
         <div id="mainApp">
           <Switch>
-            {paths.map(({exact=true,path,component},i)=>{
+            {paths.map(({exact=true, path, component } ,i )=>{
               return <Route key={i} exact={exact} path={path} component={component} />
             })}    
             <Route path="*" render={() => <Redirect to="/" />} /> 

@@ -13,11 +13,8 @@ export default function Blog() {
 
   //handles fetching data from github or cache
   useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("data"));
-    getArticles({ user: config.user, repo: config.repo }).then((_data) => {
-      data.length >= _data.length ? setArticles(data) : setArticles(_data);
-      setArticles(data);
-    });
+    getArticles({ user: config.user, repo: config.repo })
+    .then(data =>  setArticles(data));
   }, []);
 
   //filter the articles and tweak some property names before passing to component

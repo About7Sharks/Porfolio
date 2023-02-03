@@ -1,4 +1,4 @@
-import {config,hobbies} from 'Config'
+import { config } from 'Config'
 import clip from 'assets/clip.mp4'; 
 import Poster from 'assets/Background.webp';  
 import Button from "@material-ui/core/Button";
@@ -14,16 +14,14 @@ export const HomeLanding = () => {
         <h1>{spinAnimationV2(config.JobTitle)}</h1>
         <p>
           A {`${config.JobTitle}`.toLowerCase()} based in {config.location} with passions in{" "}
-          <strong>{hobbies[0]}</strong>, {hobbies[1]}, and {hobbies[2]}.
+          <strong>Web Development, Bodybuilding, and Traveling.</strong>
           <br />
           <br />
           <Button
             key='ContactBTN'
             color="primary"
             variant="contained"
-            onClick={() => {
-              window.scrollTo(0, document.body.scrollHeight);
-            }}
+            onClick={() => window.scrollTo(0, document.body.scrollHeight)}
           >
             Lets Connect
           </Button>

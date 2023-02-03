@@ -8,12 +8,7 @@ export type Info = {
 };
 
 // helper function to get the repo url
-export const _repoData = async ({ user, repo }: Info) =>
-  (
-    await fetch(
-      `https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`
-    )
-  ).json();
+export const _repoData = async ({ user, repo }: Info) =>(await fetch(`https://api.github.com/repos/${user}/${repo}/git/trees/main?recursive=1`)).json();
 
 // helper function to get an article
 // format:boolean - will return the article in markdown format if true
@@ -28,7 +23,7 @@ export const getArticle = async ({
 }) => {
   // if includes .md, remove it
   if (article.includes(".md")) article = article.replace(".md", "");
-  let data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
+  const data = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${article}.md`);
   let content: any = await data.text();
   if (format) ({ content } = matter(content));
   return {
@@ -39,17 +34,16 @@ export const getArticle = async ({
 
 // Get the content of the markdown file in text
 // Parse the content of the markdown file
-// If blank skip; if in the skip array, skip it
+// If blank skip or in skip; skip it
 export const _cleanRepoData = async (data: any) => {
-  let files = data.tree;
-  let articles = files.filter((file: any) => file.path.includes(".md"));
+  const files = data.tree;
+  const articles = files.filter((file: any) => file.path.includes(".md"));
   return (
     await Promise.all(
       articles.map(async (article: any) => {
-        let { content } = await getArticle({ article: article.path });
-        let _article = matter(content);
-        if (Object.keys(_article.data).length === 0) return;
-        if (skip.includes(_article.data.title)) return;
+        const { content } = await getArticle({ article: article.path });
+        const _article = matter(content);
+        if (Object.keys(_article.data).length === 0 || skip.includes(_article.data.title)) return;
         return { ..._article, ..._article.data };
       })
     )
@@ -64,17 +58,18 @@ export const getArticles = async ({
   try {
     // get all the files from the repo
     let cleanData = await _cleanRepoData(await _repoData({ user, repo }));
-    console.log(cleanData, "cleanData");
     // store in local storage
-    setStorage(cleanData);
+    // setStorage(cleanData);
     return cleanData;
   } catch (e) {
     console.log(e, "Error in getArticles");
+    alert("Error in getArticles, try refreshing the page")
+    return [];
   }
 };
 
 // stores in local storage
 // this is a nice way to store data in local storage
 // reducing the amount of calls to the server
-const setStorage = (data: any) =>
-  localStorage.setItem("data", JSON.stringify(data));
+// const setStorage = (data: any) =>
+//   localStorage.setItem("data", JSON.stringify(data));
