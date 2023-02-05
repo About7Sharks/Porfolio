@@ -5,14 +5,14 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import "styles/index.scss";
+import "./styles/index.scss";
 import {paths} from './Config'
-import { Navbar } from "components/navigation/Navbar";
-import { BeforeLoad, ViewportProgress, checkForDevice } from "util/index";
-const Drawer = lazy(() => import("components/navigation/drawer"));
-const Footer = lazy(() => import("components/navigation/Footer"));
-const BackBTN = lazy(() => import("components/navigation/backbutton"));
-const Background = lazy(() => import("components/ui/background"));
+import { Navbar } from "./components/navigation/Navbar";
+import { BeforeLoad, ViewportProgress, checkForDevice } from "./util/index";
+const Drawer = lazy(() => import("./components/navigation/drawer"));
+const Footer = lazy(() => import("./components/navigation/Footer"));
+const BackBTN = lazy(() => import("./components/navigation/backbutton"));
+const Background = lazy(() => import("./components/ui/background"));
 
 // Buffer is not defined error fix
 // https://stackoverflow.com/questions/68707553/uncaught-referenceerror-buffer-is-not-defined

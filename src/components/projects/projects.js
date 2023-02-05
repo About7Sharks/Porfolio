@@ -3,7 +3,7 @@ import sites from "./sites.js"; //my sites data
 import { Button } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
-import { spinAnimationV2,WarningMessage,Picker,Cards,Emoji } from "util/index";
+import { spinAnimationV2,WarningMessage,Picker,Cards,Emoji } from "../../util/index";
 export default function Projects() {
   //set the initial state = to sites.js file
   const [projects, updateProjects] = useState(sites);

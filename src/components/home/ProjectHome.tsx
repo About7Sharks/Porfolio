@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useAnimation, LazyMotion, domAnimation } from "framer-motion";
 import sites from "../projects/sites";
 import Button from "@material-ui/core/Button";
-import { featuredProjects } from "Config";
-import { spinAnimationV2, Cards, useOnScreen } from "util/index";
+import { featuredProjects } from "../../Config";
+import { spinAnimationV2, Cards, useOnScreen } from "../../util/index";
 interface Props {}
 
 const cleanSites = sites.filter((site) =>

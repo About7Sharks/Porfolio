@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
-import {getArticle} from 'util/index'
+import { getArticle } from '../../util/index'
 import { useLocation } from "react-router-dom";
-import "styles/posts.scss";
+import "../../styles/posts.scss";
 
 type LocationState = {
   state:any

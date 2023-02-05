@@ -5,7 +5,7 @@ import { useStyles,
          InfoIcon, HomeIcon, BookIcon, MenuIcon,ListItemIcon, AccountTreeIcon,
          SwipeableDrawer, Button, List, ListItem, 
        } from "./drawerHelpers";
-import "styles/index.scss";
+import "../../styles/index.scss";
 
 export default function TemporaryDrawer() {
   const classes = useStyles();

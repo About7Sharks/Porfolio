@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getArticles, spinAnimationV2, Picker, Cards } from "util/index";
-import "styles/index.scss";
+import { getArticles, spinAnimationV2, Picker, Cards } from "../../util/index.ts";
+import "../../styles/index.scss";
 import { config } from '../../Config'
 export default function Blog() {
   const [articles, setArticles] = useState([]);

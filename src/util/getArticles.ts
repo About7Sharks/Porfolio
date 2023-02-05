@@ -1,5 +1,5 @@
 import matter from "gray-matter";
-import { skip, config } from "Config";
+import { skip, config } from "../Config";
 
 export type Info = {
   user: string;

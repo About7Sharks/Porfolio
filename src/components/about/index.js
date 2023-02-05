@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { spinAnimationV2, getArticle } from "util/index";
-import "styles/about.scss";
+import { spinAnimationV2, getArticle } from "../../util/index.ts";
+import "../../styles/about.scss";
 export default function About() {
   const [about, setAbout] = useState("");
   useEffect(() => {
