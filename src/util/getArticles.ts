@@ -1,5 +1,9 @@
 import matter from "gray-matter";
 import { skip, config } from "../Config";
+// Buffer is not defined error fix
+// https://stackoverflow.com/questions/68707553/uncaught-referenceerror-buffer-is-not-defined
+// Do to webpack and having created the app with old version of create-react-app
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 export type Info = {
   user: string;
