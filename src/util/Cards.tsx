@@ -68,7 +68,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
                 // style={{ padding: "5px 25px 40px 0px" }}
                 className="direction-reveal__text"
               >
-                {site.summary}
+                {site.summary || site.text}
               </p>
               <div className="actions">Tags: &nbsp; {tagButtons}</div>
             </div>

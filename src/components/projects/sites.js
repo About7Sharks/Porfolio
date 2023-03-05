@@ -1,5 +1,12 @@
 let sites = [
   {
+    url:'https://public.sockastle.com',
+    img: 'https://public.sockastle.com:433/api/files/4u7atfzk7jmzdxg/jrx7dnn88a0ueg5/paint_modern_art_like_a_5_year_old_LM9TNHd7ff.png',
+    title: `AI Art Gallery`,
+    text: `AI generated art gallery`,
+    tags: [`AI`, `React`, `Javascript`],
+  },
+  {
     url: `https://accubrew.io`,
     img:
       `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5edd8a5f4d7c220008625fff/screenshot.png`,
