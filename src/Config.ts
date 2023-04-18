@@ -17,9 +17,10 @@ export const config = {
 
 export const featuredProjects = [
   "Accubrew",
+  "AI Art Gallery",
   "Meerkat",
   "Sit Up Coach",
-  "Carlin Fitness",
+  // "Carlin Fitness",
   "Conways Game of Life using WebAssembly and Javascript",
   "Pose Bot",
 ];

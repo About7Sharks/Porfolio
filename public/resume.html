@@ -1,231 +1,266 @@
 <html>
+  <head>
+    <title>Resume</title>
+    <style type="text/css">
+      * {
+        font-family: "Times New Roman", Times, serif;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
 
-<head>
-  <title>Resume</title>
-  <style type="text/css">
-    * {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 0px;
-      padding: 0px;
-      box-sizing: border-box;
-    }
+      .resume {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      }
 
-    .resume {
-      display: grid;
-      grid-template-columns: 30% 1fr;
-      grid-template-rows: 1fr;
-      grid-column-gap: 0px;
-      grid-row-gap: 0px;
-    }
+      .div1 {
+        grid-area: 1 / 1 / 2 / 2;
+        background-color: rgb(36, 37, 37);
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+      }
 
-    .div1 {
-      grid-area: 1 / 1 / 2 / 2;
-      background-color: rgb(36, 37, 37);
-      color: white;
-      min-height: 100vh;
-      padding: 20px;
-    }
+      .div1 > span {
+        display: inline-flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 35px;
+      }
 
-    .div1>span {
-      display: inline-flex;
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-      margin-bottom: 35px;
-    }
+      a {
+        color: black;
+        /* text-decoration: none; */
+      }
+      .links  > li > a {
+        color: white;
+      }
 
-    a {
-      color: white;
-      /* text-decoration: none; */
-    }
+      .div1 > ul {
+        list-style-type: none;
+      }
 
-    .div1>ul {
-      list-style-type: none;
-    }
+      ul {
+        margin-bottom: 20px;
+      }
 
-    ul {
-      margin-bottom: 20px;
-    }
+      li {
+        margin: 2px 0px;
+      }
 
-    li {
-      margin: 2px 0px;
-    }
+      img {
+        width: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+      }
 
-    img {
-      width: 200px;
-      border-radius: 50%;
-      margin: 0 auto;
-    }
+      .div2 {
+        grid-area: 1 / 2 / 2 / 3;
+        padding: 50px;
+      }
 
-    .div2 {
-      grid-area: 1 / 2 / 2 / 3;
-      padding: 50px;
-    }
+      .div2 > ul > li {
+        margin-left: 20px;
+      }
 
-    .div2>ul>li {
-      margin-left: 20px;
-    }
+      .div2 > ul > span {
+        color: rgba(0, 0, 0, 0.75);
+        font-style: italic;
+      }
 
-    .div2>ul>span {
-      color: rgba(0, 0, 0, 0.75);
-      font-style: italic;
-    }
+      .div2 > ul {
+        padding: 5px 0px 0px 0px;
+      }
 
-    .div2>ul {
-      padding: 5px 0px 0px 0px;
-    }
+      ul > h4 {
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
 
-    ul>h4 {
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
+      .ref {
+        margin: 0px;
+        list-style: none;
+      }
+    </style>
+  </head>
 
-    .ref {
-      margin: 0px;
-      list-style: none;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="resume">
-    <div class="div1">
-      <span>
-        <img src="./assets/navajoBridge.JPG" alt="">
-        <h1>Zachary Carlin</h1>
-        <h4>Software Engineer</h4>
-      </span>
-      <ul>
-        <h3>Details</h3>
-        <li>Tampa, FL</li>
-        <li>(727) 505-9511</li>
-      </ul>
-
-      <ul>
-        <h3> Skills</h3>
-        <li>HTML/CSS/JavaScript</li>
-        <li>React.js/Vue.js/Svelte.js</li>
-        <li> SCSS/LESS (CSS-Preprocessors)</li>
-        <li>Node.js & Deno</li>
-        <li> Typescript</li>
-        <li>Docker</li>
-        <li> NoSQL</li>
-        <li>Git</li>
-        <li> Python</li>
-        <li>Performance Optimization</li>
-        <li> Troubleshooting and Solutions Deployment</li>
-        <li>Software Design and Development</li>
-        <li> Coding and Scripting</li>
-        <li>VPS (AWS, Google Cloud, Digital Ocean)</li>
-      </ul>
-      <ul>
-        <h3>Hobbies</h3>
-        <li>Bodybuilding
-        </li>
-        <li>Traveling
-        </li>
-        <li>Coding</li>
-      </ul>
-      <ul>
-        <h3> Links
-        </h3>
-        <li> <a href="https://www.linkedin.com/in/zachary-carlin-85402a123/">Linkedin</a>
-        </li>
-        <li> <a href="https://github.com/about7sharks">Github</a>
-        </li>
-        <li> <a href="https://instagram.com/zachary_carlin">Instagram</a>
-        </li>
-        <li><a href="https://twitter.com/ZacharyCarlin">Twitter</a></li>
-        <li> <a href="https://zacarlin.com">Personal Site</a>
-        </li>
-      </ul>
-    </div>
-    <div class="div2">
-      <h2>Profile</h2><br>
-      <p> Innovative Programmer and Internet Entrepreneur striving to make the world a more unified and connected place.
-        A
-        creative thinker, adept in software development, working complex data structures and API's.
-      </p>
-      <br>
-      <h2>Employment History</h2><br>
-      <ul>
-        <h4>Software Engineer at Dogwood Logic, (Remote)</h4>
-        <span>February 2021 – May 2022</span>
-        <!-- Description of work -->
-        <li>Implemented DID and Verifiable Credentials for ledger based applications.</li>
-        <li>Created user interfaces for handling encrypted applications.</li>
-        <li>Utilized test driven development, simulating real user experiences pragmatically.</li>
-      </ul>
-      <ul>
-        <h4>Software Engineer at Gulf Photonics, Tampa FL</h4>
-        <span> July 2018 – August 2020 </span>
-        <li> Lead software developer of an IOT embedded sensor and user dashboard.</li>
-        <li> Developed and enhances programs to increase accuracy and lower costs. 
-        </li>
-        <li>
-          Handled debugging and troubleshooting with a high success rate. 
-        </li>
-        <li> Managed NoSQL Databases (Mongo and Firebase) </li>
-        <li> Ensured accessibility of programs across all platform (Mobile/Desktop and Unix/Windows).
-        </li>
-        <li> Created user interface and API for interacting with sensor.
-        </li>
-        <li> Ensured compliance with all regulations, policies, and laws.
-        </li>
-      </ul>
-      <ul>
-        <h4>Web Developer at Bridge, Clearwater FL</h4>
-        <span>April 2018 – June 2018</span>
-        <li> Functioned collaboratively with various partners on the development of 5G routers.
-        </li>
-        <li> Developed a Vue.js application for the companies marketing campaign "Connected Revolution".
-        </li>
-        <li> Worked to support the company mission and adhered to company protocol at all times.
-        </li>
-      </ul>
-
-      <ul>
-        <h4> Operations Department at LA Fitness, Clearwater, FL
-        </h4>
-        <span> January 2017 – April 2018
+  <body>
+    <div class="resume">
+      <div class="div1">
+        <span>
+          <img src="./assets/navajoBridge.JPG" alt="" />
+          <h1>Zachary Carlin</h1>
+          <h4>Software Engineer</h4>
         </span>
-        <li> Consistency exceeded sales and revenue targets set by company management.
-        </li>
-        <li> Managed failed credit card payments.
-        </li>
-        <li> Served as a friendly, hardworking, and punctual employee.
-        </li>
-        <li> Consistently communicated in a lucid and effective manner.
-        </li>
-        <li> Consistently worked with client satisfaction in mind.
-        </li>
-        <li> Promoted a positive public image for the company and worked to control the dissemination of information.
-        </li>
-        <li> Ensured the availability of adequate resources to achieve goals.
-        </li>
-      </ul>
+        <ul>
+          <h3>Details</h3>
+          <li>Tampa, FL</li>
+          <li>(727) 505-9511</li>
+        </ul>
 
-      <h2>Education</h2>
-      <ul>
-        <h4>St. Petersburg College, Clearwater Associates of Arts</h4>
-        <span>January 2017 – December 2018</span>
-      </ul>
-      <h2>References</h2>
-      <ul class="ref">
-        <h4>Paul Thomas from Concept 11</h4>
-        <li>paul@concept11.com | (727) 543-8208</li>
-      </ul>
+        <ul>
+          <h3>Skills</h3>
+          <li>HTML/CSS/JavaScript</li>
+          <li>React.js/Vue.js/Svelte.js</li>
+          <li>SCSS/LESS (CSS-Preprocessors)</li>
+          <li>Node.js & Deno</li>
+          <li>Typescript</li>
+          <li>Docker</li>
+          <li>NoSQL</li>
+          <li>SQL</li>
+          <li>Git</li>
+          <li>Python</li>
+          <li>Performance Optimization</li>
+          <li>Troubleshooting and Solutions Deployment</li>
+          <li>Software Design and Development</li>
+          <li>Coding and Scripting</li>
+          <li>VPS (AWS, Google Cloud, Digital Ocean)</li>
+        </ul>
+        <ul>
+          <h3>Hobbies</h3>
+          <li>Bodybuilding</li>
+          <li>Traveling</li>
+          <li>Coding</li>
+        </ul>
+        <ul class="links">
+          <h3>Links</h3>
+          <li>
+            <a href="https://www.linkedin.com/in/zachary-carlin-85402a123/"
+              >Linkedin</a
+            >
+          </li>
+          <li><a href="https://github.com/about7sharks">Github</a></li>
+          <li><a href="https://instagram.com/zachary_carlin">Instagram</a></li>
+          <li><a href="https://twitter.com/ZacharyCarlin">Twitter</a></li>
+          <li><a href="https://zacarlin.com">Personal Site</a></li>
+        </ul>
+      </div>
+      <div class="div2">
+        <h2>Profile</h2>
+        <br />
+        <p>
+          Innovative Programmer and Internet Entrepreneur striving to make the
+          world a more unified and connected place. A creative thinker, adept in
+          software development, working complex data structures, API's, and
+          databases.
+        </p>
+        <br />
+        <h2>Employment History</h2>
+        <br />
+        <ul>
+          <h4>Senior Software Engineer at Sonobi, (Remote)</h4>
+          <span>July 2022- April 2023</span>
+          <li>Routinley worked with React Class based components, and implemented modern hooks utilizing Async/Await</li>
+          <li>Bug fixes in old jquery code and modernization to React when needed</li>
+          <li>Interacted with php and python scripts and engineers to implement frontened desgins.</li>
+          <li>
+            Managed API and Databases for Ad tech services including Graphql
+            and SQL (Postgres)
+          </li>
+          <li>
+            Contributed to Open Source
+            <a href="https://github.com/prebid/Prebid.js/">Prebid.js</a>
+            repository, improving sales funnel
+          </li>
+        </ul>
+        <ul>
+          <h4>Software Engineer at Dogwood Logic, (Remote)</h4>
+          <span>February 2021 – May 2022</span>
+          <!-- Description of work -->
+          <li>
+            Implemented DID and Verifiable Credentials for ledger based
+            applications.
+          </li>
+          <li>Created user interfaces for handling encrypted applications.</li>
+          <li>
+            Utilized test driven development, simulating real user experiences
+            pragmatically.
+          </li>
+        </ul>
+        <ul>
+          <h4>Software Engineer at Gulf Photonics, Tampa FL</h4>
+          <span> July 2018 – August 2020 </span>
+          <li>
+            Lead software developer of an IOT embedded sensor and user
+            dashboard.
+          </li>
+          <li>
+            Developed and enhances programs to increase accuracy and lower
+            costs. 
+          </li>
+          <li>
+            Handled debugging and troubleshooting with a high success rate. 
+          </li>
+          <li>Managed NoSQL Databases (Mongo and Firebase)</li>
+          <li>
+            Ensured accessibility of programs across all platform
+            (Mobile/Desktop and Unix/Windows).
+          </li>
+          <li>Created user interface and API for interacting with sensor.</li>
+          <li>Ensured compliance with all regulations, policies, and laws.</li>
+        </ul>
+        <ul>
+          <h4>Web Developer at Bridge, Clearwater FL</h4>
+          <span>April 2018 – June 2018</span>
+          <li>
+            Functioned collaboratively with various partners on the development
+            of 5G routers.
+          </li>
+          <li>
+            Developed a Vue.js application for the companies marketing campaign
+            "Connected Revolution".
+          </li>
+          <li>
+            Worked to support the company mission and adhered to company
+            protocol at all times.
+          </li>
+        </ul>
 
-      <ul class="ref">
-        <h4>Cayman Jeffskers from Concept 11</h4>
-        <li>jeffskers@concept11.com | (727) 510-5152</li>
-      </ul>
-      <ul class="ref">
-        <h4>Craig Vogley from Gulf Photonics</h4>
-        <li>cvogeley@gulffiberoptics.com | (727) 421-9726</li>
-      </ul>
+        <ul>
+          <h4>Operations Department at LA Fitness, Clearwater, FL</h4>
+          <span> January 2017 – April 2018 </span>
+          <li>
+            Consistency exceeded sales and revenue targets set by company
+            management.
+          </li>
+          <li>Managed failed credit card payments.</li>
+          <li>Served as a friendly, hardworking, and punctual employee.</li>
+          <li>Consistently communicated in a lucid and effective manner.</li>
+          <li>Consistently worked with client satisfaction in mind.</li>
+          <li>
+            Promoted a positive public image for the company and worked to
+            control the dissemination of information.
+          </li>
+          <li>
+            Ensured the availability of adequate resources to achieve goals.
+          </li>
+        </ul>
+
+        <h2>Education</h2>
+        <ul>
+          <h4>St. Petersburg College, Clearwater Associates of Arts</h4>
+          <span>January 2017 – December 2018</span>
+        </ul>
+        <h2>References</h2>
+        <ul class="ref">
+          <h4>Michael Connolly from Sonobi</h4>
+          <li>MConnolly@sonobi.com | (407) 271-1538</li>
+        </ul>
+
+        <ul class="ref">
+          <h4>Cayman Jeffskers from Concept 11</h4>
+          <li>jeffskers@concept11.com | (727) 510-5152</li>
+        </ul>
+        <ul class="ref">
+          <h4>Craig Vogley from Gulf Photonics</h4>
+          <li>cvogeley@gulffiberoptics.com | (727) 421-9726</li>
+        </ul>
+      </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

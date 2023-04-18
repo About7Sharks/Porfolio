@@ -62,8 +62,6 @@ export const getArticles = async ({
   try {
     // get all the files from the repo
     let cleanData = await _cleanRepoData(await _repoData({ user, repo }));
-    // store in local storage
-    // setStorage(cleanData);
     return cleanData;
   } catch (e) {
     console.log(e, "Error in getArticles");
@@ -71,9 +69,3 @@ export const getArticles = async ({
     return [];
   }
 };
-
-// stores in local storage
-// this is a nice way to store data in local storage
-// reducing the amount of calls to the server
-// const setStorage = (data: any) =>
-//   localStorage.setItem("data", JSON.stringify(data));
