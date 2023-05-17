@@ -1,5 +1,5 @@
 This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+[Create React App](https://github.com/facebook/create-react-app). I've maitained it to be as simple as possible to use. Do note create-react-app is no longer best practice. This is a simple portfolio website that I use for my own personal use. I've made it open source so that others can use it as well.
 
 ## Available Scripts
 ```

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
-import { getArticle } from "../../util/index";
+import { getArticle } from "socks-librarian";
+import { config } from "../../Config";
 import { useLocation } from "react-router-dom";
 import "../../styles/posts.scss";
 
@@ -26,7 +27,11 @@ export default function BlogPostViewer(props: any) {
     //if direct link to post; fetch data
     if (state === undefined && postData.content === "") {
       const getPost = async () => {
-        const post = await getArticle({ article: Id });
+        const post = await getArticle({
+          article: Id,
+          user: config.user,
+          repo: config.repo,
+        });
         return setPost(matter(post) as any);
       };
       getPost();

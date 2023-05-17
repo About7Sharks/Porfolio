@@ -1,10 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { HashRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import "./styles/index.scss";
 import { paths } from "./Config";
 import { Navbar } from "./components/navigation/Navbar";

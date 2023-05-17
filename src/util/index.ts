@@ -2,7 +2,7 @@
 export { WarningMessage } from './WarningMessage';
 export { spinAnimation, spinAnimationV2 } from './SpinAnimation.js';
 export { default as Picker } from './Picker'
-export { getArticles, getArticle } from './getArticles';
+export { getArticles, getArticle } from 'socks-librarian';
 export { Cards } from "./Cards";
 export { BeforeLoad } from './BeforeLoad';
 export { ViewportProgress } from "./ViewportProgress";
