@@ -4,6 +4,8 @@ import { motion, useAnimation, LazyMotion, domAnimation } from "framer-motion";
 import { spinAnimationV2, Cards, useOnScreen } from "../../util/index";
 import Button from "@material-ui/core/Button";
 import { getArticles } from "socks-librarian";
+import { config } from '../../Config'
+
 
 export const JournalHome = () => {
   const controls = useAnimation();
@@ -11,7 +13,7 @@ export const JournalHome = () => {
   const onScreen = useOnScreen(journalRef, "50px");
   const [articles, setArticles]: any[] = useState([]);
   useEffect(() => {
-    getArticles({}).then((_articles = []) => {
+    getArticles({ user: config.user, repo: config.repo }).then((_articles = []) => {
       // pick 8 random articles
       _articles = _articles.sort(() => Math.random() - 0.5).slice(0, 8);
       setArticles(_articles);

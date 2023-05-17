@@ -6,7 +6,7 @@ export default function About() {
   const [about, setAbout] = useState("");
   useEffect(() => {
     const getAbout = async () => {
-      let { content } = await getArticle({ article: "About", format: true });
+      const { content } = await getArticle({ article: "About", format: true });
       setAbout(content);
     };
     getAbout();
