@@ -22,14 +22,13 @@ export const spinAnimation = (e) => {
 
 export const spinAnimationV2 = (words) => {
   return [...words].map((letter, i) => {
-    if (letter === " ") return <span  key={i+'space'}> </span>;
+    if (letter === " ") return <span key={i + "space"}> </span>;
     return (
       <motion.span
         key={`${i}+${letter}`}
         onHoverStart={(e) => {
           spinAnimation(e);
         }}
-      // whileHover={{ scale: 1.1 }}
       >
         {letter}
       </motion.span>

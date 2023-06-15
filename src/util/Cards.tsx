@@ -23,9 +23,7 @@ interface Site {
 
 export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
   const history = useHistory();
-  useEffect(() => {
-    DirectionReveal();
-  });
+  useEffect(() => {DirectionReveal()});
   const handleRouting = (site: Site) => {
     if (routeExternal) {
       window.open(site.url);
@@ -33,21 +31,20 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
       history.push("/journal/" + site.title.replace(/ /g, ""), site);
     }
   };
-  let Cards = () => {
-    if (data.length < 1) return <div></div>
-    let list = data.map((site, i) => {
-      if (site.title === undefined) return <div key='undefined'></div>
-      let tagButtons = site.tags.map((tag, i) => (
+  const Cards = () => {
+    if (data.length < 1) return <div></div>;
+    const list = data.map((site, i) => {
+      if (site.title === undefined) return <div key="undefined"></div>;
+      const tagButtons = site.tags.map((tag, i) => (
         <Button
           style={{ border: "1px solid white", color: "white" }}
           variant="outlined"
-          key={i+'btn'}
+          key={i + "btn"}
           size="small"
         >
           {tag}
         </Button>
       ));
-      console.log({site})
       return (
         <div
           onClick={() => handleRouting(site)}
@@ -58,25 +55,20 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
           <div className="direction-reveal__card">
             <img
               src={site.img || site.image}
-              alt='Cat for dis'
+              alt="Cat for dis"
               className="direction-reveal__img default-img"
             />
 
             <div className="direction-reveal__overlay direction-reveal__anim--enter">
               <h3 className="direction-reveal__title">{site.title}</h3>
-              <p
-                // style={{ padding: "5px 25px 40px 0px" }}
-                className="direction-reveal__text"
-              >
-                {site.summary || site.text}
-              </p>
+              <p className="direction-reveal__text">{site.summary || site.text}</p>
               <div className="actions">Tags: &nbsp; {tagButtons}</div>
             </div>
           </div>
         </div>
       );
     });
-    return <div key={'f'} className={gridLayout}> {list}</div>;
+    return <div className={gridLayout}>{list}</div>;
   };
 
   return <Cards />;
