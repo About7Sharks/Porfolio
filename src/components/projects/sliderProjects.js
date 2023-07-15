@@ -81,7 +81,7 @@ function Slide({ slide, offset }) {
   );
 }
 
-export default function App(params) {
+export default function Slider(params) {
 
   let { sites } = params;
   let slides = sites.map((site) => {

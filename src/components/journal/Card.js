@@ -1,11 +1,11 @@
 import React from "react";
+import { block } from "million/react";
 import { useHistory } from "react-router-dom";
 import "./posts.scss";
 
 export default function MediaCard(props) {
   const history = useHistory();
-  console.log(props);
-  return (
+  return block((
     <div
       className="journalCard"
       onClick={() =>
@@ -19,5 +19,5 @@ export default function MediaCard(props) {
         <p>{props.summary}</p>
       </div>
     </div>
-  );
+  ));
 }
