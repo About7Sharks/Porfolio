@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useAnimation, LazyMotion, domAnimation } from "framer-motion";
-import sites from "../projects/sites";
+import { sites } from "../../Config";
 import Button from "@material-ui/core/Button";
 import { featuredProjects } from "../../Config";
 import { spinAnimationV2, Cards, useOnScreen } from "../../util/index";
