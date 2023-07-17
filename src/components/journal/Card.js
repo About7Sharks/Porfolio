@@ -4,7 +4,6 @@ import "./posts.scss";
 
 export default function MediaCard(props) {
   const history = useHistory();
-  console.log(props);
   return (
     <div
       className="journalCard"

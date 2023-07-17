@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import sites from "./sites.js"; //my sites data
+import { sites } from "../../Config"; //my sites data
 import { Button } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
@@ -12,7 +12,6 @@ export default function Projects() {
 
   // handles updates from picker component
   const handleChange = (e, filter) => {
-    console.log(filter);
     let newList =
       filter === "All" || filter === null
         ? sites
