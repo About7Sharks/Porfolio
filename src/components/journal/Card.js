@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import ImageWithFallback from "../../util/ImgWithFallback";
 import "./posts.scss";
 
 export default function MediaCard(props) {
@@ -12,7 +13,7 @@ export default function MediaCard(props) {
         history.push("/journal/" + props.title.replace(/ /g, ""), props)
       }
     >
-      <img className="media" src={props.image} alt={props.title}></img>
+      <ImageWithFallback className="media" src={props.image} alt={props.title}/>
       <div className="coverEffect"></div>
       <div className="meta">
         <h3>{props.title}</h3>

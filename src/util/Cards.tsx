@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 // @ts-ignore
 import DirectionReveal from "direction-reveal";
 import "direction-reveal/src/styles/direction-reveal.scss";
-
+import ImageWithFallback from "./ImgWithFallback";
 interface Props {
   data: Site[];
   gridLayout: string;
@@ -55,7 +55,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
           className="direction-reveal card"
         >
           <div className="direction-reveal__card">
-            <img
+            <ImageWithFallback
               src={site.img || site.image}
               alt="Cat for dis"
               className="direction-reveal__img default-img"
