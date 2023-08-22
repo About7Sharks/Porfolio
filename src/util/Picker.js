@@ -24,6 +24,7 @@ const Picker = (props) => {
         options={tags}
         multiple={false}
         onChange={props.handleChange}
+        value={props.filter} 
         renderInput={(params) => (
           <TextField
             {...params}

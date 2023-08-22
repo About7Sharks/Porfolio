@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "animejs": "^3.2.1",
     "clsx": "^1.1.1",
+    "d3": "^7.8.5",
     "direction-reveal": "^2.0.2",
     "framer-motion": "^4.1.17",
     "gray-matter": "^4.0.3",
