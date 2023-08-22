@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import * as d3 from "d3";
 
-export default function Graph(props) {
+export default function Graph({ articles, onTagDoubleClick }) {
   const history = useHistory();
   useEffect(() => {
-    // Given data
-    const articles = props.articles;
+    // d3.select("#global-graph-icon").selectAll("*").remove();
 
     // Extract unique tags
     const tagsSet = new Set();
@@ -30,6 +29,7 @@ export default function Graph(props) {
     });
 
     // Create the SVG element
+    
     const svg = d3
       .select("#global-graph-icon")
       .attr("width", 320)
@@ -70,22 +70,22 @@ export default function Graph(props) {
           .on("end", dragended)
       );
 
-    const node = nodeGroup
+    nodeGroup
       .append("circle")
       .attr("r", (d) => (d.type === "tag" ? 5 : 10))
-      .attr("fill", (d) => (d.type === "tag" ? "#ccc" : "#000")) // Colors updated
-      .on("mouseover", mouseover) // Hover effect
+      .attr("fill", (d) => (d.type === "tag" ? "#ccc" : "#000"))
+      .on("mouseover", mouseover)
       .on("mouseout", mouseout)
-      .on("dblclick", dblclick); // Double-click event
+      .on("dblclick", dblclick);
 
-    const label = nodeGroup
+    nodeGroup
       .append("text")
       .attr("dx", 12)
-      .style("font-size", "14px") // Set the font size
-      .style("fill", "#fff") // Set the color to white
-      .style("opacity", 1) 
+      .style("font-size", "14px")
+      .style("fill", "#fff")
+      .style("opacity", 1)
       .attr("dy", ".35em")
-      .style("opacity", 0) // Initially hidden
+      .style("opacity", 0)
       .text((d) => d.id);
 
     simulation.on("tick", () => {
@@ -123,34 +123,37 @@ export default function Graph(props) {
         history.push(`/journal/${urlTitle.replace(/ /g, "")}`);
       } else if (d.type === "tag") {
         // Emit an event to the parent component for tags
-        props.onTagDoubleClick(d.id);
+        onTagDoubleClick(d.id);
       }
     }
 
     // Hover functions
     function mouseover(event, d) {
-      d3.select(this).transition().attr("r", 15); // Increase size
+      d3.select(this).transition().attr("r", 15);
       d3.select(this.parentNode)
         .select("text")
         .transition()
-        .style("opacity", 1); // Show label
+        .style("opacity", 1);
     }
 
     function mouseout(event, d) {
       d3.select(this)
         .transition()
-        .attr("r", (d) => (d.type === "tag" ? 5 : 10)); // Reset size
+        .attr("r", (d) => (d.type === "tag" ? 5 : 10));
       d3.select(this.parentNode)
         .select("text")
         .transition()
-        .style("opacity", 0); // Hide label
+        .style("opacity", 0);
     }
-  }, [props.articles, history]);
+  }, [articles, history, onTagDoubleClick]);
 
   return (
     <div className="JournalGraph">
       <h2>Graph View</h2>
-      <p>Double click a black node to go directly to an article. Double click a grey node to filter via tags.</p>
+      <p>
+        Double click a black node to go directly to an article. Double click a
+        grey node to filter via tags.
+      </p>
       <svg
         version="1.1"
         id="global-graph-icon"
