@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga4";
 import { HashRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import "./styles/index.scss";
 import { paths } from "./Config";
