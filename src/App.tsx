@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
+import ReactGA from 'react-ga';
 import { HashRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import "./styles/index.scss";
 import { paths } from "./Config";
@@ -9,6 +10,7 @@ const Footer = lazy(() => import("./components/navigation/Footer"));
 const BackBTN = lazy(() => import("./components/navigation/backbutton"));
 const Background = lazy(() => import("./components/ui/background"));
 
+ReactGA.initialize('G-4490T0Z5S8'); // Replace with your Google Analytics tracking ID
 
 export default function App() {
   const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());
@@ -16,6 +18,7 @@ export default function App() {
     setDeviceType(window.innerWidth <= 768);
   }
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
