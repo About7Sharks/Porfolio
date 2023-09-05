@@ -3,13 +3,13 @@ import { spinAnimationV2, Picker, Cards } from "../../util/index.ts";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
 import { config } from "../../Config";
-import Graph from "../ui/Graph.tsx";
+// import Graph from "../ui/Graph.tsx";
 
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
 
-  //changes filter from picker
+  // Changes filter from picker
   const handleChange = (e, filter) => {
     setFilter(filter);
   };
@@ -21,9 +21,9 @@ export default function Blog() {
     );
   }, []);
 
-  const handleTagDoubleClick = (tag) => {
-    setFilter(tag);
-  };
+  // const handleTagDoubleClick = (tag) => {
+  //   setFilter(tag);
+  // };
 
   //filter the articles and tweak some property names before passing to component
   const cleanData = (data) => {
@@ -43,13 +43,13 @@ export default function Blog() {
   return (
     <div className="journal">
       <h1>{spinAnimationV2("Journal")}</h1>
-      <Graph articles={articles} onTagDoubleClick={handleTagDoubleClick} />
       <Picker data={articles} handleChange={handleChange} filter={filter} />
       <Cards
         routeExternal={false}
         gridLayout="cardContainer"
         data={cleanData(articles)}
       />
+      {/* <Graph articles={articles} onTagDoubleClick={handleTagDoubleClick} /> */}
     </div>
   );
 }

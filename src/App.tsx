@@ -1,29 +1,30 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-// import ReactGA from "react-ga4";
-import { HashRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import "./styles/index.scss";
 import { paths } from "./Config";
-import { Navbar } from "./components/navigation/Navbar";
+import { Navbar } from "./components/ui/navigation/Navbar";
 import { BeforeLoad, ViewportProgress, checkForDevice } from "./util/index";
-const Drawer = lazy(() => import("./components/navigation/drawer"));
-const Footer = lazy(() => import("./components/navigation/Footer"));
-const BackBTN = lazy(() => import("./components/navigation/backbutton"));
+const Drawer = lazy(() => import("./components/ui/navigation/drawer"));
+const Footer = lazy(() => import("./components/ui/navigation/Footer"));
+const BackBTN = lazy(() => import("./components/ui/navigation/backbutton"));
 const Background = lazy(() => import("./components/ui/background"));
-
-// ReactGA.initialize('G-4490T0Z5S8'); // Replace with your Google Analytics tracking ID
 
 export default function App() {
   const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());
-  function handleWindowSizeChange() {
-    setDeviceType(window.innerWidth <= 768);
-  }
+  const handleWindowSizeChange = () => setDeviceType(window.innerWidth <= 768);
+
   useEffect(() => {
-    // ReactGA.pageview(window.location.pathname + window.location.search);
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
+
   return (
     <Suspense fallback={<BeforeLoad />}>
       <Router>

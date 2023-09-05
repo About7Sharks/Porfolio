@@ -84,6 +84,7 @@ h1 {
 //removes triangles and gradient from H1 tags
 .noFancy {
   margin-bottom: -15px;
+
   &::after,
   &::before {
     display: none;
@@ -166,10 +167,11 @@ span {
 }
 
 //journal and projects pages layout
-.journal{
+.journal {
   padding-top: 50px;
   min-height: 100vh;
 }
+
 .journal,
 .projects {
   overflow: hidden;
@@ -196,6 +198,7 @@ span {
     margin-top: 100px;
     width: 100vw;
     grid-template-rows: auto auto;
+    margin-top: 10px;
     grid-template-columns: minmax(10px, 25%) 1fr;
     position: relative;
 
@@ -208,13 +211,12 @@ span {
     }
 
     .twoBytwo {
-      margin: 0 auto;
+      margin: 1rem;
       max-width: 1000px;
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       grid-template-columns: repeat(2, minmax(360px, 50%));
-      grid-column-gap: 10px;
-      grid-row-gap: 4px;
+      grid-gap: 1rem;
 
       col .card {
         opacity: 0;
@@ -228,7 +230,8 @@ span {
     }
 
     img {
-      max-height: 300px;
+      aspect-ratio: 3/2;
+      object-fit: fill;
     }
 
     p,
@@ -390,29 +393,34 @@ span {
   max-width: 320px;
 }
 
-.JournalGraph{
+.JournalGraph {
   display: inline-flex;
   flex-direction: column;
   background-color: #2e2c2c64;
   border: 1px solid white;
   border-radius: 25px;
   overflow: hidden;
-  svg{
+
+  svg {
     overflow: visible;
     width: 320px;
     position: relative;
     left: 30%;
   }
-  h2{
+
+  h2 {
     text-decoration: underline;
   }
-  h2,p{
+
+  h2,
+  p {
     text-shadow: 1px 1px 1px black;
     color: white;
     font-size: 1.3rem;
     margin: 10px;
   }
 }
+
 .cardContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -437,6 +445,7 @@ span {
     background-color: rgba(0, 0, 0, 0.075);
     // background-image: url("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
     content: "";
+
     a,
     img {
       cursor: pointer;
@@ -444,6 +453,7 @@ span {
       height: 100%;
       object-fit: cover;
     }
+
     p {
       padding: 0px;
     }
@@ -476,4 +486,97 @@ span {
 #mainApp {
   @include basicFlex;
   align-items: center;
+}
+
+
+
+.contactForm {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: 1111111111111111;
+  background: rgba(0, 0, 0, 0.7); // Dark background for contrast
+  color: white;
+  border: none;
+
+  .closeButton {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    background: transparent;
+    border: none;
+    font-size: 2.5em;
+    cursor: pointer;
+    color: white;
+
+    &:hover {
+      color: #ff5757; // Color changes when hovered
+    }
+  }
+
+  form {
+    background: #333; // Dark form background
+    padding: 1em 2em;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px; // Fixed width
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+
+// styles.scss
+.navbar {
+  z-index: 100;
+  list-style: none;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  right: 0px;
+  top: 0px;
+  width: 100vw;
+  position: fixed;
+}
+
+.navItem {
+  margin: 25px;
+  transition: 0.3s;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: #eef46e;
+    transition: 0.3s;
+  }
 }

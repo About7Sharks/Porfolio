@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "t/*": ["./src/*"]
+    },
     "jsx": "react-jsx",
     // "jsx": "preserve"
     "target": "es6",
