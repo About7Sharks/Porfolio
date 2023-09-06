@@ -170,6 +170,7 @@ span {
 .journal {
   padding-top: 50px;
   min-height: 100vh;
+  color: white;
 }
 
 .journal,
@@ -578,5 +579,36 @@ span {
   &:hover {
     color: #eef46e;
     transition: 0.3s;
+  }
+}
+
+.textCard {
+  margin: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  width:100%;
+  transition: background-color 0.3s ease;
+  color: #ffffff;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(96, 89, 89, 0.66);
+  transition: background-color 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+
+  &:hover {
+    background-color: #f0f0f025;
+    transform: scale(1.005);
+  }
+  h3,p,h4{
+    margin: 14px;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
   }
 }

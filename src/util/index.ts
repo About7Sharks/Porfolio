@@ -9,7 +9,6 @@ export { ViewportProgress } from "./ViewportProgress";
 export { useOnScreen } from "./useOnScreen";
 export { Emoji } from "./Emoji";
 
-
 // Simple 1-line functions
 export const checkForDevice = () => {
     const windowWidth = window.innerWidth;

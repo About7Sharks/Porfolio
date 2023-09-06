@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { spinAnimationV2, Picker, Cards } from "../../util/index.ts";
+import { TextCards } from "./TextCards";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
 import { config } from "../../Config";
@@ -8,7 +9,7 @@ import { config } from "../../Config";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [filter, setFilter] = useState("All");
-
+  const [textView, setTextView] = useState(false);
   // Changes filter from picker
   const handleChange = (e, filter) => {
     setFilter(filter);
@@ -43,12 +44,29 @@ export default function Blog() {
   return (
     <div className="journal">
       <h1>{spinAnimationV2("Journal")}</h1>
+      <span>
+        <input
+          type="checkbox"
+          onChange={() => setTextView(!textView)}
+          id="toggle"
+        />
+        <label htmlFor="toggle">Toggle View</label>
+      </span>
       <Picker data={articles} handleChange={handleChange} filter={filter} />
-      <Cards
-        routeExternal={false}
-        gridLayout="cardContainer"
-        data={cleanData(articles)}
-      />
+      {textView ? (
+        <Cards
+          routeExternal={false}
+          gridLayout="cardContainer"
+          data={cleanData(articles)}
+        />
+      ) : (
+        <TextCards
+          routeExternal={false}
+          gridLayout="cardContainer"
+          data={cleanData(articles)}
+        />
+      )}
+
       {/* <Graph articles={articles} onTagDoubleClick={handleTagDoubleClick} /> */}
     </div>
   );
