@@ -1,5 +1,19 @@
 let sites = [
   {
+    url:'https://github.com/About7Sharks/flashloan-template',
+    img:'https://www.gitbook.com/cdn-cgi/image/width=40,dpr=2,height=40,fit=contain,format=auto/https%3A%2F%2F2799188404-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M6U5cfvZsVW8zOEpVl1%252Favatar-1595317514145.png%3Fgeneration%3D1595317514421109%26alt%3Dmedia',
+    title:'Flashloan Template',
+    text:'Template for flashloan projects',
+    tags:['Ethereum','Solidity','Flashloan']
+  },
+  {
+    url:'https://github.com/About7Sharks/deno-eth-create2-calculator',
+    img:'https://ik.imagekit.io/serenity/ByteofDev/Blog_Heading_Images/State_of_the_Web_Deno',
+    title:'Deno Eth Create2 Calculator',
+    text:'Deno module for calculating create2 addresses for evm chains',
+    tags:['Ethereum','Solidity','Deno']
+  },
+  {
     url:'https://public.sockastle.com',
     img: 'https://public.sockastle.com:433/api/files/4u7atfzk7jmzdxg/jrx7dnn88a0ueg5/paint_modern_art_like_a_5_year_old_LM9TNHd7ff.png',
     title: `AI Art Gallery`,

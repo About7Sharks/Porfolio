@@ -21,6 +21,7 @@ export const featuredProjects = [
   "Meerkat",
   "Sit Up Coach",
   // "Carlin Fitness",
+  "Flashloan Template",
   "Conways Game of Life using WebAssembly and Javascript",
   "Pose Bot",
 ];
