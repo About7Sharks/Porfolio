@@ -29,16 +29,20 @@ export default function Blog() {
   //filter the articles and tweak some property names before passing to component
   const cleanData = (data) => {
     return data
-      .filter((article) => {
-        if (filter === "All") return article;
-        return article.tags?.includes(filter);
-      })
-      .map((site) => {
-        return {
-          ...site,
-          img: site.image,
-        };
-      });
+    .filter((article) => {
+      if (filter === "All") return article;
+      return article.tags?.includes(filter);
+    })
+    .sort((a, b) => {
+      // Assuming the date is in ISO-8601 format; if not, you may need to parse it differently
+      return new Date(b.date) - new Date(a.date);
+    })
+    .map((site) => {
+      return {
+        ...site,
+        img: site.image,
+      };
+    });
   };
 
   return (
