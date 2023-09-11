@@ -3,109 +3,108 @@
   <head>
     <title>Resume</title>
     <style type="text/css">
-* {
-  font-family: "Times New Roman", Times, serif;
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  line-height: 1.6; /* Improved line-height */
-}
+      * {
+        font-family: "Times New Roman", Times, serif;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        line-height: 1.6; /* Improved line-height */
+      }
 
-.resume {
-  display: grid;
-  grid-template-columns: 30% 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 20px; /* Added gap */
-  grid-row-gap: 0px;
-}
+      .resume {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 20px; /* Added gap */
+        grid-row-gap: 0px;
+      }
 
-.side {
-  grid-area: 1 / 1 / 2 / 2;
-  background-color: rgb(36, 37, 37);
-  color: white;
-  min-height: 100vh;
-  padding: 20px;
-}
+      .side {
+        grid-area: 1 / 1 / 2 / 2;
+        background-color: rgb(36, 37, 37);
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+      }
 
-.side > section {
-  display: inline-flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin-bottom: 35px;
-}
+      .side > section {
+        display: inline-flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 35px;
+      }
 
-.side > section > h1 {
-  margin-top: 10px;
-  font-size: 1.7rem; /* Increased font size */
-}
+      .side > section > h1 {
+        margin-top: 10px;
+        font-size: 1.7rem; /* Increased font size */
+      }
 
-.side > ul > li {
-  font-size: 1rem; /* Consistent font size */
-}
+      .side > ul > li {
+        font-size: 1rem; /* Consistent font size */
+      }
 
-a {
-  color: black;
-}
+      a {
+        color: black;
+      }
 
-li > a {
-  color: white;
-}
+      li > a {
+        color: white;
+      }
 
-.side > ul {
-  list-style-type: none;
-}
+      .side > ul {
+        list-style-type: none;
+      }
 
-ul {
-  margin-bottom: 20px;
-}
+      ul {
+        margin-bottom: 20px;
+      }
 
-li {
-  margin: 5px 0px; /* Increased margin */
-}
+      li {
+        margin: 5px 0px; /* Increased margin */
+      }
 
-img {
-  width: 200px;
-  border-radius: 50%;
-  margin: 0 auto;
-}
+      img {
+        width: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+      }
 
-.content {
-  grid-area: 1 / 2 / 2 / 3;
-  padding: 50px;
-}
+      .content {
+        grid-area: 1 / 2 / 2 / 3;
+        padding: 50px;
+      }
 
-.content > section > h2 {
-  margin: 20px 0px; /* Increased margin */
-}
+      .content > section > h2 {
+        margin: 20px 0px; /* Increased margin */
+      }
 
-.content > section > article > ul > li {
-  margin-left: 20px;
-}
+      .content > section > article > ul > li {
+        margin-left: 20px;
+      }
 
-.content > section > article > ul > li > a {
-  color: black;
-}
+      .content > section > article > ul > li > a {
+        color: black;
+      }
 
-time {
-  color: rgba(0, 0, 0, 0.75);
-  font-style: italic;
-}
+      time {
+        color: rgba(0, 0, 0, 0.75);
+        font-style: italic;
+      }
 
-.content > section > article {
-  padding: 10px 0px; /* Increased padding */
-}
+      .content > section > article {
+        padding: 10px 0px; /* Increased padding */
+      }
 
-ul > h4 {
-  font-weight: 800;
-  font-size: 1.1rem;
-}
+      ul > h4 {
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
 
-.ref {
-  margin: 0px;
-  list-style: none;
-}
-
+      .ref {
+        margin: 0px;
+        list-style: none;
+      }
     </style>
   </head>
 
@@ -126,16 +125,17 @@ ul > h4 {
         <ul>
           <h3>Skills</h3>
           <li>
-            <b>Languages:</b> HTML, CSS, JavaScript, TypeScript, Python, SQL
+            <b>Languages:</b>JavaScript, TypeScript, Python, SQL, NoSQL, HTML,
+            CSS, Bash, Solidity
           </li>
           <li>
             <b>Frameworks/Libraries:</b> React.js, Vue.js, Svelte.js, Node.js,
-            Express.js
+            Express.js, Next.js, Nuxt.js, Webpack, Babel, Jest
           </li>
           <li>
-            <b>Tools & Technologies:</b> Docker, Git, SCSS, LESS, GraphQL, NoSQL
-            (MongoDB, Firebase),SQL, AWS, Google Cloud, Digital Ocean, Performance
-            Optimization, CI/CD, RESTful APIs
+            <b>Tools & Technologies:</b> Docker, Git, SCSS, LESS,Bun, Deno,
+            GraphQL, (MongoDB, Firebase),SQL, AWS, Google Cloud, Digital Ocean,
+            Performance Optimization, CI/CD, RESTful APIs
           </li>
           <li>
             <b>Methodologies:</b> Agile Development, Test-Driven Development
@@ -180,14 +180,32 @@ ul > h4 {
               <time>July 2022- April 2023</time>
             </header>
             <ul>
-              <li>Architected and maintained scalable web applications using React Class-based components, modern hooks, and Async/Await, leading to a 25% improvement in code efficiency.</li>
-              <li>Revitalized legacy jQuery code by modernizing it to React, enhancing maintainability and performance.</li>
-              <li>Seamlessly integrated frontend designs with PHP and Python scripts, collaborating with cross-functional engineering teams.</li>
-              <li>Managed and optimized API and Databases (GraphQL, Postgres) for Ad tech services, resulting in 15% faster query response times.</li>
-              <li>Contributed to Open Source <a href="https://github.com/prebid/Prebid.js/">Prebid.js</a> repository, implementing features that boosted sales funnel conversion rates by 20%.</li>
+              <li>
+                Architected and maintained scalable web applications using React
+                Class-based components, modern hooks, and Async/Await, leading
+                to a 25% improvement in code efficiency.
+              </li>
+              <li>
+                Revitalized legacy jQuery code by modernizing it to React,
+                enhancing maintainability and performance.
+              </li>
+              <li>
+                Seamlessly integrated frontend designs with PHP and Python
+                scripts, collaborating with cross-functional engineering teams.
+              </li>
+              <li>
+                Managed and optimized API and Databases (GraphQL, Postgres) for
+                Ad tech services, resulting in 15% faster query response times.
+              </li>
+              <li>
+                Contributed to Open Source
+                <a href="https://github.com/prebid/Prebid.js/">Prebid.js</a>
+                repository, implementing features that boosted sales funnel
+                conversion rates by 20%.
+              </li>
             </ul>
           </article>
-          
+
           <!-- <article>
             <header>
               <h4>Senior Software Engineer at Sonobi, (Remote)</h4>
