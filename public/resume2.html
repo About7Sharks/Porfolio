@@ -1,0 +1,302 @@
+
+<!-- A clean HTML Site and Resume made with ❤️ by Zachary Carlin  -->
+<html>
+  <head>
+    <title>Resume</title>
+    <style type="text/css">
+      * {
+        font-family: "Times New Roman", Times, serif;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        line-height: 1.6; /* Improved line-height */
+      }
+
+      .resume {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 20px; /* Added gap */
+        grid-row-gap: 0px;
+      }
+
+      .side {
+        grid-area: 1 / 1 / 2 / 2;
+        background-color: rgb(36, 37, 37);
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .side > section {
+        display: inline-flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 35px;
+      }
+
+      .side > section > h1 {
+        margin-top: 10px;
+        font-size: 1.7rem; /* Increased font size */
+      }
+
+      .side > ul > li {
+        font-size: 1rem; /* Consistent font size */
+      }
+
+      a {
+        color: black;
+      }
+
+      li > a {
+        color: white;
+      }
+
+      .side > ul {
+        list-style-type: none;
+      }
+
+      ul {
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin: 5px 0px; /* Increased margin */
+      }
+
+      img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 50%;
+        margin: 0 auto;
+      }
+
+      .content {
+        grid-area: 1 / 2 / 2 / 3;
+        padding: 50px;
+      }
+
+      .content > section > h2 {
+        margin: 20px 0px; /* Increased margin */
+      }
+
+      .content > section > article > ul > li {
+        margin-left: 20px;
+      }
+
+      .content > section > article > ul > li > a {
+        color: black;
+      }
+
+      time {
+        color: rgba(0, 0, 0, 0.75);
+        font-style: italic;
+      }
+
+      .content > section > article {
+        padding: 10px 0px; /* Increased padding */
+      }
+
+      ul > h4 {
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+
+      .ref {
+        margin: 0px;
+        list-style: none;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <div class="resume">
+      <aside class="side">
+        <section>
+          <img src="/Users/zach/Desktop/code/reactportfolio/public/assets/headshot.png" alt="Headshot of Zachary Carlin" />
+          <h1>Zachary Carlin</h1>
+          <p>Software Engineer</p>
+        </section>
+        <ul>
+          <h3>Details</h3>
+          <li>Tampa, FL</li>
+          <li>(727) 505-9511</li>
+          <li><a href="mailto:zacarlin@gmail.com">zacarlin@gmail.com</a></li>
+        </ul>        <ul>
+          <h3>Skills</h3>
+          <li>
+            <b>Languages:</b> JavaScript, TypeScript, Python, SQL (8+ years, including Oracle and SQL Server), NoSQL, HTML,
+            CSS, Bash, Solidity
+          </li>
+          <li>
+            <b>Frameworks/Libraries:</b> React.js, Vue.js, Svelte.js, Node.js,
+            Express.js, Next.js, Nuxt.js, Webpack, Babel, Jest
+          </li>
+          <li>
+            <b>Tools & Technologies:</b> Docker, Git, SCSS, LESS,Bun, Deno,
+            GraphQL, (MongoDB, Firebase),SQL, AWS, Google Cloud, Digital Ocean,
+            Performance Optimization, CI/CD, RESTful APIs, Red Hat OpenShift
+          </li>
+          <li>
+            <b>Methodologies:</b> Agile Development (Implemented Agile methodologies in multiple projects), Test-Driven Development
+            (TDD), Object-Oriented Programming (OOP), Responsive Design
+          </li>
+        </ul>
+        <!-- ... (Other side bar content) -->
+      </aside>
+      <main class="content">
+        <h2>Resume</h2>
+        <p>
+          Results-driven Software Engineer with 8+ years of experience in SQL and database management, Agile methodologies, and software integration. Proficient in solving complex problems, both independently and in team settings. US Citizen with the ability to obtain and maintain Public Trust Clearance.
+        </p>
+        <section>
+          <h2>Employment History</h2>
+          <!-- ... (Employment History content) -->
+          <article>
+            <header>
+              <h4>Senior Software Engineer at Sonobi, (Remote)</h4>
+              <time>July 2022- April 2023</time>
+            </header>
+            <ul>
+              <li>
+                Architected and maintained scalable web applications using React
+                Class-based components, modern hooks, and Async/Await.
+              </li>
+              <li>
+                Revitalized legacy jQuery code by modernizing it to React,
+                enhancing maintainability and performance.
+              </li>
+              <li>
+                Seamlessly integrated frontend designs with PHP and Python,
+                collaborating with cross-functional engineering teams.
+              </li>
+              <li>
+                Managed and optimized API and Databases (GraphQL, Postgres, Oracle SQL Server) for
+                Ad tech services, resulting in 15% faster query response times.
+              </li>
+              <li>
+                Implemented Agile methodologies to improve team productivity by 25%.
+              </li>
+              <li>
+                Experience in developing system integrations within an Enterprise Service Bus, including SOAP and RESTful APIs.
+              </li>
+            </ul>
+          </article>
+            <!-- Dogwood -->
+            <article>
+              <header>
+                <h4>Software Engineer at Dogwood Logic, (Remote)</h4>
+                <time>February 2021 – May 2022</time>
+              </header>
+              <ul>
+                <li>
+                  Implemented DID and Verifiable Credentials for ledger based
+                  applications using Node.js and TypeScript.
+                </li>
+                <li>
+                  Created user interfaces for handling encrypted applications
+                  using Vue.js.
+                </li>
+                <li>
+                  Employed Test-Driven Development (TDD) methodologies, creating
+                  pragmatic simulations of real user experiences to improve
+                  software reliability.
+                </li>
+              </ul>
+            </article>
+            <!-- Gulf Photonics -->
+            <article>
+              <header>
+                <h4>Software Engineer at Gulf Photonics, Tampa FL</h4>
+                <time> July 2018 – August 2020 </time>
+              </header>
+              <ul>
+                <li>
+                  Served as the lead software developer for an IoT embedded sensor
+                  and user dashboard, overseeing all stages of development and
+                  implementation using Node.js and Vue.js.
+                </li>
+                <li>
+                  Developed and enhanced programs to increase accuracy and lower
+                  costs.
+                </li>
+                <li>
+                  Handled debugging and troubleshooting with a high success rate. 
+                </li>
+                <li>Managed NoSQL Databases (Mongo and Firebase)</li>
+                <li>
+                  Ensured accessibility of programs across all platform
+                  (Mobile/Desktop and Unix/Windows).
+                </li>
+                <li>
+                  Created user interface and API for interacting with sensor.
+                </li>
+                <li>
+                  Ensured compliance with all regulations, policies, and laws.
+                </li>
+              </ul>
+            </article>
+            <!-- Bridge -->
+            <article>
+              <header>
+                <h4>Web Developer at Bridge, Clearwater FL</h4>
+                <time>April 2018 – June 2018</time>
+              </header>
+              <ul>
+                <li>
+                  Worked in collaboration with multiple partners to contribute to
+                  the development of advanced 5G routers.
+                </li>
+                <li>
+                  Developed a Vue.js application for the companies marketing
+                  campaign "Connected Revolution".
+                </li>
+                <li>
+                  Worked to support the company mission and adhered to company
+                  protocol at all times.
+                </li>
+              </ul>
+            </article>
+            <!-- La Fitness -->
+            <article>
+              <header>
+                <h4>Operations Department at LA Fitness, Clearwater, FL</h4>
+                <time> January 2017 – April 2018 </time>
+              </header>
+              <ul>
+                <li>
+                  Consistently exceeded sales and revenue targets set by company
+                  management, contributing to overall business growth.
+                </li>
+                <li>Managed failed credit card payments.</li>
+                <li>Served as a friendly, hardworking, and punctual employee.</li>
+                <li>
+                  Consistently communicated in a lucid and effective manner.
+                </li>
+                <li>Consistently worked with client satisfaction in mind.</li>
+                <li>
+                  Promoted a positive public image for the company and worked to
+                  control the dissemination of information.
+                </li>
+                <li>
+                  Ensured the availability of adequate resources to achieve goals.
+                </li>
+              </ul>
+            </article>
+        </section>
+        <section>
+          <h2>Education</h2>
+          <ul>
+            <h4>Associate of Arts, St. Petersburg College, Clearwater</h4>
+            <time>January 2017 – December 2018</time>
+            <li>Additional 8 years of experience in software development can be substituted in lieu of Bachelor’s Degree.</li>
+          </ul>
+        </section>
+
+        <b><i>References available upon request.</i></b>
+      </main>
+    </div>
+  </body>
+</html>
