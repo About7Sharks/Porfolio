@@ -10,7 +10,7 @@ export const HomeLanding = () => {
   return (
     <div className="homeLanding">
       <div className="div1">
-        <h1 className="noFancy"> {spinAnimationV2(config.name)}</h1>
+        <h1 className="noFancy">{spinAnimationV2(config.name)}</h1>
         <h1>{spinAnimationV2(config.JobTitle)}</h1>
         <p>
           A {`${config.JobTitle}`.toLowerCase()} based in {config.location} with passions in{" "}

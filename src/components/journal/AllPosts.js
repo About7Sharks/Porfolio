@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { spinAnimationV2, Picker, Cards } from "../../util/index.ts";
+import Button from "@material-ui/core/Button";
 import { TextCards } from "./TextCards";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
@@ -49,12 +50,9 @@ export default function Blog() {
     <div className="journal">
       <h1>{spinAnimationV2("Journal")}</h1>
       <span>
-        <input
-          type="checkbox"
-          onChange={() => setTextView(!textView)}
-          id="toggle"
-        />
-        <label htmlFor="toggle">Toggle View</label>
+      <Button onClick={() => setTextView(!textView)} variant="contained">
+          Alternative View
+        </Button>
       </span>
       <Picker data={articles} handleChange={handleChange} filter={filter} />
       {textView ? (
