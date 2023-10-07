@@ -14,8 +14,7 @@ export const JournalHome = () => {
   const [articles, setArticles]: any[] = useState([]);
   useEffect(() => {
     getArticles({ user: config.user, repo: config.repo }).then((_articles = []) => {
-      // pick 8 random articles
-      _articles = _articles.sort(() => Math.random() - 0.5).slice(0, 8);
+      _articles = _articles.filter((article) =>  article.tags?.includes("Featured"));
       setArticles(_articles);
     });
   }, []);

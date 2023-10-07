@@ -17,10 +17,10 @@ export const config = {
 
 export const featuredProjects = [
   "Accubrew",
-  "AI Art Gallery",
+  // "AI Art Gallery",
   "Meerkat",
   "Sit Up Coach",
-  // "Carlin Fitness",
+  "Carlin Fitness",
   "Flashloan Template",
   "Conways Game of Life using WebAssembly and Javascript",
   "Pose Bot",
@@ -55,9 +55,4 @@ export const paths = [
     component: lazy(() => import("./components/projects/projects")),
     exact: true,
   },
-  // {
-  //   path: "*",
-  //   render: ()=> <Redirect to="/"/>,
-  //   exact: false
-  // }
 ]
