@@ -13,7 +13,7 @@ const cleanSites = sites.filter((site) =>
 
 export const ProjectHome = (props: Props) => {
   const controls = useAnimation();
-  const projectRef = useRef(null);
+  const projectRef = useRef();
   const onScreen = useOnScreen(projectRef, "350px");
 
   useEffect(() => {

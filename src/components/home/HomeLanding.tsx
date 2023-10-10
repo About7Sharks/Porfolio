@@ -3,7 +3,7 @@ import clip from '../../assets/clip.mp4';
 import Poster from '../../assets/Background.webp';  
 import Button from "@material-ui/core/Button";
 import { spinAnimationV2 } from "../../util/index";
-import {DivOverlay} from './Overlay'
+import { DivOverlay } from './Overlay'
 
 export const HomeLanding = () => {
 
@@ -26,12 +26,12 @@ export const HomeLanding = () => {
             Lets Connect
           </Button>
         </p>
-        <div id="scroll">
+        {/* <div id="scroll">
           Scroll &nbsp;
           <svg height="6" width="50">
             <line stroke="white" x1="0" y1="0" x2="50" y2="0" />
           </svg>
-        </div>
+        </div> */}
       </div>
       {/* background div */}
     <video className="div2" preload='auto' autoPlay muted playsInline loop poster={Poster}>

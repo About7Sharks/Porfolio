@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div className="Home">
       <HomeLanding />
-      <ProjectHome />
-      <JournalHome />
+      {/* <ProjectHome />
+      <JournalHome /> */}
     </div>
   );
 }

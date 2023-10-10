@@ -4,23 +4,28 @@ import { motion, useAnimation, LazyMotion, domAnimation } from "framer-motion";
 import { spinAnimationV2, Cards, useOnScreen } from "../../util/index";
 import Button from "@material-ui/core/Button";
 import { getArticles } from "socks-librarian";
-import { config } from '../../Config'
-
+import { config } from "../../Config";
 
 export const JournalHome = () => {
   const controls = useAnimation();
   const journalRef = useRef(null);
-  const onScreen = useOnScreen(journalRef, "50px");
+  const onScreen = useOnScreen(journalRef, '50px');
   const [articles, setArticles]: any[] = useState([]);
   useEffect(() => {
-    getArticles({ user: config.user, repo: config.repo }).then((_articles = []) => {
-      _articles = _articles.filter((article) =>  article.tags?.includes("Featured"));
-      setArticles(_articles);
-    });
+    getArticles({ user: config.user, repo: config.repo }).then(
+      (_articles = []) => {
+        _articles = _articles.filter((article) =>
+          article.tags?.includes("Featured")
+        );
+        setArticles(_articles);
+      }
+    );
   }, []);
-  
+
   useEffect(() => {
-    if (onScreen) {controls.start({opacity: 1});}
+    if (onScreen) {
+      controls.start({ opacity: 1 });
+    }
   }, [onScreen, controls]);
 
   return (
