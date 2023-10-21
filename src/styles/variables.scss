@@ -1,9 +1,7 @@
 @font-face {
   font-family: "Shrikhand";
-  font-display: swap;
-  src: local("Shirkhand"),
-  //Shrikhand-Regular.otf as font file
-    url("../assets/Font.otf") format("truetype");
+  font-display: block;
+  src: local("Shirkhand"), url("../assets/Font.otf") format("truetype");
 }
 
 // Global Styles Variables
