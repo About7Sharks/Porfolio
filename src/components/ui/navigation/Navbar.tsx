@@ -44,11 +44,6 @@ export const Navbar = (props: Props) => {
         animate={controls}
         className="navbar"
       >
-        <div>
-          <h3>
-            ZAC
-          </h3>
-        </div>
         {navItems}
       </motion.nav>
     </>
