@@ -5,7 +5,6 @@ import { motion, useAnimation, useViewportScroll } from "framer-motion";
 interface Props {}
 
 export const Navbar = (props: Props) => {
-  // const classes = useStyles();
   const controls = useAnimation();
   let [scrollY, setScrollY] = useState(0);
   const { scrollYProgress } = useViewportScroll();
@@ -45,6 +44,11 @@ export const Navbar = (props: Props) => {
         animate={controls}
         className="navbar"
       >
+        <div>
+          <h3>
+            ZAC
+          </h3>
+        </div>
         {navItems}
       </motion.nav>
     </>

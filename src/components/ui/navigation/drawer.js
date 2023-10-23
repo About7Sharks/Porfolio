@@ -32,6 +32,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className={classes.drawers + " customDrawerStyleTweaks"}>
+        <h3 className="drawerTitle">Zac's Nav</h3>
         {["Home", "Journal", "Projects", "About"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
