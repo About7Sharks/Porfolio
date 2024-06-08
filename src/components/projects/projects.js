@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import sites from "./sites.js"; //my sites data
 import { Button } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
-import { spinAnimationV2,WarningMessage,Picker,Cards,Emoji } from "../../util/index";
+import {
+  spinAnimationV2,
+  WarningMessage,
+  Picker,
+  Cards,
+  Emoji,
+} from "../../util/index";
 export default function Projects() {
   //set the initial state = to sites.js file
   const [projects, updateProjects] = useState(sites);
@@ -12,7 +18,6 @@ export default function Projects() {
 
   // handles updates from picker component
   const handleChange = (e, filter) => {
-    console.log(filter);
     let newList =
       filter === "All" || filter === null
         ? sites

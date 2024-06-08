@@ -1,15 +1,15 @@
-import React from 'react';
+import { useState } from "react";
 
 const ImageWithFallback = ({ src, alt, ...props }) => {
-  const handleImageError = (e) => {
-    // Select a random fallback image
-    e.target.src = `https://random.imagecdn.app/512/512?${Date.now()}`;
+  const [imageSrc, setImageSrc] = useState(src);
+  const handleImageError = () => {
+    setImageSrc(`https://picsum.photos/400/300?grayscale${Math.random()}`);
   };
-
   return (
     <img
+      key={imageSrc}
       loading="lazy"
-      src={src}
+      src={imageSrc}
       alt={alt}
       onError={handleImageError}
       {...props}

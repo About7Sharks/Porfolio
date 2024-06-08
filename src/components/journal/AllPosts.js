@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { spinAnimationV2, Picker, Cards } from "../../util/index.ts";
 import Button from "@material-ui/core/Button";
 import { TextCards } from "./TextCards";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
 import { config } from "../../Config";
-// import Graph from "../ui/Graph.tsx";
 
 export default function Blog() {
   const [articles, setArticles] = useState([]);

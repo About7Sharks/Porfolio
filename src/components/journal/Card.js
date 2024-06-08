@@ -1,9 +1,9 @@
-import React from "react";
 import { useHistory } from "react-router-dom";
 import ImageWithFallback from "../../util/ImgWithFallback";
 import "./posts.scss";
 
 export default function MediaCard(props) {
+  console.log(props);
   const history = useHistory();
   return (
     <div
