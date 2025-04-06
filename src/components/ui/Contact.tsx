@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { msg as sendMessage } from "../../util/msg";
+import { useContactForm } from "../../contexts/ContactFormContext";
 
 export const Contact = (props) => {
-  const [isPopupOpen, setPopupOpen] = useState(false);
+  const { isPopupOpen, setPopupOpen } = useContactForm();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,7 +45,7 @@ export const Contact = (props) => {
       {isPopupOpen && (
         <dialog className="contactForm">
           <button className="closeButton" onClick={() => setPopupOpen(false)}>
-            &times; {/* This is an HTML entity for the "times" symbol */}
+            &times;
           </button>
           {!showThanks ? (
             <form onSubmit={handleSubmit}>

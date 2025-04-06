@@ -504,59 +504,137 @@ span {
   top: 0;
   right: 0;
   z-index: 1111111111111111;
-  background: rgba(0, 0, 0, 0.7); // Dark background for contrast
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   border: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   .closeButton {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 50px;
     background: transparent;
     border: none;
     font-size: 2.5em;
     cursor: pointer;
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
 
     &:hover {
-      color: #ff5757; // Color changes when hovered
+      color: #ff5757;
+      transform: scale(1.1);
     }
   }
 
   form {
-    background: #333; // Dark form background
-    padding: 1em 2em;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px; // Fixed width
+    background: linear-gradient(145deg, #2a2a2a, #333333);
+    padding: 2em 2.5em;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    width: 400px;
+    transform: translateY(0);
+    animation: slideIn 0.3s ease-out;
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 1em;
+      text-align: center;
+      background: linear-gradient(45deg, #ffffff, #4a9eff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
 
     label {
-      font-weight: bold;
+      font-weight: 500;
       margin-bottom: 0.5em;
       display: block;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9em;
+      transition: color 0.3s ease;
     }
 
     input,
     textarea {
       width: 100%;
-      padding: 0.5em;
-      margin-bottom: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 0.8em;
+      margin-bottom: 1.2em;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      transition: all 0.3s ease;
+      font-size: 1em;
+
+      &:focus {
+        outline: none;
+        border-color: #4a9eff;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.1);
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
     }
 
     input[type="submit"] {
-      background-color: #007bff;
+      background: linear-gradient(45deg, #4a9eff, #0062cc);
       color: white;
       border: none;
       cursor: pointer;
-      padding: 0.5em 1em;
-      border-radius: 4px;
+      padding: 1em 2em;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 1em;
+      transition: all 0.3s ease;
 
       &:hover {
-        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 158, 255, 0.2);
+        background: linear-gradient(45deg, #5ba8ff, #0070e8);
+      }
+
+      &:active {
+        transform: translateY(0);
       }
     }
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.5em;
+    color: #4a9eff;
+    margin: 2em 0;
+    animation: fadeIn 0.5s ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

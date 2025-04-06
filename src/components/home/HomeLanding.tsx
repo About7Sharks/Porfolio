@@ -4,8 +4,10 @@ import Poster from '../../assets/Background.webp';
 import Button from "@material-ui/core/Button";
 import { spinAnimationV2 } from "../../util/index";
 import { DivOverlay } from './Overlay'
+import { useContactForm } from "../../contexts/ContactFormContext";
 
 export const HomeLanding = () => {
+  const { setPopupOpen } = useContactForm();
 
   return (
     <div className="homeLanding">
@@ -21,17 +23,12 @@ export const HomeLanding = () => {
             key='ContactBTN'
             color="primary"
             variant="contained"
-            onClick={() => window.scrollTo(0, document.body.scrollHeight)}
+            onClick={() => setPopupOpen(true)}
           >
             Lets Connect
           </Button>
         </p>
-        {/* <div id="scroll">
-          Scroll &nbsp;
-          <svg height="6" width="50">
-            <line stroke="white" x1="0" y1="0" x2="50" y2="0" />
-          </svg>
-        </div> */}
+
       </div>
       {/* background div */}
     <video className="div2" preload='auto' autoPlay muted playsInline loop poster={Poster}>

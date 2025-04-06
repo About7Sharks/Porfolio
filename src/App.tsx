@@ -9,6 +9,7 @@ import "./styles/index.scss";
 import { paths } from "./Config";
 import { Navbar } from "./components/ui/navigation/Navbar";
 import { BeforeLoad, ViewportProgress, checkForDevice } from "./util/index";
+import { ContactFormProvider } from "./contexts/ContactFormContext";
 const Drawer = lazy(() => import("./components/ui/navigation/drawer"));
 const Footer = lazy(() => import("./components/ui/navigation/Footer"));
 const BackBTN = lazy(() => import("./components/ui/navigation/backbutton"));
@@ -27,28 +28,30 @@ export default function App() {
 
   return (
     <Suspense fallback={<BeforeLoad />}>
-      <Router>
-        {isMobile ? <Drawer /> : <Navbar />}
-        <BackBTN />
-        <ViewportProgress />
-        <Background />
-        <div id="mainApp">
-          <Switch>
-            {paths.map(({ exact = true, path, component }, i) => {
-              return (
-                <Route
-                  key={i}
-                  exact={exact}
-                  path={path}
-                  component={component}
-                />
-              );
-            })}
-            <Route path="*" render={() => <Redirect to="/" />} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+      <ContactFormProvider>
+        <Router>
+          {isMobile ? <Drawer /> : <Navbar />}
+          <BackBTN />
+          <ViewportProgress />
+          <Background />
+          <div id="mainApp">
+            <Switch>
+              {paths.map(({ exact = true, path, component }, i) => {
+                return (
+                  <Route
+                    key={i}
+                    exact={exact}
+                    path={path}
+                    component={component}
+                  />
+                );
+              })}
+              <Route path="*" render={() => <Redirect to="/" />} />
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </ContactFormProvider>
     </Suspense>
   );
 }
