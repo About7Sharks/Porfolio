@@ -1,24 +1,29 @@
 import React, { useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import "../../styles/projects.scss";
+import { Site } from "../../types";
 
-function useTilt(active) {
-  const ref = useRef(null);
+function useTilt(active: boolean | null) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!ref.current || !active) {
       return;
     }
 
-    const state = {
+    const state: {
+      rect: DOMRect | undefined;
+      mouseX: number | undefined;
+      mouseY: number | undefined;
+    } = {
       rect: undefined,
       mouseX: undefined,
       mouseY: undefined,
     };
 
-    let el = ref.current;
+    const el = ref.current;
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (!el) {
         return;
       }
@@ -30,8 +35,8 @@ function useTilt(active) {
       const px = (state.mouseX - state.rect.left) / state.rect.width;
       const py = (state.mouseY - state.rect.top) / state.rect.height;
 
-      el.style.setProperty("--px", px);
-      el.style.setProperty("--py", py);
+      el.style.setProperty("--px", String(px));
+      el.style.setProperty("--py", String(py));
     };
 
     el.addEventListener("mousemove", handleMouseMove);
@@ -44,7 +49,12 @@ function useTilt(active) {
   return ref;
 }
 
-function Slide({ slide, offset }) {
+interface SlideProps {
+  slide: Site;
+  offset: number;
+}
+
+function Slide({ slide, offset }: SlideProps) {
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
 
@@ -56,7 +66,7 @@ function Slide({ slide, offset }) {
       style={{
         "--offset": offset,
         "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
-      }}
+      } as React.CSSProperties}
     >
       <div className="slideBackground" />
       <div
@@ -81,30 +91,35 @@ function Slide({ slide, offset }) {
   );
 }
 
-export default function App(params) {
+interface ProjectSliderProps {
+  sites: Site[];
+}
 
-  let { sites } = params;
-  let slides = sites.map((site) => {
-    return {
-      title: site.title,
-      image: site.img,
-      description: site.text,
-      url: site.url,
-      tags: site.tags,
-    };
-  });
-  const [state, updateState] = React.useState({
-    projects: params.sites,
+interface SliderState {
+  projects: Site[];
+  slideIndex: number;
+}
+
+export default function ProjectSlider({ sites }: ProjectSliderProps) {
+  const slides = sites.map((site) => ({
+    title: site.title,
+    image: site.img,
+    description: site.text,
+    url: site.url,
+    tags: site.tags,
+  }));
+
+  const [state, updateState] = React.useState<SliderState>({
+    projects: sites,
     slideIndex: 0,
   });
+
   useEffect(() => {
-    updateState({ slideIndex: 0, projects: params.sites });
-  }, [params]);
-  const slidesReducer = (event) => {
-    console.log(event);
+    updateState({ slideIndex: 0, projects: sites });
+  }, [sites]);
+
+  const slidesReducer = (event: "NEXT" | "PREV") => {
     if (event === "NEXT") {
-      console.log(state.projects);
-      console.log(state.slideIndex, slides.length);
       updateState({
         ...state,
         slideIndex: (state.slideIndex - 1) % state.projects.length,
@@ -125,7 +140,7 @@ export default function App(params) {
         <button onClick={() => slidesReducer("PREV")}>‹</button>
         {[...state.projects, ...state.projects, ...state.projects].map(
           (slide, i) => {
-            let offset = state.projects.length + (state.slideIndex - i);
+            const offset = state.projects.length + (state.slideIndex - i);
             return <Slide slide={slide} offset={offset} key={i} />;
           }
         )}

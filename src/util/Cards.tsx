@@ -6,19 +6,20 @@ import { useHistory } from "react-router-dom";
 import DirectionReveal from "direction-reveal";
 import "direction-reveal/src/styles/direction-reveal.scss";
 import ImageWithFallback from "./ImgWithFallback";
-interface Props {
-  data: Site[];
-  gridLayout: string;
-  routeExternal: boolean;
-}
-interface Site {
-  url: string;
-  img: string;
+interface CardItem {
+  url?: string;
+  img?: string;
   image?: string;
   title: string;
-  text: string;
-  tags: Array<string>;
+  text?: string;
+  tags?: string[];
   summary?: string;
+}
+
+interface Props {
+  data: CardItem[];
+  gridLayout: string;
+  routeExternal: boolean;
 }
 
 export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
@@ -26,8 +27,8 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
   useEffect(() => {
     DirectionReveal();
   });
-  const handleRouting = (site: Site) => {
-    if (routeExternal) {
+  const handleRouting = (site: CardItem) => {
+    if (routeExternal && site.url) {
       window.open(site.url);
     } else {
       history.push("/journal/" + site.title.replace(/ /g, ""), site);
@@ -37,7 +38,7 @@ export const Cards: React.FC<Props> = ({ data, gridLayout, routeExternal }) => {
     if (data.length < 1) return <div></div>;
     const list = data.map((site, i) => {
       if (site.title === undefined) return <div key="undefined"></div>;
-      const tagButtons = site.tags.map((tag, i) => (
+      const tagButtons = (site.tags || []).map((tag, i) => (
         <Button
           style={{ border: "1px solid white", color: "white" }}
           variant="outlined"

@@ -1,0 +1,111 @@
+import { Site } from "../../types";
+
+const sites: Site[] = [
+  {
+    url: `https://accubrew.io`,
+    img: `https://accubrew.io/wp-content/uploads/2023/10/AB_DEVICE-TRIO_new-1.png`,
+    title: `Accubrew`,
+    text: `Real time precision beer monitoring system`,
+    tags: [`IOT`, `Vue`, `Javascript`],
+  },
+  {
+    url: "https://mainstreetdata.com",
+    img: "https://raw.githubusercontent.com/jameskelley145/main-street-data/7154bfda66aabba3c2e265e1e1559167824bcbc8/public/static/images/msdPremiumChart.png?token=GHSAT0AAAAAABYXUCVZE5OSRSL6WU2MYF4MZTEXXTA",
+    title: "Main Street Data",
+    text: "Stock data analytics platform",
+    tags: ["Next.js", "Typescript", "Finance"],
+  },
+  {
+    url: "https://github.com/About7Sharks/flashloan-template",
+    img: "https://www.gitbook.com/cdn-cgi/image/width=40,dpr=2,height=40,fit=contain,format=auto/https%3A%2F%2F2799188404-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M6U5cfvZsVW8zOEpVl1%252Favatar-1595317514145.png%3Fgeneration%3D1595317514421109%26alt%3Dmedia",
+    title: "Flashloan Template",
+    text: "Template for flashloan projects",
+    tags: ["Ethereum", "Solidity", "Flashloan"],
+  },
+  {
+    url: `https://reactterminal.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5e3f676d077be200092f56b4/screenshot.png`,
+    title: `React Terminal`,
+    text: `Site which emulates a terminal within a web browser using React.js`,
+    tags: [`React`, `Javascript`],
+  },
+  {
+    url: `https://metadatascrub.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5eea3a9c53d17023b94b6d6d/screenshot.png`,
+    title: `Metadata scrubber`,
+    text: `This project was inspired after seeing a BLM post that showed a siri shortcut for removing picture data. Although siri is cool, anyone without an iphone is unable to use it.`,
+    tags: [`Vue`],
+  },
+  {
+    url: `https://rokuremote.netlify.app/#/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d34ac7f21e18700072880ff/screenshot.png`,
+    title: `Roku TV Remote`,
+    text: `Web Based Roku Remote I made after my remote died and I didn't have any batteries at home.`,
+    tags: [`Vue`, `IOT`],
+  },
+  {
+    url: `https://situpcoach.netlify.app/`,
+    img: `/assets/situp.png`,
+    title: `Sit Up Coach`,
+    text: `AI Trained to count sit ups for you. Made during quarantine, when I was doing a lot of home workouts.`,
+    tags: [`AI`, `Vue`, `Fitness`],
+  },
+  {
+    url: `https://pushupcoach.netlify.app/`,
+    img: `/assets/pushup.png`,
+    title: `Push Up Coach`,
+    text: `AI Trained to count push ups for you. Made during quarantine, when I was doing a lot of home workouts.`,
+    tags: [`AI`, `Vue`, `Fitness`],
+  },
+  {
+    url: `https://weliveinasim.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5e0a51668d0c8a374c71465a/screenshot.png`,
+    title: `Conways Game of Life using WebAssembly and Javascript`,
+    text: `Based on some basic rules to create living and intricate systems, that mimic life. This project utilizes WASM a portable binary-code format for executable programs, which gives C like performance in the browser.`,
+    tags: [`Rust`, `WASM`, `WebAssembly`],
+  },
+  {
+    url: `https://carlinfitness.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d27966251f7040008b66bba/screenshot.png`,
+    title: `Carlin Fitness`,
+    text: `Suite of Fitness calculators, and Guides`,
+    tags: [`Vue`, `Fitness`],
+  },
+  {
+    url: `https://gitfolio.netlify.app/`,
+    img: `/assets/gitfolio.png`,
+    title: `Gitfolio`,
+    text: `Site showing of repositories for projects, self generating on each rebuild.`,
+    tags: [`React`],
+  },
+  {
+    url: `https://tensorposebot.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d863c1312febf000832790d/screenshot.png`,
+    title: `Pose Bot`,
+    text: `Pose bot built with tensorflow.js to identify body symmetry while posing.`,
+    tags: [`Vue`, `AI`],
+  },
+  {
+    url: `https://facialai.netlify.app/`,
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d3f13f6c57b7c9f194a8de8/screenshot.png`,
+    title: `Face Recognizer`,
+    text: `Simple Facial recognition build in the browser`,
+    tags: [`AI`, `HTML`, `Javascript`],
+  },
+  {
+    url: "https://stocism.netlify.app",
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5c074e66dd28ef0e15d75956/screenshot.png`,
+    title: `Stoicism Quotes`,
+    text: `Database of stoicism quotes`,
+    tags: [`Vue`],
+  },
+  {
+    url: "https://www.zacarlin.com/#/",
+    img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5c5f96bda306c00008028590/screenshot.png`,
+    title: `Zacarlin`,
+    text: `Bought the Domain a while back and figured I should put it to use.`,
+    tags: [`Vue`],
+  },
+];
+
+export default sites;

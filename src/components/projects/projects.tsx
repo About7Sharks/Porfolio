@@ -1,5 +1,5 @@
 import { useState } from "react";
-import sites from "./sites.js"; //my sites data
+import sites from "./sites";
 import { Button } from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 import ProjectSlider from "./sliderProjects";
@@ -10,29 +10,28 @@ import {
   Cards,
   Emoji,
 } from "../../util/index";
+import { Site } from "../../types";
+
 export default function Projects() {
-  //set the initial state = to sites.js file
-  const [projects, updateProjects] = useState(sites);
-  //toggles alternative layout
+  const [projects, updateProjects] = useState<Site[]>(sites);
   const [view, setView] = useState(true);
 
-  // handles updates from picker component
-  const handleChange = (e, filter) => {
-    let newList =
+  const handleChange = (_e: React.ChangeEvent<{}>, filter: string | null) => {
+    const newList =
       filter === "All" || filter === null
         ? sites
-        : sites.filter((site) => {
-            return site.tags.includes(filter);
-          });
+        : sites.filter((site) => site.tags.includes(filter));
     updateProjects(newList);
   };
 
   const changeView = () => {
     setView(!view);
   };
+
   const randomSite = () => {
     window.open(sites[Math.floor(Math.random() * sites.length + 1)].url);
   };
+
   return (
     <div id="projects" className="projects">
       <h1>{spinAnimationV2("Projects")}</h1>

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { spinAnimationV2, getArticle } from "../../util/index.ts";
-import { config } from "../../Config.ts";
+import { spinAnimationV2, getArticle } from "../../util/index";
+import { config } from "../../Config";
 import "../../styles/about.scss";
 
 const { user, repo } = config;
+
 export default function About() {
   const [about, setAbout] = useState("");
+
   useEffect(() => {
     const getAbout = async () => {
       const { content } = await getArticle({
@@ -19,10 +21,11 @@ export default function About() {
     };
     getAbout();
   }, []);
+
   return (
     <div className="about">
       <h1>{spinAnimationV2("About")}</h1>
-      <ReactMarkdown linkTarget="_blank" children={about || "Nothing"} />
+      <ReactMarkdown linkTarget="_blank">{about || "Nothing"}</ReactMarkdown>
       <span>
         <h2>Resume</h2>&nbsp;-&nbsp;
         <p>

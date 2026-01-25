@@ -1,11 +1,17 @@
-import React from "react";
 import { useHistory } from "react-router-dom";
 import "../../styles/posts.scss";
 import { Button } from "@material-ui/core";
+import { Article } from "../../types";
 
-export const TextCards = ({ data, title }) => {
+interface TextCardsProps {
+  data: Article[];
+  routeExternal?: boolean;
+  gridLayout?: string;
+}
+
+export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
   const history = useHistory();
-  const handleClick = (post) => {
+  const handleClick = (post: Article) => {
     history.push(`/journal/${post.title.replace(/ /g, "")}`, post);
   };
   return (
@@ -19,7 +25,7 @@ export const TextCards = ({ data, title }) => {
               <div>
                 <h4>
                 Tags:{" "}
-                {post.tags.map((tag, i) => (
+                {(post.tags || []).map((tag, i) => (
                   <Button
                     style={{ border: "1px solid white", color: "white" }}
                     variant="outlined"

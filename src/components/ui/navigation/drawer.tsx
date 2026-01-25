@@ -1,28 +1,42 @@
 import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { useStyles,
-         InfoIcon, HomeIcon, BookIcon, MenuIcon,ListItemIcon, AccountTreeIcon,
-         SwipeableDrawer, Button, List, ListItem, 
-       } from "./drawerHelpers";
+import {
+  useStyles,
+  InfoIcon,
+  HomeIcon,
+  BookIcon,
+  MenuIcon,
+  ListItemIcon,
+  AccountTreeIcon,
+  SwipeableDrawer,
+  Button,
+  List,
+  ListItem,
+} from "./drawerHelpers";
 import "../../../styles/index.scss";
+
+type Anchor = "left" | "right" | "top" | "bottom";
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
-  const [state, setState] = React.useState({ left: false });
+  const [state, setState] = React.useState<Record<Anchor, boolean>>({ left: false, right: false, top: false, bottom: false });
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event === undefined) return;
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setState({ ...state, [anchor]: open });
-  };
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event?: React.KeyboardEvent | React.MouseEvent) => {
+      if (event === undefined) return;
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+      setState({ ...state, [anchor]: open });
+    };
 
-  const list = (anchor) => (
+  const list = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, classes.drawer, {
         [classes.fullList]: anchor === "top" || anchor === "bottom",
@@ -33,7 +47,7 @@ export default function TemporaryDrawer() {
     >
       <List className={classes.drawers + " customDrawerStyleTweaks"}>
         <h3 className="drawerTitle">Zac's Nav</h3>
-        {["Home", "Journal", "Projects", "About"].map((text, index) => (
+        {["Home", "Journal", "Projects", "About"].map((text) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {text === "Home" ? (
@@ -62,8 +76,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {["left"].map((anchor) => (
-        // Fragments let you group a list of children without adding extra nodes to the DOM.
+      {(["left"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
             className={classes.menuStyles}
