@@ -137,14 +137,14 @@ export default function ProjectSlider({ sites }: ProjectSliderProps) {
   return (
     <div id="projects" className="projects">
       <div className="slides">
-        <button onClick={() => slidesReducer("PREV")}>‹</button>
+        <button onClick={() => slidesReducer("PREV")} aria-label="Previous project">‹</button>
         {[...state.projects, ...state.projects, ...state.projects].map(
           (slide, i) => {
             const offset = state.projects.length + (state.slideIndex - i);
             return <Slide slide={slide} offset={offset} key={i} />;
           }
         )}
-        <button onClick={() => slidesReducer("NEXT")}>›</button>
+        <button onClick={() => slidesReducer("NEXT")} aria-label="Next project">›</button>
       </div>
     </div>
   );
