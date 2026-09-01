@@ -50,20 +50,6 @@
     .early-card { padding:15px 16px; border:1px solid var(--line); background:#fff; break-inside:avoid; }
     .early-card h3 { margin:0 0 5px; font-size:14px; }
     .early-card p { margin:0; color:var(--slate); font-size:12.5px; line-height:1.5; }
-    .flagship-head { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
-    .flagship-head .section-title { margin:0; }
-    .flagship-head .section-title::after { display:none; }
-    .proof-tag { display:inline-flex; align-items:center; gap:7px; padding:5px 12px; border:1px solid rgb(29 78 216 / 30%); background:var(--sky); color:var(--cobalt); font-size:10px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; white-space:nowrap; }
-    .flagship { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .fcard { position:relative; overflow:hidden; padding:18px 20px; border-radius:10px; background:#111c33; color:#e6ecf7; break-inside:avoid; }
-    .fcard::before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:linear-gradient(180deg,#65a3ff,#1d4ed8); }
-    .fcard .fkicker { display:block; margin-bottom:9px; color:#75a7ff; font-size:10px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; }
-    .fcard h3 { margin:0 0 8px; color:#fff; font-size:16px; }
-    .fcard p { margin:0 0 13px; color:#c3d0e6; font-size:12.5px; line-height:1.55; }
-    .fcard .verify { display:flex; flex-wrap:wrap; gap:6px; }
-    .fcard .verify span { padding:3px 10px; border:1px solid rgb(255 255 255 / 22%); border-radius:999px; color:#dbe4f5; font-size:10.5px; font-weight:700; letter-spacing:.04em; }
-    .proof-line { margin:16px 0 0; color:var(--slate); font-size:13px; }
-    .proof-line a { color:var(--cobalt); font-weight:650; }
     @media (max-width:760px) {
       html { background:white; }
       .sheet { width:100%; margin:0; box-shadow:none; }
@@ -82,8 +68,6 @@
       .role li { margin:6px 0; }
       time { display:block; margin-bottom:5px; }
       .early { grid-template-columns:1fr; gap:18px; }
-      .flagship { grid-template-columns:1fr; gap:14px; }
-      .flagship-head { flex-wrap:wrap; }
       .early-card p { font-size:14px; line-height:1.55; }
     }
     @page { size:A4; margin:0; }
@@ -115,15 +99,6 @@
       .early-card { padding:1.8mm; }
       .early-card h3 { margin-bottom:.6mm; font-size:7pt; }
       .early-card p { font-size:6.1pt; }
-      .flagship-head { margin-bottom:1.5mm; }
-      .proof-tag { padding:1.2mm 2.5mm; font-size:5.5pt; }
-      .flagship { gap:2mm; }
-      .fcard { padding:2.5mm 3mm; background:#111c33; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-      .fcard .fkicker { font-size:5.5pt; }
-      .fcard h3 { font-size:7.5pt; }
-      .fcard p { font-size:6.1pt; }
-      .fcard .verify span { font-size:5.5pt; }
-      .proof-line { font-size:6.1pt; }
       a { text-decoration:none; }
     }
   </style>
@@ -157,12 +132,20 @@
     <p class="summary">I own frontend from architecture to shipped product. Eight years building and modernizing data-rich web platforms in TypeScript, React, Next.js, and Node.js — currently the frontend technical lead for a B2B financial-data product. I also build and operate production systems on my own: a deployed customer-facing platform and private AI reliability infrastructure.</p>
     <section class="section">
       <h2 class="section-title">Experience</h2>
-      <article class="role"><time>2023—Now</time><div><h3>Main Street Data <span class="company">· Senior Software Engineer</span></h3><ul><li>Own the frontend architecture and delivery for a B2B financial-data platform — the sole technical authority on frontend direction, taking features from Figma through tested production software.</li><li>Led the Next.js pages-to-app-router migration and added server-side rendering to cut initial-load latency and interface flicker.</li><li>Own a KPI API serving B2B clients, contributing across frontend, API, and data layers.</li><li>Modernized frontend quality controls — ESLint flat config, stricter checks, and type-debt tracking — across the shared application surface.</li></ul></div></article>
+      <article class="role"><time>2023—Now</time><div><h3>The Fly <span class="company">(Main Street Data) · Senior Software Engineer</span></h3><ul><li>Frontend technical authority on a B2B financial-data platform — direction, delivery, and the build, from Figma through tested production.</li><li>Built and operate the MCP server at <a href="https://mcp.thefly.com">mcp.thefly.com</a>, exposing The Fly as tools agents can call — production MCP tooling, not a demo.</li><li>Built the product's AI chat widget end-to-end, including streaming responses, retrieval grounding, and human-gated behavior.</li><li>Added automatic code review to the delivery flow, so every change ships with review and CI/CD gates before it can land.</li><li>Improved the CI/CD pipeline — faster, more reliable builds and gated promotion — across the frontend and API surfaces.</li><li>Modernized frontend quality controls (ESLint flat config, stricter checks, type-debt tracking) and led the Next.js pages-to-app-router migration with server-side rendering to cut initial-load latency.</li></ul></div></article>
       <article class="role"><time>2022—2023</time><div><h3>Sonobi <span class="company">· Senior Software Engineer</span></h3><ul><li>Built and maintained React applications spanning legacy class components and modern hooks.</li><li>Replaced jQuery product flows with maintainable React and async components.</li><li>Integrated PHP and Python services and optimized GraphQL / Postgres-backed API and database paths.</li><li>Contributed to Prebid.js and ran day-to-day engineering coordination.</li></ul></div></article>
       <article class="role"><time>2021—2022</time><div><h3>Dogwood Logic <span class="company">· Software Engineer</span></h3><ul><li>Implemented decentralized identifiers and verifiable credentials in Node.js and TypeScript.</li><li>Built Vue.js interfaces for encrypted healthcare applications using test-driven development and user-flow simulation.</li></ul></div></article>
       <article class="role"><time>2018—2020</time><div><h3>Gulf Photonics <span class="company">· Software Engineer</span></h3><ul><li>Lead developer for an IoT embedded sensor and its web dashboard.</li><li>Built Node.js / Vue interfaces and APIs and managed MongoDB and Firebase across desktop and mobile.</li></ul></div></article>
     </section>
-    <section class="section"><div class="flagship-head"><h2 class="section-title">Independent Engineering</h2><span class="proof-tag">✓ Production-verified</span></div><div class="flagship"><article class="fcard"><span class="fkicker">Live product · Owner &amp; product engineer</span><h3>Z4C Platform</h3><p>Design, build, and operate a customer-facing booking platform on React, TypeScript, and Cloudflare — timezone-aware lead intake, concurrency-safe storage, abuse protection, and analytics, with automated tests and production verification on every change.</p><div class="verify"><span>Deployed</span><span>Cloudflare</span><span>Tested</span><span>Live at z4cllc.com</span></div></article><article class="fcard"><span class="fkicker">AI reliability · Owner &amp; operator</span><h3>AI Reliability Systems</h3><p>Build and operate private AI workflow and evaluation infrastructure: deterministic evaluations, regression comparison, redaction of persisted output, and human-gated promotion with rollback awareness. Production agent tooling, not a demo.</p><div class="verify"><span>Deterministic eval</span><span>Regression-gated</span><span>Human approval</span><span>Rollback-aware</span></div></article></div><p class="proof-line">Both systems are mine end-to-end — architecture, code, deployment, and day-to-day operation. <a href="https://www.z4cllc.com">z4cllc.com is live and verifiable.</a></p></section>
+    <section class="section"><h2 class="section-title">Independent Engineering</h2>
+      <article class="role"><time>2024—Now</time><div><h3>Z4C &amp; AI Reliability Systems <span class="company">· Owner / Product Engineer / Operator</span></h3>
+        <ul>
+          <li>Design, build, deploy, and operate a customer-facing platform (React, TypeScript, Cloudflare) end-to-end — timezone-aware intake, concurrency-safe storage, abuse protection, analytics, automated tests, production verification on every change. <a href="https://www.z4cllc.com">z4cllc.com is live and verifiable.</a></li>
+          <li>Build and operate private AI workflow and evaluation infrastructure: deterministic evaluations, regression comparison, redaction of persisted output, human-gated promotion with rollback awareness. Production agent tooling, not a demo.</li>
+          <li>Mine end-to-end — architecture, code, deployment, and day-to-day operation.</li>
+        </ul>
+      </div></article>
+    </section>
   </section>
 </div></main>
 </body>
