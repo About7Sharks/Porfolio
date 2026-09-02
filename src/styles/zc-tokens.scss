@@ -1,8 +1,16 @@
-// Zac portfolio — design tokens
-// Mirrors the resume visual language: cobalt, slate, dark navy on paper.
+// Zac's site — design system.
+// Warm, editorial, human. One signature accent (rust orange) carried through
+// every page so it's unmistakably *Zac's*.
+// Display type: Fraunces (a serif with real character). Body: Inter.
 
-// Self-hosted Inter (OFL) — resolves the "Inter not installed on headless
-// browser" fallback so the headline always renders in the intended typeface.
+// ---- Fonts (self-hosted, so the look holds on any machine) ----
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url("../assets/fonts/fraunces-900-latin.woff2") format("woff2");
+}
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -32,164 +40,185 @@
   src: url("../assets/fonts/inter-latin-800.woff2") format("woff2");
 }
 
+// ---- Palette ----
 :root {
-  --zc-ink:        #111827;
-  --zc-cobalt:     #1d4ed8;
-  --zc-cobalt-2:   #2563eb;
-  --zc-sky:        #dbeafe;
-  --zc-slate:      #475569;
-  --zc-line:       #d8dee8;
-  --zc-paper:      #ffffff;
-  --zc-wash:       #f4f7fb;
-  --zc-navy:       #111c33;
-  --zc-navy-2:     #1a2a4a;
-  --zc-radius:     14px;
-  --zc-max:        1180px;
+  // paper — warm cream, not cold white
+  --zc-paper: #f6f1e7;
+  --zc-paper-2: #efe7d8;      // slightly deeper panels
+  --zc-ink: #241d16;          // warm near-black
+  --zc-ink-soft: #4a4034;     // secondary text
+  --zc-line: #d9cfc0;         // hairlines
+  --zc-accent: #d1492b;       // rust / burnt orange — THE signature color
+  --zc-accent-ink: #fff;
+  --zc-accent-soft: #f3d8cd;  // tint for chips on paper
+  --zc-teal: #2f6f6a;         // a cool counterweight for IPFS/craft moments
+  --zc-shadow: 0 18px 40px -24px rgba(36, 29, 22, 0.45);
+  --zc-shadow-sm: 0 8px 22px -14px rgba(36, 29, 22, 0.5);
+
+  // type
+  --zc-display: "Fraunces", ui-serif, Georgia, serif;
+  --zc-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --zc-radius: 16px;
+  --zc-radius-sm: 10px;
+  --zc-max: 1120px;
 }
 
-// Base layout for the new pages — self-contained, overrides the legacy
-// #root flex centering so the pages can flow top-down.
+// ---- Base reset for the new pages (neutralize the legacy dark-theme globals) ----
 .zc {
   position: relative;
   z-index: 5;
-  width: 100%;
   min-height: 100vh;
-  background: var(--zc-wash);
+  background: var(--zc-paper);
   color: var(--zc-ink);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--zc-body);
+  font-size: 16px;
   line-height: 1.55;
-  display: block; // override #root flex
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 
-  // Kill the global h1 Shrikhand + triangle decorations on our pages
-  h1, h2, h3, h4, p, ul, li {
+  h1, h2, h3, h4, h5, h6, p, ul, li, a, span, div, section, article {
     font-family: inherit;
   }
-  h1, h2, h3, h4 {
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-  h1::before, h1::after,
-  h2::before, h2::after {
-    display: none !important;
+
+  // kill the legacy clip-path triangles + centered inline h1
+  h1::before, h1::after, h2::before, h2::after {
     content: none !important;
-  }
-  p {
-    margin: 0;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
+    display: none !important;
   }
 
   a {
     color: inherit;
     text-decoration: none;
   }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
+  a:hover { color: var(--zc-accent); }
 }
 
-// Section container
-.zc-section {
-  width: 100%;
-  max-width: var(--zc-max);
-  margin: 0 auto;
-  padding: 72px 32px;
+// ---- Shared display type ----
+.zc-display {
+  font-family: var(--zc-display);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  color: var(--zc-ink);
 }
 
-@media (max-width: 720px) {
-  .zc-section {
-    padding: 48px 20px;
-  }
-}
-
-// Section heading (small caps + rule)
-.zc-kicker {
-  display: flex;
+.zc-eyebrow {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 18px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+  gap: 8px;
+  font-family: var(--zc-body);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--zc-cobalt);
+  color: var(--zc-accent);
 }
-.zc-kicker::before {
+.zc-eyebrow::before {
   content: "";
-  width: 32px;
-  height: 3px;
-  background: var(--zc-cobalt);
+  width: 22px;
+  height: 2px;
+  background: var(--zc-accent);
   border-radius: 2px;
 }
-.zc-kicker::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--zc-line);
+
+.zc-section {
+  max-width: var(--zc-max);
+  margin: 0 auto;
+  padding: 84px 28px;
 }
 
-// Buttons
+.zc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--zc-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zc-ink-soft);
+  background: var(--zc-accent-soft);
+  border: 1px solid rgba(209, 73, 43, 0.18);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+// ---- Buttons ----
 .zc-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-  cursor: pointer;
-  border: 1px solid transparent;
-
-  &.primary {
-    background: var(--zc-cobalt);
-    color: white;
-    &:hover {
-      background: var(--zc-cobalt-2);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25);
-    }
-  }
-  &.ghost {
-    background: transparent;
-    color: var(--zc-ink);
-    border-color: var(--zc-line);
-    &:hover {
-      border-color: var(--zc-cobalt);
-      color: var(--zc-cobalt);
-    }
-  }
-  &.light {
-    background: rgba(255,255,255,0.08);
-    color: white;
-    border-color: rgba(255,255,255,0.22);
-    &:hover {
-      background: rgba(255,255,255,0.14);
-    }
-  }
-}
-
-// Tags
-.zc-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.zc-tag {
-  font-size: 11px;
+  font-family: var(--zc-body);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 4px 10px;
+  font-size: 15px;
+  padding: 12px 20px;
   border-radius: 999px;
-  background: var(--zc-sky);
-  color: var(--zc-cobalt);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  white-space: nowrap;
 }
+.zc-btn:hover { transform: translateY(-1px); }
+.zc-btn:active { transform: translateY(0); }
+
+.zc-btn.accent {
+  background: var(--zc-accent);
+  color: var(--zc-accent-ink);
+  &:hover { background: #b83d22; color: var(--zc-accent-ink); }
+}
+.zc-btn.ink {
+  background: var(--zc-ink);
+  color: #fdfaf4;
+  &:hover { background: #000; color: #fff; }
+}
+.zc-btn.line {
+  background: transparent;
+  color: var(--zc-ink);
+  border-color: var(--zc-ink);
+  &:hover { background: var(--zc-ink); color: #fff; }
+}
+.zc-btn.line-light {
+  background: transparent;
+  color: #fdfaf4;
+  border-color: rgba(253, 250, 244, 0.55);
+  &:hover { background: #fdfaf4; color: var(--zc-ink); }
+}
+
+// ---- Cards ----
+.zc-card {
+  background: #fffdf8;
+  border: 1px solid var(--zc-line);
+  border-radius: var(--zc-radius);
+  box-shadow: var(--zc-shadow-sm);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.zc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--zc-shadow);
+  border-color: rgba(209, 73, 43, 0.35);
+}
+
+// ---- Footer (warm, human) ----
+.zc-foot {
+  background: var(--zc-ink);
+  color: #e9e2d6;
+  padding: 30px 28px;
+  border-top: 4px solid var(--zc-accent);
+}
+.zc-foot-inner {
+  max-width: var(--zc-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.zc-foot .zc-foot-mono {
+  font-family: var(--zc-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+}
+.zc-foot .zc-foot-mono .zc-horse { color: var(--zc-accent); }

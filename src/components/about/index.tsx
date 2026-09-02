@@ -1,132 +1,150 @@
 import React from "react";
 import { config } from "../../Config";
 import { Link } from "react-router-dom";
+import zac from "../../assets/img/zac.png";
 import "./About.scss";
 
 const experience = [
   {
-    company: "The Fly (Main Street Data)",
-    role: "Senior Software Engineer · Frontend technical lead",
+    company: "The Fly",
+    role: "Frontend technical lead · formerly Main Street Data",
     period: "2023 — Now",
-    bullets: [
-      "Frontend technical authority on a B2B financial-data platform — direction, delivery, and the build, from Figma through tested production.",
-      "Joined at founding as a 3-person startup; acquired by an international company, now The Fly (50+).",
-      "Built and operate the MCP server at mcp.thefly.com — production MCP tooling agents can call.",
-      "Built the AI chat widget end-to-end: streaming, retrieval grounding, human-gated behavior.",
-      "Automatic code review + CI/CD gates on every PR; Next.js pages-to-app-router migration with SSR.",
-    ],
+    note: "Joined when it was three of us. It got acquired and is now a 50+ company. I've owned the frontend the whole way — architecture, build, and the AI tooling on top (mcp.thefly.com).",
   },
   {
     company: "Sonobi",
     role: "Senior Software Engineer",
     period: "2022 — 2023",
-    bullets: [
-      "Built and maintained React applications on a digital ad-buying platform (100+ people).",
-      "Migrated legacy jQuery and class-component flows to maintainable hooks-based React.",
-      "Integrated with PHP and Python services; optimized GraphQL / Postgres-backed API paths.",
-      "Contributed to Prebid.js — the open-source ad-bidding standard.",
-    ],
+    note: "React apps on an ad-buying platform, untangling legacy jQuery into hooks, and a handful of contributions to Prebid.js itself.",
   },
   {
     company: "Dogwood Logic",
     role: "Software Engineer",
     period: "2021 — 2022",
-    bullets: [
-      "Implemented decentralized identifiers and verifiable credentials in Node.js and TypeScript.",
-      "Built Vue.js interfaces for encrypted healthcare applications, test-driven.",
-    ],
+    note: "Decentralized identifiers and verifiable credentials in TypeScript, plus Vue for some pretty locked-down healthcare apps.",
   },
   {
     company: "Gulf Photonics",
-    role: "Software Engineer · Lead developer",
+    role: "Lead developer",
     period: "2018 — 2020",
-    bullets: [
-      "Lead developer for an IoT embedded fermentation-monitoring sensor using photonics — shipped to accubrew.io — plus its web dashboard.",
-      "Built Node.js / Vue interfaces and APIs; managed MongoDB and Firebase across desktop and mobile.",
-    ],
-  },
-];
-
-const independent = [
-  {
-    t: "Z4C & AI Reliability Systems",
-    d: "Design, build, deploy, and operate a customer-facing platform end-to-end — timezone-aware intake, concurrency-safe storage, analytics, automated tests, and production verification on every change. z4cllc.com is live. Also build private AI evaluation infrastructure: deterministic evals, redaction of persisted output, human-gated promotion with rollback awareness.",
-    period: "2024 — Now",
+    note: "Built the software around a photonics fermentation sensor — the kind of IoT thing that lives on a real brewery. Shipped to accubrew.io.",
   },
 ];
 
 const stack = [
-  { group: "Product", items: ["TypeScript", "JavaScript", "React", "Next.js", "Vue", "Nuxt"] },
-  { group: "Systems", items: ["Node.js", "Python", "REST", "GraphQL", "SQL", "Postgres"] },
-  { group: "Platform", items: ["Docker", "CI/CD", "AWS", "Google Cloud", "Git", "Jest"] },
-  { group: "Applied AI", items: ["Tool use", "Retrieval", "Evals", "Human approval", "Observability"] },
+  { group: "Product", items: ["TypeScript", "React", "Next.js", "Vue", "Nuxt"] },
+  { group: "Systems", items: ["Node.js", "Python", "GraphQL", "Postgres"] },
+  { group: "Platform", items: ["Docker", "CI/CD", "AWS", "GCP"] },
+  { group: "Applied AI", items: ["MCP / tool use", "Retrieval", "Evals", "Observability"] },
 ];
 
 export default function About() {
+  const li = (title: string) => config.links.find((l) => l.title === title)?.url;
+
   return (
     <div className="zc About">
-      <header className="zc-page-head">
-        <div className="zc-page-head-inner">
-          <span className="zc-badge-dark">Senior Software Engineer</span>
-          <h1 className="zc-h1 small">
-            Frontend-led product engineering.
-            <br />
-            <span className="zc-accent-dark">TypeScript-first. Remote.</span>
-          </h1>
-          <p className="zc-lead">
-            I own the frontend from architecture to shipped product — eight years
-            building and modernizing data-rich web platforms, across teams from
-            3-person startups to 100+ companies. I also design, build, deploy,
-            and operate production systems end-to-end on my own.
-          </p>
-          <div className="zc-hero-cta">
-            <a className="zc-btn primary" href="/resume.html" target="_blank" rel="noreferrer">
-              Full résumé →
-            </a>
-            <a className="zc-btn ghost" href="mailto:zacarlin@gmail.com">Email me</a>
+      {/* INTRO */}
+      <header className="zc-intro">
+        <div className="zc-intro-grid">
+          <div className="zc-intro-copy">
+            <span className="zc-eyebrow">About, sort of</span>
+            <h1 className="zc-display zc-h1">
+              I'm Zac.
+              <br />
+              Engineer, tinkerer,
+              <br />
+              <span className="zc-accent-word">Tampa sun-chaser.</span>
+            </h1>
+            <p className="zc-lead">
+              For work, I build serious frontend and full-stack systems — the
+              kind with real users and real money attached. That's the resume
+              part, and it's good, but it's not the whole picture.
+            </p>
+            <p className="zc-lead">
+              I also like the web the way it used to feel — personal, a little
+              weird, owned by the person behind it. So this site runs on IPFS,
+              it's not a template, and it has my actual face on it. That's
+              deliberate.
+            </p>
+            <div className="zc-hero-cta">
+              <a className="zc-btn accent" href="/resume.html" target="_blank" rel="noreferrer">
+                The résumé
+              </a>
+              <a className="zc-btn line" href="mailto:zacarlin@gmail.com">
+                Say hi
+              </a>
+            </div>
           </div>
+          <figure className="zc-portrait">
+            <img src={zac} alt="Zac at sunset" />
+            <figcaption>the real thing, no AI filter</figcaption>
+          </figure>
         </div>
       </header>
 
-      {/* EXPERIENCE */}
-      <section className="zc-section">
-        <h2 className="zc-kicker">Experience</h2>
-        <div className="zc-timeline">
-          {experience.map((e) => (
-            <article className="zc-role" key={e.company}>
-              <div className="zc-role-time">{e.period}</div>
-              <div className="zc-role-body">
-                <h3>{e.company}</h3>
-                <div className="zc-role-sub">{e.role}</div>
-                <ul>
-                  {e.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+      {/* THE WEIRD WEB / IPFS */}
+      <section className="zc-section zc-web">
+        <div className="zc-web-grid">
+          <div className="zc-web-copy">
+            <span className="zc-eyebrow">A thing I actually believe</span>
+            <h2 className="zc-display zc-h2">The web should feel like someone's.</h2>
+            <p>
+              This whole site is pinned to IPFS and resolvable through my ENS
+              name. Not because I'm chasing tokens — because I like that it can't
+              be quietly taken down, edited behind my back, or re-sorted by an
+              algorithm I didn't choose. A personal site on the personal web.
+              It feels right, and it's how I'd want mine to work if I were
+              building one.
+            </p>
+          </div>
+          <ul className="zc-web-list">
+            <li><span>📌</span> Pinned to IPFS — distributed, uncensorable</li>
+            <li><span>⚡️</span> Resolvable at <em>zacarlin</em> on ENS</li>
+            <li><span>🎨</span> Hand-built, not a page builder</li>
+            <li><span>📸</span> Real photos, no stock, no AI</li>
+          </ul>
         </div>
       </section>
 
-      {/* INDEPENDENT */}
-      <section className="zc-section zc-section-alt">
-        <h2 className="zc-kicker">Independent</h2>
-        {independent.map((i) => (
-          <article className="zc-role" key={i.t}>
-            <div className="zc-role-time">{i.period}</div>
+      {/* TIMELINE */}
+      <section className="zc-section zc-where">
+        <span className="zc-eyebrow">Where I've been</span>
+        <h2 className="zc-display zc-h2">The path, in plain English.</h2>
+        <div className="zc-timeline">
+          {experience.map((e) => (
+            <article className="zc-role" key={e.company}>
+              <div className="zc-role-rail">
+                <div className="zc-role-period">{e.period}</div>
+              </div>
+              <div className="zc-role-body">
+                <h3>{e.company}</h3>
+                <div className="zc-role-sub">{e.role}</div>
+                <p>{e.note}</p>
+              </div>
+            </article>
+          ))}
+          <article className="zc-role zc-role-own">
+            <div className="zc-role-rail">
+              <div className="zc-role-period">2024 — Now</div>
+            </div>
             <div className="zc-role-body">
-              <h3>{i.t}</h3>
-              <div className="zc-role-sub">Owner · Product Engineer · Operator</div>
-              <p>{i.d}</p>
+              <h3>My own stuff</h3>
+              <div className="zc-role-sub">Z4C &amp; AI reliability systems</div>
+              <p>
+                Independent work: a live customer-facing platform I design, ship,
+                and operate end-to-end, plus private AI-evaluation tooling with
+                deterministic regression checks. If I can keep it running
+                without a company behind me, that's the job.
+              </p>
             </div>
           </article>
-        ))}
+        </div>
       </section>
 
       {/* STACK */}
-      <section className="zc-section">
-        <h2 className="zc-kicker">Technical core</h2>
+      <section className="zc-section zc-stack-sec">
+        <span className="zc-eyebrow">The toolbox</span>
+        <h2 className="zc-display zc-h2">What I reach for.</h2>
         <div className="zc-stack">
           {stack.map((s) => (
             <div className="zc-stack-col" key={s.group}>
@@ -139,18 +157,22 @@ export default function About() {
             </div>
           ))}
         </div>
+        <p className="zc-stack-note">
+          And when it doesn't fit a box, I'll learn the box. That's the whole
+          job, honestly.
+        </p>
       </section>
 
-      {/* CONTACT */}
+      {/* CTA */}
       <section className="zc-cta">
         <div className="zc-cta-inner">
-          <h3>Let's talk.</h3>
-          <p>Senior and founding engineering roles — remote, US authorized.</p>
+          <h3 className="zc-display">I'd love to hear what you're working on.</h3>
+          <p>Remote, US-authorized, and actually responsive. Coffee is negotiable.</p>
           <div className="zc-cta-btns">
-            <a className="zc-btn light" href="mailto:zacarlin@gmail.com">Email</a>
-            <a className="zc-btn light" href={config.links.find((l) => l.title === "LinkedIn")?.url} target="_blank" rel="noreferrer">LinkedIn</a>
-            <a className="zc-btn light" href={config.links.find((l) => l.title === "GitHub")?.url} target="_blank" rel="noreferrer">GitHub</a>
-            <Link className="zc-btn light" to="/projects">Projects</Link>
+            <a className="zc-btn line-light" href="mailto:zacarlin@gmail.com">Email</a>
+            <a className="zc-btn line-light" href={li("LinkedIn")} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a className="zc-btn line-light" href={li("GitHub")} target="_blank" rel="noreferrer">GitHub</a>
+            <Link className="zc-btn line-light" to="/projects">Projects</Link>
           </div>
         </div>
       </section>

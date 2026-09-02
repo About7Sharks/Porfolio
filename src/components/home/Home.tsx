@@ -2,94 +2,94 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
 import { featured } from "../../data/featured";
+import zac from "../../assets/img/zac.png";
 import "./Home.scss";
 
-const stats = [
-  { n: "8 yrs", l: "shipping TypeScript at scale" },
-  { n: "Founding eng", l: "startup → acquisition" },
-  { n: "Production", l: "MCP + AI reliability infra" },
-];
-
 export default function Home() {
+  const li = (title: string) => config.links.find((l) => l.title === title)?.url;
+
   return (
     <div className="zc Home">
       {/* HERO */}
       <header className="zc-hero">
         <div className="zc-hero-grid">
           <div className="zc-hero-copy">
-            <span className="zc-badge">Available for senior / founding engineering roles · Remote, US</span>
-            <h1 className="zc-h1">
-              I own the frontend,
+            <span className="zc-eyebrow">Tampa, Florida · remote-first</span>
+            <h1 className="zc-display zc-h1">
+              Hey, I'm Zac.
               <br />
-              from architecture
+              I build things
               <br />
-              <span className="zc-accent">to shipped product.</span>
+              <span className="zc-accent-word">for the interwebs.</span>
             </h1>
             <p className="zc-lead">
-              Zachary Carlin — Senior Software Engineer. Eight years building
-              and modernizing data-rich web platforms in TypeScript, React, and
-              Next.js, across teams from 3-person startups to 100+ companies.
-              I'm currently the frontend technical lead for a B2B financial-data
-              product — and I build &amp; operate production systems end-to-end
-              on my own.
+              Software engineer by trade, tinkerer by nature. I spend my days
+              doing serious frontend work — TypeScript, React, production AI
+              tooling — and my weekends building the weirder stuff. I lift, I
+              travel, I take photos at sunset, and I keep this whole site on
+              IPFS because I like the idea that it can't just be taken down.
             </p>
             <div className="zc-hero-cta">
-              <Link to="/projects" className="zc-btn primary">
-                See featured work
+              <Link to="/projects" className="zc-btn accent">
+                See what I've built
               </Link>
-              <a href="/resume.html" className="zc-btn ghost" target="_blank" rel="noreferrer">
-                View résumé →
-              </a>
+              <Link to="/about" className="zc-btn line">
+                More about me
+              </Link>
+            </div>
+            <div className="zc-hero-trust">
+              <span className="zc-chip">🏛 Hosted on IPFS · uncensorable</span>
+              <span className="zc-chip">⚡️ Zac Carlin on ENS</span>
             </div>
           </div>
+
           <div className="zc-hero-side">
-            <div className="zc-side-card">
-              <div className="zc-side-head">Now</div>
-              <div className="zc-side-line">
+            <figure className="zc-portrait">
+              <img src={zac} alt="Zac at sunset" />
+              <figcaption>somewhere warm, probably</figcaption>
+            </figure>
+            <div className="zc-now">
+              <div className="zc-now-head">
+                <span className="zc-now-dot" />
+                right now
+              </div>
+              <div className="zc-now-row">
+                <strong>Frontend lead</strong>
                 <span>The Fly</span>
-                <em>Frontend tech lead · 50+ team</em>
               </div>
-              <div className="zc-side-line">
-                <span>mcp.thefly.com</span>
-                <em>Production MCP tooling</em>
+              <div className="zc-now-row">
+                <strong>Building</strong>
+                <span>AI reliability tooling</span>
               </div>
-              <div className="zc-side-line">
-                <span>z4cllc.com</span>
-                <em>Independent platform, live</em>
-              </div>
-              <div className="zc-side-tags">
-                <span>TypeScript</span><span>React</span><span>Next.js</span>
-                <span>Node</span><span>AI / MCP</span>
+              <div className="zc-now-row">
+                <strong>Also</strong>
+                <span>the gym, flights, good coffee</span>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* PROOF STRIP */}
-      <div className="zc-strip">
-        <div className="zc-strip-inner">
-          {stats.map((s) => (
-            <div className="zc-stat" key={s.l}>
-              <div className="zc-stat-n">{s.n}</div>
-              <div className="zc-stat-l">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* FEATURED */}
-      <section className="zc-section">
-        <h2 className="zc-kicker">Selected work</h2>
+      <section className="zc-section zc-feat">
+        <div className="zc-feat-head">
+          <span className="zc-eyebrow">The real work</span>
+          <h2 className="zc-display zc-h2">Things I've built that matter.</h2>
+          <p>
+            The projects with actual users and actual stakes. The rest — the fun
+            experiments, the "is this even possible" stuff — lives on the{" "}
+            <Link to="/projects">projects page</Link>.
+          </p>
+        </div>
         <div className="zc-feat-list">
           {featured.map((f) => (
-            <a className="zc-feat" href={f.url} target="_blank" rel="noreferrer" key={f.title}>
+            <a className="zc-feat-card" href={f.url} target="_blank" rel="noreferrer" key={f.title}>
               <div className="zc-feat-top">
                 <div>
-                  <div className="zc-feat-tag">{f.tag}</div>
+                  <span className="zc-feat-tag">{f.tag}</span>
                   <h3 className="zc-feat-title">{f.title}</h3>
                 </div>
-                <div className="zc-feat-period">{f.period}</div>
+                <span className="zc-feat-period">{f.period}</span>
               </div>
               <p className="zc-feat-blurb">{f.blurb}</p>
               <ul className="zc-feat-points">
@@ -97,63 +97,55 @@ export default function Home() {
                   <li key={b}>{b}</li>
                 ))}
               </ul>
-              <div className="zc-feat-cta">
-                <span className="zc-feat-visit">Visit {f.url.replace("https://", "")} →</span>
+              <div className="zc-feat-visit">
+                {f.url.replace("https://", "")} ↗
               </div>
             </a>
           ))}
         </div>
       </section>
 
-      {/* CAPABILITIES */}
-      <section className="zc-section zc-section-alt">
-        <h2 className="zc-kicker">What I do well</h2>
-        <div className="zc-cap-grid">
-          {[
-            {
-              t: "Frontend architecture",
-              d: "TypeScript, React, Next.js, Vue. Legacy-to-modern migrations, SSR, type-debt reduction, performance.",
-            },
-            {
-              t: "Applied AI & agents",
-              d: "Production MCP servers, AI chat with retrieval grounding + human gating, deterministic evals, observability.",
-            },
-            {
-              t: "Full-stack & platform",
-              d: "Node.js, REST/GraphQL, Postgres. Docker, CI/CD, AWS/GCP. Tested, gated, verifiable deploys.",
-            },
-          ].map((c) => (
-            <div className="zc-cap" key={c.t}>
-              <h4>{c.t}</h4>
-              <p>{c.d}</p>
-            </div>
-          ))}
+      {/* INTO */}
+      <section className="zc-section zc-into">
+        <span className="zc-eyebrow">Off the clock</span>
+        <h2 className="zc-display zc-h2">What I'm actually into.</h2>
+        <div className="zc-into-grid">
+          <div className="zc-into-item">
+            <div className="zc-into-ico">🏋️</div>
+            <h4>Lifting</h4>
+            <p>Not a gym guy, a lifter. Programmed, heavy, tracked. It's the only rep-counter I actually believe.</p>
+          </div>
+          <div className="zc-into-item">
+            <div className="zc-into-ico">✈️</div>
+            <h4>Travel</h4>
+            <p>New places, new food, good light. The sunset photos on this site are real — I like taking them.</p>
+          </div>
+          <div className="zc-into-item">
+            <div className="zc-into-ico">🌐</div>
+            <h4>Web3, the good parts</h4>
+            <p>I use IPFS and ENS because they make sense — decentralized, uncensorable, mine to control. Not a shill, just a believer.</p>
+          </div>
+          <div className="zc-into-item">
+            <div className="zc-into-ico">🧪</div>
+            <h4>Built-in weirdness</h4>
+            <p>If I can ship it to the browser, I will. WASM, terminals, pose detection, flashloans. Proof of concept is a vibe.</p>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="zc-cta">
         <div className="zc-cta-inner">
-          <h3>Let's build something that ships.</h3>
-          <p>Open to senior and founding engineering conversations.</p>
+          <h3 className="zc-display">Anyway — say hi.</h3>
+          <p>I'm open to interesting problems and decent coffee. The inbox is open.</p>
           <div className="zc-cta-btns">
-            <a className="zc-btn light" href={`mailto:${"zacarlin@gmail.com"}`}>
-              Email me
+            <a className="zc-btn line-light" href="mailto:zacarlin@gmail.com">
+              Email
             </a>
-            <a
-              className="zc-btn light"
-              href={config.links.find((l) => l.title === "LinkedIn")?.url}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="zc-btn line-light" href={li("LinkedIn")} target="_blank" rel="noreferrer">
               LinkedIn
             </a>
-            <a
-              className="zc-btn light"
-              href={config.links.find((l) => l.title === "GitHub")?.url}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="zc-btn line-light" href={li("GitHub")} target="_blank" rel="noreferrer">
               GitHub
             </a>
           </div>

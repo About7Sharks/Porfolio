@@ -642,23 +642,41 @@ span {
 .navbar {
   z-index: 100;
   list-style: none;
-  color: white;
+  color: #241d16;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  left: 0;
   right: 0px;
   top: 0px;
   width: 100vw;
   position: fixed;
+  border-bottom: 1px solid rgba(217,207,192,0.7);
+
+  .navLinks {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.zc-brand {
+  margin: 0 24px;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .navItem {
-  margin: 25px;
+  margin: 0;
+  padding: 0 18px;
   transition: 0.3s;
-  color: white;
+  color: #241d16;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 14.5px;
 
   &:hover {
-    color: #eef46e;
+    color: #d1492b;
     transition: 0.3s;
   }
 }
