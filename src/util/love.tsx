@@ -439,6 +439,59 @@ function setupHeroTerminal() {
   };
 }
 
+// -- scroll-to-top: a square button fades in after you've gone deep --------
+function setupScrollTop() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "love-scrolltop";
+  btn.setAttribute("aria-label", "Back to top");
+  btn.innerHTML = "&#8593;";
+  document.body.appendChild(btn);
+  const onScroll = () => {
+    const show = window.scrollY > 600;
+    btn.classList.toggle("show", show);
+  };
+  const onClick = () => {
+    if (prefersReduced()) window.scrollTo(0, 0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  btn.addEventListener("click", onClick);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  return () => {
+    btn.removeEventListener("click", onClick);
+    window.removeEventListener("scroll", onScroll);
+    btn.remove();
+  };
+}
+
+// -- scroll progress: a thin accent bar across the very top -----------------
+function setupScrollProgress() {
+  const bar = document.createElement("div");
+  bar.className = "love-scroll-progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.appendChild(bar);
+  let raf = 0;
+  const onScroll = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? h.scrollTop / max : 0;
+      bar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  onScroll();
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", onScroll);
+    cancelAnimationFrame(raf);
+    bar.remove();
+  };
+}
+
 // -- hero parallax: the grid floor drifts as you scroll ---------------------
 function setupHeroParallax() {
   if (prefersReduced() || coarsePointer()) return () => {};
@@ -536,6 +589,8 @@ export function useLove() {
       setupHeroTerminal(),
       setupPartyKey(),
       setupHeroParallax(),
+      setupScrollProgress(),
+      setupScrollTop(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

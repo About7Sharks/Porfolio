@@ -201,6 +201,57 @@ body.party .zc-btn:hover {
   .love-grain { animation: none; }
 }
 
+// scroll progress — thin accent bar pinned to the very top edge
+.love-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9995;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+// scroll-to-top button — bottom-right, appears after 600px of scroll
+.love-scrolltop {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9994;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--bg);
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 4px 4px 0 0 var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.15s ease;
+}
+.love-scrolltop.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.love-scrolltop:hover {
+  box-shadow: 6px 6px 0 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+.love-scrolltop:active {
+  box-shadow: 2px 2px 0 0 var(--ink);
+  transform: translate(0, 0);
+}
+
 // route wipe — full-screen sweep on every navigation
 .route-wipe {
   position: fixed;
