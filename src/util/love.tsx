@@ -33,9 +33,29 @@ function setupReveals() {
   observe();
   const mo = new MutationObserver(observe);
   mo.observe(document.body, { childList: true, subtree: true });
+  // hard safety net: in some environments (headless, IO throttled or
+  // disabled) IntersectionObserver never fires and .reveal would stay
+  // opacity:0 forever. Each tick reveals any remaining element that is
+  // actually in the viewport (cheap rect check); if IO never fired at
+  // all within the hard deadline, reveal everything as a last resort.
+  // When IO is healthy this is a no-op (observer marks .in first).
+  const started = Date.now();
+  const DEADLINE = 3000;
+  const inView = (r: DOMRect) => r.bottom > 0 && r.top < window.innerHeight * 1.1;
+  const tick = () => {
+    document
+      .querySelectorAll<HTMLElement>(".reveal:not(.in)")
+      .forEach((el) => {
+        if (Date.now() - started >= DEADLINE || inView(el.getBoundingClientRect()))
+          el.classList.add("in");
+      });
+  };
+  const timer = window.setInterval(tick, 400);
+  window.setTimeout(() => window.clearInterval(timer), DEADLINE + 800);
   return () => {
     io.disconnect();
     mo.disconnect();
+    window.clearInterval(timer);
   };
 }
 

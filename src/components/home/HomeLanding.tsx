@@ -33,7 +33,6 @@ export const HomeLanding = () => {
       {/* background div */}
     <video className="div2" preload='auto' autoPlay muted playsInline loop poster={Poster}>
             <source src={clip} type='video/mp4' />
-            <source src={clip} type="video/ogg" /> 
     </video>
     <DivOverlay />
     </div>

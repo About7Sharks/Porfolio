@@ -24,7 +24,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node scripts/apply-patches.mjs && react-scripts build",
+    "postinstall": "node scripts/apply-patches.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -25,7 +25,7 @@ export default function Home() {
       {/* ============================ HERO ============================ */}
       <section className="hero">
         <div className="hero-grid zc-wrap">
-          <div className="hero-copy reveal" data-reveal-delay="0">
+          <div className="hero-copy">
             <div className="hero-kicker">
               <span className="zc-pixel" />
               <span className="kicker">
