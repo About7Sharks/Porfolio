@@ -9,30 +9,73 @@
     transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  // -- scroll reveals --
-  .reveal {
+  // -- scroll reveals (only when JS is live, so no-JS users never lose content) --
+  .js .reveal {
     opacity: 0;
     transform: translateY(22px);
     transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .reveal.go {
+  .js .reveal.in {
     opacity: 1;
     transform: none;
   }
 
-  // -- hero photo: alive --
-  .zc-photo {
-    transition: filter 0.6s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    filter: saturate(0.92) contrast(1.03);
+  // -- custom cursor --
+  .love-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
   }
-  .zc-photo:hover {
-    filter: saturate(1.15) contrast(1.08);
+  .love-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0.5;
+    transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease,
+      border-color 0.25s ease, opacity 0.25s ease;
   }
-  .photo-frame {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  .love-cursor-ring.hot {
+    width: 56px;
+    height: 56px;
+    margin: -28px 0 0 -28px;
+    border-color: var(--accent-2);
+    opacity: 0.9;
   }
-  .photo-frame:hover {
-    transform: translate(-3px, -3px);
+  @media (pointer: fine) {
+    a, button, .zc-btn {
+      cursor: none;
+    }
+  }
+
+  // -- 3D tilt --
+  .tilt {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    will-change: transform;
+  }
+
+  // -- hero headline: staggered word reveal --
+  @keyframes word-in {
+    from { opacity: 0; transform: translateY(0.5em) rotate(1.5deg); }
+    to { opacity: 1; transform: none; }
+  }
+  .hero-h1 .w {
+    display: inline-block;
+    opacity: 0;
+    animation: word-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   // -- marquee --

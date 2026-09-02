@@ -5,10 +5,7 @@
   .hero {
     border-bottom: var(--border);
     background: var(--bg);
-    padding: 40px 0;
-    min-height: calc(100vh - 72px);
-    display: flex;
-    align-items: center;
+    padding: 48px 0 56px;
   }
 
   .hero-grid {

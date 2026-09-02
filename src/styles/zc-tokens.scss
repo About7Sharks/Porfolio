@@ -94,18 +94,15 @@
 }
 
 /* kill the legacy Shrikhand h1 + animated triangle pseudo-elements */
-.zc h1,
-.zc h1::before,
-.zc h1::after {
+.zc h1 {
   font-family: var(--font-display);
   display: block;
   color: var(--ink);
   position: static;
-  content: none;
 }
-.zc h1 {
-  display: block;
-  margin: 0;
+.zc h1::before,
+.zc h1::after {
+  content: none;
 }
 .zc h2,
 .zc h3,

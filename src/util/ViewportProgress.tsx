@@ -20,8 +20,8 @@ export const ViewportProgress = (props: Props) => {
       <line
         x2={scrollY}
         style={{
-          stroke: "grey",
-          strokeWidth: ".3",
+          stroke: "var(--accent, #ff5c00)",
+          strokeWidth: ".5",
         }}
       />
     </svg>

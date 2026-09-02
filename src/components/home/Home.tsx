@@ -22,13 +22,16 @@ export default function Home() {
             </div>
 
             <h1 className="hero-h1">
-              I build
+              <span className="w" style={{ animationDelay: "0.05s" }}>I</span>{" "}
+              <span className="w" style={{ animationDelay: "0.12s" }}>build</span>
               <br />
-              <span className="hl">the things</span>
+              <span className="hl w" style={{ animationDelay: "0.2s" }}>the things</span>
               <br />
-              that run
+              <span className="w" style={{ animationDelay: "0.3s" }}>that</span>{" "}
+              <span className="w" style={{ animationDelay: "0.36s" }}>run</span>
               <br />
-              <span className="hl2">on the</span> web.
+              <span className="hl2 w" style={{ animationDelay: "0.44s" }}>on the</span>{" "}
+              <span className="w" style={{ animationDelay: "0.5s" }}>web.</span>
             </h1>
 
             <p className="hero-lede">
@@ -55,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="hero-photo reveal" data-reveal-delay="150">
-            <div className="photo-frame">
+            <div className="photo-frame tilt">
               <img src={zac} alt="Zac on a ridge, hands on hips" className="photo-img" />
               <span className="photo-tag mono">zacarlin.eth</span>
             </div>

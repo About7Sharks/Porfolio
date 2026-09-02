@@ -1,0 +1,203 @@
+@import "../../styles/zc-tokens.scss";
+
+// ============ JOURNAL (new theme, overrides legacy) ============
+.zc.journal {
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+// page head — matches the other pages
+.j-head {
+  border-bottom: var(--border);
+  background: var(--bg);
+  padding: 56px 0 48px;
+  margin-bottom: 8px;
+}
+.j-head-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.j-head-h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  color: var(--ink);
+}
+.j-head-h1 .hl {
+  background: var(--accent);
+  color: #0d0d0f;
+  padding: 0 0.12em;
+  box-shadow: 3px 3px 0 0 #f2f1ec;
+  display: inline-block;
+  transform: translateY(2px);
+}
+.j-head-lede {
+  max-width: 52ch;
+  color: var(--ink-2);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+// controls row
+.j-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 22px 0;
+  border-bottom: 2px solid rgba(242, 241, 236, 0.14);
+  margin-bottom: 26px;
+}
+.j-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+  flex: 0 1 340px;
+}
+.j-filter-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.jc-view-toggle {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg-2);
+  color: var(--ink);
+  border: var(--border);
+  padding: 0.55em 1em;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s, color 0.2s;
+}
+.jc-view-toggle:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+.jc-view-toggle.is-on {
+  background: var(--accent);
+  color: #0d0d0f;
+  box-shadow: var(--shadow-sm);
+}
+
+// dark-theme the MUI filter (Autocomplete + TextField)
+.zc.journal .MuiAutocomplete-root {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--ink);
+  min-width: 220px;
+  display: flex;
+}
+.zc.journal .MuiOutlinedInput-root {
+  background: var(--bg-2);
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+}
+.zc.journal .MuiOutlinedInput-notchedOutline {
+  border-color: transparent;
+}
+.zc.journal .MuiOutlinedInput-input {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.zc.journal .MuiAutocomplete-listbox {
+  background: var(--bg-2);
+  border: var(--border);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  color: var(--ink);
+}
+.zc.journal .MuiAutocomplete-option {
+  font-family: var(--font-mono);
+}
+.zc.journal .MuiAutocomplete-option[aria-selected="true"] {
+  background: var(--accent);
+  color: #0d0d0f;
+}
+.zc.journal .Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--accent);
+}
+.zc.journal .MuiAutocomplete-tag {
+  background: transparent;
+  border: none;
+  margin: 0;
+}
+
+// text cards (list view) — dark neo-brutalist rows
+.zc.journal .content {
+  justify-content: stretch;
+  max-width: 900px;
+  padding: 0 0 60px;
+}
+.zc.journal .textCard {
+  margin: 0 0 18px;
+  width: 100%;
+  max-width: 100%;
+  border: var(--border);
+  border-radius: 0;
+  background: var(--bg-2);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  animation: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s;
+}
+.zc.journal .textCard:hover {
+  background: var(--bg-2);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 0 var(--accent);
+}
+.zc.journal .textCard h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 18px 18px 6px;
+}
+.zc.journal .textCard p {
+  color: var(--ink-2);
+  margin: 0 18px 8px;
+  line-height: 1.5;
+}
+.zc.journal .textCard h4 {
+  margin: 8px 18px 18px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.zc.journal .textCard h4 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+}
+.zc.journal .textCard h4 > span,
+.zc.journal .textCard h4 .MuiButtonBase-root,
+.zc.journal .textCard h4 button {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink-3);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 0;
+  padding: 0.3em 0.6em;
+}

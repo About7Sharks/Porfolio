@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { spinAnimationV2, Picker, Cards } from "../../util/index";
-import Button from "@material-ui/core/Button";
+import { Picker, Cards } from "../../util/index";
 import { TextCards } from "./TextCards";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
+import "./Journal.scss";
 import { config } from "../../Config";
 import { Article } from "../../types";
 
@@ -17,8 +17,8 @@ export default function Blog() {
   };
 
   useEffect(() => {
-    getArticles({ user: config.user, repo: config.repo }).then((data: Article[]) =>
-      setArticles(data)
+    getArticles({ user: config.user, repo: config.repo }).then(
+      (data: Article[]) => setArticles(data)
     );
   }, []);
 
@@ -38,14 +38,43 @@ export default function Blog() {
   };
 
   return (
-    <div className="journal">
-      <h1>{spinAnimationV2("Journal")}</h1>
-      <span>
-        <Button onClick={() => setTextView(!textView)} variant="contained">
-          Alternative View
-        </Button>
-      </span>
-      <Picker data={articles} handleChange={handleChange} filter={filter} />
+    <div className="zc journal">
+      {/* ===================== PAGE HEAD ===================== */}
+      <section className="j-head">
+        <div className="zc-wrap reveal">
+          <div className="j-head-kicker">
+            <span className="zc-pixel" />
+            <span className="kicker">
+              notes · experiments · the receipts
+            </span>
+          </div>
+          <h1 className="j-head-h1">
+            Things I wrote
+            <br />
+            <span className="hl">about building.</span>
+          </h1>
+          <p className="j-head-lede">
+            Not a blog with a schedule — a running log of what I learned shipping
+            to the interwebs. LLMs, photonic sensors, Wasm, crypto, and a few
+            things I shouldn't have admitted.
+          </p>
+        </div>
+      </section>
+
+      {/* ===================== CONTROLS ===================== */}
+      <div className="j-controls zc-wrap reveal">
+        <div className="j-filter">
+          <span className="j-filter-label mono">filter:</span>
+          <Picker data={articles} handleChange={handleChange} filter={filter} />
+        </div>
+        <button
+          className={"jc-view-toggle" + (textView ? " is-on" : "")}
+          onClick={() => setTextView(!textView)}
+        >
+          {textView ? "◧ cards" : "≣ list"}
+        </button>
+      </div>
+
       {textView ? (
         <Cards
           routeExternal={false}
