@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
 import { featured } from "../../data/featured";
-import zac from "../../assets/img/zac.png";
+import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
 const socials = config.links.slice(0, 4);
@@ -56,7 +56,7 @@ export default function Home() {
 
           <div className="hero-photo">
             <div className="photo-frame">
-              <img src={zac} alt="Zac at sunset" className="photo-img" />
+              <img src={zac} alt="Zac on a ridge, hands on hips" className="photo-img" />
               <span className="photo-tag mono">zacarlin.eth</span>
             </div>
             <div className="photo-badge">

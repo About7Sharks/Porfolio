@@ -31,7 +31,7 @@ export const Navbar = (props: Props) => {
     <nav
       className="navbar"
       style={{
-        boxShadow: scrolled ? "0 3px 0 0 #111111" : "none",
+        boxShadow: scrolled ? "0 3px 0 0 #ff5c00" : "none",
       }}
     >
       <Link to="/" className="zc-brand">

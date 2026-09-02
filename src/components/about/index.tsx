@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import zac from "../../assets/img/zac.png";
+import zac from "../../assets/img/zac-ridge.jpg";
 import "./About.scss";
 
 const hobbies = [

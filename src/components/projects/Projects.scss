@@ -4,7 +4,7 @@
   // ============ PAGE HEAD ============
   .p-head {
     border-bottom: var(--border);
-    background: var(--paper);
+    background: var(--bg);
     padding: 56px 0 56px;
     position: relative;
     overflow: hidden;
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     border: var(--border);
-    background: var(--paper);
+    background: var(--bg);
     box-shadow: var(--shadow);
     padding: 24px;
     transition: transform 0.14s ease, box-shadow 0.14s ease;
@@ -83,18 +83,19 @@
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--accent);
-    -webkit-text-stroke: 1px #111;
+    -webkit-text-stroke: 1px #f2f1ec;
   }
 
   .p-feat-title {
     font-size: 1.35rem;
     line-height: 1.15;
     margin-bottom: 10px;
+    color: var(--ink);
   }
 
   .p-feat-blurb {
     font-size: 0.95rem;
-    color: #222;
+    color: var(--ink-2);
     margin-bottom: 14px;
   }
 
@@ -102,7 +103,7 @@
     list-style: none;
     padding: 0;
     margin: 0 0 18px;
-    border-top: 2px dashed #111;
+    border-top: 2px dashed #5a5a62;
     padding-top: 14px;
     display: flex;
     flex-direction: column;
@@ -127,10 +128,10 @@
     justify-content: space-between;
     margin-top: auto;
     padding-top: 14px;
-    border-top: 2px solid #111;
+    border-top: 2px solid #5a5a62;
   }
   .p-feat-foot .mono {
-    color: #555;
+    color: var(--ink-3);
   }
   .p-feat-go {
     font-family: var(--font-display);
@@ -145,10 +146,10 @@
   }
 
   // per-card tints
-  .p-feat-blue { background: #eef1ff; }
+  .p-feat-blue { background: #18203a; }
   .p-feat-blue .p-feat-index { color: var(--blue); }
   .p-feat-blue .p-feat-top .zc-chip { background: var(--blue); color: #fff; }
-  .p-feat-pink { background: #fff0f7; }
+  .p-feat-pink { background: #2a1622; }
   .p-feat-pink .p-feat-index { color: var(--pink); }
   .p-feat-pink .p-feat-top .zc-chip { background: var(--pink); color: #fff; }
   .p-feat-yellow .p-feat-top .zc-chip { background: var(--accent-2); }
@@ -157,7 +158,7 @@
 
   // ============ FUN STUFF ============
   .p-fun {
-    background: var(--paper);
+    background: var(--bg);
     border-bottom: var(--border);
     padding: 64px 0;
   }
@@ -179,7 +180,7 @@
   }
   .p-fun-note {
     max-width: 62ch;
-    color: #222;
+    color: var(--ink-2);
     padding-bottom: 6px;
   }
 
@@ -193,7 +194,7 @@
     display: flex;
     flex-direction: column;
     border: var(--border);
-    background: var(--paper);
+    background: var(--bg);
     box-shadow: var(--shadow-sm);
     padding: 18px;
     min-height: 200px;
@@ -213,7 +214,7 @@
   }
   .p-tile-blurb {
     font-size: 0.85rem;
-    color: #333;
+    color: var(--ink-2);
     margin-bottom: 14px;
     flex: 1 1 auto;
   }
