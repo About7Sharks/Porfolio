@@ -780,6 +780,156 @@ function setupCopyCode() {
   return () => { io.disconnect(); mo.disconnect(); };
 }
 
+// -- command palette (⌘K / Ctrl+K) — routes, posts, actions ------------------
+// exported so App can pass in the socks-librarian getArticles (not importable
+// from here) — the palette lazy-loads posts on first open.
+export function setupCmdPalette(
+  getArticles: (opts: any) => Promise<any[]>
+) {
+  const root = document.createElement("div");
+  root.className = "cmdk";
+  root.setAttribute("role", "dialog");
+  root.setAttribute("aria-modal", "true");
+  root.setAttribute("aria-label", "Command palette");
+  root.hidden = true;
+  root.innerHTML = `
+    <div class="cmdk-backdrop"></div>
+    <div class="cmdk-panel">
+      <div class="cmdk-head">
+        <span class="cmdk-glyph mono" aria-hidden="true">⌘</span>
+        <input class="cmdk-input" type="text" placeholder="Jump to a post, page, or run a command…" autocomplete="off" spellcheck="false" />
+        <kbd class="cmdk-esc mono" aria-hidden="true">esc</kbd>
+      </div>
+      <ul class="cmdk-list" role="listbox"></ul>
+      <div class="cmdk-foot mono">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span>zac · interwebs</span>
+      </div>
+    </div>`;
+  const backdrop = root.querySelector<HTMLElement>(".cmdk-backdrop");
+  const input = root.querySelector<HTMLInputElement>(".cmdk-input");
+  const ul = root.querySelector<HTMLElement>(".cmdk-list");
+
+  interface Item {
+    id: string;
+    label: string;
+    hint?: string;
+    group: string;
+    run: () => void;
+  }
+
+  const actions: Item[] = [
+    { id: "party", label: "Unlock party mode", group: "Action", run: () => window.dispatchEvent(new KeyboardEvent("keydown", { key: "e", bubbles: true })) },
+    { id: "copy-email", label: "Copy zacarlin@gmail.com", group: "Action", run: () => { const el = document.querySelector<HTMLElement>(".f-copy"); if (el) el.click(); else if (navigator.clipboard) navigator.clipboard.writeText("zacarlin@gmail.com").catch(() => {}); } },
+    { id: "accent-next", label: "Cycle to next accent theme", group: "Action", run: () => { const sw = Array.from(document.querySelectorAll<HTMLElement>(".accent-swatch")); if (sw.length) { const i = sw.findIndex((x) => x.classList.contains("is-active")); (sw[(i + 1 + sw.length) % sw.length]).click(); } } },
+    { id: "top", label: "Back to top", group: "Action", run: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+    { id: "ipfs", label: "Open the IPFS copy ( zacarlin.eth )", group: "Action", run: () => window.open("https://ipfs.io/ipns/zacarlin.eth", "_blank", "noopener") },
+  ];
+  const routes: Item[] = [
+    { id: "home", label: "Home — I build the things that run on the web", group: "Go to", run: () => { window.location.hash = "#/"; } },
+    { id: "projects", label: "Projects — the work I'd defend", group: "Go to", run: () => { window.location.hash = "#/projects"; } },
+    { id: "about", label: "About — the person behind the commits", group: "Go to", run: () => { window.location.hash = "#/about"; } },
+    { id: "journal", label: "Journal — the receipts", group: "Go to", run: () => { window.location.hash = "#/journal"; } },
+  ];
+
+  const groups = ["Posts", "Go to", "Action"];
+  let posts: Item[] = [];
+  let postsState: "pending" | "done" | "err" = "pending";
+
+  async function loadPosts() {
+    if (postsState !== "pending") return;
+    postsState = "done";
+    try {
+      const data = (await getArticles({ user: "About7Sharks", repo: "Markdown" })) || [];
+      posts = data.map((a: any) => ({
+        id: "post-" + (a.id || a.title),
+        label: a.title || "untitled",
+        hint: (a.date || "").toString().slice(0, 10),
+        group: "Posts",
+        run: () => { window.location.hash = "#/journal/" + encodeURIComponent(a.id || a.title); },
+      }));
+      render(filter(input.value || ""));
+    } catch (_e) { postsState = "err"; }
+  }
+
+  const filter = (q: string) => {
+    const s = (q || "").toLowerCase().trim();
+    return routes
+      .concat(posts)
+      .concat(actions)
+      .filter((it) => !s || it.label.toLowerCase().includes(s) || (it.hint || "").toLowerCase().includes(s) || it.group.toLowerCase().includes(s))
+      .sort((a, b) => groups.indexOf(a.group) - groups.indexOf(b.group) || a.label.localeCompare(b.label));
+  };
+
+  let sel = 0;
+  let items: Item[] = [];
+
+  const render = (arr: Item[]) => {
+    items = arr;
+    sel = 0;
+    ul.innerHTML = "";
+    let lastGroup = "";
+    let itemIdx = -1;
+    arr.forEach((it, i) => {
+      if (it.group !== lastGroup) {
+        lastGroup = it.group;
+        const g = document.createElement("li");
+        g.className = "cmdk-group mono";
+        g.textContent = it.group;
+        ul.appendChild(g);
+      }
+      itemIdx++;
+      const li = document.createElement("li");
+      li.className = "cmdk-item" + (i === sel ? " is-sel" : "");
+      li.setAttribute("role", "option");
+      const label = document.createElement("span");
+      label.className = "cmdk-item-label";
+      label.textContent = it.label;
+      li.appendChild(label);
+      if (it.hint) {
+        const h = document.createElement("span");
+        h.className = "cmdk-item-hint mono";
+        h.textContent = it.hint;
+        li.appendChild(h);
+      }
+      li.addEventListener("mousedown", (e) => { e.preventDefault(); pick(it); });
+      ul.appendChild(li);
+    });
+  };
+  const paint = () => {
+    const lis = Array.from(ul.querySelectorAll<HTMLElement>(".cmdk-item"));
+    lis.forEach((li, i) => li.classList.toggle("is-sel", i === sel));
+    if (lis[sel]) lis[sel].scrollIntoView({ block: "nearest" });
+  };
+  const close = () => { root.hidden = true; input.value = ""; setTimeout(() => input.blur(), 0); };
+  const open = () => {
+    root.hidden = false;
+    loadPosts();
+    render(filter(input.value || ""));
+    paint();
+    setTimeout(() => input.focus(), 10);
+  };
+  const pick = (it: Item) => { close(); setTimeout(() => it.run(), 30); };
+  const onKey = (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (root.hidden) open(); else close();
+      return;
+    }
+    if (root.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); sel = Math.min(items.length - 1, sel + 1); paint(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = Math.max(0, sel - 1); paint(); }
+    else if (e.key === "Enter") { e.preventDefault(); const it = items[sel]; if (it) pick(it); }
+  };
+  input.addEventListener("input", () => { render(filter(input.value || "")); paint(); });
+  backdrop.addEventListener("click", close);
+  window.addEventListener("keydown", onKey);
+  document.body.appendChild(root);
+  return () => { window.removeEventListener("keydown", onKey); root.remove(); };
+}
+
 export function attachCopyEmail(el: HTMLElement, email: string) {
   const doCopy = () => {
     const done = (ok: boolean) => {

@@ -6,7 +6,8 @@ import {
 } from "react-router-dom";
 import "./styles/index.scss";
 import "./styles/love.scss";
-import { useLove } from "./util/love";
+import { useLove, setupCmdPalette } from "./util/love";
+import { getArticles } from "socks-librarian";
 import { paths } from "./Config";
 import { Navbar } from "./components/ui/navigation/Navbar";
 import { BeforeLoad, ViewportProgress } from "./util/index";
@@ -18,6 +19,9 @@ const NotFound = lazy(() => import("./components/ui/navigation/NotFound"));
 
 export default function App() {
   useLove();
+  // command palette — needs getArticles (socks-librarian) which lives in the
+  // component layer, so wire it here where it's importable.
+  React.useEffect(() => setupCmdPalette(getArticles), []);
 
   return (
     <Suspense fallback={<BeforeLoad />}>

@@ -645,6 +645,139 @@ pre:hover .copy-code { opacity: 1; }
 }
 .copy-code-icon { font-size: 0.85rem; }
 
+/* -- command palette (⌘K) — the dev-site flex ----------------------------- */
+.cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+}
+.cmdk[hidden] { display: none; }
+.cmdk-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.72);
+  backdrop-filter: blur(6px);
+}
+.cmdk-panel {
+  position: relative;
+  width: min(620px, 92vw);
+  background: #15151a;
+  border: 2px solid #f2f1ec;
+  box-shadow: 8px 8px 0 0 var(--accent);
+  display: flex;
+  flex-direction: column;
+  animation: cmdk-in 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes cmdk-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cmdk-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1.5px solid rgba(242, 241, 236, 0.14);
+}
+.cmdk-glyph {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: var(--accent);
+  color: #111;
+  flex: none;
+}
+.cmdk-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #f2f1ec;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 6px 0;
+}
+.cmdk-input::placeholder { color: rgba(242, 241, 236, 0.4); }
+.cmdk-esc {
+  padding: 3px 7px;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: rgba(242, 241, 236, 0.55);
+  border: 1px solid rgba(242, 241, 236, 0.2);
+}
+.cmdk-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  max-height: 46vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242, 241, 236, 0.2) transparent;
+}
+.cmdk-group {
+  padding: 10px 10px 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 241, 236, 0.4);
+}
+.cmdk-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #f2f1ec;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border: 1.5px solid transparent;
+  margin: 2px 0;
+  transition: background 0.1s ease, border-color 0.1s ease, transform 0.1s ease;
+}
+.cmdk-item:hover, .cmdk-item.is-sel {
+  background: rgba(242, 241, 236, 0.06);
+  border-color: var(--accent);
+  transform: translateX(2px);
+}
+.cmdk-item.is-sel {
+  background: rgba(255, 92, 0, 0.12);
+}
+.cmdk-item-hint {
+  font-size: 0.72rem;
+  color: rgba(242, 241, 236, 0.5);
+  flex: none;
+}
+.cmdk-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1.5px solid rgba(242, 241, 236, 0.14);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: rgba(242, 241, 236, 0.5);
+  gap: 16px;
+}
+.cmdk-foot kbd {
+  padding: 1px 5px;
+  margin-right: 4px;
+  border: 1px solid rgba(242, 241, 236, 0.2);
+  font-size: 0.62rem;
+  color: rgba(242, 241, 236, 0.7);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cmdk-panel { animation: none; }
+  .cmdk-item { transition: none; }
+}
+
 @media (max-width: 640px) {
   .accent-dock {
     left: 10px;
