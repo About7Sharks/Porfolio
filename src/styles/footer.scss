@@ -1,16 +1,20 @@
-//footer component
+// Footer — dark neo-brutalist, matches the rest of the site
 #footer {
-  color: white;
-  background: black;
-  margin: 100px 0px 0px 0px;
-  padding: 10px 0px 30px 0px;
+  color: var(--ink);
+  background: var(--bg-2);
+  margin: 120px 0 0 0;
+  padding: 48px 0 40px 0;
   position: relative;
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
+  border-top: var(--border);
+  gap: 32px;
+  flex-wrap: wrap;
 
   span {
-    color: #f54768;
+    color: var(--accent);
   }
 
   #upIcon {
@@ -20,45 +24,61 @@
   }
 
   h3 {
-    color: #60d9fe;
-    font-size: 2rem;
-    position: absolute;
-    top: -20px;
-    left: 10px;
-    margin: 0px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1;
   }
 
   p {
-    margin: 25px 20px 0px 0px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
   }
 
   .socialLinks {
-    margin-top: 25px;
-    width: 100%;
-    max-width: 800px;
-    justify-content: space-evenly;
+    margin-top: 0;
+    width: auto;
+    max-width: none;
+    justify-content: flex-start;
+    gap: 14px;
 
     a {
-      color: white;
+      color: var(--ink);
       overflow: hidden;
       position: relative;
       display: inline-flex;
       justify-content: center;
       align-content: center;
-      width: 100px;
+      width: 44px;
+      height: 44px;
+      border: var(--border);
+      background: var(--bg);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+    }
+
+    a:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 0 var(--accent);
+      background: var(--bg-3);
     }
 
     svg {
       position: relative;
       z-index: 2;
-      width: 32px;
-      height: 32px;
+      width: 22px;
+      height: 22px;
     }
 
     .backg {
       height: 42px;
       width: 42px;
-      // left: -33%;
       position: absolute;
       transition: 0.3s;
     }

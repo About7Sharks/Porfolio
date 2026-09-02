@@ -439,6 +439,26 @@ function setupHeroTerminal() {
   };
 }
 
+// -- "e" easter egg: party mode unlock (e = party) ---------------------------
+function setupPartyKey() {
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key !== "e" && e.key !== "E") return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target as HTMLElement;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable))
+      return;
+    document.body.classList.add("party");
+    const toast = document.createElement("div");
+    toast.className = "party-toast";
+    toast.textContent = "party mode unlocked 🎉";
+    document.body.appendChild(toast);
+    setTimeout(() => document.body.classList.remove("party"), 4000);
+    setTimeout(() => toast.remove(), 4200);
+  };
+  window.addEventListener("keydown", onKey);
+  return () => window.removeEventListener("keydown", onKey);
+}
+
 // One hook, called once from App. All motion is scoped so it
 // never fights the legacy global styles.
 export function useLove() {
@@ -457,6 +477,7 @@ export function useLove() {
       setupKonami(),
       setupBurst(),
       setupHeroTerminal(),
+      setupPartyKey(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

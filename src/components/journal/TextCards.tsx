@@ -17,10 +17,23 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
   return (
     <>
       {data.map((post, i) => {
+        const tint = i % 4;
+        const isFeatured = i === 0;
         return (
-          <div key={i} className="textCard" onClick={() => handleClick(post)}>
+          <div
+            key={i}
+            className={
+              "textCard tint-" +
+              tint +
+              (isFeatured ? " is-featured" : "")
+            }
+            onClick={() => handleClick(post)}
+          >
             <div className="">
-              <h3>{post.title}</h3>
+              <h3>
+                {isFeatured && <span className="jc-featured mono">★ featured </span>}
+                {post.title}
+              </h3>
               <p>{post.summary}</p>
               <div>
                 <h4>

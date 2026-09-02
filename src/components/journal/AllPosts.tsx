@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Picker, Cards } from "../../util/index";
+import { useState, useEffect, useMemo } from "react";
+import { Cards } from "../../util/index";
 import { TextCards } from "./TextCards";
 import { getArticles } from "socks-librarian";
 import "../../styles/index.scss";
@@ -12,9 +12,14 @@ export default function Blog() {
   const [filter, setFilter] = useState<string>("All");
   const [textView, setTextView] = useState(false);
 
-  const handleChange = (_e: React.ChangeEvent<{}>, newFilter: string | null) => {
-    setFilter(newFilter || "All");
-  };
+  // custom tag filter (replaces the MUI Autocomplete which rendered a
+  // default "filter by tag" label that clashed with the new theme)
+  const tags = useMemo(() => {
+    if (!articles.length) return ["All"];
+    const set = new Set<string>(["All"]);
+    articles.forEach((a) => (a.tags || []).forEach((t) => set.add(t)));
+    return Array.from(set);
+  }, [articles]);
 
   useEffect(() => {
     getArticles({ user: config.user, repo: config.repo }).then(
@@ -37,6 +42,8 @@ export default function Blog() {
       }));
   };
 
+  const filtered = cleanData(articles);
+
   return (
     <div className="zc journal">
       {/* ===================== PAGE HEAD ===================== */}
@@ -48,24 +55,32 @@ export default function Blog() {
               notes · experiments · the receipts
             </span>
           </div>
-          <h1 className="j-head-h1">
+          <h1 className="journal-h1">
             Things I wrote
             <br />
             <span className="hl">about building.</span>
           </h1>
           <p className="j-head-lede">
-            Not a blog with a schedule — a running log of what I learned shipping
-            to the interwebs. LLMs, photonic sensors, Wasm, crypto, and a few
-            things I shouldn't have admitted.
+            Not a blog with a schedule — a running log of what I learned
+            shipping to the interwebs. LLMs, photonic sensors, Wasm, crypto,
+            and a few things I shouldn't have admitted.
           </p>
         </div>
       </section>
 
       {/* ===================== CONTROLS ===================== */}
       <div className="j-controls zc-wrap reveal">
-        <div className="j-filter">
+        <div className="j-filter" role="group" aria-label="Filter posts by tag">
           <span className="j-filter-label mono">filter:</span>
-          <Picker data={articles} handleChange={handleChange} filter={filter} />
+          {tags.map((t) => (
+            <button
+              key={t}
+              className={"j-tag" + (filter === t ? " is-on" : "")}
+              onClick={() => setFilter(t)}
+            >
+              {t}
+            </button>
+          ))}
         </div>
         <button
           className={"jc-view-toggle" + (textView ? " is-on" : "")}
@@ -79,13 +94,13 @@ export default function Blog() {
         <Cards
           routeExternal={false}
           gridLayout="cardContainer"
-          data={cleanData(articles)}
+          data={filtered}
         />
       ) : (
         <TextCards
           routeExternal={false}
           gridLayout="cardContainer"
-          data={cleanData(articles)}
+          data={filtered}
         />
       )}
     </div>

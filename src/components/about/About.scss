@@ -316,14 +316,22 @@
     gap: 14px;
   }
   .a-cta-btns .zc-btn {
-    background: var(--bg-2);
+    background: var(--bg);
     color: var(--ink);
     box-shadow: 5px 5px 0 0 var(--accent-2);
+    border: 2px solid var(--bg);
+  }
+  .a-cta-btns .zc-btn:hover {
+    box-shadow: 7px 7px 0 0 var(--accent-2);
   }
   .a-cta-btns .zc-btn.primary {
     background: var(--ink);
-    color: #fff;
-    box-shadow: 6px 6px 0 0 #fff;
+    color: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 6px 6px 0 0 var(--bg);
+  }
+  .a-cta-btns .zc-btn.primary:hover {
+    box-shadow: 8px 8px 0 0 var(--bg);
   }
 
   // ============ RESPONSIVE ============
