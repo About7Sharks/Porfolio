@@ -546,6 +546,28 @@ function setupHeroParallax() {
 
 // -- "e" easter egg: party mode unlock (e = party) ---------------------------
 function setupPartyKey() {
+  const burst = (x: number, y: number, count: number) => {
+    if (prefersReduced()) return;
+    const colors = ["#ff5c00", "#ffe813", "#2b4bff", "#ff4fa3", "#00e5a0"];
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("i");
+      p.className = "confetti";
+      const ang = Math.random() * Math.PI * 2;
+      const dist = 60 + Math.random() * 180;
+      const size = 6 + Math.random() * 8;
+      p.style.left = x + "px";
+      p.style.top = y + "px";
+      p.style.width = size + "px";
+      p.style.height = size + "px";
+      p.style.background = colors[(Math.random() * colors.length) | 0];
+      p.style.setProperty("--cx", Math.cos(ang) * dist + "px");
+      p.style.setProperty("--cy", Math.sin(ang) * dist - 120 + "px");
+      p.style.setProperty("--rot", (Math.random() * 720 - 360) + "deg");
+      p.style.animationDelay = Math.random() * 80 + "ms";
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1400);
+    }
+  };
   const onKey = (e: KeyboardEvent) => {
     if (e.key !== "e" && e.key !== "E") return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -553,6 +575,7 @@ function setupPartyKey() {
     if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable))
       return;
     document.body.classList.add("party");
+    burst(window.innerWidth / 2, window.innerHeight / 2, 40);
     const toast = document.createElement("div");
     toast.className = "party-toast";
     toast.textContent = "party mode unlocked 🎉";

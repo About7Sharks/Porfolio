@@ -145,6 +145,26 @@
 body.party {
   animation: party-hue 8s linear infinite;
 }
+
+/* confetti burst — one-shot particles, each drives its own flight via vars */
+.confetti {
+  position: fixed;
+  z-index: 99999;
+  pointer-events: none;
+  border-radius: 2px;
+  animation: confetti-fly 1.2s cubic-bezier(0.15, 0.6, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes confetti-fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--cx, 0px), var(--cy, -150px)) rotate(var(--rot, 360deg)) scale(0.6);
+    opacity: 0;
+  }
+}
 @keyframes party-hue {
   from { filter: hue-rotate(0deg); }
   to { filter: hue-rotate(360deg); }
