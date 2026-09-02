@@ -35,6 +35,14 @@ export default function Footer() {
         </button>
       </div>
       <div className="f-right">
+        <button
+          className="f-help mono"
+          type="button"
+          onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "?", bubbles: true }))}
+          title="Keyboard shortcuts & easter eggs"
+        >
+          press <kbd>?</kbd> for the cheat sheet
+        </button>
         <p className="mono">
           built with <span>❤</span> by zac
         </p>

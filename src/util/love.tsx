@@ -755,6 +755,45 @@ function setupNavKeys() {
   return () => window.removeEventListener("keydown", onKey);
 }
 
+// -- "?" shortcuts cheat-sheet — surfaces all the hidden easter eggs --------
+function setupHelp() {
+  const el = document.createElement("div");
+  el.className = "help-card";
+  el.hidden = true;
+  el.setAttribute("role", "dialog");
+  el.setAttribute("aria-label", "Keyboard shortcuts and easter eggs");
+  el.innerHTML =
+    '<div class="help-head">' +
+    '<span class="help-title mono">cheat sheet</span>' +
+    '<button class="help-close mono" aria-label="Close">×</button>' +
+    '</div>' +
+    '<ul class="help-list mono">' +
+    '<li><kbd>⌘</kbd><kbd>K</kbd><span>command palette</span></li>' +
+    '<li><kbd>H</kbd><kbd>P</kbd><kbd>A</kbd><kbd>J</kbd><span>jump to home · projects · about · journal</span></li>' +
+    '<li><kbd>E</kbd><span>party mode (confetti)</span></li>' +
+    '<li><span class="help-conami">↑↑↓↓←→←→BA</span><span>Konami code → party mode</span></li>' +
+    '<li><span class="help-accent">swatch dock</span><span>re-skin the whole site</span></li>' +
+    '<li><span>any key on 404</span><span>send you home</span></li>' +
+    '</ul>' +
+    '<p class="help-foot mono">click anywhere outside to close</p>';
+  document.body.appendChild(el);
+  const closeBtn = el.querySelector(".help-close") as HTMLButtonElement;
+  const close = () => { el.hidden = true; };
+  closeBtn.addEventListener("click", close);
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === "Escape") close();
+    if (e.key === "?" && !e.metaKey && !e.ctrlKey) {
+      const t = document.activeElement as HTMLElement;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+      e.preventDefault();
+      el.hidden = false;
+      closeBtn.focus();
+    }
+  };
+  window.addEventListener("keydown", onKey);
+  return () => { window.removeEventListener("keydown", onKey); el.remove(); };
+}
+
 function setupCopyCode() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -1012,6 +1051,7 @@ export function useLove() {
       setupAccentDock(),
       setupCopyCode(),
       setupNavKeys(),
+      setupHelp(),
     ];
     return () => {
       document.documentElement.classList.remove("js");
