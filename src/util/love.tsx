@@ -727,6 +727,34 @@ export function nextAccentFrom(id: string) {
 }
 
 // -- copy button on every <pre> code block (posts + any article) -----------
+// -- single-key navigation: H home, P projects, A about, J journal ----------
+// Only fires when focus isn't in a form control and the ⌘K palette is closed.
+function setupNavKeys() {
+  const nav = { h: "#/", p: "#/projects", a: "#/about", j: "#/journal" };
+  const labels = { h: "home", p: "projects", a: "about", j: "journal" };
+  const onKey = (e: KeyboardEvent) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = document.activeElement as HTMLElement;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    const palette = document.querySelector(".cmdk") as HTMLElement | null;
+    if (palette && !palette.hidden) return; // palette open — let it own the keys
+    const k = e.key.toLowerCase();
+    if (!nav[k]) return;
+    e.preventDefault();
+    if (window.location.hash !== nav[k]) {
+      window.location.hash = nav[k];
+    }
+    // toast feedback
+    const toast = document.createElement("div");
+    toast.className = "party-toast";
+    toast.textContent = "→ " + labels[k];
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 900);
+  };
+  window.addEventListener("keydown", onKey);
+  return () => window.removeEventListener("keydown", onKey);
+}
+
 function setupCopyCode() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -983,6 +1011,7 @@ export function useLove() {
       setupScrollHint(),
       setupAccentDock(),
       setupCopyCode(),
+      setupNavKeys(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

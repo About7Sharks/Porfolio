@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../../Config";
 import "./NotFound.scss";
@@ -20,6 +20,24 @@ export default function NotFound() {
     setI((v) => (v + 1) % codes.length);
     setSpin((s) => s + 1);
   };
+
+  // "press any key to go home" — but ignore Tab (a11y) and keys while focus is
+  // in a form control; a single key press sends you home with a little nudge.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Tab" || e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = document.activeElement as HTMLElement;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+      const wrap = document.querySelector(".nf-wrap") as HTMLElement | null;
+      if (wrap) {
+        wrap.style.transform = "scale(0.995)";
+        setTimeout(() => { wrap.style.transform = ""; }, 120);
+      }
+      window.location.hash = "#/";
+    };
+    window.addEventListener("keydown", onKey, { once: true });
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="nf-wrap">
@@ -49,6 +67,9 @@ export default function NotFound() {
         </div>
         <p className="nf-foot mono">
           this page is uncensorable too &mdash; it lives on IPFS as much as the rest
+        </p>
+        <p className="nf-hint mono" aria-hidden="true">
+          &larr; or press any key to go home
         </p>
       </div>
     </div>
