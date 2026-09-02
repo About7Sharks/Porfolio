@@ -1,224 +1,248 @@
-// Zac's site — design system.
-// Warm, editorial, human. One signature accent (rust orange) carried through
-// every page so it's unmistakably *Zac's*.
-// Display type: Fraunces (a serif with real character). Body: Inter.
+/* ==========================================================================
+   zacarlin.org — design system
+   Stolen from: joshwcomeau.com (mono type as signature, playful, for-humans
+   voice) + neo-brutalist dev portfolios (hard borders, offset shadows, one
+   loud accent, no rounded softness). One loud identity, not beige.
+   ========================================================================== */
 
-// ---- Fonts (self-hosted, so the look holds on any machine) ----
+/* ---- self-hosted type (renders identically on IPFS / anywhere) ---- */
 @font-face {
-  font-family: "Fraunces";
-  font-style: normal;
-  font-weight: 500 900;
-  font-display: swap;
-  src: url("../assets/fonts/fraunces-900-latin.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
+  font-family: "Space Grotesk";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-400.woff2") format("woff2");
+  src: url("../assets/fonts/space-grotesk-400.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
+  font-family: "Space Grotesk";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-500.woff2") format("woff2");
+  src: url("../assets/fonts/space-grotesk-500.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
+  font-family: "Space Grotesk";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-700.woff2") format("woff2");
+  src: url("../assets/fonts/space-grotesk-700.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
+  font-family: "JetBrains Mono";
   font-style: normal;
-  font-weight: 800;
+  font-weight: 400;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-800.woff2") format("woff2");
+  src: url("../assets/fonts/jetbrains-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/jetbrains-mono-700.woff2") format("woff2");
 }
 
-// ---- Palette ----
 :root {
-  // paper — warm cream, not cold white
-  --zc-paper: #f6f1e7;
-  --zc-paper-2: #efe7d8;      // slightly deeper panels
-  --zc-ink: #241d16;          // warm near-black
-  --zc-ink-soft: #4a4034;     // secondary text
-  --zc-line: #d9cfc0;         // hairlines
-  --zc-accent: #d1492b;       // rust / burnt orange — THE signature color
-  --zc-accent-ink: #fff;
-  --zc-accent-soft: #f3d8cd;  // tint for chips on paper
-  --zc-teal: #2f6f6a;         // a cool counterweight for IPFS/craft moments
-  --zc-shadow: 0 18px 40px -24px rgba(36, 29, 22, 0.45);
-  --zc-shadow-sm: 0 8px 22px -14px rgba(36, 29, 22, 0.5);
+  /* loud, confident identity — black / paper / one hot accent */
+  --ink: #111111;
+  --paper: #ffffff;
+  --paper-2: #f4f4ef;          /* warm off-white for panels */
+  --accent: #ff5c00;           /* hot orange — the signature */
+  --accent-2: #ffe813;         /* electric yellow — second hit */
+  --blue: #2b4bff;             /* occasional pop */
+  --pink: #ff4fa3;             /* occasional pop */
+  --line: #111111;
+  --border: 2px solid #111111;
 
-  // type
-  --zc-display: "Fraunces", ui-serif, Georgia, serif;
-  --zc-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  --zc-radius: 16px;
-  --zc-radius-sm: 10px;
-  --zc-max: 1120px;
+  --max: 1180px;
+  --shadow: 6px 6px 0 0 #111111;          /* hard offset shadow */
+  --shadow-sm: 3px 3px 0 0 #111111;
+  --shadow-lg: 10px 10px 0 0 #111111;
 }
 
-// ---- Base reset for the new pages (neutralize the legacy dark-theme globals) ----
+/* ---- base resets scoped to .zc so we don't fight the legacy globals ---- */
+.zc,
+.zc * {
+  box-sizing: border-box;
+}
+
 .zc {
-  position: relative;
-  z-index: 5;
-  min-height: 100vh;
-  background: var(--zc-paper);
-  color: var(--zc-ink);
-  font-family: var(--zc-body);
-  font-size: 16px;
-  line-height: 1.55;
-  text-align: left;
+  font-family: var(--font-display);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-
-  h1, h2, h3, h4, h5, h6, p, ul, li, a, span, div, section, article {
-    font-family: inherit;
-  }
-
-  // kill the legacy clip-path triangles + centered inline h1
-  h1::before, h1::after, h2::before, h2::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  a:hover { color: var(--zc-accent); }
 }
 
-// ---- Shared display type ----
-.zc-display {
-  font-family: var(--zc-display);
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  line-height: 1.02;
-  color: var(--zc-ink);
+/* kill the legacy Shrikhand h1 + animated triangle pseudo-elements */
+.zc h1,
+.zc h1::before,
+.zc h1::after {
+  font-family: var(--font-display);
+  display: block;
+  color: var(--ink);
+  position: static;
+  content: none;
+}
+.zc h1 {
+  display: block;
+  margin: 0;
+}
+.zc h2,
+.zc h3,
+.zc p {
+  margin: 0;
+  color: inherit;
+  text-align: left;
+  display: block;
+}
+.zc p {
+  font-family: inherit;
+  letter-spacing: normal;
+  line-height: 1.5;
 }
 
-.zc-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--zc-body);
+.zc a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---- type scale ---- */
+.zc h1 {
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 12.5px;
+  font-size: clamp(2.6rem, 7.5vw, 6.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.zc h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.5vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.zc h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.zc p {
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+}
+
+/* mono labels — the "interwebs" voice in the typeface itself */
+.zc .kicker,
+.zc .mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--zc-accent);
-}
-.zc-eyebrow::before {
-  content: "";
-  width: 22px;
-  height: 2px;
-  background: var(--zc-accent);
-  border-radius: 2px;
 }
 
-.zc-section {
-  max-width: var(--zc-max);
-  margin: 0 auto;
-  padding: 84px 28px;
-}
-
-.zc-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--zc-body);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--zc-ink-soft);
-  background: var(--zc-accent-soft);
-  border: 1px solid rgba(209, 73, 43, 0.18);
-  padding: 6px 12px;
-  border-radius: 999px;
-}
-
-// ---- Buttons ----
+/* ---- buttons: hard, chunky, offset-shadow ---- */
 .zc-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--zc-body);
+  gap: 0.5em;
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  border: 1.5px solid transparent;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.85em 1.5em;
+  border: var(--border);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
   white-space: nowrap;
 }
-.zc-btn:hover { transform: translateY(-1px); }
-.zc-btn:active { transform: translateY(0); }
-
-.zc-btn.accent {
-  background: var(--zc-accent);
-  color: var(--zc-accent-ink);
-  &:hover { background: #b83d22; color: var(--zc-accent-ink); }
+.zc-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+.zc-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 #111111;
+}
+.zc-btn.primary {
+  background: var(--accent);
+  color: #111111;
 }
 .zc-btn.ink {
-  background: var(--zc-ink);
-  color: #fdfaf4;
-  &:hover { background: #000; color: #fff; }
+  background: var(--ink);
+  color: #ffffff;
+  box-shadow: 6px 6px 0 0 var(--accent);
 }
-.zc-btn.line {
-  background: transparent;
-  color: var(--zc-ink);
-  border-color: var(--zc-ink);
-  &:hover { background: var(--zc-ink); color: #fff; }
-}
-.zc-btn.line-light {
-  background: transparent;
-  color: #fdfaf4;
-  border-color: rgba(253, 250, 244, 0.55);
-  &:hover { background: #fdfaf4; color: var(--zc-ink); }
+.zc-btn.ink:hover {
+  box-shadow: 8px 8px 0 0 var(--accent);
 }
 
-// ---- Cards ----
+/* ---- cards: hard border, hard shadow, zero radius ---- */
 .zc-card {
-  background: #fffdf8;
-  border: 1px solid var(--zc-line);
-  border-radius: var(--zc-radius);
-  box-shadow: var(--zc-shadow-sm);
-  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  border: var(--border);
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: var(--shadow);
 }
-.zc-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--zc-shadow);
-  border-color: rgba(209, 73, 43, 0.35);
+.zc-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35em 0.7em;
+  border: var(--border);
+  background: var(--paper);
+}
+.zc-chip.accent { background: var(--accent-2); }
+.zc-chip.blue { background: var(--blue); color: #fff; }
+.zc-chip.pink { background: var(--pink); color: #fff; }
+
+/* ---- signature pixel-block accents ---- */
+.zc-pixel {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border: 2px solid #111111;
 }
 
-// ---- Footer (warm, human) ----
-.zc-foot {
-  background: var(--zc-ink);
-  color: #e9e2d6;
-  padding: 30px 28px;
-  border-top: 4px solid var(--zc-accent);
-}
-.zc-foot-inner {
-  max-width: var(--zc-max);
+/* layout helpers */
+.zc-wrap {
+  max-width: var(--max);
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-size: 14px;
+  padding: 0 28px;
 }
-.zc-foot .zc-foot-mono {
-  font-family: var(--zc-display);
-  font-weight: 600;
-  font-size: 16px;
-  color: #fff;
+.zc-mono-note {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #444;
 }
-.zc-foot .zc-foot-mono .zc-horse { color: var(--zc-accent); }
+
+/* section divider — the interwebs */
+.zc-rule {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg, #111 0 12px, transparent 12px 22px
+  );
+}

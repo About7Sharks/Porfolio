@@ -1,178 +1,184 @@
 import React from "react";
-import { config } from "../../Config";
 import { Link } from "react-router-dom";
 import zac from "../../assets/img/zac.png";
 import "./About.scss";
 
-const experience = [
-  {
-    company: "The Fly",
-    role: "Frontend technical lead · formerly Main Street Data",
-    period: "2023 — Now",
-    note: "Joined when it was three of us. It got acquired and is now a 50+ company. I've owned the frontend the whole way — architecture, build, and the AI tooling on top (mcp.thefly.com).",
-  },
-  {
-    company: "Sonobi",
-    role: "Senior Software Engineer",
-    period: "2022 — 2023",
-    note: "React apps on an ad-buying platform, untangling legacy jQuery into hooks, and a handful of contributions to Prebid.js itself.",
-  },
-  {
-    company: "Dogwood Logic",
-    role: "Software Engineer",
-    period: "2021 — 2022",
-    note: "Decentralized identifiers and verifiable credentials in TypeScript, plus Vue for some pretty locked-down healthcare apps.",
-  },
-  {
-    company: "Gulf Photonics",
-    role: "Lead developer",
-    period: "2018 — 2020",
-    note: "Built the software around a photonics fermentation sensor — the kind of IoT thing that lives on a real brewery. Shipped to accubrew.io.",
-  },
+const hobbies = [
+  { icon: "🏋️", label: "Lifts", detail: "deadlifts, bench, and a barbell that's seen things" },
+  { icon: "📸", label: "Photos", detail: "golden hour, film cameras, sunsets" },
+  { icon: "✈️", label: "Travels", detail: "Tampa-based but not Tampa-pinned" },
+  { icon: "🍺", label: "Homebrew", detail: "wrote the sensor, now writes the recipe" },
+  { icon: "🎮", label: "Retro", detail: "WASM Game of Life, pose bots, rokuremote" },
+  { icon: "🛠️", label: "Tinkers", detail: "if it has a port or a websocket, I've looked at it" },
 ];
 
-const stack = [
-  { group: "Product", items: ["TypeScript", "React", "Next.js", "Vue", "Nuxt"] },
-  { group: "Systems", items: ["Node.js", "Python", "GraphQL", "Postgres"] },
-  { group: "Platform", items: ["Docker", "CI/CD", "AWS", "GCP"] },
-  { group: "Applied AI", items: ["MCP / tool use", "Retrieval", "Evals", "Observability"] },
-];
+const stack = ["React", "TypeScript", "Node.js", "Rust", "WASM", "Solidity", "Cloudflare", "React Native", "MCP"];
 
 export default function About() {
-  const li = (title: string) => config.links.find((l) => l.title === title)?.url;
-
   return (
     <div className="zc About">
-      {/* INTRO */}
-      <header className="zc-intro">
-        <div className="zc-intro-grid">
-          <div className="zc-intro-copy">
-            <span className="zc-eyebrow">About, sort of</span>
-            <h1 className="zc-display zc-h1">
-              I'm Zac.
+      {/* ================= INTRO ================= */}
+      <section className="a-intro">
+        <div className="a-grid zc-wrap">
+          <div className="a-copy">
+            <div className="a-kicker">
+              <span className="zc-pixel" />
+              <span className="kicker">about · the person behind the commits</span>
+            </div>
+            <h1 className="a-h1">
+              Zac Carlin
               <br />
-              Engineer, tinkerer,
-              <br />
-              <span className="zc-accent-word">Tampa sun-chaser.</span>
+              <span className="hl">for the</span> interwebs.
             </h1>
-            <p className="zc-lead">
-              For work, I build serious frontend and full-stack systems — the
-              kind with real users and real money attached. That's the resume
-              part, and it's good, but it's not the whole picture.
+
+            <p className="a-lede">
+              I'm a software engineer in Tampa, FL. I've spent the last decade
+              shipping real products — production fintech UI, IoT fermentation
+              sensors, AI chat widgets, a self-hosted MCP server that agents
+              can call. But "engineer" undersells it.
             </p>
-            <p className="zc-lead">
-              I also like the web the way it used to feel — personal, a little
-              weird, owned by the person behind it. So this site runs on IPFS,
-              it's not a template, and it has my actual face on it. That's
-              deliberate.
+
+            <p className="a-lede-2">
+              I think the web should be{" "}
+              <strong>uncensorable</strong>. So this site is mirrored to{" "}
+              <strong>IPFS</strong> and addressed through{" "}
+              <strong>ENS</strong> — the same bytes, pulled from{" "}
+              <strong>zacarlin.eth</strong> on any node, whether or not some
+              registrar has an opinion about it. One more copy of the
+              interwebs that's harder to take down.
             </p>
-            <div className="zc-hero-cta">
-              <a className="zc-btn accent" href="/resume.html" target="_blank" rel="noreferrer">
-                The résumé
+
+            <div className="a-ctas">
+              <a
+                href="mailto:zacarlin@gmail.com"
+                className="zc-btn primary"
+              >
+                Say hi →
               </a>
-              <a className="zc-btn line" href="mailto:zacarlin@gmail.com">
-                Say hi
+              <a href="#journal" className="zc-btn">
+                Read the posts
               </a>
+            </div>
+
+            <div className="a-meta">
+              <span className="chip">Tampa, FL</span>
+              <span className="chip">open to work</span>
+              <span className="chip">IPFS + ENS native</span>
             </div>
           </div>
-          <figure className="zc-portrait">
-            <img src={zac} alt="Zac at sunset" />
-            <figcaption>the real thing, no AI filter</figcaption>
-          </figure>
-        </div>
-      </header>
 
-      {/* THE WEIRD WEB / IPFS */}
-      <section className="zc-section zc-web">
-        <div className="zc-web-grid">
-          <div className="zc-web-copy">
-            <span className="zc-eyebrow">A thing I actually believe</span>
-            <h2 className="zc-display zc-h2">The web should feel like someone's.</h2>
-            <p>
-              This whole site is pinned to IPFS and resolvable through my ENS
-              name. Not because I'm chasing tokens — because I like that it can't
-              be quietly taken down, edited behind my back, or re-sorted by an
-              algorithm I didn't choose. A personal site on the personal web.
-              It feels right, and it's how I'd want mine to work if I were
-              building one.
-            </p>
+          <div className="a-photo">
+            <div className="a-photo-frame">
+              <img src={zac} alt="Zac at sunset" className="a-photo-img" />
+              <span className="a-photo-tag mono">zacarlin.eth</span>
+            </div>
+            <div className="a-photo-badge">
+              <span>real photo</span>
+              <span className="mono">no ai filter</span>
+            </div>
           </div>
-          <ul className="zc-web-list">
-            <li><span>📌</span> Pinned to IPFS — distributed, uncensorable</li>
-            <li><span>⚡️</span> Resolvable at <em>zacarlin</em> on ENS</li>
-            <li><span>🎨</span> Hand-built, not a page builder</li>
-            <li><span>📸</span> Real photos, no stock, no AI</li>
-          </ul>
         </div>
       </section>
 
-      {/* TIMELINE */}
-      <section className="zc-section zc-where">
-        <span className="zc-eyebrow">Where I've been</span>
-        <h2 className="zc-display zc-h2">The path, in plain English.</h2>
-        <div className="zc-timeline">
-          {experience.map((e) => (
-            <article className="zc-role" key={e.company}>
-              <div className="zc-role-rail">
-                <div className="zc-role-period">{e.period}</div>
+      {/* ================= HOBBIES ================= */}
+      <section className="a-hobbies">
+        <div className="zc-wrap">
+          <h2 className="a-h2">
+            Not at work, I'm <span className="hl">still building</span>
+          </h2>
+          <p className="a-hobbies-lede">
+            The stuff that makes the code good. None of these have a
+            <em> job title</em> attached.
+          </p>
+
+          <div className="a-hob-grid">
+            {hobbies.map((h) => (
+              <div key={h.label} className="a-hob">
+                <div className="a-hob-icon">{h.icon}</div>
+                <div className="a-hob-name">{h.label}</div>
+                <div className="a-hob-detail">{h.detail}</div>
               </div>
-              <div className="zc-role-body">
-                <h3>{e.company}</h3>
-                <div className="zc-role-sub">{e.role}</div>
-                <p>{e.note}</p>
-              </div>
-            </article>
-          ))}
-          <article className="zc-role zc-role-own">
-            <div className="zc-role-rail">
-              <div className="zc-role-period">2024 — Now</div>
-            </div>
-            <div className="zc-role-body">
-              <h3>My own stuff</h3>
-              <div className="zc-role-sub">Z4C &amp; AI reliability systems</div>
-              <p>
-                Independent work: a live customer-facing platform I design, ship,
-                and operate end-to-end, plus private AI-evaluation tooling with
-                deterministic regression checks. If I can keep it running
-                without a company behind me, that's the job.
-              </p>
-            </div>
-          </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* STACK */}
-      <section className="zc-section zc-stack-sec">
-        <span className="zc-eyebrow">The toolbox</span>
-        <h2 className="zc-display zc-h2">What I reach for.</h2>
-        <div className="zc-stack">
-          {stack.map((s) => (
-            <div className="zc-stack-col" key={s.group}>
-              <div className="zc-stack-head">{s.group}</div>
-              <ul>
-                {s.items.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+      {/* ================= STACK ================= */}
+      <section className="a-stack">
+        <div className="zc-wrap">
+          <h2 className="a-h2">
+            Tools I actually <span className="hl">reach for</span>
+          </h2>
+          <p className="a-stack-lede">
+            Not a wall of logos. The stuff that shows up in real diffs.
+          </p>
+          <div className="a-stack-tags">
+            {stack.map((s) => (
+              <span key={s} className="a-stack-chip">
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
-        <p className="zc-stack-note">
-          And when it doesn't fit a box, I'll learn the box. That's the whole
-          job, honestly.
-        </p>
       </section>
 
-      {/* CTA */}
-      <section className="zc-cta">
-        <div className="zc-cta-inner">
-          <h3 className="zc-display">I'd love to hear what you're working on.</h3>
-          <p>Remote, US-authorized, and actually responsive. Coffee is negotiable.</p>
-          <div className="zc-cta-btns">
-            <a className="zc-btn line-light" href="mailto:zacarlin@gmail.com">Email</a>
-            <a className="zc-btn line-light" href={li("LinkedIn")} target="_blank" rel="noreferrer">LinkedIn</a>
-            <a className="zc-btn line-light" href={li("GitHub")} target="_blank" rel="noreferrer">GitHub</a>
-            <Link className="zc-btn line-light" to="/projects">Projects</Link>
+      {/* ================= THE BELIEF ================= */}
+      <section className="a-belief">
+        <div className="a-belief-inner zc-wrap">
+          <div className="a-belief-kicker kicker">why ipfs, actually</div>
+          <h2 className="a-belief-h2">
+            The web I want to live in
+            <br />
+            doesn't ask permission.
+          </h2>
+          <p className="a-belief-p">
+            The main site ships through the usual CDN, sure — it's fast and
+            it works. But there's a second copy of the exact same build,
+            mirrored to <strong>IPFS</strong> and addressable through{" "}
+            <strong>ENS</strong>. Pull it from <em>any</em> node and you get
+            the same bytes. No single registrar, no single host, no single
+            point of failure.
+          </p>
+          <p className="a-belief-p">
+            That's not a feature. It's the point. The <em>interwebs 🕸️</em>{" "}
+            used to mean that, and I'd like it back.
+          </p>
+          <div className="a-belief-ctas">
+            <a
+              href="https://ipfs.io/ipns/zacarlin.eth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="zc-btn"
+            >
+              see the IPFS copy →
+            </a>
+            <Link to="/projects" className="zc-btn">
+              see what I've shipped →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CTA ================= */}
+      <section className="a-cta">
+        <div className="a-cta-inner zc-wrap">
+          <h2 className="a-cta-h2">
+            Want to talk?
+            <br />
+            <span className="hl">Drop a line.</span>
+          </h2>
+          <div className="a-cta-btns">
+            <a href="mailto:zacarlin@gmail.com" className="zc-btn primary">
+              zacarlin@gmail.com
+            </a>
+            <a
+              href="https://github.com/about7sharks"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="zc-btn"
+            >
+              github ↗
+            </a>
           </div>
         </div>
       </section>

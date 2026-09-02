@@ -3,92 +3,126 @@ import { Link } from "react-router-dom";
 import { featured, experiments } from "../../data/featured";
 import "./Projects.scss";
 
+const tileClasses = ["", "accent", "blue", "pink"];
+
 export default function Projects() {
   return (
     <div className="zc Projects">
-      <header className="zc-page-head">
-        <div className="zc-page-head-inner">
-          <span className="zc-eyebrow">The interwebs 🕸️</span>
-          <h1 className="zc-display zc-h1">
-            Things I've built,
+      {/* ===================== PAGE HEAD ===================== */}
+      <section className="p-head">
+        <div className="zc-wrap">
+          <div className="p-head-kicker">
+            <span className="zc-pixel" />
+            <span className="kicker">the work · the fun · the weird</span>
+          </div>
+          <h1 className="p-head-h1">
+            Projects
+            <span className="hl"> I'd defend</span>
             <br />
-            <span className="zc-accent-word">big and gloriously weird.</span>
+            on a whiteboard.
           </h1>
-          <p className="zc-lead">
-            The top is the serious work — production stuff with real users.
-            Below it is where I go to learn: proof-of-concepts, toys, "let's see
-            if this is even possible" experiments. They don't all look clean.
-            That's the point.
+          <p className="p-head-lede">
+            Some of these are production and load real money's worth of data.
+            Some are gloriously weird things I made to answer "what if?".
+            That's the whole point — a person who can ship, <em>and</em> a
+            person who can't stop tinkering.
           </p>
         </div>
-      </header>
+      </section>
 
-      {/* FEATURED */}
-      <section className="zc-section zc-feat">
-        <div className="zc-block-head">
-          <span className="zc-eyebrow">The real work</span>
-          <h2 className="zc-display zc-h2">Built to be used.</h2>
-        </div>
-        <div className="zc-feat-list">
-          {featured.map((f) => (
-            <a className="zc-feat-card" href={f.url} target="_blank" rel="noreferrer" key={f.title}>
-              <div className="zc-feat-top">
-                <div>
-                  <span className="zc-feat-tag">{f.tag}</span>
-                  <h3 className="zc-feat-title">{f.title}</h3>
+      {/* ===================== FEATURED ===================== */}
+      <section className="p-featured">
+        <div className="zc-wrap">
+          <h2 className="p-section-title">Featured — the real thing</h2>
+          <div className="p-feat-list">
+            {featured.map((p, i) => (
+              <a
+                key={p.title}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={"p-feat-card p-feat-" + (p.accent || "accent")}
+              >
+                <div className="p-feat-top">
+                  <span className="p-feat-index mono">0{i + 1}</span>
+                  <span className="zc-chip">{p.tag}</span>
                 </div>
-                <span className="zc-feat-period">{f.period}</span>
-              </div>
-              <p className="zc-feat-blurb">{f.blurb}</p>
-              <ul className="zc-feat-points">
-                {f.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-              <div className="zc-feat-visit">{f.url.replace("https://", "")} ↗</div>
-            </a>
-          ))}
+                <h3 className="p-feat-title">{p.title}</h3>
+                <p className="p-feat-blurb">{p.blurb}</p>
+                <ul className="p-feat-bullets">
+                  {p.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <div className="p-feat-foot">
+                  <span className="mono">{p.period}</span>
+                  <span className="p-feat-go">
+                    visit site <span className="arrow">↗</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* EXPERIMENTS */}
-      <section className="zc-section zc-exp">
-        <div className="zc-block-head">
-          <span className="zc-eyebrow">The fun stuff</span>
-          <h2 className="zc-display zc-h2">Experiments.</h2>
-          <p className="zc-exp-lead">
-            Smaller scope, bigger curiosity. I build these to learn something I
-            didn't know I didn't know — and most of them still run.
-          </p>
-        </div>
-        <div className="zc-exp-grid">
-          {experiments.map((e) => (
-            <a className="zc-exp-card" href={e.url} target="_blank" rel="noreferrer" key={e.title}>
-              <div className="zc-exp-head">
-                <h3>{e.title}</h3>
-                <span className="zc-exp-arrow">↗</span>
-              </div>
-              <p>{e.blurb}</p>
-              <div className="zc-tags">
-                {e.tags.map((t) => (
-                  <span className="zc-tag" key={t}>{t}</span>
-                ))}
-              </div>
-            </a>
-          ))}
+      {/* ===================== EXPERIMENTS ===================== */}
+      <section className="p-fun">
+        <div className="zc-wrap">
+          <div className="p-fun-head">
+            <h2 className="p-fun-title">
+              The fun <span className="hl">stuff</span>
+            </h2>
+            <p className="p-fun-note">
+              "Proof of concept" is a compliment here. These don't all look
+              clean, and that's the point — I made them to learn, ship to the
+              interwebs, and see what happens.
+            </p>
+          </div>
+
+          <div className="p-fun-grid">
+            {experiments.map((e, i) => (
+              <a
+                key={e.title}
+                href={e.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={"p-tile tile-" + tileClasses[i % 4]}
+              >
+                <div className="p-tile-name">{e.title}</div>
+                <div className="p-tile-blurb">{e.blurb}</div>
+                <div className="p-tile-tags mono">
+                  {e.tags.map((t) => (
+                    <span key={t} className="tag">
+                      #{t}
+                    </span>
+                  ))}
+                  <span className="p-tile-go">↗</span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="zc-cta">
-        <div className="zc-cta-inner">
-          <h3 className="zc-display">Need the formal version?</h3>
-          <p>The résumé exists too — for the moments that call for it.</p>
-          <div className="zc-cta-btns">
-            <a className="zc-btn line-light" href="/resume.html" target="_blank" rel="noreferrer">
-              Full résumé
+      {/* ===================== CTA ===================== */}
+      <section className="p-cta">
+        <div className="zc-wrap p-cta-inner">
+          <h2 className="p-cta-h2">
+            Built something weird?
+            <br />
+            <span className="hl">Let's talk.</span>
+          </h2>
+          <div className="p-cta-btns">
+            <a
+              href="mailto:zacarlin@gmail.com"
+              className="zc-btn primary"
+            >
+              zacarlin@gmail.com
             </a>
-            <Link className="zc-btn line-light" to="/">Back to home</Link>
+            <Link to="/about" className="zc-btn">
+              More about me →
+            </Link>
           </div>
         </div>
       </section>

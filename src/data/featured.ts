@@ -6,12 +6,14 @@ export interface Featured {
   bullets: string[];
   url: string;
   period: string;
+  accent?: "accent" | "blue" | "pink" | "yellow";
 }
 
 export const featured: Featured[] = [
   {
     title: "The Fly — MCP Server & AI Chat",
     tag: "Production · B2B Finance",
+    accent: "blue",
     blurb:
       "Frontend technical lead at The Fly (formerly Main Street Data). Exposed the entire platform as an MCP server so agents can call it, and built the AI chat widget end-to-end with streaming, retrieval grounding, and human-gated behavior.",
     bullets: [
@@ -25,6 +27,7 @@ export const featured: Featured[] = [
   {
     title: "Accubrew — IoT Beer Monitoring",
     tag: "End-to-end · IoT + Web",
+    accent: "pink",
     blurb:
       "Led the full engineering effort at Gulf Photonics: an IoT embedded sensor for fermentation monitoring using photonics, shipped to accubrew.io, plus its web dashboard.",
     bullets: [
@@ -38,6 +41,7 @@ export const featured: Featured[] = [
   {
     title: "Z4C & AI Reliability Systems",
     tag: "Independent · Production",
+    accent: "yellow",
     blurb:
       "Designed, built, deployed, and operate a customer-facing platform end-to-end — timezone-aware intake, concurrency-safe storage, analytics, and automated tests with production verification on every change. Also build private AI evaluation infrastructure with deterministic regression comparison and human-gated promotion.",
     bullets: [
