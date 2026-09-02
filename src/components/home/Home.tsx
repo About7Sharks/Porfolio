@@ -68,7 +68,8 @@ export default function Home() {
 
           <div className="hero-photo reveal" data-reveal-delay="150">
             <div className="photo-frame tilt">
-              <img src={zac} alt="Zac on a ridge, hands on hips" className="photo-img" />
+              {/* fetchpriority=high hints the browser to prioritise the LCP image */}
+              <img src={zac} alt="Zac on a ridge, hands on hips" className="photo-img" loading="eager" decoding="async" {...({ fetchpriority: "high" } as any)} />
               <span className="photo-tag mono">zacarlin.eth</span>
             </div>
             <div className="photo-badge">

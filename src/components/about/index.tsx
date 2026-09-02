@@ -66,7 +66,7 @@ export default function About() {
 
           <div className="a-photo reveal" data-reveal-delay="150">
             <div className="a-photo-frame tilt">
-              <img src={zac} alt="Zac on a ridge, hands on hips" className="a-photo-img" />
+              <img src={zac} alt="Zac on a ridge, hands on hips" className="a-photo-img" loading="lazy" decoding="async" />
               <span className="a-photo-tag mono">zacarlin.eth</span>
             </div>
             <div className="a-photo-badge">
