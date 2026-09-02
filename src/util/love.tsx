@@ -870,7 +870,6 @@ export function setupCmdPalette(
     sel = 0;
     ul.innerHTML = "";
     let lastGroup = "";
-    let itemIdx = -1;
     arr.forEach((it, i) => {
       if (it.group !== lastGroup) {
         lastGroup = it.group;
@@ -879,7 +878,6 @@ export function setupCmdPalette(
         g.textContent = it.group;
         ul.appendChild(g);
       }
-      itemIdx++;
       const li = document.createElement("li");
       li.className = "cmdk-item" + (i === sel ? " is-sel" : "");
       li.setAttribute("role", "option");

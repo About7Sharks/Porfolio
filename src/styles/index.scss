@@ -753,6 +753,44 @@ span {
   transform: translate(1px, 2px);
 }
 
+/* ⌘K command-palette hint button — sits right of the nav links */
+.nav-cmdk {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1.5px solid #2b4bff;
+  color: #0d0d0f;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 3px 3px 0 0 #0d0d0f;
+}
+.nav-cmdk kbd {
+  padding: 1px 5px;
+  border: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+}
+.nav-cmdk:hover {
+  background: #2b4bff;
+  color: #0d0d0f;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 0 #0d0d0f;
+}
+.nav-cmdk:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 #0d0d0f;
+}
+@media (max-width: 680px) {
+  .nav-cmdk { display: none; }
+}
+
 /* MUI NavLink active state */
 .Mui-selected {
   background: #ff5c00 !important;

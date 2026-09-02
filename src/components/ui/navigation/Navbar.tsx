@@ -69,6 +69,18 @@ export const Navbar = (props: Props) => {
       </Link>
       <div className={"navLinks" + (open ? " is-open" : "")}>{navItems}</div>
       <button
+        className="nav-cmdk mono"
+        title="Command palette (⌘K)"
+        aria-label="Open command palette"
+        onClick={() =>
+          window.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true })
+          )
+        }
+      >
+        <kbd>⌘</kbd><kbd>K</kbd>
+      </button>
+      <button
         className="nav-burger"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
