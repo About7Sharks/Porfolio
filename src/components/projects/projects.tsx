@@ -42,7 +42,7 @@ export default function Projects() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={
-                  "p-feat-card spot p-feat-" +
+                  "p-feat-card spot tilt p-feat-" +
                   (p.accent || "accent") +
                   " reveal"
                 }

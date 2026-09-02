@@ -274,7 +274,10 @@ select:focus-visible {
 .zc .textCard {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.zc .p-feat-card:hover,
+.zc .p-feat-card:hover {
+  /* tilt JS owns the transform on desktop; this only matters for touch */
+  box-shadow: 8px 8px 0 0 var(--accent);
+}
 .zc .p-tile:hover {
   transform: translateY(-4px);
 }
@@ -298,8 +301,9 @@ select:focus-visible {
   border-color: var(--accent);
 }
 @media (prefers-reduced-motion: reduce) {
-  .zc .p-feat-card:hover,
-  .zc .p-tile:hover,
+  .zc .p-tile:hover {
+    transform: none;
+  }
   .zc .textCard:hover {
     transform: none;
   }
