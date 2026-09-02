@@ -198,6 +198,9 @@
 .post-head {
   margin-bottom: 34px;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .post-back {
   display: inline-block;
@@ -363,3 +366,112 @@
   text-decoration: none;
 }
 .post-end-link:hover { color: var(--accent-2); }
+
+/* -- skip-link (a11y) — visually present but subtle, keyboard-first ---------- */
+.skip-link {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.12s ease;
+}
+.skip-link:hover { color: var(--accent); }
+.skip-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+  color: var(--ink);
+}
+
+/* -- post head: back-link left, share right -------------------------------- */
+.post-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+.post-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
+}
+.post-share:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.post-share:active { transform: translateY(1px); }
+.post-share:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .post-share { padding: 5px 9px; font-size: 0.72rem; }
+}
+
+/* -- table of contents (long posts, 3+ h2s) -------------------------------- */
+.post-toc {
+  margin-top: 22px;
+  padding: 18px 20px;
+  background: var(--paper-2, #111117);
+  border-left: 3px solid var(--accent);
+}
+.post-toc-label {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.post-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.post-toc-link {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 3px 0;
+  transition: color 0.12s ease, transform 0.12s ease;
+}
+.post-toc-link:hover {
+  color: var(--ink);
+  transform: translateX(3px);
+}
+.post-toc-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+  color: var(--ink);
+}
+.post-toc-num {
+  font-size: 0.72rem;
+  color: var(--accent);
+  flex: none;
+  min-width: 20px;
+}
