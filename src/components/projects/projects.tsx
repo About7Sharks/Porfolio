@@ -95,6 +95,9 @@ export default function Projects() {
                 className={"p-tile spot tile-" + tileClasses[i % 4] + " reveal"}
                 data-reveal-delay={String((i % 4) * 90)}
               >
+                <span className="p-tile-index mono">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div className="p-tile-name">{e.title}</div>
                 <div className="p-tile-blurb">{e.blurb}</div>
                 <div className="p-tile-tags mono">

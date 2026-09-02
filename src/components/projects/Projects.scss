@@ -194,11 +194,32 @@
     display: flex;
     flex-direction: column;
     border: var(--border);
-    background: var(--bg);
+    background: var(--bg-2);
     box-shadow: var(--shadow-sm);
     padding: 18px;
     min-height: 200px;
+    position: relative;
+    overflow: hidden;
     transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .p-tile-index {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: rgba(242, 241, 236, 0.12);
+    -webkit-text-stroke: 1px rgba(242, 241, 236, 0.2);
+    z-index: 0;
+    pointer-events: none;
+    transition: color 0.25s, -webkit-text-stroke 0.25s, transform 0.25s;
+  }
+  .p-tile:hover .p-tile-index {
+    color: rgba(255, 92, 0, 0.35);
+    -webkit-text-stroke: 1px rgba(255, 92, 0, 0.6);
+    transform: translate(2px, -2px);
   }
   .p-tile:hover {
     transform: translate(-2px, -2px);
@@ -211,12 +232,16 @@
     font-size: 1.05rem;
     line-height: 1.2;
     margin-bottom: 8px;
+    z-index: 1;
+    position: relative;
   }
   .p-tile-blurb {
     font-size: 0.85rem;
     color: var(--ink-2);
     margin-bottom: 14px;
     flex: 1 1 auto;
+    z-index: 1;
+    position: relative;
   }
   .p-tile-tags {
     display: flex;

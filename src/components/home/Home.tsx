@@ -79,12 +79,12 @@ export default function Home() {
       {/* ======================= SKILL MARQUEE ======================= */}
       <div className="marquee" aria-hidden="true">
         <div className="marquee-inner">
-          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs", "cloudflare", "solana", "playwright", "css that slaps"].map((s, i) => (
+          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs + ens", "cloudflare", "solana", "playwright", "css that slaps", "zacarlin.eth"].map((s, i) => (
             <span key={i} className={i % 4 === 2 ? "m-hot" : ""}>
               {s} ·
             </span>
           ))}
-          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs", "cloudflare", "solana", "playwright", "css that slaps"].map((s, i) => (
+          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs + ens", "cloudflare", "solana", "playwright", "css that slaps", "zacarlin.eth"].map((s, i) => (
             <span key={"b" + i} className={i % 4 === 2 ? "m-hot" : ""}>
               {s} ·
             </span>
