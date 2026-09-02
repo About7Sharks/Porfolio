@@ -603,6 +603,48 @@ select:focus-visible {
   box-shadow: 0 0 0 2px rgba(13, 13, 15, 0.9), 0 0 0 3.5px currentColor;
   transform: scale(1.1);
 }
+/* -- copy button on code blocks (top-right of each <pre>) ---------------- */
+.zc pre {
+  position: relative;
+}
+.copy-code {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  background: rgba(13, 13, 15, 0.7);
+  color: rgba(242, 241, 236, 0.75);
+  border: 1px solid rgba(242, 241, 236, 0.18);
+  border-radius: 0;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.12s ease, background 0.15s ease, color 0.15s ease;
+  backdrop-filter: blur(4px);
+}
+pre:hover .copy-code { opacity: 1; }
+.copy-code:hover {
+  opacity: 1;
+  transform: translate(-1px, -1px);
+  background: rgba(13, 13, 15, 0.9);
+  color: #f2f1ec;
+  border-color: var(--accent);
+}
+.copy-code.is-copied {
+  color: #00e5a0;
+  border-color: #00e5a0;
+  opacity: 1;
+}
+.copy-code.is-err {
+  color: #ff4f4f;
+  border-color: #ff4f4f;
+  opacity: 1;
+}
+.copy-code-icon { font-size: 0.85rem; }
+
 @media (max-width: 640px) {
   .accent-dock {
     left: 10px;

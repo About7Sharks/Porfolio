@@ -713,6 +713,60 @@ export function nextAccentFrom(id: string) {
   return t;
 }
 
+// -- copy button on every <pre> code block (posts + any article) -----------
+function setupCopyCode() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        wire(e.target as HTMLElement);
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: "120px" });
+  const wire = (pre: HTMLElement) => {
+    if (pre.querySelector(".copy-code")) return;
+    const code = (pre.querySelector("code") || pre).textContent || "";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy-code";
+    btn.setAttribute("aria-label", "Copy code");
+    btn.innerHTML =
+      '<span class="copy-code-icon">⧉</span><span class="copy-code-label mono">copy</span>';
+    const doCopy = () => {
+      const done = (ok: boolean) => {
+        btn.classList.add(ok ? "is-copied" : "is-err");
+        const lbl = btn.querySelector(".copy-code-label");
+        if (lbl) lbl.textContent = ok ? "copied" : "err";
+        setTimeout(() => {
+          btn.classList.remove("is-copied", "is-err");
+          if (lbl) lbl.textContent = "copy";
+        }, 1400);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(() => done(true), () => done(false));
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = code;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(true); }
+        catch (_e) { done(false); }
+        ta.remove();
+      }
+    };
+    btn.addEventListener("click", doCopy);
+    pre.appendChild(btn);
+  };
+  const scan = () =>
+    document.querySelectorAll<HTMLElement>("pre").forEach((pre) => io.observe(pre));
+  scan();
+  const mo = new MutationObserver(scan);
+  mo.observe(document.body, { childList: true, subtree: true });
+  return () => { io.disconnect(); mo.disconnect(); };
+}
+
 export function attachCopyEmail(el: HTMLElement, email: string) {
   const doCopy = () => {
     const done = (ok: boolean) => {
@@ -767,6 +821,7 @@ export function useLove() {
       setupScrollTop(),
       setupScrollHint(),
       setupAccentDock(),
+      setupCopyCode(),
     ];
     return () => {
       document.documentElement.classList.remove("js");
