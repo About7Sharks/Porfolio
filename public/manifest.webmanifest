@@ -1,10 +1,13 @@
 {
-  "name": "Zacarlin",
-  "short_name": "A fun little app made by mwah :)",
-  "theme_color": "#23b852",
-  "background_color": "#2196f3",
+  "name": "Zac Carlin — portfolio",
+  "short_name": "z4c",
+  "description": "Zachary Carlin — full-stack web developer. Things that run on the web, made uncensorable with IPFS + ENS.",
+  "id": "/",
+  "theme_color": "#0d0d0f",
+  "background_color": "#0d0d0f",
   "display": "standalone",
-  "start_url": ".",
+  "start_url": "./",
+  "scope": "./",
   "lang": "en",
   "orientation": "any",
   "prefer_related_applications": false,
@@ -28,7 +31,8 @@
     {
       "src": "appIcons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
