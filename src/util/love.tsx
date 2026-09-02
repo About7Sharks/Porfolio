@@ -67,8 +67,18 @@ function setupScramble() {
     if (!nodes.length) return;
     seed();
     let frame = 0;
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      el.innerHTML = originalHTML;
+    };
     const total = Math.max(24, Math.min(48, chars.length));
+    // wall-clock safety: if rAF is throttled (background tab) the heading
+    // must never be left as raw glyphs — restore real text on a hard deadline
+    const deadline = window.setTimeout(finish, 2600);
     const step = () => {
+      if (done) return;
       frame++;
       const target = Math.floor((frame / total) * chars.length);
       nodes.forEach((nd) => {
@@ -81,7 +91,10 @@ function setupScramble() {
         nd.el.textContent = s;
       });
       if (frame < total) requestAnimationFrame(step);
-      else el.innerHTML = originalHTML;
+      else {
+        clearTimeout(deadline);
+        finish();
+      }
     };
     requestAnimationFrame(step);
   };
