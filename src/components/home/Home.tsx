@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
 import { featured, experiments } from "../../data/featured";
-import { setupLiveClock } from "../../util/love";
+import { setupLiveClock, setupPhotoDepth } from "../../util/love";
 import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
@@ -11,7 +11,12 @@ export default function Home() {
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    return setupLiveClock(el);
+    const a = setupLiveClock(el);
+    const b = setupPhotoDepth(el);
+    return () => {
+      a();
+      b();
+    };
   }, []);
   return (
     <div className="zc Home" ref={rootRef}>

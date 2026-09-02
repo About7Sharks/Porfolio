@@ -588,7 +588,47 @@ function setupPartyKey() {
 }
 
 
-// -- live local clock (hero "online" chip) ------------------------------------
+// -- hero photo depth: stickers drift on a z-parallax with the cursor -----
+export function setupPhotoDepth(root: ParentNode = document) {
+  if (prefersReduced() || coarsePointer()) return () => {};
+  const hero = root.querySelector(".hero-photo");
+  if (!hero) return () => {};
+  const badge = hero.querySelector(".photo-badge");
+  const tag = hero.querySelector(".photo-tag");
+  // frame is a .tilt element — tilt owns its transform, so we only float the stickers
+  const layers: Array<{ el: HTMLElement; fx: number; fy: number }> = [
+    { el: badge as HTMLElement, fx: 14, fy: 10 },
+    { el: tag as HTMLElement, fx: -10, fy: -8 },
+  ].filter((l) => l.el);
+  let raf = 0;
+  const onMove = (e: MouseEvent) => {
+    const r = hero.getBoundingClientRect();
+    const nx = (e.clientX - r.left) / r.width - 0.5;
+    const ny = (e.clientY - r.top) / r.height - 0.5;
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      layers.forEach((l) => {
+        l.el.style.transition = "none"; // 1:1 cursor follow, no lag
+        l.el.style.transform = `translate(${nx * l.fx}px, ${ny * l.fy}px)`;
+      });
+    });
+  };
+  const onLeave = () => {
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    layers.forEach((l) => {
+      l.el.style.transition = "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)";
+      l.el.style.transform = "";
+    });
+  };
+  hero.addEventListener("mousemove", onMove, { passive: true });
+  hero.addEventListener("mouseleave", onLeave);
+  return () => {
+    hero.removeEventListener("mousemove", onMove);
+    hero.removeEventListener("mouseleave", onLeave);
+    if (raf) cancelAnimationFrame(raf);
+  };
+}
 export function setupLiveClock(root: ParentNode = document) {
   const els = Array.prototype.slice.call(
     root.querySelectorAll<HTMLElement>(".live-clock")
