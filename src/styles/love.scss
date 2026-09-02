@@ -525,3 +525,21 @@ select:focus-visible {
   text-transform: uppercase;
   margin-top: 14px;
 }
+
+
+// ============ GLOBAL REDUCED-MOTION FALLBACK (v17) ============
+// Any animation that survives into a reduce-motion session gets killed.
+// Single rule, covers marquee / party / grain / blink / grid / hint.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  body.party {
+    animation: none !important;
+  }
+}
