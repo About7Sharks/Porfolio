@@ -726,7 +726,43 @@ export function nextAccentFrom(id: string) {
   return t;
 }
 
-// -- copy button on every <pre> code block (posts + any article) -----------
+// -- hero H1 accent hover — a quick re-flash on the highlighted words --------
+// Pure CSS can't do it (the .hl spans already carry their own bg/color/border),
+// so we add a keyframe + a hover listener that toggles a class. Feels alive
+// without fighting the entrance animation.
+export function setupHeroAccentHover(root: ParentNode = document) {
+  const h1 = root.querySelector(".hero-h1");
+  if (!h1) return () => {};
+  const acc = Array.prototype.slice.call(h1.querySelectorAll<HTMLElement>(".hl, .hl2"));
+  if (!acc.length) return () => {};
+  // keyframe injected once (idempotent)
+  if (!document.getElementById("hero-acc-kf")) {
+    const st = document.createElement("style");
+    st.id = "hero-acc-kf";
+    st.textContent =
+      "@keyframes hero-acc-pulse{0%{filter:brightness(1)}40%{filter:brightness(1.5) saturate(1.3)}100%{filter:brightness(1)}}" +
+      ".hero-acc-flash{animation:hero-acc-pulse .45s ease}";
+    document.head.appendChild(st);
+  }
+  let raf = 0;
+  const onMove = (e: MouseEvent) => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      const t = (e.target as HTMLElement).closest<HTMLElement>(".hl, .hl2");
+      if (t && !t.classList.contains("hero-acc-flash")) {
+        t.classList.add("hero-acc-flash");
+        const done = () => t.classList.remove("hero-acc-flash");
+        t.addEventListener("animationend", done, { once: true });
+        // safety: drop the class if animationend never fires (reduced-motion)
+        setTimeout(done, 600);
+      }
+    });
+  };
+  h1.addEventListener("mousemove", onMove, { passive: true });
+  return () => h1.removeEventListener("mousemove", onMove);
+}
+
 // -- single-key navigation: H home, P projects, A about, J journal ----------
 // Only fires when focus isn't in a form control and the ⌘K palette is closed.
 function setupNavKeys() {

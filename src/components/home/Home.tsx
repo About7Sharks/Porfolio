@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
 import { featured, experiments } from "../../data/featured";
-import { setupLiveClock, setupPhotoDepth } from "../../util/love";
+import { setupLiveClock, setupPhotoDepth, setupHeroAccentHover } from "../../util/love";
 import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
@@ -13,9 +13,11 @@ export default function Home() {
     if (!el) return;
     const a = setupLiveClock(el);
     const b = setupPhotoDepth(el);
+    const c = setupHeroAccentHover(el);
     return () => {
       a();
       b();
+      c();
     };
   }, []);
   return (
