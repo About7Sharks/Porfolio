@@ -1,0 +1,208 @@
+@import "../../styles/zc-tokens.scss";
+
+.zc-page-head {
+  background:
+    radial-gradient(900px 400px at 8% -20%, rgba(37, 99, 235, 0.16), transparent 60%),
+    linear-gradient(180deg, #f4f7fb, #eef2f8);
+  padding: 76px 32px 56px;
+  color: var(--zc-ink);
+
+  @media (max-width: 720px) {
+    padding: 52px 20px 40px;
+  }
+}
+.zc-page-head-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.zc-badge-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--zc-cobalt);
+  background: rgba(29, 78, 216, 0.08);
+  border: 1px solid rgba(29, 78, 216, 0.2);
+}
+.zc-h1.small {
+  margin: 0;
+  font-size: clamp(34px, 5.2vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--zc-ink);  // override global white h1 (original dark theme)
+
+  .zc-accent-dark {
+    background: linear-gradient(120deg, #2563eb, #1d4ed8 55%, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.zc-lead {
+  margin: 0;
+  max-width: 700px;
+  color: #334155;
+  font-size: 16.5px;
+  line-height: 1.6;
+}
+.zc-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+// Timeline
+.zc-timeline {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+.zc-role {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 24px;
+  background: white;
+  border: 1px solid var(--zc-line);
+  border-radius: var(--zc-radius);
+  padding: 22px 24px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+.zc-role-time {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--zc-cobalt);
+  letter-spacing: 0.02em;
+  padding-top: 3px;
+  white-space: nowrap;
+}
+.zc-role-body h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 750;
+  color: var(--zc-ink);
+}
+.zc-role-sub {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.zc-role-body ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: #334155;
+  font-size: 14.5px;
+  line-height: 1.65;
+
+  li { margin: 5px 0; padding-left: 2px; }
+  li::marker { color: var(--zc-cobalt); }
+}
+.zc-role-body p {
+  margin: 8px 0 0;
+  color: #334155;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+// Alternating section bg
+.zc-section-alt {
+  background: white;
+}
+
+// Stack
+.zc-stack {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+.zc-stack-col {
+  background: var(--zc-wash);
+  border: 1px solid var(--zc-line);
+  border-radius: var(--zc-radius);
+  padding: 18px;
+}
+.zc-stack-head {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--zc-cobalt);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.zc-stack-head::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: var(--zc-cobalt);
+  border-radius: 2px;
+}
+.zc-stack-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(216, 222, 232, 0.8);
+    color: #334155;
+    font-size: 14px;
+  }
+  li:last-child { border-bottom: none; }
+}
+
+// CTA
+.zc-cta {
+  background:
+    radial-gradient(700px 300px at 80% 20%, rgba(99, 145, 255, 0.25), transparent 60%),
+    linear-gradient(180deg, #0f1a33, #111c33);
+  color: white;
+  padding: 72px 32px;
+  text-align: center;
+}
+.zc-cta-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.zc-cta h3 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.zc-cta p {
+  margin: 0 0 28px;
+  color: #b8c6e4;
+  font-size: 16px;
+}
+.zc-cta-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

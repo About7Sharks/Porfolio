@@ -1,0 +1,195 @@
+// Zac portfolio — design tokens
+// Mirrors the resume visual language: cobalt, slate, dark navy on paper.
+
+// Self-hosted Inter (OFL) — resolves the "Inter not installed on headless
+// browser" fallback so the headline always renders in the intended typeface.
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-800.woff2") format("woff2");
+}
+
+:root {
+  --zc-ink:        #111827;
+  --zc-cobalt:     #1d4ed8;
+  --zc-cobalt-2:   #2563eb;
+  --zc-sky:        #dbeafe;
+  --zc-slate:      #475569;
+  --zc-line:       #d8dee8;
+  --zc-paper:      #ffffff;
+  --zc-wash:       #f4f7fb;
+  --zc-navy:       #111c33;
+  --zc-navy-2:     #1a2a4a;
+  --zc-radius:     14px;
+  --zc-max:        1180px;
+}
+
+// Base layout for the new pages — self-contained, overrides the legacy
+// #root flex centering so the pages can flow top-down.
+.zc {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--zc-wash);
+  color: var(--zc-ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+  display: block; // override #root flex
+
+  // Kill the global h1 Shrikhand + triangle decorations on our pages
+  h1, h2, h3, h4, p, ul, li {
+    font-family: inherit;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  h1::before, h1::after,
+  h2::before, h2::after {
+    display: none !important;
+    content: none !important;
+  }
+  p {
+    margin: 0;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+// Section container
+.zc-section {
+  width: 100%;
+  max-width: var(--zc-max);
+  margin: 0 auto;
+  padding: 72px 32px;
+}
+
+@media (max-width: 720px) {
+  .zc-section {
+    padding: 48px 20px;
+  }
+}
+
+// Section heading (small caps + rule)
+.zc-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--zc-cobalt);
+}
+.zc-kicker::before {
+  content: "";
+  width: 32px;
+  height: 3px;
+  background: var(--zc-cobalt);
+  border-radius: 2px;
+}
+.zc-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--zc-line);
+}
+
+// Buttons
+.zc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &.primary {
+    background: var(--zc-cobalt);
+    color: white;
+    &:hover {
+      background: var(--zc-cobalt-2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25);
+    }
+  }
+  &.ghost {
+    background: transparent;
+    color: var(--zc-ink);
+    border-color: var(--zc-line);
+    &:hover {
+      border-color: var(--zc-cobalt);
+      color: var(--zc-cobalt);
+    }
+  }
+  &.light {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border-color: rgba(255,255,255,0.22);
+    &:hover {
+      background: rgba(255,255,255,0.14);
+    }
+  }
+}
+
+// Tags
+.zc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.zc-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--zc-sky);
+  color: var(--zc-cobalt);
+}

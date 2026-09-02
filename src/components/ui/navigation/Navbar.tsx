@@ -39,7 +39,10 @@ export const Navbar = (props: Props) => {
     <>
       <motion.nav
         initial={{ scale: 0, opacity: 0 }}
-        style={{ backgroundColor: `rgba(0,0,0,${scrollY * 10})` }}
+        style={{
+          backgroundColor: `rgba(9, 15, 30, ${Math.min(0.92, 0.6 + scrollY * 0.4)})`,
+          boxShadow: "0 2px 14px rgba(0,0,0,0.28)",
+        }}
         transition={{ duration: 1, delay: 2 }}
         animate={controls}
         className="navbar"
