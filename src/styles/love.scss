@@ -802,10 +802,10 @@ pre:hover .copy-code { opacity: 1; }
       gap: 0;
       border-radius: 999px;
       cursor: pointer;
-      width: 40px;
-      height: 40px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-      /* show only the first (active) swatch as the pill face */
+      width: 30px;
+      height: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      /* show only the active swatch as the dot face */
       .accent-swatch { display: none; }
       .accent-swatch.is-active {
         display: block;
