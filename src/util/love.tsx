@@ -588,6 +588,35 @@ function setupPartyKey() {
 }
 
 
+// -- live local clock (hero "online" chip) ------------------------------------
+export function setupLiveClock(root: ParentNode = document) {
+  const els = Array.prototype.slice.call(
+    root.querySelectorAll<HTMLElement>(".live-clock")
+  );
+  if (!els.length) return () => {};
+  const render = () => {
+    els.forEach((el) => {
+      const tz = el.dataset.tz || "local";
+      try {
+        el.textContent = new Date().toLocaleTimeString(
+          undefined,
+          {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: tz === "local" ? undefined : tz,
+          }
+        );
+      } catch (_e) {
+        el.textContent = "";
+      }
+    });
+  };
+  render();
+  const id = window.setInterval(render, 1000);
+  return () => window.clearInterval(id);
+}
+
+
 // -- copy email to clipboard + toast (attached per-element, not global) ----
 // call: attachCopyEmail(buttonEl, "zacarlin@gmail.com")
 export function attachCopyEmail(el: HTMLElement, email: string) {

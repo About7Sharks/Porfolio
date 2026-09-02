@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
 import { featured, experiments } from "../../data/featured";
+import { setupLiveClock } from "../../util/love";
 import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
 export default function Home() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    return setupLiveClock(el);
+  }, []);
   return (
-    <div className="zc Home">
+    <div className="zc Home" ref={rootRef}>
       {/* ============================ HERO ============================ */}
       <section className="hero">
         <div className="hero-grid zc-wrap">
@@ -55,6 +62,11 @@ export default function Home() {
             </div>
 
             <div className="hero-meta">
+              <span className="chip hero-chip-live">
+                <span className="live-dot" aria-hidden="true" />
+                <span className="mono">online</span>
+                <span className="live-clock mono" data-tz="America/New_York">—:—</span>
+              </span>
               <span className="chip">🐴 for humans, of course</span>
               <span className="chip">⚡ IPFS + ENS native</span>
               <span className="chip">🏋️ lifts · ✈️ travels</span>

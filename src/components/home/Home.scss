@@ -420,3 +420,31 @@
 .foot-link:hover::after {
   transform: scaleX(1);
 }
+
+// -- live status chip (online + local clock) --
+.hero-chip-live {
+  gap: 8px;
+  align-items: center;
+}
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00e5a0;
+  box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.6);
+  animation: live-pulse 2s ease-out infinite;
+  flex: none;
+}
+.live-clock {
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(0, 229, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 229, 160, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+}
