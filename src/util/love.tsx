@@ -439,6 +439,30 @@ function setupHeroTerminal() {
   };
 }
 
+// -- hero parallax: the grid floor drifts as you scroll ---------------------
+function setupHeroParallax() {
+  if (prefersReduced() || coarsePointer()) return () => {};
+  let raf = 0;
+  const onScroll = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const hero = document.querySelector<HTMLElement>(".hero");
+      if (!hero) return;
+      const r = hero.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      // 0 at top-of-viewport, grows as hero scrolls out — floor slides toward viewer
+      const progress = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)));
+      hero.style.setProperty("--hero-y", `${progress * 90}px`);
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+    cancelAnimationFrame(raf);
+  };
+}
+
 // -- "e" easter egg: party mode unlock (e = party) ---------------------------
 function setupPartyKey() {
   const onKey = (e: KeyboardEvent) => {
@@ -511,6 +535,7 @@ export function useLove() {
       setupBurst(),
       setupHeroTerminal(),
       setupPartyKey(),
+      setupHeroParallax(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

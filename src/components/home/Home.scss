@@ -6,6 +6,48 @@
     border-bottom: var(--border);
     background: var(--bg);
     padding: 48px 0 56px;
+    position: relative;
+    overflow: hidden;
+
+    // perspective grid floor — depth + retro-web energy, parallax via --hero-y
+    &::before {
+      content: "";
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: -80px;
+      height: 46%;
+      background-image:
+        linear-gradient(to right, rgba(255, 92, 0, 0.22) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 92, 0, 0.22) 1px, transparent 1px);
+      background-size: 44px 44px;
+      transform: perspective(520px) rotateX(52deg) translateY(var(--hero-y, 0px));
+      transform-origin: 50% 100%;
+      -webkit-mask-image: linear-gradient(to top, #000 20%, transparent 95%);
+      mask-image: linear-gradient(to top, #000 20%, transparent 95%);
+      pointer-events: none;
+      will-change: transform;
+      animation: hero-grid-drift 16s linear infinite;
+      z-index: 0;
+    }
+    // warm horizon glow behind the grid
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -60px;
+      width: 130%;
+      height: 280px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse 50% 100% at 50% 100%, rgba(255, 92, 0, 0.22), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  @keyframes hero-grid-drift {
+    from { background-position: 0 0; }
+    to { background-position: 0 44px; }
   }
 
   .hero-grid {
@@ -14,6 +56,8 @@
     gap: 48px;
     align-items: stretch;
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 
   .hero-kicker {
