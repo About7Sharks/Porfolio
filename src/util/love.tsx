@@ -454,36 +454,76 @@ function setupHeroTerminal() {
   };
 }
 
+// -- shared smooth-scroll helper ---------------------------------------------
+// Smooth where supported; if it hasn't reached the target after a short delay
+// (some browsers / headless contexts silently drop smooth scroll), force an
+// instant jump so the button always does something. "instant" is the reliable
+// keyword — "auto" inherits the site's global scroll-behavior:smooth.
+function scrollToEl(el: HTMLElement) {
+  const top = el.getBoundingClientRect().top + window.scrollY - 8;
+  el.scrollIntoView({ behavior: prefersReduced() ? "auto" : "smooth", block: "start" });
+  window.setTimeout(() => {
+    if (Math.abs(window.scrollY - top) > 48) {
+      const rootEl = document.documentElement;
+      const prev = rootEl.style.scrollBehavior;
+      rootEl.style.scrollBehavior = "auto";
+      el.scrollIntoView({ behavior: "auto", block: "start" });
+      window.scrollTo(0, top);
+      rootEl.style.scrollBehavior = prev;
+    }
+  }, 520);
+}
+
+
+
 // -- scroll hint: "explore ↓" pill — scrolls to #more, hides after scroll --
 function setupScrollHint() {
-  const hint = document.querySelector<HTMLElement>(".hero-scrollhint");
-  if (!hint) return () => {};
-  const target = document.getElementById("more");
-  const onClick = () => {
-    if (!target) return;
-    const top = target.getBoundingClientRect().top + window.scrollY - 8;
-    if (prefersReduced()) window.scrollTo(0, top);
-    else window.scrollTo({ top, behavior: "smooth" });
+  const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const attach = (hint: HTMLElement) => {
+    const target = () => document.getElementById("more");
+    const onClick = () => {
+      const el = target();
+      if (!el) return;
+      scrollToEl(el);
+    };
+    hint.addEventListener("click", onClick);
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const y = Math.max(window.scrollY, 0);
+        hint.classList.toggle("is-hidden", y > 60);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      hint.removeEventListener("click", onClick);
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   };
-  hint.addEventListener("click", onClick);
-  let raf = 0;
-  const onScroll = () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      hint.classList.toggle("is-hidden", window.scrollY > 60);
-    });
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  let hint = document.querySelector<HTMLElement>(".hero-scrollhint");
+  if (hint) return attach(hint);
+  // Home may not be mounted yet (lazy route). Watch for it.
+  let clean: (() => void) | null = null;
+  const mo = new MutationObserver(() => {
+    const el = document.querySelector<HTMLElement>(".hero-scrollhint");
+    if (el) {
+      mo.disconnect();
+      clean = attach(el);
+    }
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
   return () => {
-    hint.removeEventListener("click", onClick);
-    window.removeEventListener("scroll", onScroll);
-    cancelAnimationFrame(raf);
+    mo.disconnect();
+    clean && clean();
   };
 }
 
 // -- scroll-to-top: a square button fades in after you've gone deep --------
 function setupScrollTop() {
+  const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "love-scrolltop";
@@ -491,12 +531,18 @@ function setupScrollTop() {
   btn.innerHTML = "&#8593;";
   document.body.appendChild(btn);
   const onScroll = () => {
-    const show = window.scrollY > 600;
-    btn.classList.toggle("show", show);
+    const y = Math.max(window.scrollY, 0);
+    btn.classList.toggle("show", y > 600);
   };
   const onClick = () => {
-    if (prefersReduced()) window.scrollTo(0, 0);
-    else window.scrollTo({ top: 0, behavior: "smooth" });
+    const top = document.scrollingElement || document.documentElement;
+    const behavior: ScrollBehavior = prefersReduced() ? "auto" : "smooth";
+    (top as HTMLElement).scrollTo({ top: 0, behavior });
+    // belt-and-suspenders: if the window didn't move (flex scroll quirk),
+    // force it via the body's parent.
+    window.setTimeout(() => {
+      if (window.scrollY > 24) window.scrollTo(0, 0);
+    }, 120);
   };
   btn.addEventListener("click", onClick);
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -685,14 +731,10 @@ function setupAccentDock() {
   label.textContent = "accent";
   dock.appendChild(label);
 
-  // mobile: collapse to a compact tap-to-expand pill so it never sits on
+  // Collapsed pill at EVERY width (not just mobile) so the dock never sits on
   // top of body text by default. Tap the pill → expand; tap a swatch → select + re-collapse.
-  const mq = window.matchMedia("(max-width: 640px)");
-  const collapseMobile = () => {
-    if (!mq.matches) return;
-    dock.classList.add("is-collapsed");
-  };
-  if (mq.matches) dock.classList.add("is-collapsed");
+  const collapseDefault = () => { dock.classList.add("is-collapsed"); };
+  collapseDefault();
 
   ACCENT_THEMES.forEach((t) => {
     const b = document.createElement("button");
@@ -712,7 +754,7 @@ function setupAccentDock() {
       toast.textContent = "accent → " + chosen.label + " ✦";
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 1500);
-      collapseMobile();
+      collapseDefault();
     });
     dock.appendChild(b);
   });
@@ -740,7 +782,7 @@ function setupAccentDock() {
   );
   const onDocClick = (e: Event) => {
     if (dock.contains(e.target as Node)) return;
-    collapseMobile();
+    collapseDefault();
   };
   document.addEventListener("click", onDocClick);
 
