@@ -175,6 +175,7 @@
   padding: 0 0 60px;
 }
 .zc.journal .textCard {
+  position: relative;
   margin: 0 0 18px;
   width: 100%;
   max-width: 100%;
@@ -191,6 +192,38 @@
   background: var(--bg-2);
   transform: translate(-3px, -3px);
   box-shadow: 9px 9px 0 0 var(--accent);
+}
+/* "open" arrow badge — top-right, slides in on hover */
+.zc.journal .textCard .jc-go {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 1rem;
+  color: var(--ink-3);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s;
+}
+.zc.journal .textCard:hover .jc-go {
+  opacity: 1;
+  transform: translate(0, 0);
+  color: var(--accent);
+}
+.zc.journal .textCard .jc-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.zc.journal .textCard .jc-meta-row h4 {
+  margin-right: 0;
+}
+.zc.journal .textCard .jc-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 .zc.journal .textCard h3 {
   font-family: var(--font-display);

@@ -14,11 +14,30 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
   const open = (post: Article) => {
     history.push(`/journal/${post.title.replace(/ /g, "")}`, post);
   };
+  // compact date + read-time from content length (220 wpm), if content is present
+  const meta = (post: Article) => {
+    const parts: string[] = [];
+    if (post.date) {
+      try {
+        const d = new Date(post.date);
+        if (!isNaN(d.getTime())) {
+          parts.push(d.toLocaleDateString("en-US", { month: "short", year: "numeric" }));
+        }
+      } catch { /* ignore bad dates */ }
+    }
+    if (post.content) {
+      const w = post.content.split(/\s+/).length;
+      const mins = Math.max(1, Math.round(w / 220));
+      if (w > 60) parts.push("~" + mins + " min read");
+    }
+    return parts.join(" · ");
+  };
   return (
     <>
       {data.map((post, i) => {
         const tint = i % 4;
         const isFeatured = i === 0;
+        const m = meta(post);
         return (
           <div
             key={i}
@@ -38,6 +57,7 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
               }
             }}
           >
+            <span className="jc-go mono" aria-hidden="true">↗</span>
             <div>
               <h3>
                 {isFeatured && (
@@ -46,7 +66,7 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
                 {post.title}
               </h3>
               <p>{post.summary}</p>
-              <div>
+              <div className="jc-meta-row">
                 <h4>
                   {(post.tags || []).map((tag, ti) => (
                     <span key={ti} className="jc-tag mono">
@@ -54,6 +74,7 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
                     </span>
                   ))}
                 </h4>
+                {m && <span className="jc-meta mono">{m}</span>}
               </div>
             </div>
           </div>
