@@ -58,6 +58,10 @@
     width: 100%;
     position: relative;
     z-index: 1;
+    // grid items default to min-width:auto, so an unbreakable child (the
+    // white-space:nowrap terminal command) inflates the track past the viewport
+    // on mobile. Force min-width:0 so 1fr columns can shrink + children clip.
+    > * { min-width: 0; }
   }
 
   // scroll hint — below the chips row (in-flow, not absolute — no overlap),
