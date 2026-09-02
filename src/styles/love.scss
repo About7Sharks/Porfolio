@@ -482,7 +482,10 @@ select:focus-visible {
   border: var(--border);
   box-shadow: 4px 4px 0 0 var(--accent);
   padding: 10px 14px;
-  max-width: 460px;
+  /* fit the full command (488px) without clipping; still bounded on
+     narrow viewports so the ellipsis+cursor affordance reads "long" */
+  width: fit-content;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -788,33 +791,35 @@ pre:hover .copy-code { opacity: 1; }
   .cmdk-item { transition: none; }
 }
 
+/* collapsed pill — the DEFAULT at every width, so the dock never sits on top
+   of body text. Tap to expand; tap a swatch or anywhere else to re-collapse.
+   The base .accent-dock is position:fixed, which is its own containing block,
+   so the absolutely-positioned active swatch anchors to the dock. */
+.accent-dock.is-collapsed {
+  padding: 7px;
+  gap: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  background: rgba(13, 13, 15, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  .accent-dock-label { display: none; }
+  .accent-swatch { display: none; }
+  .accent-swatch.is-active {
+    display: block;
+    position: absolute;
+    inset: 7px;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+}
 @media (max-width: 640px) {
   .accent-dock {
     left: auto;
     right: 10px;
     bottom: 10px;
-    padding: 6px 8px;
-    gap: 5px;
-    /* collapsed by default on mobile — a compact round pill so it never
-       sits on top of body text. Tap to expand. */
-    &.is-collapsed {
-      padding: 7px;
-      gap: 0;
-      border-radius: 999px;
-      cursor: pointer;
-      width: 30px;
-      height: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      /* show only the active swatch as the dot face */
-      .accent-swatch { display: none; }
-      .accent-swatch.is-active {
-        display: block;
-        position: absolute;
-        inset: 7px;
-        transform: none;
-      }
-    }
   }
-  .accent-dock-label { display: none; }
   .accent-swatch { width: 18px; height: 18px; }
 }

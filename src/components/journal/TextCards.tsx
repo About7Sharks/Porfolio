@@ -51,31 +51,27 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
             }
             onClick={() => open(post)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (e.key === "Enter" || " " === e.key) {
                 e.preventDefault();
                 open(post);
               }
             }}
           >
             <span className="jc-go mono" aria-hidden="true">↗</span>
-            <div>
-              <h3>
-                {isFeatured && (
-                  <span className="jc-featured mono">★ featured </span>
-                )}
-                {post.title}
-              </h3>
-              <p>{post.summary}</p>
-              <div className="jc-meta-row">
-                <h4>
-                  {(post.tags || []).map((tag, ti) => (
-                    <span key={ti} className="jc-tag mono">
-                      #{tag}
-                    </span>
-                  ))}
-                </h4>
-                {m && <span className="jc-meta mono">{m}</span>}
+            {isFeatured && (
+              <span className="jc-featured mono">★ featured</span>
+            )}
+            <h3>{post.title}</h3>
+            <p>{post.summary}</p>
+            <div className="jc-meta-row">
+              <div className="jc-tags">
+                {(post.tags || []).map((tag, ti) => (
+                  <span key={ti} className="jc-tag mono">
+                    #{tag}
+                  </span>
+                ))}
               </div>
+              {m && <span className="jc-meta mono">{m}</span>}
             </div>
           </div>
         );

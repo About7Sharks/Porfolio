@@ -163,6 +163,14 @@
   text-transform: uppercase;
   color: var(--ink-2);
 }
+/* kicker rows never clip: allow wrap at narrow widths instead of ellipsis */
+.zc .p-head-kicker .kicker,
+.zc .j-head-kicker .kicker,
+.zc .a-kicker .kicker {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
 
 /* ---- buttons: hard, chunky, offset-shadow ---- */
 .zc-btn {
