@@ -252,6 +252,65 @@ body.party .zc-btn:hover {
   transform: translate(0, 0);
 }
 
+// ============ ROUND 13 — a11y + interaction polish ============
+
+// keyboard focus — a crisp, visible ring that fits the brand
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// card / tile lift on hover — every interactive surface gets the same
+// neo-brutalist "pick it up" feel
+.zc .p-feat-card,
+.zc .p-tile,
+.zc .textCard {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.zc .p-feat-card:hover,
+.zc .p-tile:hover {
+  transform: translateY(-4px);
+}
+.zc .textCard:hover {
+  transform: translateX(6px);
+}
+.zc .jc-tag {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 3px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+}
+.zc .jc-tag:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zc .p-feat-card:hover,
+  .zc .p-tile:hover,
+  .zc .textCard:hover {
+    transform: none;
+  }
+}
+
+// selection color — orange highlight, dark text
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 // route wipe — full-screen sweep on every navigation
 .route-wipe {
   position: fixed;
