@@ -176,3 +176,193 @@ body.party .zc-btn:hover {
   from { transform: translateY(20px) scale(0.9); opacity: 0; }
   to { transform: none; opacity: 1; }
 }
+
+// ============ SIGNATURE LAYER (v2) ============
+
+// film grain — gives the near-black bg real texture instead of flat
+.love-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  animation: grain-shift 0.6s steps(3) infinite;
+}
+@keyframes grain-shift {
+  0% { background-position: 0 0; }
+  33% { background-position: -40px 20px; }
+  66% { background-position: 30px -30px; }
+  100% { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .love-grain { animation: none; }
+}
+
+// route wipe — full-screen sweep on every navigation
+.route-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  overflow: hidden;
+  visibility: hidden;
+}
+.route-wipe-bar {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateY(100.5%);
+}
+.route-wipe-label {
+  position: absolute;
+  left: 28px;
+  bottom: 22px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0d0d0f;
+  opacity: 0;
+}
+.route-wipe.play {
+  visibility: visible;
+}
+.route-wipe.play .route-wipe-bar {
+  animation: wipe-in 0.42s cubic-bezier(0.76, 0, 0.24, 1) forwards,
+    wipe-out 0.42s cubic-bezier(0.76, 0, 0.24, 1) 0.42s forwards;
+}
+.route-wipe.play .route-wipe-label {
+  animation: wipe-label 0.5s ease 0.3s forwards;
+}
+@keyframes wipe-in {
+  from { transform: translateY(100.5%); }
+  to { transform: translateY(0); }
+}
+@keyframes wipe-out {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100.5%); }
+}
+@keyframes wipe-label {
+  from { opacity: 0; transform: translateY(8px); }
+  40% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-wipe { display: none; }
+}
+
+// cursor spotlight — a soft light that follows the mouse over cards
+.spot {
+  position: relative;
+}
+.spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: radial-gradient(
+    220px circle at var(--sx, 50%) var(--sy, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 70%
+  );
+  z-index: 1;
+}
+.spot:hover::after {
+  opacity: 1;
+}
+@media (pointer: coarse) {
+  .spot::after { display: none; }
+}
+
+// magnetic — buttons pull gently toward the cursor
+.magnet {
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.12s ease;
+  will-change: transform;
+}
+@media (pointer: coarse) {
+  .magnet { transition: box-shadow 0.12s ease; }
+}
+
+// stat blocks (count-up numbers)
+.stats {
+  padding: 72px 0 80px;
+}
+.stat {
+  border: var(--border);
+  background: var(--bg-2);
+  box-shadow: var(--shadow-sm);
+  padding: 22px 20px;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.stat-num .unit,
+.stat[data-suffix] .stat-num {
+  color: var(--accent);
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 10px;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 720px) {
+  .stat-grid { grid-template-columns: 1fr; }
+}
+
+// giant statement band — the "jaw drop" type moment
+.band {
+  background: var(--accent);
+  color: #0d0d0f;
+  border-top: 3px solid #0d0d0f;
+  border-bottom: 3px solid #0d0d0f;
+  padding: 56px 0;
+  overflow: hidden;
+}
+.band-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.band-line {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+.band-line .outline {
+  -webkit-text-stroke: 2px #0d0d0f;
+  color: transparent;
+}
+.band-note {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}

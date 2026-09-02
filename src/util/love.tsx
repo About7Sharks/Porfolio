@@ -1,4 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+
+const prefersReduced = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const coarsePointer = () => window.matchMedia("(pointer: coarse)").matches;
 
 // -- scroll reveals: fade/slide in when scrolled into view ------------------
 function setupReveals() {
@@ -17,14 +21,14 @@ function setupReveals() {
     { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
   );
   const observe = () =>
-    document.querySelectorAll<HTMLElement>(".reveal:not(.in)").forEach((el) => {
-      // stagger the entrance based on data-reveal-delay
-      const d = el.dataset.revealDelay;
-      if (d) el.style.transitionDelay = d + "ms";
-      io.observe(el);
-    });
+    document
+      .querySelectorAll<HTMLElement>(".reveal:not(.in)")
+      .forEach((el) => {
+        const d = el.dataset.revealDelay;
+        if (d) el.style.transitionDelay = d + "ms";
+        io.observe(el);
+      });
   observe();
-  // route changes mount fresh .reveal nodes — watch for them
   const mo = new MutationObserver(observe);
   mo.observe(document.body, { childList: true, subtree: true });
   return () => {
@@ -33,9 +37,169 @@ function setupReveals() {
   };
 }
 
+// -- scramble-decode the page headline on every navigation ------------------
+// (joshwcomeau-grade signature: the h1 "decodes" from glyphs into words)
+function setupScramble() {
+  const GLYPHS = "█▓▒░<>/{}[]#$%&*+=-0123456789";
+  const decode = (el: HTMLElement) => {
+    const originalHTML = el.dataset.originalHtml || el.innerHTML;
+    el.dataset.originalHtml = originalHTML;
+    if (prefersReduced()) {
+      el.innerHTML = originalHTML;
+      return;
+    }
+    // map each text node to its character range (order = DOM flow), so the
+    // reveal sweeps left-to-right even across nested spans/br
+    const nodes: Array<{ el: Text; start: number; len: number }> = [];
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    let offset = 0,
+      n: Node | null;
+    while ((n = walker.nextNode())) {
+      const t = n as Text;
+      const len = t.textContent!.length;
+      if (len) nodes.push({ el: t, start: offset, len });
+      offset += len;
+    }
+    const chars = originalHTML.replace(/<[^>]+>/g, "").replace(/\s+/g, "");
+    const seed = () => nodes.forEach((nd) => (nd.el.textContent = "█".repeat(nd.len)));
+    if (!nodes.length) return;
+    seed();
+    let frame = 0;
+    const total = Math.max(24, Math.min(48, chars.length));
+    const step = () => {
+      frame++;
+      const target = Math.floor((frame / total) * chars.length);
+      nodes.forEach((nd) => {
+        const before = Math.max(0, Math.min(nd.len, target - nd.start));
+        const after = nd.len - before;
+        let s = "";
+        for (let k = 0; k < before; k++) s += chars[nd.start + k];
+        for (let k = 0; k < after; k++)
+          s += GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        nd.el.textContent = s;
+      });
+      if (frame < total) requestAnimationFrame(step);
+      else el.innerHTML = originalHTML;
+    };
+    requestAnimationFrame(step);
+  };
+  const run = () => {
+    // the page headline only — the home hero keeps its own word-stagger
+    const h1 = document.querySelector<HTMLElement>(".p-head-h1, .a-h1, .journal-h1");
+    if (h1) decode(h1);
+  };
+  // hash router → hashchange fires on every route; also fire once on load
+  window.addEventListener("hashchange", run);
+  const t = window.setTimeout(run, 120);
+  return () => {
+    window.removeEventListener("hashchange", run);
+    window.clearTimeout(t);
+  };
+}
+
+// -- count-up stats: animate .stat-num to its data-target on reveal ---------
+function setupCountUp() {
+  const animate = (el: HTMLElement) => {
+    const target = parseFloat(el.dataset.target || "0");
+    const suffix = el.dataset.suffix || "";
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    };
+    if (prefersReduced()) {
+      el.textContent = target + suffix;
+      return;
+    }
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          animate(e.target as HTMLElement);
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  const scan = () =>
+    document
+      .querySelectorAll<HTMLElement>(".stat-num[data-target]:not(.counted)")
+      .forEach((el) => {
+        el.classList.add("counted");
+        io.observe(el);
+      });
+  scan();
+  const mo = new MutationObserver(scan);
+  mo.observe(document.body, { childList: true, subtree: true });
+  return () => {
+    io.disconnect();
+    mo.disconnect();
+  };
+}
+
+// -- cursor spotlight: soft light follows the mouse over .spot cards --------
+function setupSpotlight() {
+  if (coarsePointer()) return () => {};
+  const setVar = (el: HTMLElement, e: MouseEvent) => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--sx", e.clientX - r.left + "px");
+    el.style.setProperty("--sy", e.clientY - r.top + "px");
+  };
+  const onMove = (e: MouseEvent) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>(".spot");
+    if (t) setVar(t, e);
+  };
+  document.addEventListener("mousemove", onMove, { passive: true });
+  return () => document.removeEventListener("mousemove", onMove);
+}
+
+// -- magnetic CTA: .magnet buttons pull gently toward the cursor -----------
+function setupMagnetic() {
+  if (coarsePointer()) return () => {};
+  const strength = 0.28;
+  const onMove = (e: MouseEvent) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>(".magnet");
+    if (!t) return;
+    const r = t.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2);
+    const dy = e.clientY - (r.top + r.height / 2);
+    t.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
+  };
+  const onOut = (e: MouseEvent) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>(".magnet");
+    if (!t) return;
+    // only clear when actually leaving the magnet (not a child hop)
+    const to = (e.relatedTarget as Node | null) || null;
+    if (to && t.contains(to)) return;
+    t.style.transform = "";
+  };
+  document.addEventListener("mousemove", onMove, { passive: true });
+  document.addEventListener("mouseout", onOut, { passive: true });
+  return () => {
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseout", onOut);
+  };
+}
+
+// -- film grain: fixed overlay that gives the dark bg real texture ----------
+function setupGrain() {
+  const g = document.createElement("div");
+  g.className = "love-grain";
+  g.setAttribute("aria-hidden", "true");
+  document.body.appendChild(g);
+  return () => g.remove();
+}
+
 // -- custom cursor: dot + ring that chases the mouse -------------------------
 function setupCursor() {
-  if (window.matchMedia("(pointer: coarse)").matches) return () => {};
+  if (coarsePointer()) return () => {};
   const dot = document.createElement("div");
   dot.className = "love-cursor-dot";
   const ring = document.createElement("div");
@@ -48,7 +212,9 @@ function setupCursor() {
     my = e.clientY;
     dot.style.transform = `translate(${mx}px, ${my}px)`;
     const t = e.target as HTMLElement;
-    const hot = !!(t.closest("a, button, .tilt, .zc-btn, .chip, .work-row, .p-feat-card, .p-tile"));
+    const hot = !!(
+      t.closest("a, button, .tilt, .zc-btn, .chip, .work-row, .p-feat-card, .p-tile")
+    );
     ring.classList.toggle("hot", hot);
   };
   let raf = 0;
@@ -70,7 +236,7 @@ function setupCursor() {
 
 // -- 3D tilt on .tilt elements (dynamic — picks up route mounts) ------------
 function setupTilt() {
-  if (window.matchMedia("(pointer: coarse)").matches) return () => {};
+  if (coarsePointer()) return () => {};
   const attached = new WeakSet<HTMLElement>();
   const cleanups = new Map<HTMLElement, Array<() => void>>();
   const attach = (el: HTMLElement) => {
@@ -95,7 +261,8 @@ function setupTilt() {
       () => el.removeEventListener("mouseleave", onLeave),
     ]);
   };
-  const scan = () => document.querySelectorAll<HTMLElement>(".tilt").forEach(attach);
+  const scan = () =>
+    document.querySelectorAll<HTMLElement>(".tilt").forEach(attach);
   scan();
   const mo = new MutationObserver(scan);
   mo.observe(document.body, { childList: true, subtree: true });
@@ -108,7 +275,10 @@ function setupTilt() {
 
 // -- konami party mode --------------------------------------------------------
 function setupKonami() {
-  const seq = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+  const seq = [
+    "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a",
+  ];
   let i = 0;
   const onKey = (e: KeyboardEvent) => {
     if (e.key === seq[i]) {
@@ -138,7 +308,12 @@ function setupBurst() {
   const EMOJI = ["🕸️", "🚀", "🛠️", "🍺", "🎮", "✨"];
   const burst = (e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (!target.closest(".hero-h1, .a-h1, .p-head-h1, .a-belief-h2, .a-cta-h2, .p-cta-h2")) return;
+    if (
+      !target.closest(
+        ".hero-h1, .a-h1, .p-head-h1, .a-belief-h2, .a-cta-h2, .p-cta-h2, .journal-h1"
+      )
+    )
+      return;
     for (let n = 0; n < 14; n++) {
       const s = document.createElement("span");
       s.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)];
@@ -156,7 +331,9 @@ function setupBurst() {
       });
       document.body.appendChild(s);
       requestAnimationFrame(() => {
-        s.style.transform = `translate(${dx}px, ${dy + 220}px) rotate(${(Math.random() - 0.5) * 360}deg)`;
+        s.style.transform = `translate(${dx}px, ${dy + 220}px) rotate(${
+          (Math.random() - 0.5) * 360
+        }deg)`;
         s.style.opacity = "0";
       });
       setTimeout(() => s.remove(), 1000);
@@ -166,12 +343,49 @@ function setupBurst() {
   return () => document.removeEventListener("dblclick", burst);
 }
 
+// -- route wipe: a colored panel sweeps across on every navigation ---------
+function setupRouteWipe() {
+  if (prefersReduced()) return () => {};
+  const wipe = document.createElement("div");
+  wipe.className = "route-wipe";
+  wipe.innerHTML =
+    '<span class="route-wipe-bar"></span><span class="route-wipe-label">zac.arlin</span>';
+  document.body.appendChild(wipe);
+  let timer: number;
+  const play = () => {
+    wipe.classList.remove("play");
+    // force reflow so the animation restarts
+    void wipe.offsetWidth;
+    wipe.classList.add("play");
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => wipe.classList.remove("play"), 900);
+  };
+  window.addEventListener("hashchange", play);
+  return () => {
+    window.removeEventListener("hashchange", play);
+    window.clearTimeout(timer);
+    wipe.remove();
+  };
+}
+
 // One hook, called once from App. All motion is scoped so it
 // never fights the legacy global styles.
 export function useLove() {
   useEffect(() => {
     document.documentElement.classList.add("js");
-    const cleanups = [setupReveals(), setupCursor(), setupTilt(), setupKonami(), setupBurst()];
+    const cleanups = [
+      setupReveals(),
+      setupScramble(),
+      setupCountUp(),
+      setupSpotlight(),
+      setupMagnetic(),
+      setupRouteWipe(),
+      setupGrain(),
+      setupCursor(),
+      setupTilt(),
+      setupKonami(),
+      setupBurst(),
+    ];
     return () => {
       document.documentElement.classList.remove("js");
       cleanups.forEach((f) => f && f());

@@ -41,7 +41,11 @@ export default function Projects() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"p-feat-card p-feat-" + (p.accent || "accent") + " reveal"}
+                className={
+                  "p-feat-card spot p-feat-" +
+                  (p.accent || "accent") +
+                  " reveal"
+                }
                 data-reveal-delay={String(i * 120)}
               >
                 <div className="p-feat-top">
@@ -88,7 +92,7 @@ export default function Projects() {
                 href={e.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"p-tile tile-" + tileClasses[i % 4] + " reveal"}
+                className={"p-tile spot tile-" + tileClasses[i % 4] + " reveal"}
                 data-reveal-delay={String((i % 4) * 90)}
               >
                 <div className="p-tile-name">{e.title}</div>
@@ -118,11 +122,11 @@ export default function Projects() {
           <div className="p-cta-btns">
             <a
               href="mailto:zacarlin@gmail.com"
-              className="zc-btn primary"
+              className="zc-btn primary magnet"
             >
               zacarlin@gmail.com
             </a>
-            <Link to="/about" className="zc-btn">
+            <Link to="/about" className="zc-btn magnet">
               More about me →
             </Link>
           </div>

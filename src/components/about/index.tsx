@@ -49,10 +49,10 @@ export default function About() {
             </p>
 
             <div className="a-ctas">
-              <a href="mailto:zacarlin@gmail.com" className="zc-btn primary">
+              <a href="mailto:zacarlin@gmail.com" className="zc-btn primary magnet">
                 Say hi →
               </a>
-              <Link to="/journal" className="zc-btn">
+              <Link to="/journal" className="zc-btn magnet">
                 Read the posts
               </Link>
             </div>
@@ -145,11 +145,11 @@ export default function About() {
               href="https://ipfs.io/ipns/zacarlin.eth"
               target="_blank"
               rel="noopener noreferrer"
-              className="zc-btn"
+              className="zc-btn magnet"
             >
               see the IPFS copy →
             </a>
-            <Link to="/projects" className="zc-btn">
+            <Link to="/projects" className="zc-btn magnet">
               see what I've shipped →
             </Link>
           </div>
@@ -165,14 +165,14 @@ export default function About() {
             <span className="hl">Drop a line.</span>
           </h2>
           <div className="a-cta-btns">
-            <a href="mailto:zacarlin@gmail.com" className="zc-btn primary">
+            <a href="mailto:zacarlin@gmail.com" className="zc-btn primary magnet">
               zacarlin@gmail.com
             </a>
             <a
               href="https://github.com/about7sharks"
               target="_blank"
               rel="noopener noreferrer"
-              className="zc-btn"
+              className="zc-btn magnet"
             >
               github ↗
             </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../Config";
-import { featured } from "../../data/featured";
+import { featured, experiments } from "../../data/featured";
 import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
@@ -42,10 +42,10 @@ export default function Home() {
             </p>
 
             <div className="hero-ctas">
-              <Link to="/projects" className="zc-btn primary">
+              <Link to="/projects" className="zc-btn primary magnet">
                 See the work →
               </Link>
-              <Link to="/journal" className="zc-btn">
+              <Link to="/journal" className="zc-btn magnet">
                 Read the posts
               </Link>
             </div>
@@ -108,7 +108,11 @@ export default function Home() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"work-row work-row-" + (p.accent || "accent") + " reveal"}
+                className={
+                  "work-row spot work-row-" +
+                  (p.accent || "accent") +
+                  " reveal"
+                }
                 data-reveal-delay={String(i * 110)}
               >
                 <div className="work-row-index mono">
@@ -130,9 +134,53 @@ export default function Home() {
           </div>
 
           <div className="work-cta reveal">
-            <Link to="/projects" className="zc-btn ink">
+            <Link to="/projects" className="zc-btn ink magnet">
               All projects + the fun stuff →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== NUMBERS (count-up) ===================== */}
+      <section className="stats">
+        <div className="zc-wrap">
+          <div className="stat-grid reveal">
+            <div className="stat">
+              <div className="stat-num" data-target="10" data-suffix="+">
+                0
+              </div>
+              <div className="stat-label">years shipping to prod</div>
+            </div>
+            <div className="stat">
+              <div
+                className="stat-num"
+                data-target={String(featured.length + experiments.length)}
+              >
+                0
+              </div>
+              <div className="stat-label">projects shipped &amp; live</div>
+            </div>
+            <div className="stat">
+              <div className="stat-num" data-target="3" data-suffix="x">
+                0
+              </div>
+              <div className="stat-label">web copies of this site — uncensorable</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================== THE STATEMENT (giant type) ================== */}
+      <section className="band">
+        <div className="zc-wrap band-inner reveal">
+          <div className="band-line">
+            Ship it. <span className="outline">Mirror it.</span>
+          </div>
+          <div className="band-line">
+            <span className="outline">Make it</span> un-take-down-able.
+          </div>
+          <div className="band-note">
+            the whole point of the interwebs, restored 🕸️
           </div>
         </div>
       </section>
