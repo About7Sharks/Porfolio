@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { ACCENT_THEMES, applyAccent, currentAccent, hydrateAccent } from "./accent";
+hydrateAccent();
 
 const prefersReduced = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -659,6 +661,58 @@ export function setupLiveClock(root: ParentNode = document) {
 
 // -- copy email to clipboard + toast (attached per-element, not global) ----
 // call: attachCopyEmail(buttonEl, "zacarlin@gmail.com")
+// -- accent dock: 4 swatches, bottom-left, re-skins the whole site live ----
+function setupAccentDock() {
+  const dock = document.createElement("div");
+  dock.className = "accent-dock";
+  dock.setAttribute("role", "radiogroup");
+  dock.setAttribute("aria-label", "Accent colour");
+  const label = document.createElement("span");
+  label.className = "accent-dock-label mono";
+  label.textContent = "accent";
+  dock.appendChild(label);
+  ACCENT_THEMES.forEach((t) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "accent-swatch";
+    b.style.background = t.accent;
+    b.title = t.label + " accent";
+    b.setAttribute("role", "radio");
+    b.setAttribute("aria-label", "Switch accent to " + t.label);
+    b.dataset.accentId = t.id;
+    b.setAttribute("aria-checked", "false");
+    b.addEventListener("click", () => {
+      const chosen = nextAccentFrom(t.id);
+      syncDock(chosen.id);
+      const toast = document.createElement("div");
+      toast.className = "party-toast";
+      toast.textContent = "accent → " + chosen.label + " ✦";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 1500);
+    });
+    dock.appendChild(b);
+  });
+  const syncDock = (id: string) => {
+    dock.querySelectorAll<HTMLElement>(".accent-swatch").forEach((b) => {
+      const on = b.dataset.accentId === id;
+      b.setAttribute("aria-checked", on ? "true" : "false");
+      b.classList.toggle("is-active", on);
+    });
+  };
+  const init = currentAccent().id;
+  applyAccent(init);
+  syncDock(init);
+  document.body.appendChild(dock);
+  return () => dock.remove();
+}
+
+export function nextAccentFrom(id: string) {
+  const t = ACCENT_THEMES.find((x) => x.id === id) || ACCENT_THEMES[0];
+  applyAccent(t.id);
+  try { localStorage.setItem("z4c-accent", t.id); } catch (_e) { /* noop */ }
+  return t;
+}
+
 export function attachCopyEmail(el: HTMLElement, email: string) {
   const doCopy = () => {
     const done = (ok: boolean) => {
@@ -712,6 +766,7 @@ export function useLove() {
       setupScrollProgress(),
       setupScrollTop(),
       setupScrollHint(),
+      setupAccentDock(),
     ];
     return () => {
       document.documentElement.classList.remove("js");
