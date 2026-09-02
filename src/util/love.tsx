@@ -684,6 +684,16 @@ function setupAccentDock() {
   label.className = "accent-dock-label mono";
   label.textContent = "accent";
   dock.appendChild(label);
+
+  // mobile: collapse to a compact tap-to-expand pill so it never sits on
+  // top of body text by default. Tap the pill → expand; tap a swatch → select + re-collapse.
+  const mq = window.matchMedia("(max-width: 640px)");
+  const collapseMobile = () => {
+    if (!mq.matches) return;
+    dock.classList.add("is-collapsed");
+  };
+  if (mq.matches) dock.classList.add("is-collapsed");
+
   ACCENT_THEMES.forEach((t) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -702,6 +712,7 @@ function setupAccentDock() {
       toast.textContent = "accent → " + chosen.label + " ✦";
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 1500);
+      collapseMobile();
     });
     dock.appendChild(b);
   });
@@ -715,8 +726,29 @@ function setupAccentDock() {
   const init = currentAccent().id;
   applyAccent(init);
   syncDock(init);
+
+  // collapsed pill: any tap expands it (capture phase, so it wins over the
+  // active-swatch's own click handler); open state lets swatch clicks select.
+  dock.addEventListener(
+    "click",
+    (e) => {
+      if (!dock.classList.contains("is-collapsed")) return;
+      dock.classList.remove("is-collapsed");
+      e.stopPropagation();
+    },
+    true
+  );
+  const onDocClick = (e: Event) => {
+    if (dock.contains(e.target as Node)) return;
+    collapseMobile();
+  };
+  document.addEventListener("click", onDocClick);
+
   document.body.appendChild(dock);
-  return () => dock.remove();
+  return () => {
+    document.removeEventListener("click", onDocClick);
+    dock.remove();
+  };
 }
 
 export function nextAccentFrom(id: string) {

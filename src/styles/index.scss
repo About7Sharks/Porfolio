@@ -759,16 +759,16 @@ span {
   align-items: center;
   gap: 4px;
   margin-left: 12px;
-  padding: 4px 8px;
-  background: transparent;
-  border: 1.5px solid #2b4bff;
-  color: #0d0d0f;
+  padding: 5px 9px;
+  background: #0d0d0f;
+  border: 1.5px solid var(--accent, #ff5c00);
+  color: var(--accent, #ff5c00);
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
-  box-shadow: 3px 3px 0 0 #0d0d0f;
+  box-shadow: 3px 3px 0 0 var(--accent, #ff5c00);
 }
 .nav-cmdk kbd {
   padding: 1px 5px;
@@ -778,7 +778,7 @@ span {
   line-height: 1.2;
 }
 .nav-cmdk:hover {
-  background: #2b4bff;
+  background: var(--accent, #ff5c00);
   color: #0d0d0f;
   transform: translate(-1px, -1px);
   box-shadow: 4px 4px 0 0 #0d0d0f;

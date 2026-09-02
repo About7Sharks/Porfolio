@@ -784,6 +784,25 @@ pre:hover .copy-code { opacity: 1; }
     bottom: 10px;
     padding: 6px 8px;
     gap: 5px;
+    /* collapsed by default on mobile — a compact round pill so it never
+       sits on top of body text. Tap to expand. */
+    &.is-collapsed {
+      padding: 7px;
+      gap: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      /* show only the first (active) swatch as the pill face */
+      .accent-swatch { display: none; }
+      .accent-swatch.is-active {
+        display: block;
+        position: absolute;
+        inset: 7px;
+        transform: none;
+      }
+    }
   }
   .accent-dock-label { display: none; }
   .accent-swatch { width: 18px; height: 18px; }
