@@ -50,6 +50,12 @@ export default function Home() {
               </Link>
             </div>
 
+            <div className="hero-terminal" aria-hidden="true">
+              <span className="hero-terminal-prompt">zac@black:~$</span>
+              <span className="hero-terminal-cmd" data-type="deploy --net ipfs --tag zacarlin.eth --replicas 3" />
+              <span className="hero-terminal-cursor" />
+            </div>
+
             <div className="hero-meta">
               <span className="chip">🐴 for humans, of course</span>
               <span className="chip">⚡ IPFS + ENS native</span>

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import {
   HashRouter as Router,
   Redirect,
@@ -10,30 +10,20 @@ import "./styles/love.scss";
 import { useLove } from "./util/love";
 import { paths } from "./Config";
 import { Navbar } from "./components/ui/navigation/Navbar";
-import { BeforeLoad, ViewportProgress, checkForDevice } from "./util/index";
+import { BeforeLoad, ViewportProgress } from "./util/index";
 import { ContactFormProvider } from "./contexts/ContactFormContext";
-const Drawer = lazy(() => import("./components/ui/navigation/drawer"));
 const Footer = lazy(() => import("./components/ui/navigation/Footer"));
 const BackBTN = lazy(() => import("./components/ui/navigation/backbutton"));
 const Background = lazy(() => import("./components/ui/background"));
 
 export default function App() {
   useLove();
-  const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());
-  const handleWindowSizeChange = () => setDeviceType(window.innerWidth <= 768);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
 
   return (
     <Suspense fallback={<BeforeLoad />}>
       <ContactFormProvider>
         <Router>
-          {isMobile ? <Drawer /> : <Navbar />}
+          <Navbar />
           <BackBTN />
           <ViewportProgress />
           <Background />

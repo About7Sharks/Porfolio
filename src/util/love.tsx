@@ -368,6 +368,77 @@ function setupRouteWipe() {
   };
 }
 
+// -- hero terminal: live typing shell — observer-based so it survives
+//    Home being lazy-loaded (the element only exists after the route mounts)
+function setupHeroTerminal() {
+  const lines = [
+    "deploy --net ipfs --tag zacarlin.eth --replicas 3",
+    "git push gitea donna/site-redesign — done ✓",
+    "qmd search 'ipfs uncensorable' — 3 hits",
+  ];
+  let timer = 0;
+  let started = false;
+
+  const start = (el: HTMLElement) => {
+    if (started) return;
+    started = true;
+    el.textContent = el.dataset.type || lines[0];
+    if (prefersReduced()) return;
+    let li = 0,
+      ci = 0,
+      deleting = false;
+    const tick = () => {
+      const line = lines[li];
+      if (!deleting) {
+        ci++;
+        if (ci >= line.length) {
+          el.textContent = line;
+          deleting = true;
+          timer = window.setTimeout(tick, 1500);
+          return;
+        }
+        el.textContent = line.slice(0, ci);
+        timer = window.setTimeout(tick, 26 + Math.random() * 40);
+      } else {
+        ci -= 2;
+        if (ci <= 0) {
+          ci = 0;
+          deleting = false;
+          li = (li + 1) % lines.length;
+          el.textContent = "";
+          timer = window.setTimeout(tick, 320);
+          return;
+        }
+        el.textContent = line.slice(0, ci);
+        timer = window.setTimeout(tick, 14);
+      }
+    };
+    el.textContent = "";
+    timer = window.setTimeout(tick, 700);
+  };
+
+  // find it now if it's there
+  const existing = document.querySelector<HTMLElement>(".hero-terminal-cmd");
+  if (existing) {
+    start(existing);
+    return () => window.clearTimeout(timer);
+  }
+
+  // otherwise wait for Home to mount
+  const mo = new MutationObserver(() => {
+    const found = document.querySelector<HTMLElement>(".hero-terminal-cmd");
+    if (found) {
+      mo.disconnect();
+      start(found);
+    }
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
+  return () => {
+    mo.disconnect();
+    window.clearTimeout(timer);
+  };
+}
+
 // One hook, called once from App. All motion is scoped so it
 // never fights the legacy global styles.
 export function useLove() {
@@ -385,6 +456,7 @@ export function useLove() {
       setupTilt(),
       setupKonami(),
       setupBurst(),
+      setupHeroTerminal(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

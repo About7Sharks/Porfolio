@@ -332,6 +332,51 @@ body.party .zc-btn:hover {
   .stat-grid { grid-template-columns: 1fr; }
 }
 
+// hero terminal — a live "zac@black" shell typing through commands
+.hero-terminal {
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--bg-2);
+  border: var(--border);
+  box-shadow: 4px 4px 0 0 var(--accent);
+  padding: 10px 14px;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hero-terminal-prompt {
+  color: var(--accent);
+  flex-shrink: 0;
+  user-select: none;
+}
+.hero-terminal-cmd {
+  color: var(--ink);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.hero-terminal-cursor {
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: term-blink 1.05s steps(1) infinite;
+}
+@keyframes term-blink {
+  50% { opacity: 0; }
+}
+@media (max-width: 680px) {
+  .hero-terminal {
+    max-width: 100%;
+    font-size: 0.74rem;
+    padding: 8px 12px;
+  }
+}
+
 // giant statement band — the "jaw drop" type moment
 .band {
   background: var(--accent);
