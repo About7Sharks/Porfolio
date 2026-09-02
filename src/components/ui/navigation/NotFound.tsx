@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "../../../Config";
 import "./NotFound.scss";
@@ -10,16 +11,32 @@ const codes = [
 ];
 
 export default function NotFound() {
-  const pick = codes[Math.floor(Math.random() * codes.length)];
+  const [i, setI] = useState(() => Math.floor(Math.random() * codes.length));
+  const [spin, setSpin] = useState(0);
+  const pick = codes[i];
   const email = config.links.find((l: any) => l.title === "Email");
+
+  const hop = () => {
+    setI((v) => (v + 1) % codes.length);
+    setSpin((s) => s + 1);
+  };
 
   return (
     <div className="nf-wrap">
       <div className="nf-grid">
-        <div className="nf-code" aria-hidden="true">{pick.code}</div>
+        <button
+          type="button"
+          className="nf-code nf-code-btn"
+          onClick={hop}
+          title="click me"
+        >
+          <span key={spin} className="nf-code-num" aria-hidden="true">
+            {pick.code}
+          </span>
+        </button>
         <h1 className="nf-head">
           <span className="nf-line">You found a</span>
-          <span className="nf-line nf-accent">404.</span>
+          <span className="nf-line nf-accent">{pick.code}.</span>
           <span className="nf-line nf-sub">{pick.sub}.</span>
         </h1>
         <div className="nf-actions">
