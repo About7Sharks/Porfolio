@@ -271,6 +271,13 @@ body.party .zc-btn:hover {
   box-shadow: 2px 2px 0 0 var(--ink);
   transform: translate(0, 0);
 }
+@media (max-width: 640px) {
+  // stack above the collapsed accent dock, which owns the bottom-right corner on mobile
+  .love-scrolltop.show {
+    bottom: 64px;
+    right: 12px;
+  }
+}
 
 // ============ ROUND 13 — a11y + interaction polish ============
 
@@ -492,6 +499,9 @@ select:focus-visible {
   color: var(--ink);
   flex: 1 1 auto;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .hero-terminal-cursor {
   width: 8px;
@@ -780,7 +790,8 @@ pre:hover .copy-code { opacity: 1; }
 
 @media (max-width: 640px) {
   .accent-dock {
-    left: 10px;
+    left: auto;
+    right: 10px;
     bottom: 10px;
     padding: 6px 8px;
     gap: 5px;
