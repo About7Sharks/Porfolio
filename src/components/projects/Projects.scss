@@ -254,8 +254,10 @@
 
   // ============ CTA ============
   .p-cta {
-    background: var(--ink);
-    color: #fff;
+    background: var(--bg);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    color: var(--ink);
     padding: 72px 0;
   }
   .p-cta-inner {
@@ -281,7 +283,9 @@
     gap: 16px;
   }
   .p-cta-btns .zc-btn {
-    background: #fff;
+    background: var(--bg-2);
+    color: var(--ink);
+    box-shadow: 5px 5px 0 0 var(--accent-2);
   }
   .p-cta-btns .zc-btn.primary {
     background: var(--accent);
@@ -299,4 +303,21 @@
     .p-fun-head { grid-template-columns: 1fr; }
     .p-cta-inner { grid-template-columns: 1fr; }
   }
+}
+
+// ============ HOVER TACTILITY ============
+.p-feat-card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.p-feat-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 0 var(--accent);
+}
+.p-tile {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
+}
+.p-tile:hover {
+  transform: translate(-3px, -3px) rotate(-0.6deg);
+  box-shadow: 7px 7px 0 0 rgba(0, 0, 0, 0.6);
+  filter: saturate(1.12);
 }

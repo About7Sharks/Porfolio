@@ -10,7 +10,7 @@ export default function Projects() {
     <div className="zc Projects">
       {/* ===================== PAGE HEAD ===================== */}
       <section className="p-head">
-        <div className="zc-wrap">
+        <div className="zc-wrap reveal">
           <div className="p-head-kicker">
             <span className="zc-pixel" />
             <span className="kicker">the work · the fun · the weird</span>
@@ -33,7 +33,7 @@ export default function Projects() {
       {/* ===================== FEATURED ===================== */}
       <section className="p-featured">
         <div className="zc-wrap">
-          <h2 className="p-section-title">Featured — the real thing</h2>
+          <h2 className="p-section-title reveal">Featured — the real thing</h2>
           <div className="p-feat-list">
             {featured.map((p, i) => (
               <a
@@ -41,7 +41,8 @@ export default function Projects() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"p-feat-card p-feat-" + (p.accent || "accent")}
+                className={"p-feat-card p-feat-" + (p.accent || "accent") + " reveal"}
+                data-reveal-delay={String(i * 120)}
               >
                 <div className="p-feat-top">
                   <span className="p-feat-index mono">0{i + 1}</span>
@@ -69,7 +70,7 @@ export default function Projects() {
       {/* ===================== EXPERIMENTS ===================== */}
       <section className="p-fun">
         <div className="zc-wrap">
-          <div className="p-fun-head">
+          <div className="p-fun-head reveal">
             <h2 className="p-fun-title">
               The fun <span className="hl">stuff</span>
             </h2>
@@ -87,7 +88,8 @@ export default function Projects() {
                 href={e.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"p-tile tile-" + tileClasses[i % 4]}
+                className={"p-tile tile-" + tileClasses[i % 4] + " reveal"}
+                data-reveal-delay={String((i % 4) * 90)}
               >
                 <div className="p-tile-name">{e.title}</div>
                 <div className="p-tile-blurb">{e.blurb}</div>
@@ -107,7 +109,7 @@ export default function Projects() {
 
       {/* ===================== CTA ===================== */}
       <section className="p-cta">
-        <div className="zc-wrap p-cta-inner">
+        <div className="zc-wrap p-cta-inner reveal">
           <h2 className="p-cta-h2">
             Built something weird?
             <br />

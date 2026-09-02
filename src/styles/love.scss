@@ -1,0 +1,135 @@
+@import "./zc-tokens";
+
+// ============ MOTION + LOVE LAYER ============
+// Global micro-interactions, reveals, easter eggs.
+
+@media (prefers-reduced-motion: no-preference) {
+  .zc,
+  .zc * {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  // -- scroll reveals --
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.go {
+    opacity: 1;
+    transform: none;
+  }
+
+  // -- hero photo: alive --
+  .zc-photo {
+    transition: filter 0.6s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: saturate(0.92) contrast(1.03);
+  }
+  .zc-photo:hover {
+    filter: saturate(1.15) contrast(1.08);
+  }
+  .photo-frame {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-frame:hover {
+    transform: translate(-3px, -3px);
+  }
+
+  // -- marquee --
+  .marquee {
+    overflow: hidden;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    background: var(--bg-2);
+    padding: 12px 0;
+    margin-bottom: 80px;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 26s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-inner {
+    animation-play-state: paused;
+  }
+  .marquee span {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-right: 48px;
+  }
+  .marquee .m-hot {
+    color: var(--accent);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  // -- pixel blink --
+  .zc-pixel {
+    animation: pixel-blink 1.6s steps(2) infinite;
+  }
+  @keyframes pixel-blink {
+    0%, 60% { opacity: 1; }
+    61%, 100% { opacity: 0.25; }
+  }
+
+  // -- arrow nudge --
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  a:hover .arrow,
+  .p-feat-card:hover .arrow,
+  .p-tile:hover .arrow {
+    transform: translate(3px, -3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ============ KONAMI PARTY MODE ============
+body.party {
+  animation: party-hue 8s linear infinite;
+}
+@keyframes party-hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+body.party .navLinks a:hover,
+body.party .zc-btn:hover {
+  animation: party-bounce 0.5s ease infinite alternate;
+}
+@keyframes party-bounce {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(-2px, -2px) rotate(-2deg); }
+}
+.party-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  background: var(--accent-2);
+  color: #111;
+  border: 3px solid #111;
+  box-shadow: 5px 5px 0 0 #111;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  animation: toast-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes toast-in {
+  from { transform: translateY(20px) scale(0.9); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}

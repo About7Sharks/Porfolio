@@ -20,7 +20,7 @@ export default function About() {
       {/* ================= INTRO ================= */}
       <section className="a-intro">
         <div className="a-grid zc-wrap">
-          <div className="a-copy">
+          <div className="a-copy reveal">
             <div className="a-kicker">
               <span className="zc-pixel" />
               <span className="kicker">about · the person behind the commits</span>
@@ -49,15 +49,12 @@ export default function About() {
             </p>
 
             <div className="a-ctas">
-              <a
-                href="mailto:zacarlin@gmail.com"
-                className="zc-btn primary"
-              >
+              <a href="mailto:zacarlin@gmail.com" className="zc-btn primary">
                 Say hi →
               </a>
-              <a href="#journal" className="zc-btn">
+              <Link to="/journal" className="zc-btn">
                 Read the posts
-              </a>
+              </Link>
             </div>
 
             <div className="a-meta">
@@ -67,9 +64,9 @@ export default function About() {
             </div>
           </div>
 
-          <div className="a-photo">
+          <div className="a-photo reveal" data-reveal-delay="150">
             <div className="a-photo-frame">
-              <img src={zac} alt="Zac at sunset" className="a-photo-img" />
+              <img src={zac} alt="Zac on a ridge, hands on hips" className="a-photo-img" />
               <span className="a-photo-tag mono">zacarlin.eth</span>
             </div>
             <div className="a-photo-badge">
@@ -81,7 +78,7 @@ export default function About() {
       </section>
 
       {/* ================= HOBBIES ================= */}
-      <section className="a-hobbies">
+      <section className="a-hobbies reveal">
         <div className="zc-wrap">
           <h2 className="a-h2">
             Not at work, I'm <span className="hl">still building</span>
@@ -104,7 +101,7 @@ export default function About() {
       </section>
 
       {/* ================= STACK ================= */}
-      <section className="a-stack">
+      <section className="a-stack reveal">
         <div className="zc-wrap">
           <h2 className="a-h2">
             Tools I actually <span className="hl">reach for</span>
@@ -123,7 +120,7 @@ export default function About() {
       </section>
 
       {/* ================= THE BELIEF ================= */}
-      <section className="a-belief">
+      <section className="a-belief reveal">
         <div className="a-belief-inner zc-wrap">
           <div className="a-belief-kicker kicker">why ipfs, actually</div>
           <h2 className="a-belief-h2">
@@ -160,7 +157,7 @@ export default function About() {
       </section>
 
       {/* ================= CTA ================= */}
-      <section className="a-cta">
+      <section className="a-cta reveal">
         <div className="a-cta-inner zc-wrap">
           <h2 className="a-cta-h2">
             Want to talk?

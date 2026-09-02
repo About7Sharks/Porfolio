@@ -6,6 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import "./styles/index.scss";
+import "./styles/love.scss";
+import { useLove } from "./util/love";
 import { paths } from "./Config";
 import { Navbar } from "./components/ui/navigation/Navbar";
 import { BeforeLoad, ViewportProgress, checkForDevice } from "./util/index";
@@ -16,6 +18,7 @@ const BackBTN = lazy(() => import("./components/ui/navigation/backbutton"));
 const Background = lazy(() => import("./components/ui/background"));
 
 export default function App() {
+  useLove();
   const [isMobile, setDeviceType] = useState<boolean>(checkForDevice());
   const handleWindowSizeChange = () => setDeviceType(window.innerWidth <= 768);
 

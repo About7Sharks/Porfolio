@@ -13,7 +13,7 @@ export default function Home() {
       {/* ============================ HERO ============================ */}
       <section className="hero">
         <div className="hero-grid zc-wrap">
-          <div className="hero-copy">
+          <div className="hero-copy reveal" data-reveal-delay="0">
             <div className="hero-kicker">
               <span className="zc-pixel" />
               <span className="kicker">
@@ -42,9 +42,9 @@ export default function Home() {
               <Link to="/projects" className="zc-btn primary">
                 See the work →
               </Link>
-              <a href="#journal" className="zc-btn">
+              <Link to="/journal" className="zc-btn">
                 Read the posts
-              </a>
+              </Link>
             </div>
 
             <div className="hero-meta">
@@ -54,7 +54,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-photo">
+          <div className="hero-photo reveal" data-reveal-delay="150">
             <div className="photo-frame">
               <img src={zac} alt="Zac on a ridge, hands on hips" className="photo-img" />
               <span className="photo-tag mono">zacarlin.eth</span>
@@ -67,10 +67,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ======================= SKILL MARQUEE ======================= */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-inner">
+          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs", "cloudflare", "solana", "playwright", "css that slaps"].map((s, i) => (
+            <span key={i} className={i % 4 === 2 ? "m-hot" : ""}>
+              {s} ·
+            </span>
+          ))}
+          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs", "cloudflare", "solana", "playwright", "css that slaps"].map((s, i) => (
+            <span key={"b" + i} className={i % 4 === 2 ? "m-hot" : ""}>
+              {s} ·
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ======================= FEATURED WORK ======================= */}
       <section className="work">
         <div className="zc-wrap">
-          <div className="work-head">
+          <div className="work-head reveal">
             <h2>
               Featured
               <br />
@@ -89,7 +105,8 @@ export default function Home() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={"work-row work-row-" + (p.accent || "accent")}
+                className={"work-row work-row-" + (p.accent || "accent") + " reveal"}
+                data-reveal-delay={String(i * 110)}
               >
                 <div className="work-row-index mono">
                   0{i + 1}
@@ -109,7 +126,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="work-cta">
+          <div className="work-cta reveal">
             <Link to="/projects" className="zc-btn ink">
               All projects + the fun stuff →
             </Link>
@@ -119,7 +136,7 @@ export default function Home() {
 
       {/* =========================== FOOTER ========================== */}
       <footer className="foot">
-        <div className="foot-top zc-wrap">
+        <div className="foot-top zc-wrap reveal">
           <div className="foot-links">
             {socials.map((l) => (
               <a
@@ -137,7 +154,7 @@ export default function Home() {
           <div className="foot-note">
             <span className="foot-note-1">zacarlin.org</span>
             <span className="foot-note-2 mono">
-              pinned to ipfs · served from your node
+              mirrored to ipfs · pull it from any node
             </span>
           </div>
         </div>

@@ -238,8 +238,8 @@
 
   // ============ BELIEF ============
   .a-belief {
-    background: var(--ink);
-    color: #fff;
+    background: var(--bg);
+    color: var(--ink);
     border-bottom: var(--border);
     padding: 80px 0;
   }
@@ -252,7 +252,7 @@
     display: block;
   }
   .a-belief-h2 {
-    color: #fff;
+    color: var(--ink);
     font-size: clamp(2rem, 5vw, 3.6rem);
     line-height: 1.02;
     margin-bottom: 28px;
@@ -316,8 +316,9 @@
     gap: 14px;
   }
   .a-cta-btns .zc-btn {
-    background: #fff;
-    color: #111;
+    background: var(--bg-2);
+    color: var(--ink);
+    box-shadow: 5px 5px 0 0 var(--accent-2);
   }
   .a-cta-btns .zc-btn.primary {
     background: var(--ink);
@@ -347,4 +348,33 @@
       grid-template-columns: 1fr;
     }
   }
+}
+
+// ============ HOVER TACTILITY ============
+.a-hob {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.a-hob:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 0 var(--accent);
+}
+.a-hob-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.a-hob:hover .a-hob-icon {
+  transform: scale(1.15) rotate(-6deg);
+}
+.a-stack-chip {
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.a-stack-chip:hover {
+  background: var(--accent);
+  color: #111;
+  transform: translateY(-3px);
+}
+.a-photo-frame {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.a-photo-frame:hover {
+  transform: translate(-3px, -3px);
 }
