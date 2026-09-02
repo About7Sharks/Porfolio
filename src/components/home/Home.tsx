@@ -5,8 +5,6 @@ import { featured, experiments } from "../../data/featured";
 import zac from "../../assets/img/zac-ridge.jpg";
 import "./Home.scss";
 
-const socials = config.links.slice(0, 4);
-
 export default function Home() {
   return (
     <div className="zc Home">
@@ -190,32 +188,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* =========================== FOOTER ========================== */}
-      <footer className="foot">
-        <div className="foot-top zc-wrap reveal">
-          <div className="foot-links">
-            {socials.map((l) => (
-              <a
-                key={l.title}
-                href={l.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="foot-link"
-              >
-                {l.title}
-                <span className="mono">↗</span>
-              </a>
-            ))}
-          </div>
-          <div className="foot-note">
-            <span className="foot-note-1">zacarlin.org</span>
-            <span className="foot-note-2 mono">
-              mirrored to ipfs · pull it from any node
-            </span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

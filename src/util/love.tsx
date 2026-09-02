@@ -459,6 +459,39 @@ function setupPartyKey() {
   return () => window.removeEventListener("keydown", onKey);
 }
 
+
+// -- copy email to clipboard + toast (attached per-element, not global) ----
+// call: attachCopyEmail(buttonEl, "zacarlin@gmail.com")
+export function attachCopyEmail(el: HTMLElement, email: string) {
+  const doCopy = () => {
+    const done = (ok: boolean) => {
+      const t = document.createElement("div");
+      t.className = "party-toast";
+      t.textContent = ok ? "email copied — go say hi 📬" : "copy failed (old browser? try the mailto link)";
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2400);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(email).then(
+        () => done(true),
+        () => done(false)
+      );
+    } else {
+      const ta = document.createElement("textarea");
+      ta.value = email;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(true); }
+      catch (e) { done(false); }
+      ta.remove();
+    }
+  };
+  el.addEventListener("click", doCopy);
+  return () => el.removeEventListener("click", doCopy);
+}
+
 // One hook, called once from App. All motion is scoped so it
 // never fights the legacy global styles.
 export function useLove() {

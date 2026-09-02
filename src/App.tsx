@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import {
   HashRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -15,6 +14,7 @@ import { ContactFormProvider } from "./contexts/ContactFormContext";
 const Footer = lazy(() => import("./components/ui/navigation/Footer"));
 const BackBTN = lazy(() => import("./components/ui/navigation/backbutton"));
 const Background = lazy(() => import("./components/ui/background"));
+const NotFound = lazy(() => import("./components/ui/navigation/NotFound"));
 
 export default function App() {
   useLove();
@@ -39,7 +39,7 @@ export default function App() {
                   />
                 );
               })}
-              <Route path="*" render={() => <Redirect to="/" />} />
+              <Route path="*" component={NotFound} />
             </Switch>
             <Footer />
           </div>
