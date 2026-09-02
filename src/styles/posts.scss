@@ -172,3 +172,194 @@
     margin: 0 auto;
   }
 }
+
+// ---------- round 7: modern post detail page ----------
+.post {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 24px 80px;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--bg);
+}
+.post-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 50;
+  pointer-events: none;
+}
+.post-head {
+  margin-bottom: 34px;
+  padding-top: 30px;
+}
+.post-back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  transition: all 0.15s;
+  margin-bottom: 22px;
+}
+.post-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateX(-3px);
+}
+.post-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.post-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 22px;
+}
+.post-rule {
+  width: 72px;
+  height: 6px;
+  background: var(--accent);
+}
+.post-body.article {
+  max-width: 760px;
+  width: 100%;
+  padding: 0;
+  min-height: auto;
+  color: var(--ink-2);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+.post-body.article h1,
+.post-body.article h2,
+.post-body.article h3 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.01em;
+}
+.post-body.article h2 {
+  font-size: 1.7rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 14px;
+  text-decoration: none;
+}
+.post-body.article h3 {
+  font-size: 1.28rem;
+}
+.post-body.article p { margin: 0 0 1.2em; }
+.post-body.article a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.post-body.article a:hover { color: var(--accent-2); }
+.post-body.article ul,
+.post-body.article ol {
+  padding-left: 1.3em;
+  margin: 0 0 1.3em;
+}
+.post-body.article li { margin-bottom: 0.4em; }
+.post-body.article strong { color: var(--ink); font-weight: 700; }
+.post-body.article em { color: var(--ink-2); }
+.post-body.article code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--bg-3);
+  color: var(--accent-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.post-body.article pre {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 0 0 1.4em;
+}
+.post-body.article pre code {
+  background: transparent;
+  color: var(--ink);
+  padding: 0;
+  font-size: 0.82rem;
+}
+.post-body.article blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--bg-2);
+  margin: 1.4em 0;
+  padding: 14px 20px;
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--ink-2);
+}
+.post-body.article img {
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin: 0.5em 0 1em;
+}
+.post-body.article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.9rem;
+}
+.post-body.article th {
+  background: var(--bg-3);
+  color: var(--ink);
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+}
+.post-body.article td {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+}
+.post-body.article hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2em 0;
+}
+.post-end {
+  margin-top: 50px;
+  padding-top: 24px;
+  text-align: center;
+}
+.post-end-line {
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 0 auto 18px;
+}
+.post-end-p {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+.post-end-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.post-end-link:hover { color: var(--accent-2); }
