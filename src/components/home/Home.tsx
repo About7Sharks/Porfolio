@@ -59,6 +59,11 @@ export default function Home() {
               <span className="chip">⚡ IPFS + ENS native</span>
               <span className="chip">🏋️ lifts · ✈️ travels</span>
             </div>
+
+            <button type="button" className="hero-scrollhint" aria-label="Scroll to explore">
+              <span className="hero-scrollhint-label mono">explore</span>
+              <span className="hero-scrollhint-arrow">↓</span>
+            </button>
           </div>
 
           <div className="hero-photo reveal" data-reveal-delay="150">
@@ -91,7 +96,7 @@ export default function Home() {
       </div>
 
       {/* ======================= FEATURED WORK ======================= */}
-      <section className="work">
+      <section className="work" id="more">
         <div className="zc-wrap">
           <div className="work-head reveal">
             <h2>

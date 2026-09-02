@@ -439,6 +439,34 @@ function setupHeroTerminal() {
   };
 }
 
+// -- scroll hint: "explore ↓" pill — scrolls to #more, hides after scroll --
+function setupScrollHint() {
+  const hint = document.querySelector<HTMLElement>(".hero-scrollhint");
+  if (!hint) return () => {};
+  const target = document.getElementById("more");
+  const onClick = () => {
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 8;
+    if (prefersReduced()) window.scrollTo(0, top);
+    else window.scrollTo({ top, behavior: "smooth" });
+  };
+  hint.addEventListener("click", onClick);
+  let raf = 0;
+  const onScroll = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      hint.classList.toggle("is-hidden", window.scrollY > 60);
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  return () => {
+    hint.removeEventListener("click", onClick);
+    window.removeEventListener("scroll", onScroll);
+    cancelAnimationFrame(raf);
+  };
+}
+
 // -- scroll-to-top: a square button fades in after you've gone deep --------
 function setupScrollTop() {
   const btn = document.createElement("button");
@@ -591,6 +619,7 @@ export function useLove() {
       setupHeroParallax(),
       setupScrollProgress(),
       setupScrollTop(),
+      setupScrollHint(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

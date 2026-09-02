@@ -60,6 +60,51 @@
     z-index: 1;
   }
 
+  // scroll hint — bottom of hero, gentle bounce, gone once you scroll
+  .hero-scrollhint {
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: rgba(13, 13, 15, 0.8);
+    color: var(--ink-3);
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.4s ease, color 0.2s ease, border-color 0.2s ease;
+    z-index: 2;
+  }
+  .hero-scrollhint:hover {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+  .hero-scrollhint-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .hero-scrollhint-arrow {
+    font-size: 14px;
+    animation: hero-hint-bounce 1.6s ease-in-out infinite;
+  }
+  @keyframes hero-hint-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+  .hero-scrollhint.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scrollhint-arrow { animation: none; }
+  }
+
   .hero-kicker {
     display: flex;
     align-items: center;
