@@ -60,25 +60,21 @@
     z-index: 1;
   }
 
-  // scroll hint — bottom of hero, gentle bounce, gone once you scroll
+  // scroll hint — below the chips row (in-flow, not absolute — no overlap),
+  // gentle bounce, gone once you scroll
   .hero-scrollhint {
-    position: absolute;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-top: 18px;
     padding: 7px 14px;
     border: 2px solid var(--line);
     border-radius: 999px;
     background: rgba(13, 13, 15, 0.8);
     color: var(--ink-3);
-    text-decoration: none;
-    font-family: inherit;
     cursor: pointer;
+    font-size: 11px;
     transition: opacity 0.4s ease, color 0.2s ease, border-color 0.2s ease;
-    z-index: 2;
   }
   .hero-scrollhint:hover {
     color: var(--ink);
@@ -88,9 +84,11 @@
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    font-family: var(--font-mono);
   }
   .hero-scrollhint-arrow {
     font-size: 14px;
+    display: inline-block;
     animation: hero-hint-bounce 1.6s ease-in-out infinite;
   }
   @keyframes hero-hint-bounce {
@@ -100,6 +98,7 @@
   .hero-scrollhint.is-hidden {
     opacity: 0;
     pointer-events: none;
+    transform: translateY(-4px);
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-scrollhint-arrow { animation: none; }
