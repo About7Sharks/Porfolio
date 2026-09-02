@@ -887,6 +887,7 @@ export function setupCmdPalette(
   }
 
   const actions: Item[] = [
+    { id: "contact", label: "Open the contact form (say hi)", group: "Action", run: () => { const el = document.querySelector<HTMLElement>(".contact-link"); if (el) el.click(); else { window.location.hash = "#/about"; } } },
     { id: "party", label: "Unlock party mode", group: "Action", run: () => window.dispatchEvent(new KeyboardEvent("keydown", { key: "e", bubbles: true })) },
     { id: "copy-email", label: "Copy zacarlin@gmail.com", group: "Action", run: () => { const el = document.querySelector<HTMLElement>(".f-copy"); if (el) el.click(); else if (navigator.clipboard) navigator.clipboard.writeText("zacarlin@gmail.com").catch(() => {}); } },
     { id: "accent-next", label: "Cycle to next accent theme", group: "Action", run: () => { const sw = Array.from(document.querySelectorAll<HTMLElement>(".accent-swatch")); if (sw.length) { const i = sw.findIndex((x) => x.classList.contains("is-active")); (sw[(i + 1 + sw.length) % sw.length]).click(); } } },
