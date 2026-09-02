@@ -97,6 +97,27 @@ export default function BlogPostViewer(props: any) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  // prev/next post navigation — load the full list, find this post's neighbors.
+  // List is newest-first, so next (newer) = idx-1, prev (older) = idx+1.
+  const [adj, setAdj] = useState<{ prev?: any; next?: any }>({});
+  useEffect(() => {
+    let live = true;
+    import("socks-librarian")
+      .then(({ getArticles }) => getArticles({ user: config.user, repo: config.repo }))
+      .then((list: any[]) => {
+        if (!live) return;
+        const idx = list.findIndex((a) => a.title === postData.data.title);
+        if (idx < 0) return;
+        setAdj({
+          next: list[idx - 1],
+          prev: list[idx + 1],
+        });
+      })
+      .catch(() => {});
+    return () => { live = false; };
+  }, [postData.data.title]);
+  const slug = (t: string) => "/journal/" + t.replace(/ /g, "");
+
   return (
     <article className="post">
       <div className="post-progress" style={{ transform: "scaleX(" + progress + ")" }} />
@@ -147,6 +168,26 @@ export default function BlogPostViewer(props: any) {
         />
       </div>
       <div className="post-end">
+        {(adj.next || adj.prev) && (
+          <div className="post-adj">
+            {adj.prev ? (
+              <Link to={slug(adj.prev.title)} className="post-adj-card mono">
+                <span className="post-adj-dir">← older</span>
+                <span className="post-adj-title">{adj.prev.title}</span>
+              </Link>
+            ) : (
+              <span className="post-adj-card post-adj-empty" aria-hidden="true" />
+            )}
+            {adj.next ? (
+              <Link to={slug(adj.next.title)} className="post-adj-card mono is-next">
+                <span className="post-adj-dir">newer →</span>
+                <span className="post-adj-title">{adj.next.title}</span>
+              </Link>
+            ) : (
+              <span className="post-adj-card post-adj-empty" aria-hidden="true" />
+            )}
+          </div>
+        )}
         <div className="post-end-line" />
         <p className="post-end-p mono">
           that's the post.{" "}
