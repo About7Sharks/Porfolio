@@ -1,4 +1,3 @@
-import React from "react";
 import "./beforeLoad.scss";
 
 export const BeforeLoad = () => {

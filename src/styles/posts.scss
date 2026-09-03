@@ -197,7 +197,7 @@
 }
 .post-head {
   margin-bottom: 34px;
-  padding-top: 30px;
+  padding-top: calc(var(--nav-h, 70px) + 30px);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -237,6 +237,29 @@
   letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0 0 22px;
+  position: relative;
+  display: inline-block;
+}
+/* visible corner triangles — bottom-right of the title text */
+.post-title::before,
+.post-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 14px solid #f54768;
+  transform: rotate(25deg);
+  display: block;
+}
+.post-title::after {
+  border-bottom-color: #8bd76b;
+  right: 0;
+  transform: rotate(-15deg);
+}
+.post-title::before {
+  right: 18px;
+  bottom: -4px;
 }
 .post-rule {
   width: 72px;
@@ -359,7 +382,8 @@
 .post-end-p {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--ink-3);
+  /* AA: was --ink-3 (rgb 107,106,104) = 3.59:1 on dark bg; use ink-2 (7.9:1) */
+  color: var(--ink-2);
 }
 .post-end-link {
   color: var(--accent);
@@ -372,7 +396,7 @@
   align-self: flex-start;
   background: transparent;
   border: 0;
-  color: var(--ink-3);
+  color: var(--ink-2); /* was --ink-3 (3.89:1, fails AA for 11.5px). --ink-2 = 7.9:1 */
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.04em;

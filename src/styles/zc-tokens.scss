@@ -58,14 +58,15 @@
   --ink-3: #6b6a68;            /* faint — meta, old timestamps */
   --bg: #0d0d0f;               /* page bg — near-black, not pure black */
   --bg-2: #15151a;             /* panels — a hair lighter than bg */
+  --nav-h: 70px;               /* fixed navbar total (68px bar + 2px border) — all page heads clear this */
   --bg-3: #1d1d22;             /* hover / raised panels */
   --paper-2: #111117;          /* alternate section surface (used by projects/about) */
   --paper: #f2f1ec;            /* (kept for compat) light — used where
                                   a chip or button needs the LIGHT fill */
   --accent: #ff5c00;           /* hot orange — the signature */
   --accent-2: #ffd60a;         /* electric yellow — second hit */
-  --blue: #4d74ff;             /* occasional pop */
-  --pink: #ff4fa3;             /* occasional pop */
+  --blue: #2f5be6;             /* occasional pop — darkened so white text passes 4.5:1 (was #4d74ff @ 3.99) */
+  --pink: #e2307f;             /* occasional pop — darkened so white text passes 4.5:1 (was #ff4fa3 @ 3.04) */
   --line: #2a2a30;             /* hairline separators */
   --border: 2px solid #f2f1ec; /* hard edges — LIGHT against the dark */
   --border-dark: 2px solid #0d0d0f;

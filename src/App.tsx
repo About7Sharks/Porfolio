@@ -10,6 +10,7 @@ import { useLove, setupCmdPalette } from "./util/love";
 import { getArticles } from "socks-librarian";
 import { paths } from "./Config";
 import { Navbar } from "./components/ui/navigation/Navbar";
+import RouteTitle from "./components/ui/RouteTitle";
 import { BeforeLoad, ViewportProgress } from "./util/index";
 import { ContactFormProvider } from "./contexts/ContactFormContext";
 const Footer = lazy(() => import("./components/ui/navigation/Footer"));
@@ -27,6 +28,7 @@ export default function App() {
     <Suspense fallback={<BeforeLoad />}>
       <ContactFormProvider>
         <Router>
+          <RouteTitle />
           <Navbar />
           <BackBTN />
           <ViewportProgress />

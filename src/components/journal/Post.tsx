@@ -33,6 +33,13 @@ export default function BlogPostViewer(props: any) {
     window.scrollTo(0, 0);
   }, [state, postData, Id]);
 
+  // set the browser tab title from the loaded article title
+  useEffect(() => {
+    if (postData.data && postData.data.title) {
+      document.title = `${postData.data.title} — Zac Carlin`;
+    }
+  }, [postData.data]);
+
   // reading progress
   const [progress, setProgress] = useState(0);
   useEffect(() => {

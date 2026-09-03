@@ -33,7 +33,7 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
     return parts.join(" · ");
   };
   return (
-    <>
+    <div className="textCards-grid">
       {data.map((post, i) => {
         const tint = i % 4;
         const isFeatured = i === 0;
@@ -76,6 +76,6 @@ export const TextCards: React.FC<TextCardsProps> = ({ data }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };

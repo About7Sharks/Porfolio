@@ -37,6 +37,24 @@ export function register(config?: ServiceWorkerConfig): void {
 }
 
 function registerValidSW(swUrl: string, config?: ServiceWorkerConfig): void {
+  // when the new SW takes over, reload so the cleaned precache is used
+  let refreshing = false;
+  window.addEventListener("message", (event) => {
+    if (event.data === "skipWaiting" || (event.data && event.data.type === "SKIP_WAITING")) {
+      if (navigator.serviceWorker.controller) {
+        window.addEventListener(
+          "controllerchange",
+          () => {
+            if (!refreshing) {
+              refreshing = true;
+              window.location.reload();
+            }
+          },
+          { once: true }
+        );
+      }
+    }
+  });
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
@@ -55,6 +73,11 @@ function registerValidSW(swUrl: string, config?: ServiceWorkerConfig): void {
 
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
+              }
+              // force the new SW to activate now — otherwise the stale
+              // precache keeps serving old JS chunks and the app crashes
+              if (installingWorker.state === "installed") {
+                installingWorker.postMessage("skipWaiting");
               }
             } else {
               console.log("Content is cached for offline use.");

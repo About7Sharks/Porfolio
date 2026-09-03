@@ -498,7 +498,6 @@ function scrollToEl(el: HTMLElement) {
 
 // -- scroll hint: "explore ↓" pill — scrolls to #more, hides after scroll --
 function setupScrollHint() {
-  const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const attach = (hint: HTMLElement) => {
     const target = () => document.getElementById("more");
     const onClick = () => {
@@ -543,7 +542,6 @@ function setupScrollHint() {
 
 // -- scroll-to-top: a square button fades in after you've gone deep --------
 function setupScrollTop() {
-  const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "love-scrolltop";
@@ -626,6 +624,138 @@ function setupHeroParallax() {
 }
 
 // -- "e" easter egg: party mode unlock (e = party) ---------------------------
+
+// -- love: footer heart, double-click hearts, "send some love" -------------
+const LOVE_LINES = [
+  "love received ♥ now go say hi 📬",
+  "you already do. that's the whole point.",
+  "noted — the site is very loved.",
+  "same ♥",
+];
+const HEARTS_KEY = "z4c-hearts";
+// the site gets warmer the more you send — tiers it climbs, in its voice
+const LOVE_TIERS = [
+  { at: 1, label: "just met you" },
+  { at: 10, label: "a little smitten" },
+  { at: 25, label: "head over heels" },
+  { at: 50, label: "yours, officially" },
+  { at: 100, label: "the site has a crush on you now" },
+];
+const loveTier = (n: number) => {
+  let tier: { at: number; label: string } | null = null;
+  for (const t of LOVE_TIERS) if (n >= t.at) tier = t;
+  return tier;
+};
+const loveToast = (msg: string, ms = 2400) => {
+  const t = document.createElement("div");
+  t.className = "party-toast";
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), ms);
+};
+
+export function sendLove(
+  x?: number,
+  y?: number,
+  opts?: { toast?: boolean; count?: number }
+) {
+  const cx = x ?? window.innerWidth / 2;
+  const cy = y ?? window.innerHeight / 2;
+  const burst = (n: number) => {
+    if (prefersReduced()) return;
+    for (let i = 0; i < n; i++) {
+      const s = document.createElement("span");
+      s.className = "love-heart";
+      s.textContent = "♥";
+      s.style.left = cx + "px";
+      s.style.top = cy + "px";
+      const ang = Math.random() * Math.PI * 2;
+      const dist = 30 + Math.random() * 110;
+      s.style.setProperty("--hx", Math.cos(ang) * dist + "px");
+      s.style.setProperty("--hy", Math.sin(ang) * dist - 50 + "px");
+      s.style.setProperty("--hr", (Math.random() * 90 - 45) + "deg");
+      s.style.animationDelay = Math.random() * 90 + "ms";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 1100);
+    }
+  };
+  // tally — the site remembers its love and gets warmer as you climb tiers
+  let total = 0;
+  try {
+    total = (parseInt(localStorage.getItem(HEARTS_KEY) || "0", 10) || 0) + 1;
+    localStorage.setItem(HEARTS_KEY, String(total));
+  } catch {
+    /* private mode — love still lands, it just goes uncounted */
+  }
+  burst(opts?.count ?? 14);
+  window.dispatchEvent(new CustomEvent("z4c:hearts"));
+  // crossed a new tier? that's the real milestone — bigger burst + a line
+  const tier = loveTier(total);
+  if (tier && total >= tier.at && (total - 1) < tier.at) {
+    burst(30);
+    loveToast(`♥ ${tier.label} — ${total} hearts and counting`, 3200);
+    return;
+  }
+  if (opts?.toast !== false) {
+    loveToast(LOVE_LINES[(Math.random() * LOVE_LINES.length) | 0]);
+  }
+}
+
+export function heartsSent(): number {
+  try {
+    return parseInt(localStorage.getItem(HEARTS_KEY) || "0", 10) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+function setupLovePulse() {
+  const tally = () => {
+    const el = document.querySelector<HTMLElement>(".f-love-tally");
+    if (!el) return;
+    const n = heartsSent();
+    const tier = loveTier(n);
+    el.textContent = n ? ` · ${n} ♥${tier ? " · " + tier.label : ""}` : "";
+  };
+  const scan = () => {
+    document.querySelectorAll<HTMLElement>(".f-love").forEach((el) => {
+      if (el.dataset.love) return;
+      el.dataset.love = "1";
+      const fire = (clientX?: number, clientY?: number) => {
+        const r = el.getBoundingClientRect();
+        sendLove(clientX ?? r.left + r.width / 2, clientY ?? r.top + r.height / 2);
+      };
+      el.addEventListener("click", () => fire());
+      el.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          fire();
+        }
+      });
+    });
+    tally();
+  };
+  scan();
+  const mo = new MutationObserver(scan);
+  mo.observe(document.body, { childList: true, subtree: true });
+  window.addEventListener("z4c:hearts", tally);
+  // one quiet heart on a double-click — anywhere except things that
+  // already celebrate (headlines have their own bigger burst)
+  const onDbl = (e: MouseEvent) => {
+    const t = e.target as HTMLElement;
+    if (!t) return;
+    if (t.closest("input, textarea, select, button, a, .tilt, .zc-btn, .work-row, .p-feat-card")) return;
+    if (t.closest(".hero-h1, .a-h1, .p-head-h1, .a-belief-h2, .a-cta-h2, .p-cta-h2, .journal-h1")) return;
+    sendLove(e.clientX, e.clientY, { toast: false, count: 1 });
+  };
+  document.addEventListener("dblclick", onDbl);
+  return () => {
+    mo.disconnect();
+    window.removeEventListener("z4c:hearts", tally);
+    document.removeEventListener("dblclick", onDbl);
+  };
+}
+
 function setupPartyKey() {
   const burst = (x: number, y: number, count: number) => {
     if (prefersReduced()) return;
@@ -904,6 +1034,8 @@ function setupHelp() {
     '<li><span class="help-conami">↑↑↓↓←→←→BA</span><span>Konami code → party mode</span></li>' +
     '<li><span class="help-accent">swatch dock</span><span>re-skin the whole site</span></li>' +
     '<li><span>any key on 404</span><span>send you home</span></li>' +
+    '<li><span>♥ (the heart in the footer)</span><span>the site remembers — love builds</span></li>' +
+    '<li><span>dblclick anywhere</span><span>a quiet heart appears</span></li>' +
     '</ul>' +
     '<p class="help-foot mono">click anywhere outside to close</p>';
   document.body.appendChild(el);
@@ -1021,6 +1153,8 @@ export function setupCmdPalette(
     { id: "party", label: "Unlock party mode", group: "Action", run: () => window.dispatchEvent(new KeyboardEvent("keydown", { key: "e", bubbles: true })) },
     { id: "copy-email", label: "Copy zacarlin@gmail.com", group: "Action", run: () => { const el = document.querySelector<HTMLElement>(".f-copy"); if (el) el.click(); else if (navigator.clipboard) navigator.clipboard.writeText("zacarlin@gmail.com").catch(() => {}); } },
     { id: "accent-next", label: "Cycle to next accent theme", group: "Action", run: () => { const sw = Array.from(document.querySelectorAll<HTMLElement>(".accent-swatch")); if (sw.length) { const i = sw.findIndex((x) => x.classList.contains("is-active")); (sw[(i + 1 + sw.length) % sw.length]).click(); } } },
+    { id: "love", label: "Send the site some love ♥", group: "Action", run: () => sendLove() },
+    { id: "love-status", label: "How much does the site love you?", group: "Action", run: () => { const n = heartsSent(); const t = loveTier(n); if (!n) { loveToast("the site is patient. it's waiting for the first ♥"); return; } loveToast(`♥ ${t ? t.label : "just getting started"} — ${n} hearts`, 3000); } },
     { id: "top", label: "Back to top", group: "Action", run: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
     { id: "ipfs", label: "Open the IPFS copy ( zacarlin.eth )", group: "Action", run: () => window.open("https://ipfs.io/ipns/zacarlin.eth", "_blank", "noopener") },
   ];
@@ -1183,6 +1317,7 @@ export function useLove() {
       setupCopyCode(),
       setupNavKeys(),
       setupHelp(),
+      setupLovePulse(),
     ];
     return () => {
       document.documentElement.classList.remove("js");

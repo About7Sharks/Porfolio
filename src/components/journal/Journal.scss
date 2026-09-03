@@ -5,18 +5,31 @@
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
+  /* override legacy inline-flex (basicFlex) so the page fills the viewport
+     and inner .zc-wrap centring actually works */
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch;
 }
 
-// page head — matches the other pages
+// page head — matches the other pages.
+// Top padding clears the fixed navbar (--nav-h) + breathing room, otherwise
+// the kicker row renders under the bar.
 .j-head {
   border-bottom: var(--border);
   background: var(--bg);
-  padding: 56px 0 48px;
+  padding: calc(var(--nav-h) + 40px) 0 48px;
   margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .j-head-kicker {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   margin-bottom: 20px;
 }
@@ -44,6 +57,7 @@
   color: var(--ink-2);
   font-size: 1.05rem;
   line-height: 1.6;
+  margin: 0 auto;
 }
 
 // controls row
@@ -61,8 +75,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 260px;
-  flex: 0 1 340px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 .j-filter-label {
   font-size: 0.78rem;
@@ -174,6 +188,15 @@
   max-width: 900px;
   padding: 0 0 60px;
 }
+/* list-view card container — centred, max-width, grid with gutter */
+.textCards-grid {
+  max-width: var(--max, 1180px);
+  margin: 0 auto;
+  padding: 0 28px 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
 .zc.journal .textCard {
   position: relative;
   margin: 0 0 18px;
@@ -226,7 +249,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--ink-2); /* was --ink-3 (3.89:1, fails AA for 11.2px). --ink-2 = 7.9:1 */
 }
 .zc.journal .textCard .jc-tags > span,
 .zc.journal .textCard .jc-tags .jc-tag {
@@ -242,7 +265,9 @@
 }
 .zc.journal .textCard p {
   color: var(--ink-2);
-  margin: 0 0 8px;
+  /* !important beats the global mobile `p { margin:40px 5px !important }` in
+     responsive.scss that was forcing a 40px dead gap above every card summary */
+  margin: 0 0 8px !important;
   line-height: 1.5;
 }
 .zc.journal .textCard .jc-meta-row {
@@ -277,4 +302,26 @@
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   vertical-align: middle;
+}
+
+// ---- mobile: shorten the tag wall --------------------------------------
+// On narrow screens 18 chips at desktop size wrap into ~9 rows (a tag wall
+// eating ~25% of the viewport). Let the filter fill the row (flex:1, done
+// above) and drop chip sizing so ~3 chips/row → ~6 rows.
+@media (max-width: 640px) {
+  .j-controls {
+    gap: 12px;
+    padding: 16px 0;
+  }
+  .j-filter {
+    flex: 1 1 100%;
+  }
+  .j-filter-label {
+    font-size: 0.7rem;
+    margin-right: 2px;
+  }
+  .j-tag {
+    font-size: 0.66rem;
+    padding: 0.28em 0.55em;
+  }
 }

@@ -5,7 +5,7 @@
   .hero {
     border-bottom: var(--border);
     background: var(--bg);
-    padding: 48px 0 56px;
+    padding: calc(var(--nav-h) + 24px) 0 56px;
     position: relative;
     overflow: hidden;
 
@@ -75,7 +75,7 @@
     border: 2px solid var(--line);
     border-radius: 999px;
     background: rgba(13, 13, 15, 0.8);
-    color: var(--ink-3);
+    color: var(--ink-2); /* was --ink-3 (3.89:1, fails AA for 11px). --ink-2 = 7.9:1 */
     cursor: pointer;
     font-size: 11px;
     transition: opacity 0.4s ease, color 0.2s ease, border-color 0.2s ease;
@@ -297,7 +297,9 @@
     border-top: 2px dashed #4a4a50;
   }
   .work-row-period {
-    color: var(--ink-3);
+    /* sits on tinted rows (blue/pink/yellow ~rgb(26,32,56)) where --ink-2 gray drops to
+       2.97–3.59:1. --ink (off-white) = 14–17:1 on the tints, passes AA */
+    color: var(--ink);
   }
   .work-row-arrow {
     font-size: 1.5rem;

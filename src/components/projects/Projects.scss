@@ -5,7 +5,7 @@
   .p-head {
     border-bottom: var(--border);
     background: var(--bg);
-    padding: 56px 0 56px;
+    padding: calc(var(--nav-h) + 40px) 0 56px;
     position: relative;
     overflow: hidden;
   }
@@ -37,6 +37,7 @@
   .p-head-lede em {
     font-style: normal;
     background: var(--accent-2);
+    color: #0d0d0f;
     padding: 0 0.15em;
     font-weight: 700;
   }
@@ -131,7 +132,9 @@
     border-top: 2px solid #5a5a62;
   }
   .p-feat-foot .mono {
-    color: var(--ink-3);
+    /* period labels sit on tinted foots where --ink-3 drops to 2.88–3.89:1.
+       --ink (off-white) = 12–17:1 on the tints, passes AA */
+    color: var(--ink);
   }
   .p-feat-go {
     font-family: var(--font-display);
@@ -152,9 +155,9 @@
   .p-feat-pink { background: #2a1622; }
   .p-feat-pink .p-feat-index { color: var(--pink); }
   .p-feat-pink .p-feat-top .zc-chip { background: var(--pink); color: #fff; }
-  .p-feat-yellow .p-feat-top .zc-chip { background: var(--accent-2); }
+  .p-feat-yellow .p-feat-top .zc-chip { background: var(--accent-2); color: #0d0d0f; }
   .p-feat-yellow .p-feat-index { color: var(--accent); }
-  .p-feat-accent .p-feat-top .zc-chip { background: var(--accent-2); }
+  .p-feat-accent .p-feat-top .zc-chip { background: var(--accent-2); color: #0d0d0f; }
 
   // ============ FUN STUFF ============
   .p-fun {
@@ -261,21 +264,26 @@
     color: var(--accent);
   }
 
-  // per-tile tints
-  .tile-accent { background: var(--accent); }
-  .tile-accent .p-tile-blurb,
-  .tile-accent .p-tile-tags .tag { color: #111; }
-  .tile-accent .p-tile-go { color: #fff; }
+  // per-tile tints — dark ink on bright bg for AA contrast (all ≥ 4.5:1)
+  .tile-accent { background: var(--accent); color: #0d0d0f; }
+  .tile-accent .p-tile-name { color: #0d0d0f; }
+  .tile-accent .p-tile-blurb { color: #0d0d0f; }
+  .tile-accent .p-tile-tags .tag { border-color: #0d0d0f; color: #0d0d0f; }
+  .tile-accent .p-tile-go { color: #0d0d0f; }
+  .tile-accent .p-tile-index { color: rgba(13, 13, 15, 0.14); -webkit-text-stroke: 1px rgba(13, 13, 15, 0.22); }
+  .tile-accent:hover .p-tile-index { color: rgba(13, 13, 15, 0.35); -webkit-text-stroke: 1px rgba(13, 13, 15, 0.5); }
 
-  .tile-blue { background: var(--blue); color: #fff; }
+  .tile-blue { background: #2f53c9; color: #fff; }
+  .tile-blue .p-tile-name { color: #fff; }
   .tile-blue .p-tile-blurb { color: #fff; }
   .tile-blue .p-tile-tags .tag { border-color: #fff; color: #fff; }
-  .tile-blue .p-tile-go { color: var(--accent-2); }
+  .tile-blue .p-tile-go { color: #fff; }
 
-  .tile-pink { background: var(--pink); color: #fff; }
+  .tile-pink { background: #c21a6e; color: #fff; }
+  .tile-pink .p-tile-name { color: #fff; }
   .tile-pink .p-tile-blurb { color: #fff; }
   .tile-pink .p-tile-tags .tag { border-color: #fff; color: #fff; }
-  .tile-pink .p-tile-go { color: var(--accent-2); }
+  .tile-pink .p-tile-go { color: #fff; }
 
   // ============ CTA ============
   .p-cta {

@@ -1,5 +1,6 @@
 // Footer — dark neo-brutalist, three-column layout, copy-email CTA
 #footer {
+  box-sizing: border-box; /* width:100% + 96px padding was overflowing viewport by 96px */
   color: var(--ink);
   background: var(--bg-2);
   margin: 120px 0 0 0;
@@ -21,7 +22,8 @@
     margin: 10px 0 0;
     font-family: var(--font-mono);
     font-size: 0.74rem;
-    color: var(--ink-3);
+    /* was --ink-3 (3.73:1, fails AA for 0.74rem). --ink-2 = 7.9:1 */
+    color: var(--ink-2);
     letter-spacing: 0.03em;
     max-width: 300px;
   }
@@ -77,7 +79,8 @@
     background: var(--bg-3);
   }
   .f-copy-addr {
-    color: var(--ink-3);
+    /* was --ink-3 (3.73:1, fails AA for 0.78rem). --ink-2 = 7.9:1 */
+    color: var(--ink-2);
     text-transform: none;
     letter-spacing: 0;
   }
@@ -92,8 +95,29 @@
     margin: 0;
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--ink-3);
+    /* was --ink-3 (3.73:1, fails AA for 0.72rem). --ink-2 = 7.9:1 */
+    color: var(--ink-2);
     letter-spacing: 0.04em;
+  }
+  .f-love {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+  }
+  .f-love:hover {
+    transform: scale(1.35) rotate(-8deg);
+  }
+  .f-love:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .f-love-tally {
+    color: var(--ink-2);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
   }
   .f-ipfs {
     color: var(--accent);
@@ -161,7 +185,8 @@
   gap: 6px;
   background: transparent;
   border: 1.5px solid var(--line);
-  color: var(--ink-3);
+  /* was --ink-3 (3.73:1, fails AA). --ink-2 = 7.9:1 */
+  color: var(--ink-2);
   font-family: var(--font-mono);
   font-size: 0.74rem;
   padding: 6px 12px;
@@ -186,6 +211,7 @@
 
 /* -- "?" cheat-sheet card --------------------------------------------------- */
 .help-card {
+  box-sizing: border-box; /* width:92vw + 44px padding + 4px border was overflowing mobile by 16px */
   position: fixed;
   left: 50%;
   top: 50%;
@@ -213,7 +239,7 @@
   font-size: 0.66rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--ink-2); /* was --ink-3 (3.73:1, fails AA for 10.6px). --ink-2 = 7.9:1 */
 }
 .help-close {
   background: transparent;
@@ -271,7 +297,7 @@
 .help-foot {
   margin: 14px 0 0;
   font-size: 0.68rem;
-  color: var(--ink-3);
+  color: var(--ink-2); /* was --ink-3 (3.73:1, fails AA for 10.9px). --ink-2 = 7.9:1 */
 }
 @media (prefers-reduced-motion: reduce) {
   .help-card { animation: none; }

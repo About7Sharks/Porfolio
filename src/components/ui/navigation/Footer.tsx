@@ -44,7 +44,8 @@ export default function Footer() {
           press <kbd>?</kbd> for the cheat sheet
         </button>
         <p className="mono">
-          built with <span>❤</span> by zac
+          built with <span className="f-love" role="button" tabIndex={0} title="give it some back">❤</span> by zac
+          <span className="f-love-tally" aria-hidden="true"></span>
         </p>
         <p className="mono f-ipfs">
           uncensorable · ipfs · zacarlin.eth

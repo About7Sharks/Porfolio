@@ -25,6 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "node scripts/apply-patches.mjs && react-scripts build",
+    "build:staging": "node scripts/apply-patches.mjs && PUBLIC_URL=/app/zacarlin react-scripts build",
     "postinstall": "node scripts/apply-patches.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

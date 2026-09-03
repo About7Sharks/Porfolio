@@ -49,7 +49,7 @@ export default function Home() {
             <p className="hero-lede">
               Frontend engineer with real shipping behind it. I build
               production UI, wire up the APIs and agents behind it, and ship
-              the whole thing to the <strong>interwebs 🕸️</strong> —
+              the whole thing to the <strong>interwebs</strong> 🕸️ —
               uncensorable, mirrored to IPFS.
             </p>
 
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
 
             <div className="hero-terminal" aria-hidden="true">
-              <span className="hero-terminal-prompt">zac@black:~$</span>
+              <span className="hero-terminal-prompt">zac@carlin:~$</span>
               <span className="hero-terminal-cmd" data-type="deploy --net ipfs --tag zacarlin.eth --replicas 3" />
               <span className="hero-terminal-cursor" />
             </div>
@@ -74,7 +74,7 @@ export default function Home() {
                 <span className="mono">online</span>
                 <span className="live-clock mono" data-tz="America/New_York">—:—</span>
               </span>
-              <span className="chip">🐴 for humans, of course</span>
+              <span className="chip">🧑‍💻 for humans, of course</span>
               <span className="chip">⚡ IPFS + ENS native</span>
               <span className="chip">🏋️ lifts · ✈️ travels</span>
             </div>
@@ -92,28 +92,34 @@ export default function Home() {
               <span className="photo-tag mono">zacarlin.eth</span>
             </div>
             <div className="photo-badge">
-              <span>100% hand-rolled.</span>
-              <span className="mono">no ai filter.</span>
+              <span>100% American-made.</span>
+              <span className="mono">Tampa, FL assembly.</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* ======================= SKILL MARQUEE ======================= */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-inner">
-          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs + ens", "cloudflare", "solana", "playwright", "css that slaps", "zacarlin.eth"].map((s, i) => (
-            <span key={i} className={i % 4 === 2 ? "m-hot" : ""}>
-              {s} ·
-            </span>
-          ))}
-          {["react", "typescript", "rust", "wasm", "node.js", "mcp servers", "ipfs + ens", "cloudflare", "solana", "playwright", "css that slaps", "zacarlin.eth"].map((s, i) => (
-            <span key={"b" + i} className={i % 4 === 2 ? "m-hot" : ""}>
-              {s} ·
-            </span>
-          ))}
-        </div>
-      </div>
+      {(() => {
+        const items = [
+          "react", "css that slaps", "typescript", "rust",
+          "docker", "llama.cpp", "tailscale", "wasm",
+          "mcp servers", "ollama", "ipfs + ens", "cloudflare",
+        ];
+        return (
+          <div className="marquee" aria-hidden="true">
+            <div className="marquee-inner">
+              {[items, items].map((set, n) =>
+                set.map((s, i) => (
+                  <span key={n + "-" + i} className={i % 4 === 2 ? "m-hot" : ""}>
+                    {s} ·
+                  </span>
+                ))
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ======================= FEATURED WORK ======================= */}
       <section className="work" id="more">

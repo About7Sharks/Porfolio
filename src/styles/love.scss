@@ -196,6 +196,23 @@ body.party .zc-btn:hover {
   from { transform: translateY(20px) scale(0.9); opacity: 0; }
   to { transform: none; opacity: 1; }
 }
+// "send some love" — floating hearts (footer heart / palette / dblclick)
+.love-heart {
+  position: fixed;
+  z-index: 9998;
+  pointer-events: none;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--accent);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
+  transform: translate(-50%, -50%);
+  animation: heart-float 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes heart-float {
+  0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--hx, 0px)), calc(-50% + var(--hy, -90px))) rotate(var(--hr, 0deg)) scale(1.15); opacity: 0; }
+}
 
 // ============ SIGNATURE LAYER (v2) ============
 
