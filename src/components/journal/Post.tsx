@@ -14,13 +14,15 @@ export default function BlogPostViewer(props: any) {
     content: "",
     data: { date: "", title: "", author: "" },
   });
-  const [Id] = useState(props.match.params.id);
 
   useEffect(() => {
-    if (state === undefined && postData.content === "") {
+    if (state === undefined) {
+      // route-driven load — runs on first mount AND when the post id
+      // changes (prev/next nav reuses this component, it does not remount)
+      const postId = props.match.params.id;
       const getPost = async () => {
         const post = await getArticle({
-          article: Id,
+          article: postId,
           user: config.user,
           repo: config.repo,
         });
@@ -31,7 +33,7 @@ export default function BlogPostViewer(props: any) {
       return setPost({ ...state });
     }
     window.scrollTo(0, 0);
-  }, [state, postData, Id]);
+  }, [state, props.match.params.id]);
 
   // set the browser tab title from the loaded article title
   useEffect(() => {
