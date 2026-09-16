@@ -66,7 +66,7 @@ export default function NotFound() {
           </a>
         </div>
         <p className="nf-foot mono">
-          this page is uncensorable too &mdash; it lives on IPFS as much as the rest
+          this page is a 404 on purpose &mdash; and there&apos;s a second copy at zacarlin.eth
         </p>
         <p className="nf-hint mono" aria-hidden="true">
           &larr; or press any key to go home

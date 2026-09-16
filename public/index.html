@@ -5,23 +5,24 @@
     <meta name="theme-color" content="#0d0d0f" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" sizes="any" />
-    <meta name="description" content="Zac Carlin — software engineer in Tampa, FL. I build the things that run on the web: production UI, IoT sensors, AI chat, and a self-hosted MCP server. This site is uncensorable, mirrored to IPFS." />
+    <meta name="description" content="Zac Carlin — software engineer in Tampa, FL. I build the things that run on the web: production UI, IoT sensors, AI chat, and a self-hosted MCP server." />
     <meta name="author" content="Zachary Carlin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Zac Carlin — I build the things that run on the web" />
-    <meta property="og:description" content="Frontend engineer. Production UI, IoT, AI chat, MCP. Uncensorable — mirrored to IPFS, addressable via zacarlin.eth." />
-    <meta property="og:url" content="https://zacarlin.org" />
-    <meta property="og:image" content="https://zacarlin.org/og-image.png" />
+    <meta property="og:description" content="Frontend engineer. Production UI, IoT, AI chat, MCP." />
+    <meta property="og:url" content="https://www.zacarlin.org/" />
+    <meta property="og:image" content="https://www.zacarlin.org/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="zac.arlin — I build the things that run on the web" />
     <meta property="og:site_name" content="zacarlin.org" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Zac Carlin — software engineer" />
-    <meta name="twitter:description" content="I build the things that run on the web. Uncensorable, IPFS-mirrored." />
-    <meta name="twitter:image" content="https://zacarlin.org/og-image.png" />
+    <meta name="twitter:description" content="I build the things that run on the web." />
+    <meta name="twitter:image" content="https://www.zacarlin.org/og-image.png" />
+    <link rel="canonical" href="https://www.zacarlin.org/" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script
       async
@@ -30,19 +31,21 @@
     ></script>
     <title>Zac Carlin — I build the things that run on the web</title>
   </head>
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-4490T0Z5S8"
-  ></script>
+  <!-- Google tag (gtag.js) — production site only. Kept off preview/staging so
+       deploy previews don't pollute the property. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
+    if (/(^|\.)zacarlin\.org$/.test(location.hostname)) {
+      var g = document.createElement("script");
+      g.async = true;
+      g.src = "https://www.googletagmanager.com/gtag/js?id=G-4490T0Z5S8";
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-4490T0Z5S8");
     }
-    gtag("js", new Date());
-
-    gtag("config", "G-4490T0Z5S8");
   </script>
   <body>
     <noscript>

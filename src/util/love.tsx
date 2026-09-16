@@ -1156,7 +1156,7 @@ export function setupCmdPalette(
     { id: "love", label: "Send the site some love ♥", group: "Action", run: () => sendLove() },
     { id: "love-status", label: "How much does the site love you?", group: "Action", run: () => { const n = heartsSent(); const t = loveTier(n); if (!n) { loveToast("the site is patient. it's waiting for the first ♥"); return; } loveToast(`♥ ${t ? t.label : "just getting started"} — ${n} hearts`, 3000); } },
     { id: "top", label: "Back to top", group: "Action", run: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
-    { id: "ipfs", label: "Open the IPFS copy ( zacarlin.eth )", group: "Action", run: () => window.open("https://ipfs.io/ipns/zacarlin.eth", "_blank", "noopener") },
+    { id: "ipfs", label: "Open the .eth copy ( zacarlin.eth )", group: "Action", run: () => window.open("https://zacarlin.eth.limo/", "_blank", "noopener") },
   ];
   const routes: Item[] = [
     { id: "home", label: "Home — I build the things that run on the web", group: "Go to", run: () => { window.location.hash = "#/"; } },

@@ -50,7 +50,7 @@ export default function Home() {
               Frontend engineer with real shipping behind it. I build
               production UI, wire up the APIs and agents behind it, and ship
               the whole thing to the <strong>interwebs</strong> 🕸️ —
-              uncensorable, mirrored to IPFS.
+              and keep a second copy pinned to IPFS at zacarlin.eth.
             </p>
 
             <div className="hero-ctas">
@@ -75,7 +75,7 @@ export default function Home() {
                 <span className="live-clock mono" data-tz="America/New_York">—:—</span>
               </span>
               <span className="chip">🧑‍💻 for humans, of course</span>
-              <span className="chip">⚡ IPFS + ENS native</span>
+              <span className="chip">⚡ IPFS + ENS copy</span>
               <span className="chip">🏋️ lifts · ✈️ travels</span>
             </div>
 
@@ -196,10 +196,10 @@ export default function Home() {
               <div className="stat-label">projects shipped &amp; live</div>
             </div>
             <div className="stat">
-              <div className="stat-num" data-target="3" data-suffix="x">
+              <div className="stat-num" data-target="2" data-suffix="x">
                 0
               </div>
-              <div className="stat-label">web copies of this site — uncensorable</div>
+              <div className="stat-label">web copies of this site — main + .eth</div>
             </div>
           </div>
         </div>

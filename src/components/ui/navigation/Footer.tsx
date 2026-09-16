@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="f-left">
         <h3>Let&apos;s connect</h3>
         <p className="f-sub mono">
-          no gatekeepers, no tracking pixels, just a human who ships
+          no gatekeepers, no ads, just a human who ships
         </p>
       </div>
       <div className="f-mid">
@@ -48,7 +48,7 @@ export default function Footer() {
           <span className="f-love-tally" aria-hidden="true"></span>
         </p>
         <p className="mono f-ipfs">
-          uncensorable · ipfs · zacarlin.eth
+          self-hosted data · ipfs copy · zacarlin.eth
         </p>
       </div>
     </div>

@@ -100,7 +100,7 @@ const sites: Site[] = [
     tags: [`Vue`],
   },
   {
-    url: "https://www.zacarlin.com/#/",
+    url: `https://github.com/About7Sharks`,
     img: `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5c5f96bda306c00008028590/screenshot.png`,
     title: `Zacarlin`,
     text: `Bought the Domain a while back and figured I should put it to use.`,

@@ -40,12 +40,11 @@ export default function About() {
 
             <p className="a-lede-2">
               I think the web should be{" "}
-              <strong>uncensorable</strong>. So this site is mirrored to{" "}
-              <strong>IPFS</strong> and addressed through{" "}
-              <strong>ENS</strong> — the same bytes, pulled from{" "}
-              <strong>zacarlin.eth</strong> on any node, whether or not some
-              registrar has an opinion about it. One more copy of the
-              interwebs that's harder to take down.
+              <strong>less censurable</strong>. So I keep a second copy of this
+              site pinned to <strong>IPFS</strong> and addressed through{" "}
+              <strong>ENS</strong> at <strong>zacarlin.eth</strong> — reachable
+              on any gateway, no registrar in the loop. One more copy of the
+              interwebs that&apos;s harder to take down.
             </p>
 
             <div className="a-ctas">
@@ -60,7 +59,7 @@ export default function About() {
             <div className="a-meta">
               <span className="chip">Tampa, FL</span>
               <span className="chip">open to work</span>
-              <span className="chip">IPFS + ENS native</span>
+              <span className="chip">IPFS + ENS copy</span>
             </div>
           </div>
 
@@ -126,15 +125,14 @@ export default function About() {
           <h2 className="a-belief-h2">
             The web I want to live in
             <br />
-            doesn't ask permission.
+            doesn&apos;t ask permission.
           </h2>
           <p className="a-belief-p">
-            The main site ships through the usual CDN, sure — it's fast and
-            it works. But there's a second copy of the exact same build,
-            mirrored to <strong>IPFS</strong> and addressable through{" "}
-            <strong>ENS</strong>. Pull it from <em>any</em> node and you get
-            the same bytes. No single registrar, no single host, no single
-            point of failure.
+            The main site ships through the usual CDN, sure — it&apos;s fast and
+            it works. So I keep a second copy pinned to <strong>IPFS</strong>{" "}
+            and addressable through <strong>ENS</strong> at{" "}
+            <em>zacarlin.eth</em>. Pull it from any gateway and the site loads
+            without a registrar anywhere in the loop.
           </p>
           <p className="a-belief-p">
             That's not a feature. It's the point. The <em>interwebs 🕸️</em>{" "}
@@ -142,12 +140,12 @@ export default function About() {
           </p>
           <div className="a-belief-ctas">
             <a
-              href="https://ipfs.io/ipns/zacarlin.eth"
+              href="https://zacarlin.eth.limo/"
               target="_blank"
               rel="noopener noreferrer"
               className="zc-btn magnet"
             >
-              see the IPFS copy →
+              see the .eth copy →
             </a>
             <Link to="/projects" className="zc-btn magnet">
               see what I've shipped →

@@ -1,0 +1,28 @@
+# Netlify _headers — correct MIME types, caching, and baseline security.
+# Fixes: manifest.webmanifest was served as application/octet-stream,
+# and /static/* assets had only a 4-hour cache.
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+
+/service-worker.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
