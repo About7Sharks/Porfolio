@@ -52,6 +52,20 @@ export const featured: Featured[] = [
     url: "https://z4cllc.com",
     period: "2024 — Now",
   },
+  {
+    title: "Dogwood Logic — Encrypted Data & Verifiable Credentials",
+    tag: "Production · Digital Identity",
+    accent: "accent",
+    blurb:
+      "Software engineer at Dogwood Logic, building secure collaboration on encrypted data vaults — decentralized identity for ledger-based applications, and Vue.js interfaces for encrypted healthcare apps where the patient keeps control of their own data.",
+    bullets: [
+      "Implemented decentralized identifiers (DIDs) and Verifiable Credentials for ledger-based applications in Node.js and TypeScript",
+      "Built Vue.js interfaces for encrypted healthcare applications — access controlled by the source, not the platform",
+      "Worked test-driven, with pragmatic simulations of real user flows to harden reliability",
+    ],
+    url: "https://dlinc.io/",
+    period: "2021 — 2022",
+  },
 ];
 
 export interface Experiment {
